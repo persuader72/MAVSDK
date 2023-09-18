@@ -74,6 +74,10 @@ int GrpcServer::run()
     builder.RegisterService(&_gimbal_service);
 #endif
 
+#ifdef GIMBAL_MANAGER_SERVER_ENABLED
+    builder.RegisterService(&_gimbal_manager_server_service);
+#endif
+
 #ifdef GRIPPER_ENABLED
     builder.RegisterService(&_gripper_service);
 #endif
@@ -235,6 +239,10 @@ void GrpcServer::stop()
 
 #ifdef GIMBAL_ENABLED
         _gimbal_service.stop();
+#endif
+
+#ifdef GIMBAL_MANAGER_SERVER_ENABLED
+        _gimbal_manager_server_service.stop();
 #endif
 
 #ifdef GRIPPER_ENABLED

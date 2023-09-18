@@ -79,6 +79,11 @@
 #include "gimbal/gimbal_service_impl.h"
 #endif
 
+#ifdef GIMBAL_MANAGER_SERVER_ENABLED
+#include "plugins/gimbal_manager_server/gimbal_manager_server.h"
+#include "gimbal_manager_server/gimbal_manager_server_service_impl.h"
+#endif
+
 #ifdef GRIPPER_ENABLED
 #include "plugins/gripper/gripper.h"
 #include "gripper/gripper_service_impl.h"
@@ -250,6 +255,11 @@ public:
 #ifdef GIMBAL_ENABLED
         _gimbal_lazy_plugin(mavsdk),
         _gimbal_service(_gimbal_lazy_plugin),
+#endif
+
+#ifdef GIMBAL_MANAGER_SERVER_ENABLED
+        _gimbal_manager_server_lazy_plugin(mavsdk),
+        _gimbal_manager_server_service(_gimbal_manager_server_lazy_plugin),
 #endif
 
 #ifdef GRIPPER_ENABLED
@@ -453,6 +463,13 @@ private:
     LazyPlugin<Gimbal> _gimbal_lazy_plugin;
 
     GimbalServiceImpl<> _gimbal_service;
+#endif
+
+#ifdef GIMBAL_MANAGER_SERVER_ENABLED
+
+    LazyServerPlugin<GimbalManagerServer> _gimbal_manager_server_lazy_plugin;
+
+    GimbalManagerServerServiceImpl<> _gimbal_manager_server_service;
 #endif
 
 #ifdef GRIPPER_ENABLED
