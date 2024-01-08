@@ -13,22 +13,20 @@
 #include <utility>
 #include <vector>
 
-
 #include "plugin_base.h"
 
 #include "handle.h"
 
 namespace mavsdk {
 
-
-class System;class RemoteIdImpl;
+class System;
+class RemoteIdImpl;
 
 /**
- * @brief 
+ * @brief
  */
 class RemoteId : public PluginBase {
 public:
-
     /**
      * @brief Constructor. Creates the plugin for a specific System.
      *
@@ -55,22 +53,17 @@ public:
      */
     explicit RemoteId(std::shared_ptr<System> system); // new
 
-
     /**
      * @brief Destructor (internal use only).
      */
     ~RemoteId() override;
 
-
-
-
-
     /**
-     * @brief 
+     * @brief
      */
     struct BasicId {
-        
-        uint32_t id_type{}; /**< @brief Indicates the format for the uas_id field of this message. */
+        uint32_t
+            id_type{}; /**< @brief Indicates the format for the uas_id field of this message. */
         uint32_t ua_type{}; /**< @brief Indicates the type of UA (Unmanned Aircraft). */
         std::string uas_id{}; /**< @brief UAS ID following the format specified by id_type. */
     };
@@ -89,24 +82,27 @@ public:
      */
     friend std::ostream& operator<<(std::ostream& str, RemoteId::BasicId const& basic_id);
 
-
-
-
     /**
-     * @brief 
+     * @brief
      */
     struct Location {
-        
-        uint32_t status{}; /**< @brief Indicates whether the unmanned aircraft is on the ground or in the air. */
-        uint32_t direction{}; /**< @brief Direction over ground measured clockwise from true North: 0 - 35999 cdeg. */
+        uint32_t status{}; /**< @brief Indicates whether the unmanned aircraft is on the ground or
+                              in the air. */
+        uint32_t direction{}; /**< @brief Direction over ground measured clockwise from true North:
+                                 0 - 35999 cdeg. */
         uint32_t speed_horizontal{}; /**< @brief Ground speed. Positive only. cm/s */
         int32_t speed_vertical{}; /**< @brief The vertical speed. Up is positive. cm/s */
         int32_t latitude{}; /**< @brief Current latitude of the unmanned aircraft */
         int32_t longitude{}; /**< @brief Current longitude of the unmanned aircraft */
-        float altitude_barometric{}; /**< @brief The altitude calculated from the barometric pressue. */
+        float altitude_barometric{}; /**< @brief The altitude calculated from the barometric
+                                        pressue. */
         float altitude_geodetic{}; /**< @brief The geodetic altitude as defined by WGS84. */
-        uint32_t height_reference{}; /**< @brief Indicates the reference point for the height field. */
-        float height{}; /**< @brief The current height of the unmanned aircraft. As indicated by height_reference. */
+        uint32_t
+            height_reference{}; /**< @brief Indicates the reference point for the height field. */
+        float height{}; /**< @brief The current height of the unmanned aircraft. As indicated by
+                           height_reference. */
+        float timestamp{}; /**< @brief Seconds after the full hour with reference to UTC time. */
+        uint32_t timestamp_accuracy{}; /**< @brief The accuracy of the timestamps. */
     };
 
     /**
@@ -122,10 +118,6 @@ public:
      * @return A reference to the stream.
      */
     friend std::ostream& operator<<(std::ostream& str, RemoteId::Location const& location);
-
-
-
-
 
     /**
      * @brief Possible results returned for camera commands
@@ -143,17 +135,10 @@ public:
      */
     friend std::ostream& operator<<(std::ostream& str, RemoteId::Result const& result);
 
-
-
     /**
      * @brief Callback type for asynchronous RemoteId calls.
      */
     using ResultCallback = std::function<void(Result)>;
-
-
-
-
-
 
     /**
      * @brief Update the BasicId strucutre sent with the basic_id packet
@@ -164,11 +149,6 @@ public:
      */
     Result set_basic_id(BasicId basic_id) const;
 
-
-
-
-
-
     /**
      * @brief Update the BasicId strucutre sent with the basic_id packet
      *
@@ -177,9 +157,6 @@ public:
      * @return Result of request.
      */
     Result set_location(Location location) const;
-
-
-
 
     /**
      * @brief Copy constructor.

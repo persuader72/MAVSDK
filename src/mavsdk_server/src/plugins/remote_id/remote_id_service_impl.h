@@ -21,15 +21,11 @@
 namespace mavsdk {
 namespace mavsdk_server {
 
-
 template<typename RemoteId = RemoteId, typename LazyPlugin = LazyPlugin<RemoteId>>
 
 class RemoteIdServiceImpl final : public rpc::remote_id::RemoteIdService::Service {
 public:
-
     RemoteIdServiceImpl(LazyPlugin& lazy_plugin) : _lazy_plugin(lazy_plugin) {}
-
-
 
     template<typename ResponseType>
     void fillResponseWithResult(ResponseType* response, mavsdk::RemoteId::Result& result) const
@@ -45,155 +41,100 @@ public:
         response->set_allocated_remote_id_result(rpc_remote_id_result);
     }
 
-
-
-
-    static std::unique_ptr<rpc::remote_id::BasicId> translateToRpcBasicId(const mavsdk::RemoteId::BasicId &basic_id)
+    static std::unique_ptr<rpc::remote_id::BasicId>
+    translateToRpcBasicId(const mavsdk::RemoteId::BasicId& basic_id)
     {
         auto rpc_obj = std::make_unique<rpc::remote_id::BasicId>();
 
-
-            
         rpc_obj->set_id_type(basic_id.id_type);
-            
-        
-            
+
         rpc_obj->set_ua_type(basic_id.ua_type);
-            
-        
-            
+
         rpc_obj->set_uas_id(basic_id.uas_id);
-            
-        
 
         return rpc_obj;
     }
 
-    static mavsdk::RemoteId::BasicId translateFromRpcBasicId(const rpc::remote_id::BasicId& basic_id)
+    static mavsdk::RemoteId::BasicId
+    translateFromRpcBasicId(const rpc::remote_id::BasicId& basic_id)
     {
         mavsdk::RemoteId::BasicId obj;
 
-
-            
         obj.id_type = basic_id.id_type();
-            
-        
-            
+
         obj.ua_type = basic_id.ua_type();
-            
-        
-            
+
         obj.uas_id = basic_id.uas_id();
-            
-        
+
         return obj;
     }
 
-
-
-
-
-    static std::unique_ptr<rpc::remote_id::Location> translateToRpcLocation(const mavsdk::RemoteId::Location &location)
+    static std::unique_ptr<rpc::remote_id::Location>
+    translateToRpcLocation(const mavsdk::RemoteId::Location& location)
     {
         auto rpc_obj = std::make_unique<rpc::remote_id::Location>();
 
-
-            
         rpc_obj->set_status(location.status);
-            
-        
-            
+
         rpc_obj->set_direction(location.direction);
-            
-        
-            
+
         rpc_obj->set_speed_horizontal(location.speed_horizontal);
-            
-        
-            
+
         rpc_obj->set_speed_vertical(location.speed_vertical);
-            
-        
-            
+
         rpc_obj->set_latitude(location.latitude);
-            
-        
-            
+
         rpc_obj->set_longitude(location.longitude);
-            
-        
-            
+
         rpc_obj->set_altitude_barometric(location.altitude_barometric);
-            
-        
-            
+
         rpc_obj->set_altitude_geodetic(location.altitude_geodetic);
-            
-        
-            
+
         rpc_obj->set_height_reference(location.height_reference);
-            
-        
-            
+
         rpc_obj->set_height(location.height);
-            
-        
+
+        rpc_obj->set_timestamp(location.timestamp);
+
+        rpc_obj->set_timestamp_accuracy(location.timestamp_accuracy);
 
         return rpc_obj;
     }
 
-    static mavsdk::RemoteId::Location translateFromRpcLocation(const rpc::remote_id::Location& location)
+    static mavsdk::RemoteId::Location
+    translateFromRpcLocation(const rpc::remote_id::Location& location)
     {
         mavsdk::RemoteId::Location obj;
 
-
-            
         obj.status = location.status();
-            
-        
-            
+
         obj.direction = location.direction();
-            
-        
-            
+
         obj.speed_horizontal = location.speed_horizontal();
-            
-        
-            
+
         obj.speed_vertical = location.speed_vertical();
-            
-        
-            
+
         obj.latitude = location.latitude();
-            
-        
-            
+
         obj.longitude = location.longitude();
-            
-        
-            
+
         obj.altitude_barometric = location.altitude_barometric();
-            
-        
-            
+
         obj.altitude_geodetic = location.altitude_geodetic();
-            
-        
-            
+
         obj.height_reference = location.height_reference();
-            
-        
-            
+
         obj.height = location.height();
-            
-        
+
+        obj.timestamp = location.timestamp();
+
+        obj.timestamp_accuracy = location.timestamp_accuracy();
+
         return obj;
     }
 
-
-
-
-    static rpc::remote_id::RemoteIdResult::Result translateToRpcResult(const mavsdk::RemoteId::Result& result)
+    static rpc::remote_id::RemoteIdResult::Result
+    translateToRpcResult(const mavsdk::RemoteId::Result& result)
     {
         switch (result) {
             default:
@@ -208,7 +149,8 @@ public:
         }
     }
 
-    static mavsdk::RemoteId::Result translateFromRpcResult(const rpc::remote_id::RemoteIdResult::Result result)
+    static mavsdk::RemoteId::Result
+    translateFromRpcResult(const rpc::remote_id::RemoteIdResult::Result result)
     {
         switch (result) {
             default:
@@ -223,21 +165,17 @@ public:
         }
     }
 
-
-
-
     grpc::Status SetBasicId(
         grpc::ServerContext* /* context */,
         const rpc::remote_id::SetBasicIdRequest* request,
         rpc::remote_id::SetBasicIdResponse* response) override
     {
         if (_lazy_plugin.maybe_plugin() == nullptr) {
-            
             if (response != nullptr) {
                 auto result = mavsdk::RemoteId::Result::NoSystem;
                 fillResponseWithResult(response, result);
             }
-            
+
             return grpc::Status::OK;
         }
 
@@ -245,16 +183,13 @@ public:
             LogWarn() << "SetBasicId sent with a null request! Ignoring...";
             return grpc::Status::OK;
         }
-            
-        
-        auto result = _lazy_plugin.maybe_plugin()->set_basic_id(translateFromRpcBasicId(request->basic_id()));
-        
 
-        
+        auto result =
+            _lazy_plugin.maybe_plugin()->set_basic_id(translateFromRpcBasicId(request->basic_id()));
+
         if (response != nullptr) {
             fillResponseWithResult(response, result);
         }
-        
 
         return grpc::Status::OK;
     }
@@ -265,12 +200,11 @@ public:
         rpc::remote_id::SetLocationResponse* response) override
     {
         if (_lazy_plugin.maybe_plugin() == nullptr) {
-            
             if (response != nullptr) {
                 auto result = mavsdk::RemoteId::Result::NoSystem;
                 fillResponseWithResult(response, result);
             }
-            
+
             return grpc::Status::OK;
         }
 
@@ -278,22 +212,19 @@ public:
             LogWarn() << "SetLocation sent with a null request! Ignoring...";
             return grpc::Status::OK;
         }
-            
-        
-        auto result = _lazy_plugin.maybe_plugin()->set_location(translateFromRpcLocation(request->location()));
-        
 
-        
+        auto result = _lazy_plugin.maybe_plugin()->set_location(
+            translateFromRpcLocation(request->location()));
+
         if (response != nullptr) {
             fillResponseWithResult(response, result);
         }
-        
 
         return grpc::Status::OK;
     }
 
-
-    void stop() {
+    void stop()
+    {
         _stopped.store(true);
         for (auto& prom : _stream_stop_promises) {
             if (auto handle = prom.lock()) {
@@ -303,7 +234,8 @@ public:
     }
 
 private:
-    void register_stream_stop_promise(std::weak_ptr<std::promise<void>> prom) {
+    void register_stream_stop_promise(std::weak_ptr<std::promise<void>> prom)
+    {
         // If we have already stopped, set promise immediately and don't add it to list.
         if (_stopped.load()) {
             if (auto handle = prom.lock()) {
@@ -314,8 +246,10 @@ private:
         }
     }
 
-    void unregister_stream_stop_promise(std::shared_ptr<std::promise<void>> prom) {
-        for (auto it = _stream_stop_promises.begin(); it != _stream_stop_promises.end(); /* ++it */) {
+    void unregister_stream_stop_promise(std::shared_ptr<std::promise<void>> prom)
+    {
+        for (auto it = _stream_stop_promises.begin(); it != _stream_stop_promises.end();
+             /* ++it */) {
             if (it->lock() == prom) {
                 it = _stream_stop_promises.erase(it);
             } else {
@@ -324,11 +258,10 @@ private:
         }
     }
 
-
     LazyPlugin& _lazy_plugin;
 
     std::atomic<bool> _stopped{false};
-    std::vector<std::weak_ptr<std::promise<void>>> _stream_stop_promises {};
+    std::vector<std::weak_ptr<std::promise<void>>> _stream_stop_promises{};
 };
 
 } // namespace mavsdk_server

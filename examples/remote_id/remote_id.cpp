@@ -6,14 +6,13 @@
 #include <cstdint>
 #include <mavsdk/mavsdk.h>
 #include <mavsdk/plugins/remote_id/remote_id.h>
+#include <mavsdk/mavlink/common/mavlink.h>
 #include <iostream>
 #include <future>
 #include <memory>
 #include <thread>
 
 using namespace mavsdk;
-using std::chrono::seconds;
-using std::this_thread::sleep_for;
 
 void usage(const std::string& bin_name)
 {
@@ -43,12 +42,12 @@ int main(int argc, char** argv)
     while (mavsdk.systems().size() == 0) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
-    
+
     std::shared_ptr<System> system = mavsdk.systems()[0];
-    system->subscribe_component_discovered_id([](System::ComponentType type, uint8_t id){
-       std::cerr << "Component found: type " << (int)type << " id " << (int)id << '\n'; 
+    system->subscribe_component_discovered_id([](System::ComponentType type, uint8_t id) {
+        std::cerr << "Component found: type " << (int)type << " id " << (int)id << '\n';
     });
-    
+
     /*auto system = mavsdk.first_autopilot(3.0);*/
     if (!system) {
         std::cerr << "Timed out waiting for system\n";
@@ -58,9 +57,35 @@ int main(int argc, char** argv)
     // Instantiate plugin.
     auto remote_id = RemoteId{system};
 
+    remote_id.set_basic_id(RemoteId::BasicId{
+        .id_type = MAV_ODID_ID_TYPE_SERIAL_NUMBER,
+        .ua_type = MAV_ODID_UA_TYPE_HYBRID_LIFT,
+        .uas_id = std::string({'S',  'R',  'R',  'B',  'T',  '#',  '0',  '1',  0x00, 0x00,
+                               0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
 
+    int steps = 0;
     // Search for aircraft transponders
-    sleep_for(seconds(60));
+    while (steps < 7200) {
+        float latitude = 43.1213 + 0.005 * sin(M_PI / 60 * steps);
+        float longitude = 12.3134 + 0.005 * cos(M_PI / 60 * steps);
+        float height = 150 + 75 * sin(M_PI / 30 * steps);
+
+        const auto now = std::chrono::floor<std::chrono::seconds>(std::chrono::system_clock::now());
+        const auto timeodhour = now - std::chrono::floor<std::chrono::hours>(now);
+        const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(timeodhour).count();
+
+        remote_id.set_location(RemoteId::Location{
+            .status = MAV_ODID_STATUS_AIRBORNE,
+            .latitude = (int32_t)(latitude * 1e7),
+            .longitude = (int32_t)(longitude * 1e7),
+            .height_reference = MAV_ODID_HEIGHT_REF_OVER_TAKEOFF,
+            .height = height,
+            .timestamp = (float)seconds,
+            .timestamp_accuracy = MAV_ODID_TIME_ACC_1_0_SECOND});
+
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        steps++;
+    }
     std::cout << "Finished...\n";
 
     return 0;

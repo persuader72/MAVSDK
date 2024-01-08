@@ -58,6 +58,8 @@ inline constexpr Location::Impl_::Impl_(
         altitude_geodetic_{0},
         height_reference_{0u},
         height_{0},
+        timestamp_{0},
+        timestamp_accuracy_{0u},
         _cached_size_{0} {}
 
 template <typename>
@@ -250,6 +252,8 @@ const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOB
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.altitude_geodetic_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.height_reference_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.height_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.timestamp_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.timestamp_accuracy_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::RemoteIdResult, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -270,7 +274,7 @@ static const ::_pbi::MigrationSchema
         {30, 39, -1, sizeof(::mavsdk::rpc::remote_id::SetLocationResponse)},
         {40, -1, -1, sizeof(::mavsdk::rpc::remote_id::BasicId)},
         {51, -1, -1, sizeof(::mavsdk::rpc::remote_id::Location)},
-        {69, -1, -1, sizeof(::mavsdk::rpc::remote_id::RemoteIdResult)},
+        {71, -1, -1, sizeof(::mavsdk::rpc::remote_id::RemoteIdResult)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -294,24 +298,25 @@ const char descriptor_table_protodef_remote_5fid_2fremote_5fid_2eproto[] PROTOBU
     "se\022>\n\020remote_id_result\030\001 \001(\0132$.mavsdk.rp"
     "c.remote_id.RemoteIdResult\";\n\007BasicId\022\017\n"
     "\007id_type\030\001 \001(\r\022\017\n\007ua_type\030\002 \001(\r\022\016\n\006uas_i"
-    "d\030\003 \001(\t\"\346\001\n\010Location\022\016\n\006status\030\001 \001(\r\022\021\n\t"
+    "d\030\003 \001(\t\"\225\002\n\010Location\022\016\n\006status\030\001 \001(\r\022\021\n\t"
     "direction\030\002 \001(\r\022\030\n\020speed_horizontal\030\003 \001("
     "\r\022\026\n\016speed_vertical\030\004 \001(\005\022\020\n\010latitude\030\005 "
     "\001(\005\022\021\n\tlongitude\030\006 \001(\005\022\033\n\023altitude_barom"
     "etric\030\007 \001(\002\022\031\n\021altitude_geodetic\030\010 \001(\002\022\030"
     "\n\020height_reference\030\t \001(\r\022\016\n\006height\030\n \001(\002"
-    "\"\245\001\n\016RemoteIdResult\022;\n\006result\030\001 \001(\0162+.ma"
-    "vsdk.rpc.remote_id.RemoteIdResult.Result"
-    "\022\022\n\nresult_str\030\002 \001(\t\"B\n\006Result\022\022\n\016RESULT"
-    "_UNKNOWN\020\000\022\022\n\016RESULT_SUCCESS\020\001\022\020\n\014RESULT"
-    "_ERROR\020\0022\342\001\n\017RemoteIdService\022e\n\nSetBasic"
-    "Id\022\'.mavsdk.rpc.remote_id.SetBasicIdRequ"
-    "est\032(.mavsdk.rpc.remote_id.SetBasicIdRes"
-    "ponse\"\004\200\265\030\001\022h\n\013SetLocation\022(.mavsdk.rpc."
-    "remote_id.SetLocationRequest\032).mavsdk.rp"
-    "c.remote_id.SetLocationResponse\"\004\200\265\030\001B$\n"
-    "\023io.mavsdk.remote_idB\rRemoteIdProtob\006pro"
-    "to3"
+    "\022\021\n\ttimestamp\030\013 \001(\002\022\032\n\022timestamp_accurac"
+    "y\030\014 \001(\r\"\245\001\n\016RemoteIdResult\022;\n\006result\030\001 \001"
+    "(\0162+.mavsdk.rpc.remote_id.RemoteIdResult"
+    ".Result\022\022\n\nresult_str\030\002 \001(\t\"B\n\006Result\022\022\n"
+    "\016RESULT_UNKNOWN\020\000\022\022\n\016RESULT_SUCCESS\020\001\022\020\n"
+    "\014RESULT_ERROR\020\0022\342\001\n\017RemoteIdService\022e\n\nS"
+    "etBasicId\022\'.mavsdk.rpc.remote_id.SetBasi"
+    "cIdRequest\032(.mavsdk.rpc.remote_id.SetBas"
+    "icIdResponse\"\004\200\265\030\001\022h\n\013SetLocation\022(.mavs"
+    "dk.rpc.remote_id.SetLocationRequest\032).ma"
+    "vsdk.rpc.remote_id.SetLocationResponse\"\004"
+    "\200\265\030\001B$\n\023io.mavsdk.remote_idB\rRemoteIdPro"
+    "tob\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_remote_5fid_2fremote_5fid_2eproto_deps[1] =
     {
@@ -321,7 +326,7 @@ static ::absl::once_flag descriptor_table_remote_5fid_2fremote_5fid_2eproto_once
 const ::_pbi::DescriptorTable descriptor_table_remote_5fid_2fremote_5fid_2eproto = {
     false,
     false,
-    1123,
+    1170,
     descriptor_table_protodef_remote_5fid_2fremote_5fid_2eproto,
     "remote_id/remote_id.proto",
     &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
@@ -1488,9 +1493,9 @@ inline void Location::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, status_),
            0,
-           offsetof(Impl_, height_) -
+           offsetof(Impl_, timestamp_accuracy_) -
                offsetof(Impl_, status_) +
-               sizeof(Impl_::height_));
+               sizeof(Impl_::timestamp_accuracy_));
 }
 Location::~Location() {
   // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.Location)
@@ -1510,8 +1515,8 @@ PROTOBUF_NOINLINE void Location::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.status_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.height_) -
-      reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.height_));
+      reinterpret_cast<char*>(&_impl_.timestamp_accuracy_) -
+      reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.timestamp_accuracy_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1523,15 +1528,15 @@ const char* Location::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 10, 0, 0, 2> Location::_table_ = {
+const ::_pbi::TcParseTable<4, 12, 0, 0, 2> Location::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    10, 120,  // max_field_number, fast_idx_mask
+    12, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966272,  // skipmap
+    4294963200,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    10,  // num_field_entries
+    12,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_Location_default_instance_._instance,
@@ -1568,8 +1573,12 @@ const ::_pbi::TcParseTable<4, 10, 0, 0, 2> Location::_table_ = {
     // float height = 10;
     {::_pbi::TcParser::FastF32S1,
      {85, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.height_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
+    // float timestamp = 11;
+    {::_pbi::TcParser::FastF32S1,
+     {93, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_)}},
+    // uint32 timestamp_accuracy = 12;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.timestamp_accuracy_), 63>(),
+     {96, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_accuracy_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -1606,6 +1615,12 @@ const ::_pbi::TcParseTable<4, 10, 0, 0, 2> Location::_table_ = {
     // float height = 10;
     {PROTOBUF_FIELD_OFFSET(Location, _impl_.height_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float timestamp = 11;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // uint32 timestamp_accuracy = 12;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_accuracy_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
   }},
   // no aux_entries
   {{
@@ -1704,6 +1719,25 @@ const ::_pbi::TcParseTable<4, 10, 0, 0, 2> Location::_table_ = {
         10, this->_internal_height(), target);
   }
 
+  // float timestamp = 11;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timestamp = this->_internal_timestamp();
+  ::uint32_t raw_timestamp;
+  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
+  if (raw_timestamp != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        11, this->_internal_timestamp(), target);
+  }
+
+  // uint32 timestamp_accuracy = 12;
+  if (this->_internal_timestamp_accuracy() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        12, this->_internal_timestamp_accuracy(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1793,6 +1827,22 @@ const ::_pbi::TcParseTable<4, 10, 0, 0, 2> Location::_table_ = {
     total_size += 5;
   }
 
+  // float timestamp = 11;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timestamp = this->_internal_timestamp();
+  ::uint32_t raw_timestamp;
+  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
+  if (raw_timestamp != 0) {
+    total_size += 5;
+  }
+
+  // uint32 timestamp_accuracy = 12;
+  if (this->_internal_timestamp_accuracy() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_timestamp_accuracy());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1857,6 +1907,17 @@ void Location::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   if (raw_height != 0) {
     _this->_internal_set_height(from._internal_height());
   }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_timestamp = from._internal_timestamp();
+  ::uint32_t raw_timestamp;
+  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
+  if (raw_timestamp != 0) {
+    _this->_internal_set_timestamp(from._internal_timestamp());
+  }
+  if (from._internal_timestamp_accuracy() != 0) {
+    _this->_internal_set_timestamp_accuracy(from._internal_timestamp_accuracy());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1878,8 +1939,8 @@ void Location::InternalSwap(Location* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Location, _impl_.height_)
-      + sizeof(Location::_impl_.height_)
+      PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_accuracy_)
+      + sizeof(Location::_impl_.timestamp_accuracy_)
       - PROTOBUF_FIELD_OFFSET(Location, _impl_.status_)>(
           reinterpret_cast<char*>(&_impl_.status_),
           reinterpret_cast<char*>(&other->_impl_.status_));

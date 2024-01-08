@@ -12,49 +12,35 @@ namespace mavsdk {
 using BasicId = RemoteId::BasicId;
 using Location = RemoteId::Location;
 
-
-
-
 RemoteId::RemoteId(System& system) : PluginBase(), _impl{std::make_unique<RemoteIdImpl>(system)} {}
 
-RemoteId::RemoteId(std::shared_ptr<System> system) : PluginBase(), _impl{std::make_unique<RemoteIdImpl>(system)} {}
-
+RemoteId::RemoteId(std::shared_ptr<System> system) :
+    PluginBase(),
+    _impl{std::make_unique<RemoteIdImpl>(system)}
+{}
 
 RemoteId::~RemoteId() {}
-
-
-
-
 
 RemoteId::Result RemoteId::set_basic_id(BasicId basic_id) const
 {
     return _impl->set_basic_id(basic_id);
 }
 
-
-
-
-
 RemoteId::Result RemoteId::set_location(Location location) const
 {
     return _impl->set_location(location);
 }
 
-
-
 bool operator==(const RemoteId::BasicId& lhs, const RemoteId::BasicId& rhs)
 {
-    return
-        (rhs.id_type == lhs.id_type) &&
-        (rhs.ua_type == lhs.ua_type) &&
-        (rhs.uas_id == lhs.uas_id);
+    return (rhs.id_type == lhs.id_type) && (rhs.ua_type == lhs.ua_type) &&
+           (rhs.uas_id == lhs.uas_id);
 }
 
 std::ostream& operator<<(std::ostream& str, RemoteId::BasicId const& basic_id)
 {
     str << std::setprecision(15);
-    str << "basic_id:" << '\n'
-        << "{\n";
+    str << "basic_id:" << '\n' << "{\n";
     str << "    id_type: " << basic_id.id_type << '\n';
     str << "    ua_type: " << basic_id.ua_type << '\n';
     str << "    uas_id: " << basic_id.uas_id << '\n';
@@ -62,27 +48,27 @@ std::ostream& operator<<(std::ostream& str, RemoteId::BasicId const& basic_id)
     return str;
 }
 
-
 bool operator==(const RemoteId::Location& lhs, const RemoteId::Location& rhs)
 {
-    return
-        (rhs.status == lhs.status) &&
-        (rhs.direction == lhs.direction) &&
-        (rhs.speed_horizontal == lhs.speed_horizontal) &&
-        (rhs.speed_vertical == lhs.speed_vertical) &&
-        (rhs.latitude == lhs.latitude) &&
-        (rhs.longitude == lhs.longitude) &&
-        ((std::isnan(rhs.altitude_barometric) && std::isnan(lhs.altitude_barometric)) || rhs.altitude_barometric == lhs.altitude_barometric) &&
-        ((std::isnan(rhs.altitude_geodetic) && std::isnan(lhs.altitude_geodetic)) || rhs.altitude_geodetic == lhs.altitude_geodetic) &&
-        (rhs.height_reference == lhs.height_reference) &&
-        ((std::isnan(rhs.height) && std::isnan(lhs.height)) || rhs.height == lhs.height);
+    return (rhs.status == lhs.status) && (rhs.direction == lhs.direction) &&
+           (rhs.speed_horizontal == lhs.speed_horizontal) &&
+           (rhs.speed_vertical == lhs.speed_vertical) && (rhs.latitude == lhs.latitude) &&
+           (rhs.longitude == lhs.longitude) &&
+           ((std::isnan(rhs.altitude_barometric) && std::isnan(lhs.altitude_barometric)) ||
+            rhs.altitude_barometric == lhs.altitude_barometric) &&
+           ((std::isnan(rhs.altitude_geodetic) && std::isnan(lhs.altitude_geodetic)) ||
+            rhs.altitude_geodetic == lhs.altitude_geodetic) &&
+           (rhs.height_reference == lhs.height_reference) &&
+           ((std::isnan(rhs.height) && std::isnan(lhs.height)) || rhs.height == lhs.height) &&
+           ((std::isnan(rhs.timestamp) && std::isnan(lhs.timestamp)) ||
+            rhs.timestamp == lhs.timestamp) &&
+           (rhs.timestamp_accuracy == lhs.timestamp_accuracy);
 }
 
 std::ostream& operator<<(std::ostream& str, RemoteId::Location const& location)
 {
     str << std::setprecision(15);
-    str << "location:" << '\n'
-        << "{\n";
+    str << "location:" << '\n' << "{\n";
     str << "    status: " << location.status << '\n';
     str << "    direction: " << location.direction << '\n';
     str << "    speed_horizontal: " << location.speed_horizontal << '\n';
@@ -93,11 +79,11 @@ std::ostream& operator<<(std::ostream& str, RemoteId::Location const& location)
     str << "    altitude_geodetic: " << location.altitude_geodetic << '\n';
     str << "    height_reference: " << location.height_reference << '\n';
     str << "    height: " << location.height << '\n';
+    str << "    timestamp: " << location.timestamp << '\n';
+    str << "    timestamp_accuracy: " << location.timestamp_accuracy << '\n';
     str << '}';
     return str;
 }
-
-
 
 std::ostream& operator<<(std::ostream& str, RemoteId::Result const& result)
 {
@@ -112,8 +98,5 @@ std::ostream& operator<<(std::ostream& str, RemoteId::Result const& result)
             return str << "Unknown";
     }
 }
-
-
-
 
 } // namespace mavsdk

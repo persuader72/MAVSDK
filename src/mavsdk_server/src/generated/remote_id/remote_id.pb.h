@@ -488,6 +488,8 @@ class Location final :
     kAltitudeGeodeticFieldNumber = 8,
     kHeightReferenceFieldNumber = 9,
     kHeightFieldNumber = 10,
+    kTimestampFieldNumber = 11,
+    kTimestampAccuracyFieldNumber = 12,
   };
   // uint32 status = 1;
   void clear_status() ;
@@ -589,13 +591,33 @@ class Location final :
   void _internal_set_height(float value);
 
   public:
+  // float timestamp = 11;
+  void clear_timestamp() ;
+  float timestamp() const;
+  void set_timestamp(float value);
+
+  private:
+  float _internal_timestamp() const;
+  void _internal_set_timestamp(float value);
+
+  public:
+  // uint32 timestamp_accuracy = 12;
+  void clear_timestamp_accuracy() ;
+  ::uint32_t timestamp_accuracy() const;
+  void set_timestamp_accuracy(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_timestamp_accuracy() const;
+  void _internal_set_timestamp_accuracy(::uint32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.Location)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 10, 0,
+      4, 12, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -622,6 +644,8 @@ class Location final :
     float altitude_geodetic_;
     ::uint32_t height_reference_;
     float height_;
+    float timestamp_;
+    ::uint32_t timestamp_accuracy_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2305,6 +2329,52 @@ inline void Location::_internal_set_height(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.height_ = value;
+}
+
+// float timestamp = 11;
+inline void Location::clear_timestamp() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.timestamp_ = 0;
+}
+inline float Location::timestamp() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.timestamp)
+  return _internal_timestamp();
+}
+inline void Location::set_timestamp(float value) {
+  _internal_set_timestamp(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.timestamp)
+}
+inline float Location::_internal_timestamp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.timestamp_;
+}
+inline void Location::_internal_set_timestamp(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.timestamp_ = value;
+}
+
+// uint32 timestamp_accuracy = 12;
+inline void Location::clear_timestamp_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.timestamp_accuracy_ = 0u;
+}
+inline ::uint32_t Location::timestamp_accuracy() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.timestamp_accuracy)
+  return _internal_timestamp_accuracy();
+}
+inline void Location::set_timestamp_accuracy(::uint32_t value) {
+  _internal_set_timestamp_accuracy(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.timestamp_accuracy)
+}
+inline ::uint32_t Location::_internal_timestamp_accuracy() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.timestamp_accuracy_;
+}
+inline void Location::_internal_set_timestamp_accuracy(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.timestamp_accuracy_ = value;
 }
 
 // -------------------------------------------------------------------

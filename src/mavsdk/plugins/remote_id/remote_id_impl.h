@@ -4,9 +4,7 @@
 
 #include "plugin_impl_base.h"
 
-
 namespace mavsdk {
-
 
 class RemoteIdImpl : public PluginImplBase {
 public:
@@ -18,17 +16,14 @@ public:
     void init() override;
     void deinit() override;
 
-
     void enable() override;
     void disable() override;
 
 public:
-
     RemoteId::Result set_basic_id(RemoteId::BasicId basic_id);
     RemoteId::Result set_location(RemoteId::Location location);
 
 private:
-
     void send_drone_location();
     void send_drone_basic_id();
     void send_drone_id_system();
