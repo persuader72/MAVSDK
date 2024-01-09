@@ -47,13 +47,40 @@ class RemoteIdService final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetBasicIdResponse>>(PrepareAsyncSetBasicIdRaw(context, request, cq));
     }
     //
-    // Update the BasicId strucutre sent with the basic_id packet
+    // Update the Location strucutre sent with the location packet
     virtual ::grpc::Status SetLocation(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::mavsdk::rpc::remote_id::SetLocationResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetLocationResponse>> AsyncSetLocation(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetLocationResponse>>(AsyncSetLocationRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetLocationResponse>> PrepareAsyncSetLocation(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetLocationResponse>>(PrepareAsyncSetLocationRaw(context, request, cq));
+    }
+    //
+    // Update the System strucutre sent with the system packet
+    virtual ::grpc::Status SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::mavsdk::rpc::remote_id::SetSystemResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSystemResponse>> AsyncSetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSystemResponse>>(AsyncSetSystemRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSystemResponse>> PrepareAsyncSetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSystemResponse>>(PrepareAsyncSetSystemRaw(context, request, cq));
+    }
+    //
+    // Update the OperatorId strucutre sent with the operator_id packet
+    virtual ::grpc::Status SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>> AsyncSetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>>(AsyncSetOperatorIdRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>> PrepareAsyncSetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>>(PrepareAsyncSetOperatorIdRaw(context, request, cq));
+    }
+    //
+    // Update the SetSelfId strucutre sent with the self_id packet
+    virtual ::grpc::Status SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSelfIdResponse>> AsyncSetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSelfIdResponse>>(AsyncSetSelfIdRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSelfIdResponse>> PrepareAsyncSetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSelfIdResponse>>(PrepareAsyncSetSelfIdRaw(context, request, cq));
     }
     class async_interface {
      public:
@@ -63,9 +90,21 @@ class RemoteIdService final {
       virtual void SetBasicId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetBasicIdRequest* request, ::mavsdk::rpc::remote_id::SetBasicIdResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetBasicId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetBasicIdRequest* request, ::mavsdk::rpc::remote_id::SetBasicIdResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       //
-      // Update the BasicId strucutre sent with the basic_id packet
+      // Update the Location strucutre sent with the location packet
       virtual void SetLocation(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest* request, ::mavsdk::rpc::remote_id::SetLocationResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetLocation(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest* request, ::mavsdk::rpc::remote_id::SetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      //
+      // Update the System strucutre sent with the system packet
+      virtual void SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      //
+      // Update the OperatorId strucutre sent with the operator_id packet
+      virtual void SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      //
+      // Update the SetSelfId strucutre sent with the self_id packet
+      virtual void SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -75,6 +114,12 @@ class RemoteIdService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetBasicIdResponse>* PrepareAsyncSetBasicIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetBasicIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetLocationResponse>* AsyncSetLocationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetLocationResponse>* PrepareAsyncSetLocationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSystemResponse>* AsyncSetSystemRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSystemResponse>* PrepareAsyncSetSystemRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* AsyncSetOperatorIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* PrepareAsyncSetOperatorIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSelfIdResponse>* AsyncSetSelfIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::remote_id::SetSelfIdResponse>* PrepareAsyncSetSelfIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -93,6 +138,27 @@ class RemoteIdService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetLocationResponse>> PrepareAsyncSetLocation(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetLocationResponse>>(PrepareAsyncSetLocationRaw(context, request, cq));
     }
+    ::grpc::Status SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::mavsdk::rpc::remote_id::SetSystemResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSystemResponse>> AsyncSetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSystemResponse>>(AsyncSetSystemRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSystemResponse>> PrepareAsyncSetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSystemResponse>>(PrepareAsyncSetSystemRaw(context, request, cq));
+    }
+    ::grpc::Status SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>> AsyncSetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>>(AsyncSetOperatorIdRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>> PrepareAsyncSetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>>(PrepareAsyncSetOperatorIdRaw(context, request, cq));
+    }
+    ::grpc::Status SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSelfIdResponse>> AsyncSetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSelfIdResponse>>(AsyncSetSelfIdRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSelfIdResponse>> PrepareAsyncSetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSelfIdResponse>>(PrepareAsyncSetSelfIdRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -100,6 +166,12 @@ class RemoteIdService final {
       void SetBasicId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetBasicIdRequest* request, ::mavsdk::rpc::remote_id::SetBasicIdResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void SetLocation(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest* request, ::mavsdk::rpc::remote_id::SetLocationResponse* response, std::function<void(::grpc::Status)>) override;
       void SetLocation(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest* request, ::mavsdk::rpc::remote_id::SetLocationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -115,8 +187,17 @@ class RemoteIdService final {
     ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetBasicIdResponse>* PrepareAsyncSetBasicIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetBasicIdRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetLocationResponse>* AsyncSetLocationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetLocationResponse>* PrepareAsyncSetLocationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSystemResponse>* AsyncSetSystemRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSystemResponse>* PrepareAsyncSetSystemRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* AsyncSetOperatorIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* PrepareAsyncSetOperatorIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSelfIdResponse>* AsyncSetSelfIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSelfIdResponse>* PrepareAsyncSetSelfIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SetBasicId_;
     const ::grpc::internal::RpcMethod rpcmethod_SetLocation_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetSystem_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetOperatorId_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetSelfId_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -128,8 +209,17 @@ class RemoteIdService final {
     // Update the BasicId strucutre sent with the basic_id packet
     virtual ::grpc::Status SetBasicId(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetBasicIdRequest* request, ::mavsdk::rpc::remote_id::SetBasicIdResponse* response);
     //
-    // Update the BasicId strucutre sent with the basic_id packet
+    // Update the Location strucutre sent with the location packet
     virtual ::grpc::Status SetLocation(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest* request, ::mavsdk::rpc::remote_id::SetLocationResponse* response);
+    //
+    // Update the System strucutre sent with the system packet
+    virtual ::grpc::Status SetSystem(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response);
+    //
+    // Update the OperatorId strucutre sent with the operator_id packet
+    virtual ::grpc::Status SetOperatorId(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response);
+    //
+    // Update the SetSelfId strucutre sent with the self_id packet
+    virtual ::grpc::Status SetSelfId(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SetBasicId : public BaseClass {
@@ -171,7 +261,67 @@ class RemoteIdService final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SetBasicId<WithAsyncMethod_SetLocation<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SetSystem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetSystem() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_SetSystem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSystem(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSystemRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSystemResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSystem(::grpc::ServerContext* context, ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::grpc::ServerAsyncResponseWriter< ::mavsdk::rpc::remote_id::SetSystemResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetOperatorId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetOperatorId() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_SetOperatorId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOperatorId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetOperatorId(::grpc::ServerContext* context, ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::grpc::ServerAsyncResponseWriter< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_SetSelfId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetSelfId() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_SetSelfId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSelfIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSelfId(::grpc::ServerContext* context, ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::grpc::ServerAsyncResponseWriter< ::mavsdk::rpc::remote_id::SetSelfIdResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_SetBasicId<WithAsyncMethod_SetLocation<WithAsyncMethod_SetSystem<WithAsyncMethod_SetOperatorId<WithAsyncMethod_SetSelfId<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SetBasicId : public BaseClass {
    private:
@@ -226,7 +376,88 @@ class RemoteIdService final {
     virtual ::grpc::ServerUnaryReactor* SetLocation(
       ::grpc::CallbackServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetLocationRequest* /*request*/, ::mavsdk::rpc::remote_id::SetLocationResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SetBasicId<WithCallbackMethod_SetLocation<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SetSystem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetSystem() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response) { return this->SetSystem(context, request, response); }));}
+    void SetMessageAllocatorFor_SetSystem(
+        ::grpc::MessageAllocator< ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetSystem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSystem(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSystemRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSystemResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSystem(
+      ::grpc::CallbackServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSystemRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSystemResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetOperatorId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetOperatorId() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response) { return this->SetOperatorId(context, request, response); }));}
+    void SetMessageAllocatorFor_SetOperatorId(
+        ::grpc::MessageAllocator< ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetOperatorId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOperatorId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetOperatorId(
+      ::grpc::CallbackServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_SetSelfId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetSelfId() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response) { return this->SetSelfId(context, request, response); }));}
+    void SetMessageAllocatorFor_SetSelfId(
+        ::grpc::MessageAllocator< ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetSelfId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSelfIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSelfId(
+      ::grpc::CallbackServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSelfIdResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_SetBasicId<WithCallbackMethod_SetLocation<WithCallbackMethod_SetSystem<WithCallbackMethod_SetOperatorId<WithCallbackMethod_SetSelfId<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SetBasicId : public BaseClass {
@@ -258,6 +489,57 @@ class RemoteIdService final {
     }
     // disable synchronous version of this method
     ::grpc::Status SetLocation(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetLocationRequest* /*request*/, ::mavsdk::rpc::remote_id::SetLocationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetSystem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetSystem() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_SetSystem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSystem(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSystemRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSystemResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetOperatorId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetOperatorId() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_SetOperatorId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOperatorId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetSelfId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetSelfId() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_SetSelfId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSelfIdResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -303,6 +585,66 @@ class RemoteIdService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_SetSystem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetSystem() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_SetSystem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSystem(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSystemRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSystemResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSystem(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetOperatorId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetOperatorId() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_SetOperatorId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOperatorId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetOperatorId(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetSelfId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetSelfId() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_SetSelfId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSelfIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetSelfId(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_SetBasicId : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -344,6 +686,72 @@ class RemoteIdService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SetLocation(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetSystem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetSystem() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetSystem(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetSystem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSystem(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSystemRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSystemResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSystem(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetOperatorId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetOperatorId() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetOperatorId(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetOperatorId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetOperatorId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetOperatorId(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_SetSelfId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetSelfId() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetSelfId(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetSelfId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetSelfId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSelfIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetSelfId(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -400,9 +808,90 @@ class RemoteIdService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedSetLocation(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mavsdk::rpc::remote_id::SetLocationRequest,::mavsdk::rpc::remote_id::SetLocationResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SetBasicId<WithStreamedUnaryMethod_SetLocation<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetSystem : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetSystem() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse>* streamer) {
+                       return this->StreamedSetSystem(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetSystem() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetSystem(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSystemRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSystemResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetSystem(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mavsdk::rpc::remote_id::SetSystemRequest,::mavsdk::rpc::remote_id::SetSystemResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetOperatorId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetOperatorId() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* streamer) {
+                       return this->StreamedSetOperatorId(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetOperatorId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetOperatorId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetOperatorId(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mavsdk::rpc::remote_id::SetOperatorIdRequest,::mavsdk::rpc::remote_id::SetOperatorIdResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetSelfId : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetSelfId() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse>* streamer) {
+                       return this->StreamedSetSelfId(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetSelfId() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetSelfId(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* /*request*/, ::mavsdk::rpc::remote_id::SetSelfIdResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetSelfId(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mavsdk::rpc::remote_id::SetSelfIdRequest,::mavsdk::rpc::remote_id::SetSelfIdResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_SetBasicId<WithStreamedUnaryMethod_SetLocation<WithStreamedUnaryMethod_SetSystem<WithStreamedUnaryMethod_SetOperatorId<WithStreamedUnaryMethod_SetSelfId<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SetBasicId<WithStreamedUnaryMethod_SetLocation<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_SetBasicId<WithStreamedUnaryMethod_SetLocation<WithStreamedUnaryMethod_SetSystem<WithStreamedUnaryMethod_SetOperatorId<WithStreamedUnaryMethod_SetSelfId<Service > > > > > StreamedService;
 };
 
 }  // namespace remote_id

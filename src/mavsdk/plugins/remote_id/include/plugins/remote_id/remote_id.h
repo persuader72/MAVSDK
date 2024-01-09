@@ -120,6 +120,90 @@ public:
     friend std::ostream& operator<<(std::ostream& str, RemoteId::Location const& location);
 
     /**
+     * @brief
+     */
+    struct SystemId {
+        uint32_t operator_location_type{}; /**< @brief Specifies the operator location type. */
+        uint32_t classification_type{}; /**< @brief Specifies the classification type of the UA. */
+        int32_t operator_latitude{}; /**< @brief Latitude of the operator. */
+        int32_t operator_longitude{}; /**< @brief Longitude of the operator. */
+        uint32_t area_count{}; /**< @brief Number of aircraft in the area, */
+        uint32_t
+            area_radius{}; /**< @brief Radius of the cylindrical area of the group or formation. */
+        float area_ceiling{}; /**< @brief Area Operations Ceiling relative to WGS84. */
+        float area_floor{}; /**< @brief Area Operations Floor relative to WGS84. */
+        uint32_t
+            category_eu{}; /**< @brief When classification_type is MAV_ODID_CLASSIFICATION_TYPE_EU,
+                              specifies the category of the UA. */
+        uint32_t class_eu{}; /**< @brief When classification_type is
+                                MAV_ODID_CLASSIFICATION_TYPE_EU, specifies the class of the UA. */
+        float operator_altitude_geo{}; /**< @brief Geodetic altitude of the operator relative to
+                                          WGS84. If unknown: -1000 m. */
+        uint32_t
+            timestamp{}; /**< @brief s32 bit Unix Timestamp in seconds since 00:00:00 01/01/2019. */
+    };
+
+    /**
+     * @brief Equal operator to compare two `RemoteId::SystemId` objects.
+     *
+     * @return `true` if items are equal.
+     */
+    friend bool operator==(const RemoteId::SystemId& lhs, const RemoteId::SystemId& rhs);
+
+    /**
+     * @brief Stream operator to print information about a `RemoteId::SystemId`.
+     *
+     * @return A reference to the stream.
+     */
+    friend std::ostream& operator<<(std::ostream& str, RemoteId::SystemId const& system_id);
+
+    /**
+     * @brief
+     */
+    struct OperatorId {
+        uint32_t operator_id_type{}; /**< @brief Indicates the type of the description field. */
+        std::string operator_id{}; /**< @brief Text description or numeric value expressed as ASCII
+                                      characters. */
+    };
+
+    /**
+     * @brief Equal operator to compare two `RemoteId::OperatorId` objects.
+     *
+     * @return `true` if items are equal.
+     */
+    friend bool operator==(const RemoteId::OperatorId& lhs, const RemoteId::OperatorId& rhs);
+
+    /**
+     * @brief Stream operator to print information about a `RemoteId::OperatorId`.
+     *
+     * @return A reference to the stream.
+     */
+    friend std::ostream& operator<<(std::ostream& str, RemoteId::OperatorId const& operator_id);
+
+    /**
+     * @brief
+     */
+    struct SelfId {
+        uint32_t description_type{}; /**< @brief Indicates the type of the operator_id field. */
+        std::string description{}; /**< @brief Text description or numeric value expressed as ASCII
+                                      characters. */
+    };
+
+    /**
+     * @brief Equal operator to compare two `RemoteId::SelfId` objects.
+     *
+     * @return `true` if items are equal.
+     */
+    friend bool operator==(const RemoteId::SelfId& lhs, const RemoteId::SelfId& rhs);
+
+    /**
+     * @brief Stream operator to print information about a `RemoteId::SelfId`.
+     *
+     * @return A reference to the stream.
+     */
+    friend std::ostream& operator<<(std::ostream& str, RemoteId::SelfId const& self_id);
+
+    /**
      * @brief Possible results returned for camera commands
      */
     enum class Result {
@@ -150,13 +234,40 @@ public:
     Result set_basic_id(BasicId basic_id) const;
 
     /**
-     * @brief Update the BasicId strucutre sent with the basic_id packet
+     * @brief Update the Location strucutre sent with the location packet
      *
      * This function is blocking.
      *
      * @return Result of request.
      */
     Result set_location(Location location) const;
+
+    /**
+     * @brief Update the System strucutre sent with the system packet
+     *
+     * This function is blocking.
+     *
+     * @return Result of request.
+     */
+    Result set_system(SystemId system) const;
+
+    /**
+     * @brief Update the OperatorId strucutre sent with the operator_id packet
+     *
+     * This function is blocking.
+     *
+     * @return Result of request.
+     */
+    Result set_operator_id(OperatorId system) const;
+
+    /**
+     * @brief Update the SetSelfId strucutre sent with the self_id packet
+     *
+     * This function is blocking.
+     *
+     * @return Result of request.
+     */
+    Result set_self_id(SelfId self_id) const;
 
     /**
      * @brief Copy constructor.

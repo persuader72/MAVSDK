@@ -21,21 +21,31 @@ public:
 
 public:
     RemoteId::Result set_basic_id(RemoteId::BasicId basic_id);
+    RemoteId::Result set_operator_id(RemoteId::OperatorId operator_id);
+    RemoteId::Result set_self_id(RemoteId::SelfId self_id);
     RemoteId::Result set_location(RemoteId::Location location);
+    RemoteId::Result set_system(RemoteId::SystemId system);
 
 private:
     void send_drone_location();
     void send_drone_basic_id();
+    void send_operator_id();
     void send_drone_id_system();
+    void send_drone_self_id();
 
 private:
     std::string _id_or_mac;
     RemoteId::BasicId _basic_id{};
+    RemoteId::OperatorId _operator_id{};
+    RemoteId::SelfId _self_id{};
     RemoteId::Location _location{};
+    RemoteId::SystemId _system{};
 
 private:
     void* _send_drone_location_call_every_cookie{nullptr};
     void* _send_drone_basic_id_call_every_cookie{nullptr};
+    void* _send_operator_id_call_every_cookie{nullptr};
+    void* _send_sef_id_call_every_cookie{nullptr};
     void* _send_drone_id_system_call_every_cookie{nullptr};
 };
 

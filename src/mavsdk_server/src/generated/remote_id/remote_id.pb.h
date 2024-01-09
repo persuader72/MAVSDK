@@ -66,9 +66,15 @@ extern BasicIdDefaultTypeInternal _BasicId_default_instance_;
 class Location;
 struct LocationDefaultTypeInternal;
 extern LocationDefaultTypeInternal _Location_default_instance_;
+class OperatorId;
+struct OperatorIdDefaultTypeInternal;
+extern OperatorIdDefaultTypeInternal _OperatorId_default_instance_;
 class RemoteIdResult;
 struct RemoteIdResultDefaultTypeInternal;
 extern RemoteIdResultDefaultTypeInternal _RemoteIdResult_default_instance_;
+class SelfId;
+struct SelfIdDefaultTypeInternal;
+extern SelfIdDefaultTypeInternal _SelfId_default_instance_;
 class SetBasicIdRequest;
 struct SetBasicIdRequestDefaultTypeInternal;
 extern SetBasicIdRequestDefaultTypeInternal _SetBasicIdRequest_default_instance_;
@@ -81,6 +87,27 @@ extern SetLocationRequestDefaultTypeInternal _SetLocationRequest_default_instanc
 class SetLocationResponse;
 struct SetLocationResponseDefaultTypeInternal;
 extern SetLocationResponseDefaultTypeInternal _SetLocationResponse_default_instance_;
+class SetOperatorIdRequest;
+struct SetOperatorIdRequestDefaultTypeInternal;
+extern SetOperatorIdRequestDefaultTypeInternal _SetOperatorIdRequest_default_instance_;
+class SetOperatorIdResponse;
+struct SetOperatorIdResponseDefaultTypeInternal;
+extern SetOperatorIdResponseDefaultTypeInternal _SetOperatorIdResponse_default_instance_;
+class SetSelfIdRequest;
+struct SetSelfIdRequestDefaultTypeInternal;
+extern SetSelfIdRequestDefaultTypeInternal _SetSelfIdRequest_default_instance_;
+class SetSelfIdResponse;
+struct SetSelfIdResponseDefaultTypeInternal;
+extern SetSelfIdResponseDefaultTypeInternal _SetSelfIdResponse_default_instance_;
+class SetSystemRequest;
+struct SetSystemRequestDefaultTypeInternal;
+extern SetSystemRequestDefaultTypeInternal _SetSystemRequest_default_instance_;
+class SetSystemResponse;
+struct SetSystemResponseDefaultTypeInternal;
+extern SetSystemResponseDefaultTypeInternal _SetSystemResponse_default_instance_;
+class SystemId;
+struct SystemIdDefaultTypeInternal;
+extern SystemIdDefaultTypeInternal _SystemId_default_instance_;
 }  // namespace remote_id
 }  // namespace rpc
 }  // namespace mavsdk
@@ -131,6 +158,506 @@ inline bool RemoteIdResult_Result_Parse(absl::string_view name, RemoteIdResult_R
 
 
 // -------------------------------------------------------------------
+
+class SystemId final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SystemId) */ {
+ public:
+  inline SystemId() : SystemId(nullptr) {}
+  ~SystemId() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SystemId(::google::protobuf::internal::ConstantInitialized);
+
+  inline SystemId(const SystemId& from)
+      : SystemId(nullptr, from) {}
+  SystemId(SystemId&& from) noexcept
+    : SystemId() {
+    *this = ::std::move(from);
+  }
+
+  inline SystemId& operator=(const SystemId& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SystemId& operator=(SystemId&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SystemId& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SystemId* internal_default_instance() {
+    return reinterpret_cast<const SystemId*>(
+               &_SystemId_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(SystemId& a, SystemId& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SystemId* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SystemId* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SystemId* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SystemId>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SystemId& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SystemId& from) {
+    SystemId::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SystemId* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SystemId";
+  }
+  protected:
+  explicit SystemId(::google::protobuf::Arena* arena);
+  SystemId(::google::protobuf::Arena* arena, const SystemId& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOperatorLocationTypeFieldNumber = 1,
+    kClassificationTypeFieldNumber = 2,
+    kOperatorLatitudeFieldNumber = 3,
+    kOperatorLongitudeFieldNumber = 4,
+    kAreaCountFieldNumber = 5,
+    kAreaRadiusFieldNumber = 6,
+    kAreaCeilingFieldNumber = 7,
+    kAreaFloorFieldNumber = 8,
+    kCategoryEuFieldNumber = 9,
+    kClassEuFieldNumber = 10,
+    kOperatorAltitudeGeoFieldNumber = 11,
+    kTimestampFieldNumber = 12,
+  };
+  // uint32 operator_location_type = 1;
+  void clear_operator_location_type() ;
+  ::uint32_t operator_location_type() const;
+  void set_operator_location_type(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_operator_location_type() const;
+  void _internal_set_operator_location_type(::uint32_t value);
+
+  public:
+  // uint32 classification_type = 2;
+  void clear_classification_type() ;
+  ::uint32_t classification_type() const;
+  void set_classification_type(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_classification_type() const;
+  void _internal_set_classification_type(::uint32_t value);
+
+  public:
+  // int32 operator_latitude = 3;
+  void clear_operator_latitude() ;
+  ::int32_t operator_latitude() const;
+  void set_operator_latitude(::int32_t value);
+
+  private:
+  ::int32_t _internal_operator_latitude() const;
+  void _internal_set_operator_latitude(::int32_t value);
+
+  public:
+  // int32 operator_longitude = 4;
+  void clear_operator_longitude() ;
+  ::int32_t operator_longitude() const;
+  void set_operator_longitude(::int32_t value);
+
+  private:
+  ::int32_t _internal_operator_longitude() const;
+  void _internal_set_operator_longitude(::int32_t value);
+
+  public:
+  // uint32 area_count = 5;
+  void clear_area_count() ;
+  ::uint32_t area_count() const;
+  void set_area_count(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_area_count() const;
+  void _internal_set_area_count(::uint32_t value);
+
+  public:
+  // uint32 area_radius = 6;
+  void clear_area_radius() ;
+  ::uint32_t area_radius() const;
+  void set_area_radius(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_area_radius() const;
+  void _internal_set_area_radius(::uint32_t value);
+
+  public:
+  // float area_ceiling = 7;
+  void clear_area_ceiling() ;
+  float area_ceiling() const;
+  void set_area_ceiling(float value);
+
+  private:
+  float _internal_area_ceiling() const;
+  void _internal_set_area_ceiling(float value);
+
+  public:
+  // float area_floor = 8;
+  void clear_area_floor() ;
+  float area_floor() const;
+  void set_area_floor(float value);
+
+  private:
+  float _internal_area_floor() const;
+  void _internal_set_area_floor(float value);
+
+  public:
+  // uint32 category_eu = 9;
+  void clear_category_eu() ;
+  ::uint32_t category_eu() const;
+  void set_category_eu(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_category_eu() const;
+  void _internal_set_category_eu(::uint32_t value);
+
+  public:
+  // uint32 class_eu = 10;
+  void clear_class_eu() ;
+  ::uint32_t class_eu() const;
+  void set_class_eu(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_class_eu() const;
+  void _internal_set_class_eu(::uint32_t value);
+
+  public:
+  // float operator_altitude_geo = 11;
+  void clear_operator_altitude_geo() ;
+  float operator_altitude_geo() const;
+  void set_operator_altitude_geo(float value);
+
+  private:
+  float _internal_operator_altitude_geo() const;
+  void _internal_set_operator_altitude_geo(float value);
+
+  public:
+  // uint32 timestamp = 12;
+  void clear_timestamp() ;
+  ::uint32_t timestamp() const;
+  void set_timestamp(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_timestamp() const;
+  void _internal_set_timestamp(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SystemId)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      4, 12, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::uint32_t operator_location_type_;
+    ::uint32_t classification_type_;
+    ::int32_t operator_latitude_;
+    ::int32_t operator_longitude_;
+    ::uint32_t area_count_;
+    ::uint32_t area_radius_;
+    float area_ceiling_;
+    float area_floor_;
+    ::uint32_t category_eu_;
+    ::uint32_t class_eu_;
+    float operator_altitude_geo_;
+    ::uint32_t timestamp_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SelfId final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SelfId) */ {
+ public:
+  inline SelfId() : SelfId(nullptr) {}
+  ~SelfId() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SelfId(::google::protobuf::internal::ConstantInitialized);
+
+  inline SelfId(const SelfId& from)
+      : SelfId(nullptr, from) {}
+  SelfId(SelfId&& from) noexcept
+    : SelfId() {
+    *this = ::std::move(from);
+  }
+
+  inline SelfId& operator=(const SelfId& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SelfId& operator=(SelfId&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SelfId& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SelfId* internal_default_instance() {
+    return reinterpret_cast<const SelfId*>(
+               &_SelfId_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(SelfId& a, SelfId& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SelfId* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SelfId* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SelfId* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SelfId>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SelfId& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SelfId& from) {
+    SelfId::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SelfId* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SelfId";
+  }
+  protected:
+  explicit SelfId(::google::protobuf::Arena* arena);
+  SelfId(::google::protobuf::Arena* arena, const SelfId& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDescriptionFieldNumber = 2,
+    kDescriptionTypeFieldNumber = 1,
+  };
+  // string description = 2;
+  void clear_description() ;
+  const std::string& description() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_description(Arg_&& arg, Args_... args);
+  std::string* mutable_description();
+  PROTOBUF_NODISCARD std::string* release_description();
+  void set_allocated_description(std::string* value);
+
+  private:
+  const std::string& _internal_description() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_description(
+      const std::string& value);
+  std::string* _internal_mutable_description();
+
+  public:
+  // uint32 description_type = 1;
+  void clear_description_type() ;
+  ::uint32_t description_type() const;
+  void set_description_type(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_description_type() const;
+  void _internal_set_description_type(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SelfId)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      47, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr description_;
+    ::uint32_t description_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
 
 class RemoteIdResult final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.RemoteIdResult) */ {
@@ -191,7 +718,7 @@ class RemoteIdResult final :
                &_RemoteIdResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    15;
 
   friend void swap(RemoteIdResult& a, RemoteIdResult& b) {
     a.Swap(&b);
@@ -346,6 +873,199 @@ class RemoteIdResult final :
   friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
 };// -------------------------------------------------------------------
 
+class OperatorId final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.OperatorId) */ {
+ public:
+  inline OperatorId() : OperatorId(nullptr) {}
+  ~OperatorId() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR OperatorId(::google::protobuf::internal::ConstantInitialized);
+
+  inline OperatorId(const OperatorId& from)
+      : OperatorId(nullptr, from) {}
+  OperatorId(OperatorId&& from) noexcept
+    : OperatorId() {
+    *this = ::std::move(from);
+  }
+
+  inline OperatorId& operator=(const OperatorId& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline OperatorId& operator=(OperatorId&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const OperatorId& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const OperatorId* internal_default_instance() {
+    return reinterpret_cast<const OperatorId*>(
+               &_OperatorId_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(OperatorId& a, OperatorId& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(OperatorId* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(OperatorId* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  OperatorId* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<OperatorId>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const OperatorId& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const OperatorId& from) {
+    OperatorId::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(OperatorId* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.OperatorId";
+  }
+  protected:
+  explicit OperatorId(::google::protobuf::Arena* arena);
+  OperatorId(::google::protobuf::Arena* arena, const OperatorId& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kOperatorIdFieldNumber = 2,
+    kOperatorIdTypeFieldNumber = 1,
+  };
+  // string operator_id = 2;
+  void clear_operator_id() ;
+  const std::string& operator_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_operator_id(Arg_&& arg, Args_... args);
+  std::string* mutable_operator_id();
+  PROTOBUF_NODISCARD std::string* release_operator_id();
+  void set_allocated_operator_id(std::string* value);
+
+  private:
+  const std::string& _internal_operator_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_operator_id(
+      const std::string& value);
+  std::string* _internal_mutable_operator_id();
+
+  public:
+  // uint32 operator_id_type = 1;
+  void clear_operator_id_type() ;
+  ::uint32_t operator_id_type() const;
+  void set_operator_id_type(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_operator_id_type() const;
+  void _internal_set_operator_id_type(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.OperatorId)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      51, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr operator_id_;
+    ::uint32_t operator_id_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
 class Location final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.Location) */ {
  public:
@@ -405,7 +1125,7 @@ class Location final :
                &_Location_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    11;
 
   friend void swap(Location& a, Location& b) {
     a.Swap(&b);
@@ -712,7 +1432,7 @@ class BasicId final :
                &_BasicId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    10;
 
   friend void swap(BasicId& a, BasicId& b) {
     a.Swap(&b);
@@ -852,6 +1572,1092 @@ class BasicId final :
     ::uint32_t id_type_;
     ::uint32_t ua_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SetSystemResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetSystemResponse) */ {
+ public:
+  inline SetSystemResponse() : SetSystemResponse(nullptr) {}
+  ~SetSystemResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SetSystemResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline SetSystemResponse(const SetSystemResponse& from)
+      : SetSystemResponse(nullptr, from) {}
+  SetSystemResponse(SetSystemResponse&& from) noexcept
+    : SetSystemResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetSystemResponse& operator=(const SetSystemResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetSystemResponse& operator=(SetSystemResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetSystemResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetSystemResponse* internal_default_instance() {
+    return reinterpret_cast<const SetSystemResponse*>(
+               &_SetSystemResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(SetSystemResponse& a, SetSystemResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetSystemResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetSystemResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetSystemResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetSystemResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetSystemResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SetSystemResponse& from) {
+    SetSystemResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetSystemResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SetSystemResponse";
+  }
+  protected:
+  explicit SetSystemResponse(::google::protobuf::Arena* arena);
+  SetSystemResponse(::google::protobuf::Arena* arena, const SetSystemResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRemoteIdResultFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  bool has_remote_id_result() const;
+  void clear_remote_id_result() ;
+  const ::mavsdk::rpc::remote_id::RemoteIdResult& remote_id_result() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::RemoteIdResult* release_remote_id_result();
+  ::mavsdk::rpc::remote_id::RemoteIdResult* mutable_remote_id_result();
+  void set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value);
+  void unsafe_arena_set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value);
+  ::mavsdk::rpc::remote_id::RemoteIdResult* unsafe_arena_release_remote_id_result();
+
+  private:
+  const ::mavsdk::rpc::remote_id::RemoteIdResult& _internal_remote_id_result() const;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* _internal_mutable_remote_id_result();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SetSystemResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::RemoteIdResult* remote_id_result_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SetSystemRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetSystemRequest) */ {
+ public:
+  inline SetSystemRequest() : SetSystemRequest(nullptr) {}
+  ~SetSystemRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SetSystemRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline SetSystemRequest(const SetSystemRequest& from)
+      : SetSystemRequest(nullptr, from) {}
+  SetSystemRequest(SetSystemRequest&& from) noexcept
+    : SetSystemRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetSystemRequest& operator=(const SetSystemRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetSystemRequest& operator=(SetSystemRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetSystemRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetSystemRequest* internal_default_instance() {
+    return reinterpret_cast<const SetSystemRequest*>(
+               &_SetSystemRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(SetSystemRequest& a, SetSystemRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetSystemRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetSystemRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetSystemRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetSystemRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetSystemRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SetSystemRequest& from) {
+    SetSystemRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetSystemRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SetSystemRequest";
+  }
+  protected:
+  explicit SetSystemRequest(::google::protobuf::Arena* arena);
+  SetSystemRequest(::google::protobuf::Arena* arena, const SetSystemRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSystemFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.SystemId system = 1;
+  bool has_system() const;
+  void clear_system() ;
+  const ::mavsdk::rpc::remote_id::SystemId& system() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::SystemId* release_system();
+  ::mavsdk::rpc::remote_id::SystemId* mutable_system();
+  void set_allocated_system(::mavsdk::rpc::remote_id::SystemId* value);
+  void unsafe_arena_set_allocated_system(::mavsdk::rpc::remote_id::SystemId* value);
+  ::mavsdk::rpc::remote_id::SystemId* unsafe_arena_release_system();
+
+  private:
+  const ::mavsdk::rpc::remote_id::SystemId& _internal_system() const;
+  ::mavsdk::rpc::remote_id::SystemId* _internal_mutable_system();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SetSystemRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::SystemId* system_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SetSelfIdResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetSelfIdResponse) */ {
+ public:
+  inline SetSelfIdResponse() : SetSelfIdResponse(nullptr) {}
+  ~SetSelfIdResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SetSelfIdResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline SetSelfIdResponse(const SetSelfIdResponse& from)
+      : SetSelfIdResponse(nullptr, from) {}
+  SetSelfIdResponse(SetSelfIdResponse&& from) noexcept
+    : SetSelfIdResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetSelfIdResponse& operator=(const SetSelfIdResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetSelfIdResponse& operator=(SetSelfIdResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetSelfIdResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetSelfIdResponse* internal_default_instance() {
+    return reinterpret_cast<const SetSelfIdResponse*>(
+               &_SetSelfIdResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(SetSelfIdResponse& a, SetSelfIdResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetSelfIdResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetSelfIdResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetSelfIdResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetSelfIdResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetSelfIdResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SetSelfIdResponse& from) {
+    SetSelfIdResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetSelfIdResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SetSelfIdResponse";
+  }
+  protected:
+  explicit SetSelfIdResponse(::google::protobuf::Arena* arena);
+  SetSelfIdResponse(::google::protobuf::Arena* arena, const SetSelfIdResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRemoteIdResultFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  bool has_remote_id_result() const;
+  void clear_remote_id_result() ;
+  const ::mavsdk::rpc::remote_id::RemoteIdResult& remote_id_result() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::RemoteIdResult* release_remote_id_result();
+  ::mavsdk::rpc::remote_id::RemoteIdResult* mutable_remote_id_result();
+  void set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value);
+  void unsafe_arena_set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value);
+  ::mavsdk::rpc::remote_id::RemoteIdResult* unsafe_arena_release_remote_id_result();
+
+  private:
+  const ::mavsdk::rpc::remote_id::RemoteIdResult& _internal_remote_id_result() const;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* _internal_mutable_remote_id_result();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SetSelfIdResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::RemoteIdResult* remote_id_result_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SetSelfIdRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetSelfIdRequest) */ {
+ public:
+  inline SetSelfIdRequest() : SetSelfIdRequest(nullptr) {}
+  ~SetSelfIdRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SetSelfIdRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline SetSelfIdRequest(const SetSelfIdRequest& from)
+      : SetSelfIdRequest(nullptr, from) {}
+  SetSelfIdRequest(SetSelfIdRequest&& from) noexcept
+    : SetSelfIdRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetSelfIdRequest& operator=(const SetSelfIdRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetSelfIdRequest& operator=(SetSelfIdRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetSelfIdRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetSelfIdRequest* internal_default_instance() {
+    return reinterpret_cast<const SetSelfIdRequest*>(
+               &_SetSelfIdRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(SetSelfIdRequest& a, SetSelfIdRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetSelfIdRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetSelfIdRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetSelfIdRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetSelfIdRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetSelfIdRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SetSelfIdRequest& from) {
+    SetSelfIdRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetSelfIdRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SetSelfIdRequest";
+  }
+  protected:
+  explicit SetSelfIdRequest(::google::protobuf::Arena* arena);
+  SetSelfIdRequest(::google::protobuf::Arena* arena, const SetSelfIdRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSelfIdFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.SelfId self_id = 1;
+  bool has_self_id() const;
+  void clear_self_id() ;
+  const ::mavsdk::rpc::remote_id::SelfId& self_id() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::SelfId* release_self_id();
+  ::mavsdk::rpc::remote_id::SelfId* mutable_self_id();
+  void set_allocated_self_id(::mavsdk::rpc::remote_id::SelfId* value);
+  void unsafe_arena_set_allocated_self_id(::mavsdk::rpc::remote_id::SelfId* value);
+  ::mavsdk::rpc::remote_id::SelfId* unsafe_arena_release_self_id();
+
+  private:
+  const ::mavsdk::rpc::remote_id::SelfId& _internal_self_id() const;
+  ::mavsdk::rpc::remote_id::SelfId* _internal_mutable_self_id();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SetSelfIdRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::SelfId* self_id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SetOperatorIdResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetOperatorIdResponse) */ {
+ public:
+  inline SetOperatorIdResponse() : SetOperatorIdResponse(nullptr) {}
+  ~SetOperatorIdResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SetOperatorIdResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline SetOperatorIdResponse(const SetOperatorIdResponse& from)
+      : SetOperatorIdResponse(nullptr, from) {}
+  SetOperatorIdResponse(SetOperatorIdResponse&& from) noexcept
+    : SetOperatorIdResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetOperatorIdResponse& operator=(const SetOperatorIdResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetOperatorIdResponse& operator=(SetOperatorIdResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetOperatorIdResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetOperatorIdResponse* internal_default_instance() {
+    return reinterpret_cast<const SetOperatorIdResponse*>(
+               &_SetOperatorIdResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(SetOperatorIdResponse& a, SetOperatorIdResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetOperatorIdResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetOperatorIdResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetOperatorIdResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetOperatorIdResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetOperatorIdResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SetOperatorIdResponse& from) {
+    SetOperatorIdResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetOperatorIdResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SetOperatorIdResponse";
+  }
+  protected:
+  explicit SetOperatorIdResponse(::google::protobuf::Arena* arena);
+  SetOperatorIdResponse(::google::protobuf::Arena* arena, const SetOperatorIdResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRemoteIdResultFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  bool has_remote_id_result() const;
+  void clear_remote_id_result() ;
+  const ::mavsdk::rpc::remote_id::RemoteIdResult& remote_id_result() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::RemoteIdResult* release_remote_id_result();
+  ::mavsdk::rpc::remote_id::RemoteIdResult* mutable_remote_id_result();
+  void set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value);
+  void unsafe_arena_set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value);
+  ::mavsdk::rpc::remote_id::RemoteIdResult* unsafe_arena_release_remote_id_result();
+
+  private:
+  const ::mavsdk::rpc::remote_id::RemoteIdResult& _internal_remote_id_result() const;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* _internal_mutable_remote_id_result();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::RemoteIdResult* remote_id_result_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SetOperatorIdRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetOperatorIdRequest) */ {
+ public:
+  inline SetOperatorIdRequest() : SetOperatorIdRequest(nullptr) {}
+  ~SetOperatorIdRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SetOperatorIdRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline SetOperatorIdRequest(const SetOperatorIdRequest& from)
+      : SetOperatorIdRequest(nullptr, from) {}
+  SetOperatorIdRequest(SetOperatorIdRequest&& from) noexcept
+    : SetOperatorIdRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetOperatorIdRequest& operator=(const SetOperatorIdRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetOperatorIdRequest& operator=(SetOperatorIdRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetOperatorIdRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetOperatorIdRequest* internal_default_instance() {
+    return reinterpret_cast<const SetOperatorIdRequest*>(
+               &_SetOperatorIdRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(SetOperatorIdRequest& a, SetOperatorIdRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetOperatorIdRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetOperatorIdRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetOperatorIdRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetOperatorIdRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetOperatorIdRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SetOperatorIdRequest& from) {
+    SetOperatorIdRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetOperatorIdRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SetOperatorIdRequest";
+  }
+  protected:
+  explicit SetOperatorIdRequest(::google::protobuf::Arena* arena);
+  SetOperatorIdRequest(::google::protobuf::Arena* arena, const SetOperatorIdRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSystemFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.OperatorId system = 1;
+  bool has_system() const;
+  void clear_system() ;
+  const ::mavsdk::rpc::remote_id::OperatorId& system() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::OperatorId* release_system();
+  ::mavsdk::rpc::remote_id::OperatorId* mutable_system();
+  void set_allocated_system(::mavsdk::rpc::remote_id::OperatorId* value);
+  void unsafe_arena_set_allocated_system(::mavsdk::rpc::remote_id::OperatorId* value);
+  ::mavsdk::rpc::remote_id::OperatorId* unsafe_arena_release_system();
+
+  private:
+  const ::mavsdk::rpc::remote_id::OperatorId& _internal_system() const;
+  ::mavsdk::rpc::remote_id::OperatorId* _internal_mutable_system();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::OperatorId* system_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1996,6 +3802,606 @@ inline void SetLocationResponse::set_allocated_remote_id_result(::mavsdk::rpc::r
 
 // -------------------------------------------------------------------
 
+// SetSystemRequest
+
+// .mavsdk.rpc.remote_id.SystemId system = 1;
+inline bool SetSystemRequest::has_system() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.system_ != nullptr);
+  return value;
+}
+inline void SetSystemRequest::clear_system() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.system_ != nullptr) _impl_.system_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::SystemId& SetSystemRequest::_internal_system() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::SystemId* p = _impl_.system_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::SystemId&>(::mavsdk::rpc::remote_id::_SystemId_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::SystemId& SetSystemRequest::system() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SetSystemRequest.system)
+  return _internal_system();
+}
+inline void SetSystemRequest::unsafe_arena_set_allocated_system(::mavsdk::rpc::remote_id::SystemId* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.system_);
+  }
+  _impl_.system_ = reinterpret_cast<::mavsdk::rpc::remote_id::SystemId*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.SetSystemRequest.system)
+}
+inline ::mavsdk::rpc::remote_id::SystemId* SetSystemRequest::release_system() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::SystemId* released = _impl_.system_;
+  _impl_.system_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::SystemId* SetSystemRequest::unsafe_arena_release_system() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SetSystemRequest.system)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::SystemId* temp = _impl_.system_;
+  _impl_.system_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::SystemId* SetSystemRequest::_internal_mutable_system() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.system_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::SystemId>(GetArena());
+    _impl_.system_ = reinterpret_cast<::mavsdk::rpc::remote_id::SystemId*>(p);
+  }
+  return _impl_.system_;
+}
+inline ::mavsdk::rpc::remote_id::SystemId* SetSystemRequest::mutable_system() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::SystemId* _msg = _internal_mutable_system();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SetSystemRequest.system)
+  return _msg;
+}
+inline void SetSystemRequest::set_allocated_system(::mavsdk::rpc::remote_id::SystemId* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::SystemId*>(_impl_.system_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::SystemId*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.system_ = reinterpret_cast<::mavsdk::rpc::remote_id::SystemId*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetSystemRequest.system)
+}
+
+// -------------------------------------------------------------------
+
+// SetSystemResponse
+
+// .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+inline bool SetSystemResponse::has_remote_id_result() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.remote_id_result_ != nullptr);
+  return value;
+}
+inline void SetSystemResponse::clear_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.remote_id_result_ != nullptr) _impl_.remote_id_result_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::RemoteIdResult& SetSystemResponse::_internal_remote_id_result() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::RemoteIdResult* p = _impl_.remote_id_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::RemoteIdResult&>(::mavsdk::rpc::remote_id::_RemoteIdResult_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::RemoteIdResult& SetSystemResponse::remote_id_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SetSystemResponse.remote_id_result)
+  return _internal_remote_id_result();
+}
+inline void SetSystemResponse::unsafe_arena_set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.remote_id_result_);
+  }
+  _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.SetSystemResponse.remote_id_result)
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetSystemResponse::release_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* released = _impl_.remote_id_result_;
+  _impl_.remote_id_result_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetSystemResponse::unsafe_arena_release_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SetSystemResponse.remote_id_result)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* temp = _impl_.remote_id_result_;
+  _impl_.remote_id_result_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetSystemResponse::_internal_mutable_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.remote_id_result_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::RemoteIdResult>(GetArena());
+    _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(p);
+  }
+  return _impl_.remote_id_result_;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetSystemResponse::mutable_remote_id_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::RemoteIdResult* _msg = _internal_mutable_remote_id_result();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SetSystemResponse.remote_id_result)
+  return _msg;
+}
+inline void SetSystemResponse::set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(_impl_.remote_id_result_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetSystemResponse.remote_id_result)
+}
+
+// -------------------------------------------------------------------
+
+// SetOperatorIdRequest
+
+// .mavsdk.rpc.remote_id.OperatorId system = 1;
+inline bool SetOperatorIdRequest::has_system() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.system_ != nullptr);
+  return value;
+}
+inline void SetOperatorIdRequest::clear_system() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.system_ != nullptr) _impl_.system_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::OperatorId& SetOperatorIdRequest::_internal_system() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::OperatorId* p = _impl_.system_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::OperatorId&>(::mavsdk::rpc::remote_id::_OperatorId_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::OperatorId& SetOperatorIdRequest::system() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SetOperatorIdRequest.system)
+  return _internal_system();
+}
+inline void SetOperatorIdRequest::unsafe_arena_set_allocated_system(::mavsdk::rpc::remote_id::OperatorId* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.system_);
+  }
+  _impl_.system_ = reinterpret_cast<::mavsdk::rpc::remote_id::OperatorId*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.SetOperatorIdRequest.system)
+}
+inline ::mavsdk::rpc::remote_id::OperatorId* SetOperatorIdRequest::release_system() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::OperatorId* released = _impl_.system_;
+  _impl_.system_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::OperatorId* SetOperatorIdRequest::unsafe_arena_release_system() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SetOperatorIdRequest.system)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::OperatorId* temp = _impl_.system_;
+  _impl_.system_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::OperatorId* SetOperatorIdRequest::_internal_mutable_system() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.system_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::OperatorId>(GetArena());
+    _impl_.system_ = reinterpret_cast<::mavsdk::rpc::remote_id::OperatorId*>(p);
+  }
+  return _impl_.system_;
+}
+inline ::mavsdk::rpc::remote_id::OperatorId* SetOperatorIdRequest::mutable_system() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::OperatorId* _msg = _internal_mutable_system();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SetOperatorIdRequest.system)
+  return _msg;
+}
+inline void SetOperatorIdRequest::set_allocated_system(::mavsdk::rpc::remote_id::OperatorId* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::OperatorId*>(_impl_.system_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::OperatorId*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.system_ = reinterpret_cast<::mavsdk::rpc::remote_id::OperatorId*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetOperatorIdRequest.system)
+}
+
+// -------------------------------------------------------------------
+
+// SetOperatorIdResponse
+
+// .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+inline bool SetOperatorIdResponse::has_remote_id_result() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.remote_id_result_ != nullptr);
+  return value;
+}
+inline void SetOperatorIdResponse::clear_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.remote_id_result_ != nullptr) _impl_.remote_id_result_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::RemoteIdResult& SetOperatorIdResponse::_internal_remote_id_result() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::RemoteIdResult* p = _impl_.remote_id_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::RemoteIdResult&>(::mavsdk::rpc::remote_id::_RemoteIdResult_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::RemoteIdResult& SetOperatorIdResponse::remote_id_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SetOperatorIdResponse.remote_id_result)
+  return _internal_remote_id_result();
+}
+inline void SetOperatorIdResponse::unsafe_arena_set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.remote_id_result_);
+  }
+  _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.SetOperatorIdResponse.remote_id_result)
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetOperatorIdResponse::release_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* released = _impl_.remote_id_result_;
+  _impl_.remote_id_result_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetOperatorIdResponse::unsafe_arena_release_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SetOperatorIdResponse.remote_id_result)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* temp = _impl_.remote_id_result_;
+  _impl_.remote_id_result_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetOperatorIdResponse::_internal_mutable_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.remote_id_result_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::RemoteIdResult>(GetArena());
+    _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(p);
+  }
+  return _impl_.remote_id_result_;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetOperatorIdResponse::mutable_remote_id_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::RemoteIdResult* _msg = _internal_mutable_remote_id_result();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SetOperatorIdResponse.remote_id_result)
+  return _msg;
+}
+inline void SetOperatorIdResponse::set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(_impl_.remote_id_result_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetOperatorIdResponse.remote_id_result)
+}
+
+// -------------------------------------------------------------------
+
+// SetSelfIdRequest
+
+// .mavsdk.rpc.remote_id.SelfId self_id = 1;
+inline bool SetSelfIdRequest::has_self_id() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.self_id_ != nullptr);
+  return value;
+}
+inline void SetSelfIdRequest::clear_self_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.self_id_ != nullptr) _impl_.self_id_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::SelfId& SetSelfIdRequest::_internal_self_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::SelfId* p = _impl_.self_id_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::SelfId&>(::mavsdk::rpc::remote_id::_SelfId_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::SelfId& SetSelfIdRequest::self_id() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SetSelfIdRequest.self_id)
+  return _internal_self_id();
+}
+inline void SetSelfIdRequest::unsafe_arena_set_allocated_self_id(::mavsdk::rpc::remote_id::SelfId* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.self_id_);
+  }
+  _impl_.self_id_ = reinterpret_cast<::mavsdk::rpc::remote_id::SelfId*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.SetSelfIdRequest.self_id)
+}
+inline ::mavsdk::rpc::remote_id::SelfId* SetSelfIdRequest::release_self_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::SelfId* released = _impl_.self_id_;
+  _impl_.self_id_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::SelfId* SetSelfIdRequest::unsafe_arena_release_self_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SetSelfIdRequest.self_id)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::SelfId* temp = _impl_.self_id_;
+  _impl_.self_id_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::SelfId* SetSelfIdRequest::_internal_mutable_self_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.self_id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::SelfId>(GetArena());
+    _impl_.self_id_ = reinterpret_cast<::mavsdk::rpc::remote_id::SelfId*>(p);
+  }
+  return _impl_.self_id_;
+}
+inline ::mavsdk::rpc::remote_id::SelfId* SetSelfIdRequest::mutable_self_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::SelfId* _msg = _internal_mutable_self_id();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SetSelfIdRequest.self_id)
+  return _msg;
+}
+inline void SetSelfIdRequest::set_allocated_self_id(::mavsdk::rpc::remote_id::SelfId* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::SelfId*>(_impl_.self_id_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::SelfId*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.self_id_ = reinterpret_cast<::mavsdk::rpc::remote_id::SelfId*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetSelfIdRequest.self_id)
+}
+
+// -------------------------------------------------------------------
+
+// SetSelfIdResponse
+
+// .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+inline bool SetSelfIdResponse::has_remote_id_result() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.remote_id_result_ != nullptr);
+  return value;
+}
+inline void SetSelfIdResponse::clear_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.remote_id_result_ != nullptr) _impl_.remote_id_result_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::RemoteIdResult& SetSelfIdResponse::_internal_remote_id_result() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::RemoteIdResult* p = _impl_.remote_id_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::RemoteIdResult&>(::mavsdk::rpc::remote_id::_RemoteIdResult_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::RemoteIdResult& SetSelfIdResponse::remote_id_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SetSelfIdResponse.remote_id_result)
+  return _internal_remote_id_result();
+}
+inline void SetSelfIdResponse::unsafe_arena_set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.remote_id_result_);
+  }
+  _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.SetSelfIdResponse.remote_id_result)
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetSelfIdResponse::release_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* released = _impl_.remote_id_result_;
+  _impl_.remote_id_result_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetSelfIdResponse::unsafe_arena_release_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SetSelfIdResponse.remote_id_result)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* temp = _impl_.remote_id_result_;
+  _impl_.remote_id_result_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetSelfIdResponse::_internal_mutable_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.remote_id_result_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::RemoteIdResult>(GetArena());
+    _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(p);
+  }
+  return _impl_.remote_id_result_;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetSelfIdResponse::mutable_remote_id_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::RemoteIdResult* _msg = _internal_mutable_remote_id_result();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SetSelfIdResponse.remote_id_result)
+  return _msg;
+}
+inline void SetSelfIdResponse::set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(_impl_.remote_id_result_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetSelfIdResponse.remote_id_result)
+}
+
+// -------------------------------------------------------------------
+
 // BasicId
 
 // uint32 id_type = 1;
@@ -2375,6 +4781,446 @@ inline void Location::_internal_set_timestamp_accuracy(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.timestamp_accuracy_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// SystemId
+
+// uint32 operator_location_type = 1;
+inline void SystemId::clear_operator_location_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.operator_location_type_ = 0u;
+}
+inline ::uint32_t SystemId::operator_location_type() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_location_type)
+  return _internal_operator_location_type();
+}
+inline void SystemId::set_operator_location_type(::uint32_t value) {
+  _internal_set_operator_location_type(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_location_type)
+}
+inline ::uint32_t SystemId::_internal_operator_location_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.operator_location_type_;
+}
+inline void SystemId::_internal_set_operator_location_type(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.operator_location_type_ = value;
+}
+
+// uint32 classification_type = 2;
+inline void SystemId::clear_classification_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.classification_type_ = 0u;
+}
+inline ::uint32_t SystemId::classification_type() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.classification_type)
+  return _internal_classification_type();
+}
+inline void SystemId::set_classification_type(::uint32_t value) {
+  _internal_set_classification_type(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.classification_type)
+}
+inline ::uint32_t SystemId::_internal_classification_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.classification_type_;
+}
+inline void SystemId::_internal_set_classification_type(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.classification_type_ = value;
+}
+
+// int32 operator_latitude = 3;
+inline void SystemId::clear_operator_latitude() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.operator_latitude_ = 0;
+}
+inline ::int32_t SystemId::operator_latitude() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_latitude)
+  return _internal_operator_latitude();
+}
+inline void SystemId::set_operator_latitude(::int32_t value) {
+  _internal_set_operator_latitude(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_latitude)
+}
+inline ::int32_t SystemId::_internal_operator_latitude() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.operator_latitude_;
+}
+inline void SystemId::_internal_set_operator_latitude(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.operator_latitude_ = value;
+}
+
+// int32 operator_longitude = 4;
+inline void SystemId::clear_operator_longitude() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.operator_longitude_ = 0;
+}
+inline ::int32_t SystemId::operator_longitude() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_longitude)
+  return _internal_operator_longitude();
+}
+inline void SystemId::set_operator_longitude(::int32_t value) {
+  _internal_set_operator_longitude(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_longitude)
+}
+inline ::int32_t SystemId::_internal_operator_longitude() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.operator_longitude_;
+}
+inline void SystemId::_internal_set_operator_longitude(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.operator_longitude_ = value;
+}
+
+// uint32 area_count = 5;
+inline void SystemId::clear_area_count() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.area_count_ = 0u;
+}
+inline ::uint32_t SystemId::area_count() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_count)
+  return _internal_area_count();
+}
+inline void SystemId::set_area_count(::uint32_t value) {
+  _internal_set_area_count(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_count)
+}
+inline ::uint32_t SystemId::_internal_area_count() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.area_count_;
+}
+inline void SystemId::_internal_set_area_count(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.area_count_ = value;
+}
+
+// uint32 area_radius = 6;
+inline void SystemId::clear_area_radius() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.area_radius_ = 0u;
+}
+inline ::uint32_t SystemId::area_radius() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_radius)
+  return _internal_area_radius();
+}
+inline void SystemId::set_area_radius(::uint32_t value) {
+  _internal_set_area_radius(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_radius)
+}
+inline ::uint32_t SystemId::_internal_area_radius() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.area_radius_;
+}
+inline void SystemId::_internal_set_area_radius(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.area_radius_ = value;
+}
+
+// float area_ceiling = 7;
+inline void SystemId::clear_area_ceiling() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.area_ceiling_ = 0;
+}
+inline float SystemId::area_ceiling() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_ceiling)
+  return _internal_area_ceiling();
+}
+inline void SystemId::set_area_ceiling(float value) {
+  _internal_set_area_ceiling(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_ceiling)
+}
+inline float SystemId::_internal_area_ceiling() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.area_ceiling_;
+}
+inline void SystemId::_internal_set_area_ceiling(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.area_ceiling_ = value;
+}
+
+// float area_floor = 8;
+inline void SystemId::clear_area_floor() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.area_floor_ = 0;
+}
+inline float SystemId::area_floor() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_floor)
+  return _internal_area_floor();
+}
+inline void SystemId::set_area_floor(float value) {
+  _internal_set_area_floor(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_floor)
+}
+inline float SystemId::_internal_area_floor() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.area_floor_;
+}
+inline void SystemId::_internal_set_area_floor(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.area_floor_ = value;
+}
+
+// uint32 category_eu = 9;
+inline void SystemId::clear_category_eu() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.category_eu_ = 0u;
+}
+inline ::uint32_t SystemId::category_eu() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.category_eu)
+  return _internal_category_eu();
+}
+inline void SystemId::set_category_eu(::uint32_t value) {
+  _internal_set_category_eu(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.category_eu)
+}
+inline ::uint32_t SystemId::_internal_category_eu() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.category_eu_;
+}
+inline void SystemId::_internal_set_category_eu(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.category_eu_ = value;
+}
+
+// uint32 class_eu = 10;
+inline void SystemId::clear_class_eu() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.class_eu_ = 0u;
+}
+inline ::uint32_t SystemId::class_eu() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.class_eu)
+  return _internal_class_eu();
+}
+inline void SystemId::set_class_eu(::uint32_t value) {
+  _internal_set_class_eu(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.class_eu)
+}
+inline ::uint32_t SystemId::_internal_class_eu() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.class_eu_;
+}
+inline void SystemId::_internal_set_class_eu(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.class_eu_ = value;
+}
+
+// float operator_altitude_geo = 11;
+inline void SystemId::clear_operator_altitude_geo() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.operator_altitude_geo_ = 0;
+}
+inline float SystemId::operator_altitude_geo() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_altitude_geo)
+  return _internal_operator_altitude_geo();
+}
+inline void SystemId::set_operator_altitude_geo(float value) {
+  _internal_set_operator_altitude_geo(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_altitude_geo)
+}
+inline float SystemId::_internal_operator_altitude_geo() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.operator_altitude_geo_;
+}
+inline void SystemId::_internal_set_operator_altitude_geo(float value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.operator_altitude_geo_ = value;
+}
+
+// uint32 timestamp = 12;
+inline void SystemId::clear_timestamp() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.timestamp_ = 0u;
+}
+inline ::uint32_t SystemId::timestamp() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.timestamp)
+  return _internal_timestamp();
+}
+inline void SystemId::set_timestamp(::uint32_t value) {
+  _internal_set_timestamp(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.timestamp)
+}
+inline ::uint32_t SystemId::_internal_timestamp() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.timestamp_;
+}
+inline void SystemId::_internal_set_timestamp(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.timestamp_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// OperatorId
+
+// uint32 operator_id_type = 1;
+inline void OperatorId::clear_operator_id_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.operator_id_type_ = 0u;
+}
+inline ::uint32_t OperatorId::operator_id_type() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.OperatorId.operator_id_type)
+  return _internal_operator_id_type();
+}
+inline void OperatorId::set_operator_id_type(::uint32_t value) {
+  _internal_set_operator_id_type(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.OperatorId.operator_id_type)
+}
+inline ::uint32_t OperatorId::_internal_operator_id_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.operator_id_type_;
+}
+inline void OperatorId::_internal_set_operator_id_type(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.operator_id_type_ = value;
+}
+
+// string operator_id = 2;
+inline void OperatorId::clear_operator_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.operator_id_.ClearToEmpty();
+}
+inline const std::string& OperatorId::operator_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.OperatorId.operator_id)
+  return _internal_operator_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void OperatorId::set_operator_id(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.operator_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.OperatorId.operator_id)
+}
+inline std::string* OperatorId::mutable_operator_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_operator_id();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.OperatorId.operator_id)
+  return _s;
+}
+inline const std::string& OperatorId::_internal_operator_id() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.operator_id_.Get();
+}
+inline void OperatorId::_internal_set_operator_id(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.operator_id_.Set(value, GetArena());
+}
+inline std::string* OperatorId::_internal_mutable_operator_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.operator_id_.Mutable( GetArena());
+}
+inline std::string* OperatorId::release_operator_id() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.OperatorId.operator_id)
+  return _impl_.operator_id_.Release();
+}
+inline void OperatorId::set_allocated_operator_id(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.operator_id_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.operator_id_.IsDefault()) {
+          _impl_.operator_id_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.OperatorId.operator_id)
+}
+
+// -------------------------------------------------------------------
+
+// SelfId
+
+// uint32 description_type = 1;
+inline void SelfId::clear_description_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.description_type_ = 0u;
+}
+inline ::uint32_t SelfId::description_type() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SelfId.description_type)
+  return _internal_description_type();
+}
+inline void SelfId::set_description_type(::uint32_t value) {
+  _internal_set_description_type(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SelfId.description_type)
+}
+inline ::uint32_t SelfId::_internal_description_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.description_type_;
+}
+inline void SelfId::_internal_set_description_type(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.description_type_ = value;
+}
+
+// string description = 2;
+inline void SelfId::clear_description() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.description_.ClearToEmpty();
+}
+inline const std::string& SelfId::description() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SelfId.description)
+  return _internal_description();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SelfId::set_description(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.description_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SelfId.description)
+}
+inline std::string* SelfId::mutable_description() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_description();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SelfId.description)
+  return _s;
+}
+inline const std::string& SelfId::_internal_description() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.description_.Get();
+}
+inline void SelfId::_internal_set_description(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.description_.Set(value, GetArena());
+}
+inline std::string* SelfId::_internal_mutable_description() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.description_.Mutable( GetArena());
+}
+inline std::string* SelfId::release_description() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SelfId.description)
+  return _impl_.description_.Release();
+}
+inline void SelfId::set_allocated_description(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.description_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.description_.IsDefault()) {
+          _impl_.description_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SelfId.description)
 }
 
 // -------------------------------------------------------------------

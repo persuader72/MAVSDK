@@ -133,6 +133,117 @@ public:
         return obj;
     }
 
+    static std::unique_ptr<rpc::remote_id::SystemId>
+    translateToRpcSystemId(const mavsdk::RemoteId::SystemId& system_id)
+    {
+        auto rpc_obj = std::make_unique<rpc::remote_id::SystemId>();
+
+        rpc_obj->set_operator_location_type(system_id.operator_location_type);
+
+        rpc_obj->set_classification_type(system_id.classification_type);
+
+        rpc_obj->set_operator_latitude(system_id.operator_latitude);
+
+        rpc_obj->set_operator_longitude(system_id.operator_longitude);
+
+        rpc_obj->set_area_count(system_id.area_count);
+
+        rpc_obj->set_area_radius(system_id.area_radius);
+
+        rpc_obj->set_area_ceiling(system_id.area_ceiling);
+
+        rpc_obj->set_area_floor(system_id.area_floor);
+
+        rpc_obj->set_category_eu(system_id.category_eu);
+
+        rpc_obj->set_class_eu(system_id.class_eu);
+
+        rpc_obj->set_operator_altitude_geo(system_id.operator_altitude_geo);
+
+        rpc_obj->set_timestamp(system_id.timestamp);
+
+        return rpc_obj;
+    }
+
+    static mavsdk::RemoteId::SystemId
+    translateFromRpcSystemId(const rpc::remote_id::SystemId& system_id)
+    {
+        mavsdk::RemoteId::SystemId obj;
+
+        obj.operator_location_type = system_id.operator_location_type();
+
+        obj.classification_type = system_id.classification_type();
+
+        obj.operator_latitude = system_id.operator_latitude();
+
+        obj.operator_longitude = system_id.operator_longitude();
+
+        obj.area_count = system_id.area_count();
+
+        obj.area_radius = system_id.area_radius();
+
+        obj.area_ceiling = system_id.area_ceiling();
+
+        obj.area_floor = system_id.area_floor();
+
+        obj.category_eu = system_id.category_eu();
+
+        obj.class_eu = system_id.class_eu();
+
+        obj.operator_altitude_geo = system_id.operator_altitude_geo();
+
+        obj.timestamp = system_id.timestamp();
+
+        return obj;
+    }
+
+    static std::unique_ptr<rpc::remote_id::OperatorId>
+    translateToRpcOperatorId(const mavsdk::RemoteId::OperatorId& operator_id)
+    {
+        auto rpc_obj = std::make_unique<rpc::remote_id::OperatorId>();
+
+        rpc_obj->set_operator_id_type(operator_id.operator_id_type);
+
+        rpc_obj->set_operator_id(operator_id.operator_id);
+
+        return rpc_obj;
+    }
+
+    static mavsdk::RemoteId::OperatorId
+    translateFromRpcOperatorId(const rpc::remote_id::OperatorId& operator_id)
+    {
+        mavsdk::RemoteId::OperatorId obj;
+
+        obj.operator_id_type = operator_id.operator_id_type();
+
+        obj.operator_id = operator_id.operator_id();
+
+        return obj;
+    }
+
+    static std::unique_ptr<rpc::remote_id::SelfId>
+    translateToRpcSelfId(const mavsdk::RemoteId::SelfId& self_id)
+    {
+        auto rpc_obj = std::make_unique<rpc::remote_id::SelfId>();
+
+        rpc_obj->set_description_type(self_id.description_type);
+
+        rpc_obj->set_description(self_id.description);
+
+        return rpc_obj;
+    }
+
+    static mavsdk::RemoteId::SelfId translateFromRpcSelfId(const rpc::remote_id::SelfId& self_id)
+    {
+        mavsdk::RemoteId::SelfId obj;
+
+        obj.description_type = self_id.description_type();
+
+        obj.description = self_id.description();
+
+        return obj;
+    }
+
     static rpc::remote_id::RemoteIdResult::Result
     translateToRpcResult(const mavsdk::RemoteId::Result& result)
     {
@@ -215,6 +326,93 @@ public:
 
         auto result = _lazy_plugin.maybe_plugin()->set_location(
             translateFromRpcLocation(request->location()));
+
+        if (response != nullptr) {
+            fillResponseWithResult(response, result);
+        }
+
+        return grpc::Status::OK;
+    }
+
+    grpc::Status SetSystem(
+        grpc::ServerContext* /* context */,
+        const rpc::remote_id::SetSystemRequest* request,
+        rpc::remote_id::SetSystemResponse* response) override
+    {
+        if (_lazy_plugin.maybe_plugin() == nullptr) {
+            if (response != nullptr) {
+                auto result = mavsdk::RemoteId::Result::NoSystem;
+                fillResponseWithResult(response, result);
+            }
+
+            return grpc::Status::OK;
+        }
+
+        if (request == nullptr) {
+            LogWarn() << "SetSystem sent with a null request! Ignoring...";
+            return grpc::Status::OK;
+        }
+
+        auto result =
+            _lazy_plugin.maybe_plugin()->set_system(translateFromRpcSystemId(request->system()));
+
+        if (response != nullptr) {
+            fillResponseWithResult(response, result);
+        }
+
+        return grpc::Status::OK;
+    }
+
+    grpc::Status SetOperatorId(
+        grpc::ServerContext* /* context */,
+        const rpc::remote_id::SetOperatorIdRequest* request,
+        rpc::remote_id::SetOperatorIdResponse* response) override
+    {
+        if (_lazy_plugin.maybe_plugin() == nullptr) {
+            if (response != nullptr) {
+                auto result = mavsdk::RemoteId::Result::NoSystem;
+                fillResponseWithResult(response, result);
+            }
+
+            return grpc::Status::OK;
+        }
+
+        if (request == nullptr) {
+            LogWarn() << "SetOperatorId sent with a null request! Ignoring...";
+            return grpc::Status::OK;
+        }
+
+        auto result = _lazy_plugin.maybe_plugin()->set_operator_id(
+            translateFromRpcOperatorId(request->system()));
+
+        if (response != nullptr) {
+            fillResponseWithResult(response, result);
+        }
+
+        return grpc::Status::OK;
+    }
+
+    grpc::Status SetSelfId(
+        grpc::ServerContext* /* context */,
+        const rpc::remote_id::SetSelfIdRequest* request,
+        rpc::remote_id::SetSelfIdResponse* response) override
+    {
+        if (_lazy_plugin.maybe_plugin() == nullptr) {
+            if (response != nullptr) {
+                auto result = mavsdk::RemoteId::Result::NoSystem;
+                fillResponseWithResult(response, result);
+            }
+
+            return grpc::Status::OK;
+        }
+
+        if (request == nullptr) {
+            LogWarn() << "SetSelfId sent with a null request! Ignoring...";
+            return grpc::Status::OK;
+        }
+
+        auto result =
+            _lazy_plugin.maybe_plugin()->set_self_id(translateFromRpcSelfId(request->self_id()));
 
         if (response != nullptr) {
             fillResponseWithResult(response, result);

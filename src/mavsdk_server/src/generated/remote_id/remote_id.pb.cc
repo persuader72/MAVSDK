@@ -24,6 +24,58 @@ namespace mavsdk {
 namespace rpc {
 namespace remote_id {
 
+inline constexpr SystemId::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : operator_location_type_{0u},
+        classification_type_{0u},
+        operator_latitude_{0},
+        operator_longitude_{0},
+        area_count_{0u},
+        area_radius_{0u},
+        area_ceiling_{0},
+        area_floor_{0},
+        category_eu_{0u},
+        class_eu_{0u},
+        operator_altitude_geo_{0},
+        timestamp_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SystemId::SystemId(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SystemIdDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SystemIdDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SystemIdDefaultTypeInternal() {}
+  union {
+    SystemId _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SystemIdDefaultTypeInternal _SystemId_default_instance_;
+
+inline constexpr SelfId::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : description_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        description_type_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SelfId::SelfId(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SelfIdDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SelfIdDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SelfIdDefaultTypeInternal() {}
+  union {
+    SelfId _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SelfIdDefaultTypeInternal _SelfId_default_instance_;
+
 inline constexpr RemoteIdResult::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : result_str_(
@@ -45,6 +97,28 @@ struct RemoteIdResultDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RemoteIdResultDefaultTypeInternal _RemoteIdResult_default_instance_;
+
+inline constexpr OperatorId::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : operator_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        operator_id_type_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR OperatorId::OperatorId(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct OperatorIdDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR OperatorIdDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~OperatorIdDefaultTypeInternal() {}
+  union {
+    OperatorId _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OperatorIdDefaultTypeInternal _OperatorId_default_instance_;
 
 inline constexpr Location::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -98,6 +172,120 @@ struct BasicIdDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BasicIdDefaultTypeInternal _BasicId_default_instance_;
+
+inline constexpr SetSystemResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        remote_id_result_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetSystemResponse::SetSystemResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetSystemResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetSystemResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetSystemResponseDefaultTypeInternal() {}
+  union {
+    SetSystemResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetSystemResponseDefaultTypeInternal _SetSystemResponse_default_instance_;
+
+inline constexpr SetSystemRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        system_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetSystemRequest::SetSystemRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetSystemRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetSystemRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetSystemRequestDefaultTypeInternal() {}
+  union {
+    SetSystemRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetSystemRequestDefaultTypeInternal _SetSystemRequest_default_instance_;
+
+inline constexpr SetSelfIdResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        remote_id_result_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetSelfIdResponse::SetSelfIdResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetSelfIdResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetSelfIdResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetSelfIdResponseDefaultTypeInternal() {}
+  union {
+    SetSelfIdResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetSelfIdResponseDefaultTypeInternal _SetSelfIdResponse_default_instance_;
+
+inline constexpr SetSelfIdRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        self_id_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetSelfIdRequest::SetSelfIdRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetSelfIdRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetSelfIdRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetSelfIdRequestDefaultTypeInternal() {}
+  union {
+    SetSelfIdRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetSelfIdRequestDefaultTypeInternal _SetSelfIdRequest_default_instance_;
+
+inline constexpr SetOperatorIdResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        remote_id_result_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetOperatorIdResponse::SetOperatorIdResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetOperatorIdResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetOperatorIdResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetOperatorIdResponseDefaultTypeInternal() {}
+  union {
+    SetOperatorIdResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetOperatorIdResponseDefaultTypeInternal _SetOperatorIdResponse_default_instance_;
+
+inline constexpr SetOperatorIdRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        system_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetOperatorIdRequest::SetOperatorIdRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetOperatorIdRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetOperatorIdRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetOperatorIdRequestDefaultTypeInternal() {}
+  union {
+    SetOperatorIdRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetOperatorIdRequestDefaultTypeInternal _SetOperatorIdRequest_default_instance_;
 
 inline constexpr SetLocationResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -177,7 +365,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace remote_id
 }  // namespace rpc
 }  // namespace mavsdk
-static ::_pb::Metadata file_level_metadata_remote_5fid_2fremote_5fid_2eproto[7];
+static ::_pb::Metadata file_level_metadata_remote_5fid_2fremote_5fid_2eproto[16];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_remote_5fid_2fremote_5fid_2eproto = nullptr;
@@ -223,6 +411,66 @@ const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOB
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetLocationResponse, _impl_.remote_id_result_),
     0,
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSystemRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSystemRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSystemRequest, _impl_.system_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSystemResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSystemResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSystemResponse, _impl_.remote_id_result_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetOperatorIdRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetOperatorIdRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetOperatorIdRequest, _impl_.system_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetOperatorIdResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetOperatorIdResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetOperatorIdResponse, _impl_.remote_id_result_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSelfIdRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSelfIdRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSelfIdRequest, _impl_.self_id_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSelfIdResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSelfIdResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSelfIdResponse, _impl_.remote_id_result_),
+    0,
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::BasicId, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -255,6 +503,46 @@ const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOB
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.timestamp_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.timestamp_accuracy_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_location_type_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.classification_type_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_latitude_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_longitude_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_count_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_radius_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_ceiling_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_floor_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.category_eu_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.class_eu_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_altitude_geo_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.timestamp_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::OperatorId, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::OperatorId, _impl_.operator_id_type_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::OperatorId, _impl_.operator_id_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SelfId, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SelfId, _impl_.description_type_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SelfId, _impl_.description_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::RemoteIdResult, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -272,9 +560,18 @@ static const ::_pbi::MigrationSchema
         {10, 19, -1, sizeof(::mavsdk::rpc::remote_id::SetBasicIdResponse)},
         {20, 29, -1, sizeof(::mavsdk::rpc::remote_id::SetLocationRequest)},
         {30, 39, -1, sizeof(::mavsdk::rpc::remote_id::SetLocationResponse)},
-        {40, -1, -1, sizeof(::mavsdk::rpc::remote_id::BasicId)},
-        {51, -1, -1, sizeof(::mavsdk::rpc::remote_id::Location)},
-        {71, -1, -1, sizeof(::mavsdk::rpc::remote_id::RemoteIdResult)},
+        {40, 49, -1, sizeof(::mavsdk::rpc::remote_id::SetSystemRequest)},
+        {50, 59, -1, sizeof(::mavsdk::rpc::remote_id::SetSystemResponse)},
+        {60, 69, -1, sizeof(::mavsdk::rpc::remote_id::SetOperatorIdRequest)},
+        {70, 79, -1, sizeof(::mavsdk::rpc::remote_id::SetOperatorIdResponse)},
+        {80, 89, -1, sizeof(::mavsdk::rpc::remote_id::SetSelfIdRequest)},
+        {90, 99, -1, sizeof(::mavsdk::rpc::remote_id::SetSelfIdResponse)},
+        {100, -1, -1, sizeof(::mavsdk::rpc::remote_id::BasicId)},
+        {111, -1, -1, sizeof(::mavsdk::rpc::remote_id::Location)},
+        {131, -1, -1, sizeof(::mavsdk::rpc::remote_id::SystemId)},
+        {151, -1, -1, sizeof(::mavsdk::rpc::remote_id::OperatorId)},
+        {161, -1, -1, sizeof(::mavsdk::rpc::remote_id::SelfId)},
+        {171, -1, -1, sizeof(::mavsdk::rpc::remote_id::RemoteIdResult)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -282,8 +579,17 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::mavsdk::rpc::remote_id::_SetBasicIdResponse_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetLocationRequest_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetLocationResponse_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SetSystemRequest_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SetSystemResponse_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SetOperatorIdRequest_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SetOperatorIdResponse_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SetSelfIdRequest_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SetSelfIdResponse_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_BasicId_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_Location_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SystemId_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_OperatorId_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SelfId_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_RemoteIdResult_default_instance_._instance,
 };
 const char descriptor_table_protodef_remote_5fid_2fremote_5fid_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -296,27 +602,57 @@ const char descriptor_table_protodef_remote_5fid_2fremote_5fid_2eproto[] PROTOBU
     "onRequest\0220\n\010location\030\001 \001(\0132\036.mavsdk.rpc"
     ".remote_id.Location\"U\n\023SetLocationRespon"
     "se\022>\n\020remote_id_result\030\001 \001(\0132$.mavsdk.rp"
-    "c.remote_id.RemoteIdResult\";\n\007BasicId\022\017\n"
-    "\007id_type\030\001 \001(\r\022\017\n\007ua_type\030\002 \001(\r\022\016\n\006uas_i"
-    "d\030\003 \001(\t\"\225\002\n\010Location\022\016\n\006status\030\001 \001(\r\022\021\n\t"
-    "direction\030\002 \001(\r\022\030\n\020speed_horizontal\030\003 \001("
-    "\r\022\026\n\016speed_vertical\030\004 \001(\005\022\020\n\010latitude\030\005 "
-    "\001(\005\022\021\n\tlongitude\030\006 \001(\005\022\033\n\023altitude_barom"
-    "etric\030\007 \001(\002\022\031\n\021altitude_geodetic\030\010 \001(\002\022\030"
-    "\n\020height_reference\030\t \001(\r\022\016\n\006height\030\n \001(\002"
-    "\022\021\n\ttimestamp\030\013 \001(\002\022\032\n\022timestamp_accurac"
-    "y\030\014 \001(\r\"\245\001\n\016RemoteIdResult\022;\n\006result\030\001 \001"
-    "(\0162+.mavsdk.rpc.remote_id.RemoteIdResult"
-    ".Result\022\022\n\nresult_str\030\002 \001(\t\"B\n\006Result\022\022\n"
-    "\016RESULT_UNKNOWN\020\000\022\022\n\016RESULT_SUCCESS\020\001\022\020\n"
-    "\014RESULT_ERROR\020\0022\342\001\n\017RemoteIdService\022e\n\nS"
-    "etBasicId\022\'.mavsdk.rpc.remote_id.SetBasi"
-    "cIdRequest\032(.mavsdk.rpc.remote_id.SetBas"
-    "icIdResponse\"\004\200\265\030\001\022h\n\013SetLocation\022(.mavs"
-    "dk.rpc.remote_id.SetLocationRequest\032).ma"
-    "vsdk.rpc.remote_id.SetLocationResponse\"\004"
-    "\200\265\030\001B$\n\023io.mavsdk.remote_idB\rRemoteIdPro"
-    "tob\006proto3"
+    "c.remote_id.RemoteIdResult\"B\n\020SetSystemR"
+    "equest\022.\n\006system\030\001 \001(\0132\036.mavsdk.rpc.remo"
+    "te_id.SystemId\"S\n\021SetSystemResponse\022>\n\020r"
+    "emote_id_result\030\001 \001(\0132$.mavsdk.rpc.remot"
+    "e_id.RemoteIdResult\"H\n\024SetOperatorIdRequ"
+    "est\0220\n\006system\030\001 \001(\0132 .mavsdk.rpc.remote_"
+    "id.OperatorId\"W\n\025SetOperatorIdResponse\022>"
+    "\n\020remote_id_result\030\001 \001(\0132$.mavsdk.rpc.re"
+    "mote_id.RemoteIdResult\"A\n\020SetSelfIdReque"
+    "st\022-\n\007self_id\030\001 \001(\0132\034.mavsdk.rpc.remote_"
+    "id.SelfId\"S\n\021SetSelfIdResponse\022>\n\020remote"
+    "_id_result\030\001 \001(\0132$.mavsdk.rpc.remote_id."
+    "RemoteIdResult\";\n\007BasicId\022\017\n\007id_type\030\001 \001"
+    "(\r\022\017\n\007ua_type\030\002 \001(\r\022\016\n\006uas_id\030\003 \001(\t\"\225\002\n\010"
+    "Location\022\016\n\006status\030\001 \001(\r\022\021\n\tdirection\030\002 "
+    "\001(\r\022\030\n\020speed_horizontal\030\003 \001(\r\022\026\n\016speed_v"
+    "ertical\030\004 \001(\005\022\020\n\010latitude\030\005 \001(\005\022\021\n\tlongi"
+    "tude\030\006 \001(\005\022\033\n\023altitude_barometric\030\007 \001(\002\022"
+    "\031\n\021altitude_geodetic\030\010 \001(\002\022\030\n\020height_ref"
+    "erence\030\t \001(\r\022\016\n\006height\030\n \001(\002\022\021\n\ttimestam"
+    "p\030\013 \001(\002\022\032\n\022timestamp_accuracy\030\014 \001(\r\"\252\002\n\010"
+    "SystemId\022\036\n\026operator_location_type\030\001 \001(\r"
+    "\022\033\n\023classification_type\030\002 \001(\r\022\031\n\021operato"
+    "r_latitude\030\003 \001(\005\022\032\n\022operator_longitude\030\004"
+    " \001(\005\022\022\n\narea_count\030\005 \001(\r\022\023\n\013area_radius\030"
+    "\006 \001(\r\022\024\n\014area_ceiling\030\007 \001(\002\022\022\n\narea_floo"
+    "r\030\010 \001(\002\022\023\n\013category_eu\030\t \001(\r\022\020\n\010class_eu"
+    "\030\n \001(\r\022\035\n\025operator_altitude_geo\030\013 \001(\002\022\021\n"
+    "\ttimestamp\030\014 \001(\r\";\n\nOperatorId\022\030\n\020operat"
+    "or_id_type\030\001 \001(\r\022\023\n\013operator_id\030\002 \001(\t\"7\n"
+    "\006SelfId\022\030\n\020description_type\030\001 \001(\r\022\023\n\013des"
+    "cription\030\002 \001(\t\"\245\001\n\016RemoteIdResult\022;\n\006res"
+    "ult\030\001 \001(\0162+.mavsdk.rpc.remote_id.RemoteI"
+    "dResult.Result\022\022\n\nresult_str\030\002 \001(\t\"B\n\006Re"
+    "sult\022\022\n\016RESULT_UNKNOWN\020\000\022\022\n\016RESULT_SUCCE"
+    "SS\020\001\022\020\n\014RESULT_ERROR\020\0022\232\004\n\017RemoteIdServi"
+    "ce\022e\n\nSetBasicId\022\'.mavsdk.rpc.remote_id."
+    "SetBasicIdRequest\032(.mavsdk.rpc.remote_id"
+    ".SetBasicIdResponse\"\004\200\265\030\001\022h\n\013SetLocation"
+    "\022(.mavsdk.rpc.remote_id.SetLocationReque"
+    "st\032).mavsdk.rpc.remote_id.SetLocationRes"
+    "ponse\"\004\200\265\030\001\022b\n\tSetSystem\022&.mavsdk.rpc.re"
+    "mote_id.SetSystemRequest\032\'.mavsdk.rpc.re"
+    "mote_id.SetSystemResponse\"\004\200\265\030\001\022n\n\rSetOp"
+    "eratorId\022*.mavsdk.rpc.remote_id.SetOpera"
+    "torIdRequest\032+.mavsdk.rpc.remote_id.SetO"
+    "peratorIdResponse\"\004\200\265\030\001\022b\n\tSetSelfId\022&.m"
+    "avsdk.rpc.remote_id.SetSelfIdRequest\032\'.m"
+    "avsdk.rpc.remote_id.SetSelfIdResponse\"\004\200"
+    "\265\030\001B$\n\023io.mavsdk.remote_idB\rRemoteIdProt"
+    "ob\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_remote_5fid_2fremote_5fid_2eproto_deps[1] =
     {
@@ -326,13 +662,13 @@ static ::absl::once_flag descriptor_table_remote_5fid_2fremote_5fid_2eproto_once
 const ::_pbi::DescriptorTable descriptor_table_remote_5fid_2fremote_5fid_2eproto = {
     false,
     false,
-    1170,
+    2369,
     descriptor_table_protodef_remote_5fid_2fremote_5fid_2eproto,
     "remote_id/remote_id.proto",
     &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
     descriptor_table_remote_5fid_2fremote_5fid_2eproto_deps,
     1,
-    7,
+    16,
     schemas,
     file_default_instances,
     TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets,
@@ -1212,6 +1548,1248 @@ void SetLocationResponse::InternalSwap(SetLocationResponse* PROTOBUF_RESTRICT ot
 }
 // ===================================================================
 
+class SetSystemRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetSystemRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SetSystemRequest, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::SystemId& system(const SetSystemRequest* msg);
+  static void set_has_system(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::SystemId& SetSystemRequest::_Internal::system(const SetSystemRequest* msg) {
+  return *msg->_impl_.system_;
+}
+SetSystemRequest::SetSystemRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SetSystemRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetSystemRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetSystemRequest::SetSystemRequest(
+    ::google::protobuf::Arena* arena,
+    const SetSystemRequest& from)
+    : ::google::protobuf::Message(arena) {
+  SetSystemRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.system_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::SystemId>(arena, *from._impl_.system_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SetSystemRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetSystemRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetSystemRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.system_ = {};
+}
+SetSystemRequest::~SetSystemRequest() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SetSystemRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetSystemRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.system_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SetSystemRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SetSystemRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.system_ != nullptr);
+    _impl_.system_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SetSystemRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetSystemRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetSystemRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetSystemRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.SystemId system = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetSystemRequest, _impl_.system_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.SystemId system = 1;
+    {PROTOBUF_FIELD_OFFSET(SetSystemRequest, _impl_.system_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::SystemId>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SetSystemRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SetSystemRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.SystemId system = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::system(this),
+        _Internal::system(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SetSystemRequest)
+  return target;
+}
+
+::size_t SetSystemRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SetSystemRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.SystemId system = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.system_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SetSystemRequest::_class_data_ = {
+    SetSystemRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SetSystemRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void SetSystemRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SetSystemRequest*>(&to_msg);
+  auto& from = static_cast<const SetSystemRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SetSystemRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_system()->::mavsdk::rpc::remote_id::SystemId::MergeFrom(
+        from._internal_system());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetSystemRequest::CopyFrom(const SetSystemRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SetSystemRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SetSystemRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SetSystemRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SetSystemRequest::InternalSwap(SetSystemRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.system_, other->_impl_.system_);
+}
+
+::google::protobuf::Metadata SetSystemRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[4]);
+}
+// ===================================================================
+
+class SetSystemResponse::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetSystemResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SetSystemResponse, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::RemoteIdResult& remote_id_result(const SetSystemResponse* msg);
+  static void set_has_remote_id_result(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::RemoteIdResult& SetSystemResponse::_Internal::remote_id_result(const SetSystemResponse* msg) {
+  return *msg->_impl_.remote_id_result_;
+}
+SetSystemResponse::SetSystemResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SetSystemResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SetSystemResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetSystemResponse::SetSystemResponse(
+    ::google::protobuf::Arena* arena,
+    const SetSystemResponse& from)
+    : ::google::protobuf::Message(arena) {
+  SetSystemResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.remote_id_result_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::RemoteIdResult>(arena, *from._impl_.remote_id_result_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SetSystemResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SetSystemResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetSystemResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.remote_id_result_ = {};
+}
+SetSystemResponse::~SetSystemResponse() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SetSystemResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetSystemResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.remote_id_result_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SetSystemResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SetSystemResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.remote_id_result_ != nullptr);
+    _impl_.remote_id_result_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SetSystemResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetSystemResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetSystemResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetSystemResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetSystemResponse, _impl_.remote_id_result_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+    {PROTOBUF_FIELD_OFFSET(SetSystemResponse, _impl_.remote_id_result_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::RemoteIdResult>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SetSystemResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SetSystemResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::remote_id_result(this),
+        _Internal::remote_id_result(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SetSystemResponse)
+  return target;
+}
+
+::size_t SetSystemResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SetSystemResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.remote_id_result_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SetSystemResponse::_class_data_ = {
+    SetSystemResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SetSystemResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void SetSystemResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SetSystemResponse*>(&to_msg);
+  auto& from = static_cast<const SetSystemResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SetSystemResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_remote_id_result()->::mavsdk::rpc::remote_id::RemoteIdResult::MergeFrom(
+        from._internal_remote_id_result());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetSystemResponse::CopyFrom(const SetSystemResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SetSystemResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SetSystemResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SetSystemResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SetSystemResponse::InternalSwap(SetSystemResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.remote_id_result_, other->_impl_.remote_id_result_);
+}
+
+::google::protobuf::Metadata SetSystemResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[5]);
+}
+// ===================================================================
+
+class SetOperatorIdRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetOperatorIdRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SetOperatorIdRequest, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::OperatorId& system(const SetOperatorIdRequest* msg);
+  static void set_has_system(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::OperatorId& SetOperatorIdRequest::_Internal::system(const SetOperatorIdRequest* msg) {
+  return *msg->_impl_.system_;
+}
+SetOperatorIdRequest::SetOperatorIdRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetOperatorIdRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetOperatorIdRequest::SetOperatorIdRequest(
+    ::google::protobuf::Arena* arena,
+    const SetOperatorIdRequest& from)
+    : ::google::protobuf::Message(arena) {
+  SetOperatorIdRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.system_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::OperatorId>(arena, *from._impl_.system_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetOperatorIdRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetOperatorIdRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.system_ = {};
+}
+SetOperatorIdRequest::~SetOperatorIdRequest() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetOperatorIdRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.system_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SetOperatorIdRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.system_ != nullptr);
+    _impl_.system_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SetOperatorIdRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetOperatorIdRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetOperatorIdRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetOperatorIdRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.OperatorId system = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetOperatorIdRequest, _impl_.system_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.OperatorId system = 1;
+    {PROTOBUF_FIELD_OFFSET(SetOperatorIdRequest, _impl_.system_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::OperatorId>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SetOperatorIdRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.OperatorId system = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::system(this),
+        _Internal::system(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+  return target;
+}
+
+::size_t SetOperatorIdRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.OperatorId system = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.system_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SetOperatorIdRequest::_class_data_ = {
+    SetOperatorIdRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SetOperatorIdRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void SetOperatorIdRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SetOperatorIdRequest*>(&to_msg);
+  auto& from = static_cast<const SetOperatorIdRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_system()->::mavsdk::rpc::remote_id::OperatorId::MergeFrom(
+        from._internal_system());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetOperatorIdRequest::CopyFrom(const SetOperatorIdRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SetOperatorIdRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SetOperatorIdRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SetOperatorIdRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SetOperatorIdRequest::InternalSwap(SetOperatorIdRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.system_, other->_impl_.system_);
+}
+
+::google::protobuf::Metadata SetOperatorIdRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[6]);
+}
+// ===================================================================
+
+class SetOperatorIdResponse::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetOperatorIdResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SetOperatorIdResponse, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::RemoteIdResult& remote_id_result(const SetOperatorIdResponse* msg);
+  static void set_has_remote_id_result(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::RemoteIdResult& SetOperatorIdResponse::_Internal::remote_id_result(const SetOperatorIdResponse* msg) {
+  return *msg->_impl_.remote_id_result_;
+}
+SetOperatorIdResponse::SetOperatorIdResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SetOperatorIdResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetOperatorIdResponse::SetOperatorIdResponse(
+    ::google::protobuf::Arena* arena,
+    const SetOperatorIdResponse& from)
+    : ::google::protobuf::Message(arena) {
+  SetOperatorIdResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.remote_id_result_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::RemoteIdResult>(arena, *from._impl_.remote_id_result_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SetOperatorIdResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetOperatorIdResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.remote_id_result_ = {};
+}
+SetOperatorIdResponse::~SetOperatorIdResponse() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetOperatorIdResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.remote_id_result_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SetOperatorIdResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.remote_id_result_ != nullptr);
+    _impl_.remote_id_result_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SetOperatorIdResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetOperatorIdResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetOperatorIdResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetOperatorIdResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetOperatorIdResponse, _impl_.remote_id_result_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+    {PROTOBUF_FIELD_OFFSET(SetOperatorIdResponse, _impl_.remote_id_result_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::RemoteIdResult>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SetOperatorIdResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::remote_id_result(this),
+        _Internal::remote_id_result(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+  return target;
+}
+
+::size_t SetOperatorIdResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.remote_id_result_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SetOperatorIdResponse::_class_data_ = {
+    SetOperatorIdResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SetOperatorIdResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void SetOperatorIdResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SetOperatorIdResponse*>(&to_msg);
+  auto& from = static_cast<const SetOperatorIdResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_remote_id_result()->::mavsdk::rpc::remote_id::RemoteIdResult::MergeFrom(
+        from._internal_remote_id_result());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetOperatorIdResponse::CopyFrom(const SetOperatorIdResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SetOperatorIdResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SetOperatorIdResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SetOperatorIdResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SetOperatorIdResponse::InternalSwap(SetOperatorIdResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.remote_id_result_, other->_impl_.remote_id_result_);
+}
+
+::google::protobuf::Metadata SetOperatorIdResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[7]);
+}
+// ===================================================================
+
+class SetSelfIdRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetSelfIdRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SetSelfIdRequest, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::SelfId& self_id(const SetSelfIdRequest* msg);
+  static void set_has_self_id(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::SelfId& SetSelfIdRequest::_Internal::self_id(const SetSelfIdRequest* msg) {
+  return *msg->_impl_.self_id_;
+}
+SetSelfIdRequest::SetSelfIdRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SetSelfIdRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetSelfIdRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetSelfIdRequest::SetSelfIdRequest(
+    ::google::protobuf::Arena* arena,
+    const SetSelfIdRequest& from)
+    : ::google::protobuf::Message(arena) {
+  SetSelfIdRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.self_id_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::SelfId>(arena, *from._impl_.self_id_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SetSelfIdRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetSelfIdRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetSelfIdRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.self_id_ = {};
+}
+SetSelfIdRequest::~SetSelfIdRequest() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SetSelfIdRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetSelfIdRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.self_id_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SetSelfIdRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SetSelfIdRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.self_id_ != nullptr);
+    _impl_.self_id_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SetSelfIdRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetSelfIdRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetSelfIdRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetSelfIdRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.SelfId self_id = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetSelfIdRequest, _impl_.self_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.SelfId self_id = 1;
+    {PROTOBUF_FIELD_OFFSET(SetSelfIdRequest, _impl_.self_id_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::SelfId>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SetSelfIdRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SetSelfIdRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.SelfId self_id = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::self_id(this),
+        _Internal::self_id(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SetSelfIdRequest)
+  return target;
+}
+
+::size_t SetSelfIdRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SetSelfIdRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.SelfId self_id = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.self_id_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SetSelfIdRequest::_class_data_ = {
+    SetSelfIdRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SetSelfIdRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void SetSelfIdRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SetSelfIdRequest*>(&to_msg);
+  auto& from = static_cast<const SetSelfIdRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SetSelfIdRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_self_id()->::mavsdk::rpc::remote_id::SelfId::MergeFrom(
+        from._internal_self_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetSelfIdRequest::CopyFrom(const SetSelfIdRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SetSelfIdRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SetSelfIdRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SetSelfIdRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SetSelfIdRequest::InternalSwap(SetSelfIdRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.self_id_, other->_impl_.self_id_);
+}
+
+::google::protobuf::Metadata SetSelfIdRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[8]);
+}
+// ===================================================================
+
+class SetSelfIdResponse::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetSelfIdResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SetSelfIdResponse, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::RemoteIdResult& remote_id_result(const SetSelfIdResponse* msg);
+  static void set_has_remote_id_result(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::RemoteIdResult& SetSelfIdResponse::_Internal::remote_id_result(const SetSelfIdResponse* msg) {
+  return *msg->_impl_.remote_id_result_;
+}
+SetSelfIdResponse::SetSelfIdResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SetSelfIdResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SetSelfIdResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetSelfIdResponse::SetSelfIdResponse(
+    ::google::protobuf::Arena* arena,
+    const SetSelfIdResponse& from)
+    : ::google::protobuf::Message(arena) {
+  SetSelfIdResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.remote_id_result_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::RemoteIdResult>(arena, *from._impl_.remote_id_result_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SetSelfIdResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SetSelfIdResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetSelfIdResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.remote_id_result_ = {};
+}
+SetSelfIdResponse::~SetSelfIdResponse() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SetSelfIdResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetSelfIdResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.remote_id_result_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SetSelfIdResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SetSelfIdResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.remote_id_result_ != nullptr);
+    _impl_.remote_id_result_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SetSelfIdResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetSelfIdResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetSelfIdResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetSelfIdResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetSelfIdResponse, _impl_.remote_id_result_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+    {PROTOBUF_FIELD_OFFSET(SetSelfIdResponse, _impl_.remote_id_result_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::RemoteIdResult>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SetSelfIdResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SetSelfIdResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::remote_id_result(this),
+        _Internal::remote_id_result(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SetSelfIdResponse)
+  return target;
+}
+
+::size_t SetSelfIdResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SetSelfIdResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.remote_id_result_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SetSelfIdResponse::_class_data_ = {
+    SetSelfIdResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SetSelfIdResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void SetSelfIdResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SetSelfIdResponse*>(&to_msg);
+  auto& from = static_cast<const SetSelfIdResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SetSelfIdResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_remote_id_result()->::mavsdk::rpc::remote_id::RemoteIdResult::MergeFrom(
+        from._internal_remote_id_result());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetSelfIdResponse::CopyFrom(const SetSelfIdResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SetSelfIdResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SetSelfIdResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SetSelfIdResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SetSelfIdResponse::InternalSwap(SetSelfIdResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.remote_id_result_, other->_impl_.remote_id_result_);
+}
+
+::google::protobuf::Metadata SetSelfIdResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[9]);
+}
+// ===================================================================
+
 class BasicId::_Internal {
  public:
 };
@@ -1465,7 +3043,7 @@ void BasicId::InternalSwap(BasicId* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata BasicId::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[4]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[10]);
 }
 // ===================================================================
 
@@ -1949,7 +3527,909 @@ void Location::InternalSwap(Location* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Location::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[5]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[11]);
+}
+// ===================================================================
+
+class SystemId::_Internal {
+ public:
+};
+
+SystemId::SystemId(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SystemId)
+}
+SystemId::SystemId(
+    ::google::protobuf::Arena* arena, const SystemId& from)
+    : SystemId(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE SystemId::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SystemId::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, operator_location_type_),
+           0,
+           offsetof(Impl_, timestamp_) -
+               offsetof(Impl_, operator_location_type_) +
+               sizeof(Impl_::timestamp_));
+}
+SystemId::~SystemId() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SystemId)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SystemId::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SystemId::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SystemId)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.operator_location_type_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.timestamp_) -
+      reinterpret_cast<char*>(&_impl_.operator_location_type_)) + sizeof(_impl_.timestamp_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SystemId::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<4, 12, 0, 0, 2> SystemId::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    12, 120,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294963200,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    12,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SystemId_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // uint32 operator_location_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.operator_location_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_location_type_)}},
+    // uint32 classification_type = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.classification_type_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.classification_type_)}},
+    // int32 operator_latitude = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.operator_latitude_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_latitude_)}},
+    // int32 operator_longitude = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.operator_longitude_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_longitude_)}},
+    // uint32 area_count = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.area_count_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_count_)}},
+    // uint32 area_radius = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.area_radius_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_radius_)}},
+    // float area_ceiling = 7;
+    {::_pbi::TcParser::FastF32S1,
+     {61, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_ceiling_)}},
+    // float area_floor = 8;
+    {::_pbi::TcParser::FastF32S1,
+     {69, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_floor_)}},
+    // uint32 category_eu = 9;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.category_eu_), 63>(),
+     {72, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.category_eu_)}},
+    // uint32 class_eu = 10;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.class_eu_), 63>(),
+     {80, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.class_eu_)}},
+    // float operator_altitude_geo = 11;
+    {::_pbi::TcParser::FastF32S1,
+     {93, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_altitude_geo_)}},
+    // uint32 timestamp = 12;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.timestamp_), 63>(),
+     {96, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.timestamp_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 operator_location_type = 1;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_location_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 classification_type = 2;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.classification_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // int32 operator_latitude = 3;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_latitude_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 operator_longitude = 4;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_longitude_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // uint32 area_count = 5;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_count_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 area_radius = 6;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_radius_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // float area_ceiling = 7;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_ceiling_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float area_floor = 8;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_floor_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // uint32 category_eu = 9;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.category_eu_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint32 class_eu = 10;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.class_eu_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // float operator_altitude_geo = 11;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_altitude_geo_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // uint32 timestamp = 12;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.timestamp_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* SystemId::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SystemId)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 operator_location_type = 1;
+  if (this->_internal_operator_location_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_operator_location_type(), target);
+  }
+
+  // uint32 classification_type = 2;
+  if (this->_internal_classification_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        2, this->_internal_classification_type(), target);
+  }
+
+  // int32 operator_latitude = 3;
+  if (this->_internal_operator_latitude() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_operator_latitude(), target);
+  }
+
+  // int32 operator_longitude = 4;
+  if (this->_internal_operator_longitude() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_operator_longitude(), target);
+  }
+
+  // uint32 area_count = 5;
+  if (this->_internal_area_count() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        5, this->_internal_area_count(), target);
+  }
+
+  // uint32 area_radius = 6;
+  if (this->_internal_area_radius() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        6, this->_internal_area_radius(), target);
+  }
+
+  // float area_ceiling = 7;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_area_ceiling = this->_internal_area_ceiling();
+  ::uint32_t raw_area_ceiling;
+  memcpy(&raw_area_ceiling, &tmp_area_ceiling, sizeof(tmp_area_ceiling));
+  if (raw_area_ceiling != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        7, this->_internal_area_ceiling(), target);
+  }
+
+  // float area_floor = 8;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_area_floor = this->_internal_area_floor();
+  ::uint32_t raw_area_floor;
+  memcpy(&raw_area_floor, &tmp_area_floor, sizeof(tmp_area_floor));
+  if (raw_area_floor != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        8, this->_internal_area_floor(), target);
+  }
+
+  // uint32 category_eu = 9;
+  if (this->_internal_category_eu() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        9, this->_internal_category_eu(), target);
+  }
+
+  // uint32 class_eu = 10;
+  if (this->_internal_class_eu() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        10, this->_internal_class_eu(), target);
+  }
+
+  // float operator_altitude_geo = 11;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_operator_altitude_geo = this->_internal_operator_altitude_geo();
+  ::uint32_t raw_operator_altitude_geo;
+  memcpy(&raw_operator_altitude_geo, &tmp_operator_altitude_geo, sizeof(tmp_operator_altitude_geo));
+  if (raw_operator_altitude_geo != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        11, this->_internal_operator_altitude_geo(), target);
+  }
+
+  // uint32 timestamp = 12;
+  if (this->_internal_timestamp() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        12, this->_internal_timestamp(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SystemId)
+  return target;
+}
+
+::size_t SystemId::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SystemId)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // uint32 operator_location_type = 1;
+  if (this->_internal_operator_location_type() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_operator_location_type());
+  }
+
+  // uint32 classification_type = 2;
+  if (this->_internal_classification_type() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_classification_type());
+  }
+
+  // int32 operator_latitude = 3;
+  if (this->_internal_operator_latitude() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_operator_latitude());
+  }
+
+  // int32 operator_longitude = 4;
+  if (this->_internal_operator_longitude() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_operator_longitude());
+  }
+
+  // uint32 area_count = 5;
+  if (this->_internal_area_count() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_area_count());
+  }
+
+  // uint32 area_radius = 6;
+  if (this->_internal_area_radius() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_area_radius());
+  }
+
+  // float area_ceiling = 7;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_area_ceiling = this->_internal_area_ceiling();
+  ::uint32_t raw_area_ceiling;
+  memcpy(&raw_area_ceiling, &tmp_area_ceiling, sizeof(tmp_area_ceiling));
+  if (raw_area_ceiling != 0) {
+    total_size += 5;
+  }
+
+  // float area_floor = 8;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_area_floor = this->_internal_area_floor();
+  ::uint32_t raw_area_floor;
+  memcpy(&raw_area_floor, &tmp_area_floor, sizeof(tmp_area_floor));
+  if (raw_area_floor != 0) {
+    total_size += 5;
+  }
+
+  // uint32 category_eu = 9;
+  if (this->_internal_category_eu() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_category_eu());
+  }
+
+  // uint32 class_eu = 10;
+  if (this->_internal_class_eu() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_class_eu());
+  }
+
+  // float operator_altitude_geo = 11;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_operator_altitude_geo = this->_internal_operator_altitude_geo();
+  ::uint32_t raw_operator_altitude_geo;
+  memcpy(&raw_operator_altitude_geo, &tmp_operator_altitude_geo, sizeof(tmp_operator_altitude_geo));
+  if (raw_operator_altitude_geo != 0) {
+    total_size += 5;
+  }
+
+  // uint32 timestamp = 12;
+  if (this->_internal_timestamp() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_timestamp());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SystemId::_class_data_ = {
+    SystemId::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SystemId::GetClassData() const {
+  return &_class_data_;
+}
+
+void SystemId::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SystemId*>(&to_msg);
+  auto& from = static_cast<const SystemId&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SystemId)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_operator_location_type() != 0) {
+    _this->_internal_set_operator_location_type(from._internal_operator_location_type());
+  }
+  if (from._internal_classification_type() != 0) {
+    _this->_internal_set_classification_type(from._internal_classification_type());
+  }
+  if (from._internal_operator_latitude() != 0) {
+    _this->_internal_set_operator_latitude(from._internal_operator_latitude());
+  }
+  if (from._internal_operator_longitude() != 0) {
+    _this->_internal_set_operator_longitude(from._internal_operator_longitude());
+  }
+  if (from._internal_area_count() != 0) {
+    _this->_internal_set_area_count(from._internal_area_count());
+  }
+  if (from._internal_area_radius() != 0) {
+    _this->_internal_set_area_radius(from._internal_area_radius());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_area_ceiling = from._internal_area_ceiling();
+  ::uint32_t raw_area_ceiling;
+  memcpy(&raw_area_ceiling, &tmp_area_ceiling, sizeof(tmp_area_ceiling));
+  if (raw_area_ceiling != 0) {
+    _this->_internal_set_area_ceiling(from._internal_area_ceiling());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_area_floor = from._internal_area_floor();
+  ::uint32_t raw_area_floor;
+  memcpy(&raw_area_floor, &tmp_area_floor, sizeof(tmp_area_floor));
+  if (raw_area_floor != 0) {
+    _this->_internal_set_area_floor(from._internal_area_floor());
+  }
+  if (from._internal_category_eu() != 0) {
+    _this->_internal_set_category_eu(from._internal_category_eu());
+  }
+  if (from._internal_class_eu() != 0) {
+    _this->_internal_set_class_eu(from._internal_class_eu());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_operator_altitude_geo = from._internal_operator_altitude_geo();
+  ::uint32_t raw_operator_altitude_geo;
+  memcpy(&raw_operator_altitude_geo, &tmp_operator_altitude_geo, sizeof(tmp_operator_altitude_geo));
+  if (raw_operator_altitude_geo != 0) {
+    _this->_internal_set_operator_altitude_geo(from._internal_operator_altitude_geo());
+  }
+  if (from._internal_timestamp() != 0) {
+    _this->_internal_set_timestamp(from._internal_timestamp());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SystemId::CopyFrom(const SystemId& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SystemId)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SystemId::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SystemId::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SystemId::InternalSwap(SystemId* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(SystemId, _impl_.timestamp_)
+      + sizeof(SystemId::_impl_.timestamp_)
+      - PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_location_type_)>(
+          reinterpret_cast<char*>(&_impl_.operator_location_type_),
+          reinterpret_cast<char*>(&other->_impl_.operator_location_type_));
+}
+
+::google::protobuf::Metadata SystemId::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[12]);
+}
+// ===================================================================
+
+class OperatorId::_Internal {
+ public:
+};
+
+OperatorId::OperatorId(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.OperatorId)
+}
+inline PROTOBUF_NDEBUG_INLINE OperatorId::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : operator_id_(arena, from.operator_id_),
+        _cached_size_{0} {}
+
+OperatorId::OperatorId(
+    ::google::protobuf::Arena* arena,
+    const OperatorId& from)
+    : ::google::protobuf::Message(arena) {
+  OperatorId* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.operator_id_type_ = from._impl_.operator_id_type_;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.OperatorId)
+}
+inline PROTOBUF_NDEBUG_INLINE OperatorId::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : operator_id_(arena),
+        _cached_size_{0} {}
+
+inline void OperatorId::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.operator_id_type_ = {};
+}
+OperatorId::~OperatorId() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.OperatorId)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void OperatorId::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.operator_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void OperatorId::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.OperatorId)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.operator_id_.ClearToEmpty();
+  _impl_.operator_id_type_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* OperatorId::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 51, 2> OperatorId::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_OperatorId_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string operator_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(OperatorId, _impl_.operator_id_)}},
+    // uint32 operator_id_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OperatorId, _impl_.operator_id_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(OperatorId, _impl_.operator_id_type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 operator_id_type = 1;
+    {PROTOBUF_FIELD_OFFSET(OperatorId, _impl_.operator_id_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string operator_id = 2;
+    {PROTOBUF_FIELD_OFFSET(OperatorId, _impl_.operator_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\0\13\0\0\0\0\0"
+    "mavsdk.rpc.remote_id.OperatorId"
+    "operator_id"
+  }},
+};
+
+::uint8_t* OperatorId::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.OperatorId)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 operator_id_type = 1;
+  if (this->_internal_operator_id_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_operator_id_type(), target);
+  }
+
+  // string operator_id = 2;
+  if (!this->_internal_operator_id().empty()) {
+    const std::string& _s = this->_internal_operator_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "mavsdk.rpc.remote_id.OperatorId.operator_id");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.OperatorId)
+  return target;
+}
+
+::size_t OperatorId::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.OperatorId)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string operator_id = 2;
+  if (!this->_internal_operator_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_operator_id());
+  }
+
+  // uint32 operator_id_type = 1;
+  if (this->_internal_operator_id_type() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_operator_id_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData OperatorId::_class_data_ = {
+    OperatorId::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* OperatorId::GetClassData() const {
+  return &_class_data_;
+}
+
+void OperatorId::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<OperatorId*>(&to_msg);
+  auto& from = static_cast<const OperatorId&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.OperatorId)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_operator_id().empty()) {
+    _this->_internal_set_operator_id(from._internal_operator_id());
+  }
+  if (from._internal_operator_id_type() != 0) {
+    _this->_internal_set_operator_id_type(from._internal_operator_id_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void OperatorId::CopyFrom(const OperatorId& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.OperatorId)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool OperatorId::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* OperatorId::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void OperatorId::InternalSwap(OperatorId* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.operator_id_, &other->_impl_.operator_id_, arena);
+        swap(_impl_.operator_id_type_, other->_impl_.operator_id_type_);
+}
+
+::google::protobuf::Metadata OperatorId::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[13]);
+}
+// ===================================================================
+
+class SelfId::_Internal {
+ public:
+};
+
+SelfId::SelfId(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SelfId)
+}
+inline PROTOBUF_NDEBUG_INLINE SelfId::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : description_(arena, from.description_),
+        _cached_size_{0} {}
+
+SelfId::SelfId(
+    ::google::protobuf::Arena* arena,
+    const SelfId& from)
+    : ::google::protobuf::Message(arena) {
+  SelfId* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.description_type_ = from._impl_.description_type_;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SelfId)
+}
+inline PROTOBUF_NDEBUG_INLINE SelfId::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : description_(arena),
+        _cached_size_{0} {}
+
+inline void SelfId::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.description_type_ = {};
+}
+SelfId::~SelfId() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SelfId)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SelfId::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.description_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SelfId::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SelfId)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.description_.ClearToEmpty();
+  _impl_.description_type_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SelfId::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 47, 2> SelfId::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SelfId_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string description = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SelfId, _impl_.description_)}},
+    // uint32 description_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SelfId, _impl_.description_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SelfId, _impl_.description_type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 description_type = 1;
+    {PROTOBUF_FIELD_OFFSET(SelfId, _impl_.description_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string description = 2;
+    {PROTOBUF_FIELD_OFFSET(SelfId, _impl_.description_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\33\0\13\0\0\0\0\0"
+    "mavsdk.rpc.remote_id.SelfId"
+    "description"
+  }},
+};
+
+::uint8_t* SelfId::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SelfId)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 description_type = 1;
+  if (this->_internal_description_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_description_type(), target);
+  }
+
+  // string description = 2;
+  if (!this->_internal_description().empty()) {
+    const std::string& _s = this->_internal_description();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "mavsdk.rpc.remote_id.SelfId.description");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SelfId)
+  return target;
+}
+
+::size_t SelfId::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SelfId)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string description = 2;
+  if (!this->_internal_description().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_description());
+  }
+
+  // uint32 description_type = 1;
+  if (this->_internal_description_type() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_description_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SelfId::_class_data_ = {
+    SelfId::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SelfId::GetClassData() const {
+  return &_class_data_;
+}
+
+void SelfId::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SelfId*>(&to_msg);
+  auto& from = static_cast<const SelfId&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SelfId)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_description().empty()) {
+    _this->_internal_set_description(from._internal_description());
+  }
+  if (from._internal_description_type() != 0) {
+    _this->_internal_set_description_type(from._internal_description_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SelfId::CopyFrom(const SelfId& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SelfId)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SelfId::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SelfId::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SelfId::InternalSwap(SelfId* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.description_, &other->_impl_.description_, arena);
+        swap(_impl_.description_type_, other->_impl_.description_type_);
+}
+
+::google::protobuf::Metadata SelfId::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[14]);
 }
 // ===================================================================
 
@@ -2165,7 +4645,7 @@ void RemoteIdResult::InternalSwap(RemoteIdResult* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata RemoteIdResult::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[6]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[15]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace remote_id

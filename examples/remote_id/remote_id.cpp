@@ -63,11 +63,33 @@ int main(int argc, char** argv)
         .uas_id = std::string({'S',  'R',  'R',  'B',  'T',  '#',  '0',  '1',  0x00, 0x00,
                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
 
+    remote_id.set_operator_id(RemoteId::OperatorId{
+        .operator_id_type = MAV_ODID_OPERATOR_ID_TYPE_CAA,
+        .operator_id = std::string({'T',  'E',  'S',  'T',  '_',  'O',  'P',  'E',  'R',  0x00,
+                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
+
+    float latitude_op = 43.1213;
+    float longitude_op = 12.3134;
+
+    remote_id.set_system(RemoteId::SystemId{
+        .operator_location_type = MAV_ODID_OPERATOR_LOCATION_TYPE_FIXED,
+        .classification_type = MAV_ODID_CLASSIFICATION_TYPE_EU,
+        .operator_latitude = (int32_t)(latitude_op * 1e7),
+        .operator_longitude = (int32_t)(longitude_op * 1e7),
+        .area_count = 1,
+        .area_radius = 0,
+        .area_ceiling = -1000,
+        .area_floor = -1000,
+        .category_eu = MAV_ODID_CATEGORY_EU_OPEN,
+        .class_eu = MAV_ODID_CLASS_EU_CLASS_2,
+        .operator_altitude_geo = -1000,
+        .timestamp = 0});
+
     int steps = 0;
     // Search for aircraft transponders
     while (steps < 7200) {
-        float latitude = 43.1213 + 0.005 * sin(M_PI / 60 * steps);
-        float longitude = 12.3134 + 0.005 * cos(M_PI / 60 * steps);
+        float latitude = latitude_op + 0.005 * sin(M_PI / 60 * steps);
+        float longitude = longitude_op + 0.005 * cos(M_PI / 60 * steps);
         float height = 150 + 75 * sin(M_PI / 30 * steps);
 
         const auto now = std::chrono::floor<std::chrono::seconds>(std::chrono::system_clock::now());

@@ -11,6 +11,9 @@ namespace mavsdk {
 
 using BasicId = RemoteId::BasicId;
 using Location = RemoteId::Location;
+using SystemId = RemoteId::SystemId;
+using OperatorId = RemoteId::OperatorId;
+using SelfId = RemoteId::SelfId;
 
 RemoteId::RemoteId(System& system) : PluginBase(), _impl{std::make_unique<RemoteIdImpl>(system)} {}
 
@@ -29,6 +32,21 @@ RemoteId::Result RemoteId::set_basic_id(BasicId basic_id) const
 RemoteId::Result RemoteId::set_location(Location location) const
 {
     return _impl->set_location(location);
+}
+
+RemoteId::Result RemoteId::set_system(SystemId system) const
+{
+    return _impl->set_system(system);
+}
+
+RemoteId::Result RemoteId::set_operator_id(OperatorId system) const
+{
+    return _impl->set_operator_id(system);
+}
+
+RemoteId::Result RemoteId::set_self_id(SelfId self_id) const
+{
+    return _impl->set_self_id(self_id);
 }
 
 bool operator==(const RemoteId::BasicId& lhs, const RemoteId::BasicId& rhs)
@@ -81,6 +99,73 @@ std::ostream& operator<<(std::ostream& str, RemoteId::Location const& location)
     str << "    height: " << location.height << '\n';
     str << "    timestamp: " << location.timestamp << '\n';
     str << "    timestamp_accuracy: " << location.timestamp_accuracy << '\n';
+    str << '}';
+    return str;
+}
+
+bool operator==(const RemoteId::SystemId& lhs, const RemoteId::SystemId& rhs)
+{
+    return (rhs.operator_location_type == lhs.operator_location_type) &&
+           (rhs.classification_type == lhs.classification_type) &&
+           (rhs.operator_latitude == lhs.operator_latitude) &&
+           (rhs.operator_longitude == lhs.operator_longitude) &&
+           (rhs.area_count == lhs.area_count) && (rhs.area_radius == lhs.area_radius) &&
+           ((std::isnan(rhs.area_ceiling) && std::isnan(lhs.area_ceiling)) ||
+            rhs.area_ceiling == lhs.area_ceiling) &&
+           ((std::isnan(rhs.area_floor) && std::isnan(lhs.area_floor)) ||
+            rhs.area_floor == lhs.area_floor) &&
+           (rhs.category_eu == lhs.category_eu) && (rhs.class_eu == lhs.class_eu) &&
+           ((std::isnan(rhs.operator_altitude_geo) && std::isnan(lhs.operator_altitude_geo)) ||
+            rhs.operator_altitude_geo == lhs.operator_altitude_geo) &&
+           (rhs.timestamp == lhs.timestamp);
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::SystemId const& system_id)
+{
+    str << std::setprecision(15);
+    str << "system_id:" << '\n' << "{\n";
+    str << "    operator_location_type: " << system_id.operator_location_type << '\n';
+    str << "    classification_type: " << system_id.classification_type << '\n';
+    str << "    operator_latitude: " << system_id.operator_latitude << '\n';
+    str << "    operator_longitude: " << system_id.operator_longitude << '\n';
+    str << "    area_count: " << system_id.area_count << '\n';
+    str << "    area_radius: " << system_id.area_radius << '\n';
+    str << "    area_ceiling: " << system_id.area_ceiling << '\n';
+    str << "    area_floor: " << system_id.area_floor << '\n';
+    str << "    category_eu: " << system_id.category_eu << '\n';
+    str << "    class_eu: " << system_id.class_eu << '\n';
+    str << "    operator_altitude_geo: " << system_id.operator_altitude_geo << '\n';
+    str << "    timestamp: " << system_id.timestamp << '\n';
+    str << '}';
+    return str;
+}
+
+bool operator==(const RemoteId::OperatorId& lhs, const RemoteId::OperatorId& rhs)
+{
+    return (rhs.operator_id_type == lhs.operator_id_type) && (rhs.operator_id == lhs.operator_id);
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::OperatorId const& operator_id)
+{
+    str << std::setprecision(15);
+    str << "operator_id:" << '\n' << "{\n";
+    str << "    operator_id_type: " << operator_id.operator_id_type << '\n';
+    str << "    operator_id: " << operator_id.operator_id << '\n';
+    str << '}';
+    return str;
+}
+
+bool operator==(const RemoteId::SelfId& lhs, const RemoteId::SelfId& rhs)
+{
+    return (rhs.description_type == lhs.description_type) && (rhs.description == lhs.description);
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::SelfId const& self_id)
+{
+    str << std::setprecision(15);
+    str << "self_id:" << '\n' << "{\n";
+    str << "    description_type: " << self_id.description_type << '\n';
+    str << "    description: " << self_id.description << '\n';
     str << '}';
     return str;
 }

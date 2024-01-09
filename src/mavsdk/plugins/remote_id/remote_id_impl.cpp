@@ -26,6 +26,9 @@ void RemoteIdImpl::init()
     _basic_id.ua_type = MAV_ODID_UA_TYPE_NONE;
     _basic_id.uas_id.reserve(20);
     _basic_id.uas_id.assign(20, 0x00);
+    // Init OperatorId
+    _operator_id.operator_id_type = MAV_ODID_OPERATOR_ID_TYPE_CAA;
+    _operator_id.operator_id.assign(20, 0x00);
     // Init Location
     _location.status = MAV_ODID_STATUS_UNDECLARED;
     _location.direction = 36100;
@@ -39,13 +42,33 @@ void RemoteIdImpl::init()
     _location.height = -1000;
     _location.timestamp = 0xFFFF;
     _location.timestamp_accuracy = MAV_ODID_TIME_ACC_UNKNOWN;
+    // Init System
+    _system.operator_location_type = MAV_ODID_OPERATOR_LOCATION_TYPE_TAKEOFF;
+    _system.classification_type = MAV_ODID_CLASSIFICATION_TYPE_EU;
+    _system.operator_latitude = 0;
+    _system.operator_longitude = 0;
+    _system.area_count = 1;
+    _system.area_radius = 0;
+    _system.area_ceiling = -1000;
+    _system.area_floor = -1000;
+    _system.category_eu = MAV_ODID_CATEGORY_EU_UNDECLARED;
+    _system.class_eu = MAV_ODID_CLASS_EU_UNDECLARED;
+    _system.operator_altitude_geo = -1000;
+    _system.timestamp = 0;
+    // Init SelfId
+    _self_id.description_type = MAV_ODID_DESC_TYPE_TEXT;
+    _self_id.description = std::string("");
 
     _system_impl->add_call_every(
         [this]() { send_drone_location(); }, 1.0, &_send_drone_location_call_every_cookie);
     _system_impl->add_call_every(
         [this]() { send_drone_basic_id(); }, 1.0, &_send_drone_basic_id_call_every_cookie);
     _system_impl->add_call_every(
+        [this]() { send_operator_id(); }, 1.0, &_send_operator_id_call_every_cookie);
+    _system_impl->add_call_every(
         [this]() { send_drone_id_system(); }, 1.0, &_send_drone_id_system_call_every_cookie);
+    _system_impl->add_call_every(
+        [this]() { send_drone_self_id(); }, 1.0, &_send_sef_id_call_every_cookie);
 }
 
 void RemoteIdImpl::deinit()
@@ -71,9 +94,21 @@ RemoteId::Result RemoteIdImpl::set_basic_id(RemoteId::BasicId basic_id)
     return RemoteId::Result::Success;
 }
 
+RemoteId::Result RemoteIdImpl::set_operator_id(RemoteId::OperatorId operator_id)
+{
+    _operator_id = operator_id;
+    return RemoteId::Result::Success;
+}
+
 RemoteId::Result RemoteIdImpl::set_location(RemoteId::Location location)
 {
     _location = location;
+    return RemoteId::Result::Success;
+}
+
+RemoteId::Result RemoteIdImpl::set_system(RemoteId::SystemId system)
+{
+    _system = system;
     return RemoteId::Result::Success;
 }
 
@@ -130,6 +165,24 @@ void RemoteIdImpl::send_drone_basic_id()
     // LogErr() << "send_drone_basic_id " << _basic_id;
 }
 
+void RemoteIdImpl::send_operator_id()
+{
+    mavlink_message_t msg{};
+    mavlink_msg_open_drone_id_operator_id_pack(
+        _system_impl->get_own_system_id(),
+        _system_impl->get_own_component_id(),
+        &msg,
+        0, // System ID (0 for broadcast).
+        0, // Component ID (0 for broadcast).
+        (const uint8_t*)_id_or_mac.c_str(), // Only used for drone ID data received from other UAs.
+        (uint8_t)_operator_id
+            .operator_id_type, // Indicates the format for the uas_id field of this message.
+        (const char*)(_operator_id.operator_id.c_str()));
+
+    _system_impl->send_message(msg);
+    // LogErr() << "send_drone_basic_id " << _basic_id;
+}
+
 void RemoteIdImpl::send_drone_id_system()
 {
     mavlink_message_t msg{};
@@ -140,23 +193,39 @@ void RemoteIdImpl::send_drone_id_system()
         0, // System ID (0 for broadcast).
         0, // Component ID (0 for broadcast).
         (const uint8_t*)_id_or_mac.c_str(), // Only used for drone ID data received from other UAs.
-        MAV_ODID_OPERATOR_LOCATION_TYPE_TAKEOFF, // Specifies the operator location type.
-        MAV_ODID_CLASSIFICATION_TYPE_EU, // Specifies the classification type of the UA.
-        0, // Latitude of the operator.
-        0, // Longitude of the operator.
-        1, // Number of aircraft in the area, group or formation
-        0, // Radius of the cylindrical area of the group or formation
-        -1000, // Area Operations Ceiling relative to WGS84
-        -1000, // Area Operations Floor relative to WGS84.
-        MAV_ODID_CATEGORY_EU_OPEN, // When classification_type is MAV_ODID_CLASSIFICATION_TYPE_EU,
-                                   // specifies the category of the UA.
-        MAV_ODID_CLASS_EU_CLASS_3, // When classification_type is MAV_ODID_CLASSIFICATION_TYPE_EU,
-                                   // specifies the class of the UA.
-        -1000,
-        0);
+        (uint8_t)_system.operator_location_type, // Specifies the operator location type.
+        (uint8_t)_system.classification_type, // Specifies the classification type of the UA.
+        (int32_t)_system.operator_latitude, // Latitude of the operator.
+        (int32_t)_system.operator_longitude, // Longitude of the operator.
+        (uint16_t)_system.area_count, // Number of aircraft in the area, group or formation
+        (uint16_t)_system.area_radius, // Radius of the cylindrical area of the group or formation
+        (float)_system.area_ceiling, // Area Operations Ceiling relative to WGS84
+        (float)_system.area_floor, // Area Operations Floor relative to WGS84.
+        (uint8_t)_system.category_eu, // Specifies the category of the UA.
+        (uint8_t)_system.class_eu, // Specifies the class of the UA.
+        (float)_system.operator_altitude_geo,
+        (uint32_t)_system.timestamp);
 
     _system_impl->send_message(msg);
-    // LogErr() << "send_drone_basic_id " << _basic_id;
+    LogErr() << "send_drone_basic_id " << _system;
+}
+
+void RemoteIdImpl::send_drone_self_id()
+{
+    mavlink_message_t msg{};
+    mavlink_msg_open_drone_id_self_id_pack(
+        _system_impl->get_own_system_id(),
+        _system_impl->get_own_component_id(),
+        &msg,
+        0, // System ID (0 for broadcast).
+        0, // Component ID (0 for broadcast).
+        (const uint8_t*)_id_or_mac.c_str(), // Only used for drone ID data received from other UAs.
+        (uint8_t)
+            _self_id.description_type, // Indicates the format for the uas_id field of this message.
+        (const char*)(_self_id.description.c_str()));
+
+    _system_impl->send_message(msg);
+    LogErr() << "send_drone_self_id " << _self_id;
 }
 
 } // namespace mavsdk

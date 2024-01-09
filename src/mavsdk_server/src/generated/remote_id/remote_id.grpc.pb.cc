@@ -26,6 +26,9 @@ namespace remote_id {
 static const char* RemoteIdService_method_names[] = {
   "/mavsdk.rpc.remote_id.RemoteIdService/SetBasicId",
   "/mavsdk.rpc.remote_id.RemoteIdService/SetLocation",
+  "/mavsdk.rpc.remote_id.RemoteIdService/SetSystem",
+  "/mavsdk.rpc.remote_id.RemoteIdService/SetOperatorId",
+  "/mavsdk.rpc.remote_id.RemoteIdService/SetSelfId",
 };
 
 std::unique_ptr< RemoteIdService::Stub> RemoteIdService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -37,6 +40,9 @@ std::unique_ptr< RemoteIdService::Stub> RemoteIdService::NewStub(const std::shar
 RemoteIdService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_SetBasicId_(RemoteIdService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetLocation_(RemoteIdService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSystem_(RemoteIdService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetOperatorId_(RemoteIdService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSelfId_(RemoteIdService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status RemoteIdService::Stub::SetBasicId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetBasicIdRequest& request, ::mavsdk::rpc::remote_id::SetBasicIdResponse* response) {
@@ -85,6 +91,75 @@ void RemoteIdService::Stub::async::SetLocation(::grpc::ClientContext* context, c
   return result;
 }
 
+::grpc::Status RemoteIdService::Stub::SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::mavsdk::rpc::remote_id::SetSystemResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetSystem_, context, request, response);
+}
+
+void RemoteIdService::Stub::async::SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSystem_, context, request, response, std::move(f));
+}
+
+void RemoteIdService::Stub::async::SetSystem(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSystem_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSystemResponse>* RemoteIdService::Stub::PrepareAsyncSetSystemRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavsdk::rpc::remote_id::SetSystemResponse, ::mavsdk::rpc::remote_id::SetSystemRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetSystem_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSystemResponse>* RemoteIdService::Stub::AsyncSetSystemRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetSystemRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status RemoteIdService::Stub::SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetOperatorId_, context, request, response);
+}
+
+void RemoteIdService::Stub::async::SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetOperatorId_, context, request, response, std::move(f));
+}
+
+void RemoteIdService::Stub::async::SetOperatorId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetOperatorId_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* RemoteIdService::Stub::PrepareAsyncSetOperatorIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavsdk::rpc::remote_id::SetOperatorIdResponse, ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetOperatorId_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetOperatorIdResponse>* RemoteIdService::Stub::AsyncSetOperatorIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetOperatorIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status RemoteIdService::Stub::SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetSelfId_, context, request, response);
+}
+
+void RemoteIdService::Stub::async::SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSelfId_, context, request, response, std::move(f));
+}
+
+void RemoteIdService::Stub::async::SetSelfId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetSelfId_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSelfIdResponse>* RemoteIdService::Stub::PrepareAsyncSetSelfIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavsdk::rpc::remote_id::SetSelfIdResponse, ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetSelfId_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetSelfIdResponse>* RemoteIdService::Stub::AsyncSetSelfIdRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetSelfIdRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 RemoteIdService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RemoteIdService_method_names[0],
@@ -106,6 +181,36 @@ RemoteIdService::Service::Service() {
              ::mavsdk::rpc::remote_id::SetLocationResponse* resp) {
                return service->SetLocation(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RemoteIdService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RemoteIdService::Service, ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RemoteIdService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::mavsdk::rpc::remote_id::SetSystemRequest* req,
+             ::mavsdk::rpc::remote_id::SetSystemResponse* resp) {
+               return service->SetSystem(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RemoteIdService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RemoteIdService::Service, ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RemoteIdService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* req,
+             ::mavsdk::rpc::remote_id::SetOperatorIdResponse* resp) {
+               return service->SetOperatorId(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RemoteIdService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RemoteIdService::Service, ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RemoteIdService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::mavsdk::rpc::remote_id::SetSelfIdRequest* req,
+             ::mavsdk::rpc::remote_id::SetSelfIdResponse* resp) {
+               return service->SetSelfId(ctx, req, resp);
+             }, this)));
 }
 
 RemoteIdService::Service::~Service() {
@@ -119,6 +224,27 @@ RemoteIdService::Service::~Service() {
 }
 
 ::grpc::Status RemoteIdService::Service::SetLocation(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest* request, ::mavsdk::rpc::remote_id::SetLocationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RemoteIdService::Service::SetSystem(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetSystemRequest* request, ::mavsdk::rpc::remote_id::SetSystemResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RemoteIdService::Service::SetOperatorId(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetOperatorIdRequest* request, ::mavsdk::rpc::remote_id::SetOperatorIdResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RemoteIdService::Service::SetSelfId(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetSelfIdRequest* request, ::mavsdk::rpc::remote_id::SetSelfIdResponse* response) {
   (void) context;
   (void) request;
   (void) response;
