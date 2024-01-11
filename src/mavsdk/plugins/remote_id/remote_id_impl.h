@@ -34,6 +34,10 @@ private:
     void send_drone_self_id();
 
 private:
+
+    uint32_t get_seconds_after_2019();
+
+private:
     std::string _id_or_mac;
     RemoteId::BasicId _basic_id{};
     RemoteId::OperatorId _operator_id{};
@@ -45,7 +49,7 @@ private:
     void* _send_drone_location_call_every_cookie{nullptr};
     void* _send_drone_basic_id_call_every_cookie{nullptr};
     void* _send_operator_id_call_every_cookie{nullptr};
-    void* _send_sef_id_call_every_cookie{nullptr};
+    void* _send_self_id_call_every_cookie{nullptr};
     void* _send_drone_id_system_call_every_cookie{nullptr};
 };
 

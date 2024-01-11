@@ -68,7 +68,7 @@ void RemoteIdImpl::init()
     _system_impl->add_call_every(
         [this]() { send_drone_id_system(); }, 1.0, &_send_drone_id_system_call_every_cookie);
     _system_impl->add_call_every(
-        [this]() { send_drone_self_id(); }, 1.0, &_send_sef_id_call_every_cookie);
+        [this]() { send_drone_self_id(); }, 1.0, &_send_self_id_call_every_cookie);
 }
 
 void RemoteIdImpl::deinit()
@@ -97,6 +97,12 @@ RemoteId::Result RemoteIdImpl::set_basic_id(RemoteId::BasicId basic_id)
 RemoteId::Result RemoteIdImpl::set_operator_id(RemoteId::OperatorId operator_id)
 {
     _operator_id = operator_id;
+    return RemoteId::Result::Success;
+}
+
+RemoteId::Result RemoteIdImpl::set_self_id(RemoteId::SelfId self_id)
+{
+    _self_id = self_id;
     return RemoteId::Result::Success;
 }
 
@@ -186,26 +192,42 @@ void RemoteIdImpl::send_operator_id()
 void RemoteIdImpl::send_drone_id_system()
 {
     mavlink_message_t msg{};
-    mavlink_msg_open_drone_id_system_pack(
-        _system_impl->get_own_system_id(),
-        _system_impl->get_own_component_id(),
-        &msg,
-        0, // System ID (0 for broadcast).
-        0, // Component ID (0 for broadcast).
-        (const uint8_t*)_id_or_mac.c_str(), // Only used for drone ID data received from other UAs.
-        (uint8_t)_system.operator_location_type, // Specifies the operator location type.
-        (uint8_t)_system.classification_type, // Specifies the classification type of the UA.
-        (int32_t)_system.operator_latitude, // Latitude of the operator.
-        (int32_t)_system.operator_longitude, // Longitude of the operator.
-        (uint16_t)_system.area_count, // Number of aircraft in the area, group or formation
-        (uint16_t)_system.area_radius, // Radius of the cylindrical area of the group or formation
-        (float)_system.area_ceiling, // Area Operations Ceiling relative to WGS84
-        (float)_system.area_floor, // Area Operations Floor relative to WGS84.
-        (uint8_t)_system.category_eu, // Specifies the category of the UA.
-        (uint8_t)_system.class_eu, // Specifies the class of the UA.
-        (float)_system.operator_altitude_geo,
-        (uint32_t)_system.timestamp);
 
+    if(_system.timestamp) {
+        mavlink_msg_open_drone_id_system_pack(
+            _system_impl->get_own_system_id(),
+            _system_impl->get_own_component_id(),
+            &msg,
+            0, // System ID (0 for broadcast).
+            0, // Component ID (0 for broadcast).
+            (const uint8_t*)_id_or_mac.c_str(), // Only used for drone ID data received from other UAs.
+            (uint8_t)_system.operator_location_type, // Specifies the operator location type.
+            (uint8_t)_system.classification_type, // Specifies the classification type of the UA.
+            (int32_t)_system.operator_latitude, // Latitude of the operator.
+            (int32_t)_system.operator_longitude, // Longitude of the operator.
+            (uint16_t)_system.area_count, // Number of aircraft in the area, group or formation
+            (uint16_t)_system.area_radius, // Radius of the cylindrical area of the group or formation
+            (float)_system.area_ceiling, // Area Operations Ceiling relative to WGS84
+            (float)_system.area_floor, // Area Operations Floor relative to WGS84.
+            (uint8_t)_system.category_eu, // Specifies the category of the UA.
+            (uint8_t)_system.class_eu, // Specifies the class of the UA.
+            (float)_system.operator_altitude_geo,
+            (uint32_t)_system.timestamp);
+    } else {
+        _system.timestamp = get_seconds_after_2019();
+        mavlink_msg_open_drone_id_system_update_pack(
+            _system_impl->get_own_system_id(),
+            _system_impl->get_own_component_id(),
+            &msg,
+            0, // System ID (0 for broadcast).
+            0, // Component ID (0 for broadcast).
+            (int32_t)_system.operator_latitude, // Latitude of the operator.
+            (int32_t)_system.operator_longitude, // Longitude of the operator.
+            (float)_system.operator_altitude_geo,
+            (uint32_t)_system.timestamp);
+    }
+
+    _system.timestamp = 0;
     _system_impl->send_message(msg);
     LogErr() << "send_drone_basic_id " << _system;
 }
@@ -226,6 +248,12 @@ void RemoteIdImpl::send_drone_self_id()
 
     _system_impl->send_message(msg);
     LogErr() << "send_drone_self_id " << _self_id;
+}
+
+uint32_t RemoteIdImpl::get_seconds_after_2019()
+{
+    auto secs = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count() - 1609459200;
+    return (uint32_t)secs;
 }
 
 } // namespace mavsdk

@@ -63,27 +63,39 @@ int main(int argc, char** argv)
         .uas_id = std::string({'S',  'R',  'R',  'B',  'T',  '#',  '0',  '1',  0x00, 0x00,
                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
 
+    remote_id.set_self_id(RemoteId::SelfId{
+        .description_type = MAV_ODID_DESC_TYPE_TEXT,
+        .description = std::string({'T',  'E',  'S',  'T',  '_',  'S',  'E',  'L',  'F', 0x00,
+                               0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
+
     remote_id.set_operator_id(RemoteId::OperatorId{
         .operator_id_type = MAV_ODID_OPERATOR_ID_TYPE_CAA,
         .operator_id = std::string({'T',  'E',  'S',  'T',  '_',  'O',  'P',  'E',  'R',  0x00,
                                     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
 
-    float latitude_op = 43.1213;
-    float longitude_op = 12.3134;
+        float latitude_op = 43.1213;
+        float longitude_op = 12.3134;
 
-    remote_id.set_system(RemoteId::SystemId{
-        .operator_location_type = MAV_ODID_OPERATOR_LOCATION_TYPE_FIXED,
-        .classification_type = MAV_ODID_CLASSIFICATION_TYPE_EU,
-        .operator_latitude = (int32_t)(latitude_op * 1e7),
-        .operator_longitude = (int32_t)(longitude_op * 1e7),
-        .area_count = 1,
-        .area_radius = 0,
-        .area_ceiling = -1000,
-        .area_floor = -1000,
-        .category_eu = MAV_ODID_CATEGORY_EU_OPEN,
-        .class_eu = MAV_ODID_CLASS_EU_CLASS_2,
-        .operator_altitude_geo = -1000,
-        .timestamp = 0});
+    {
+        const auto now = std::chrono::floor<std::chrono::seconds>(std::chrono::system_clock::now());
+        std::tm tm = { .tm_sec  = 0, .tm_min  = 0, .tm_hour = 0, .tm_mday = 1, .tm_mon  = 0, 2019 - 1900};
+        const auto ref = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+        const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(now - ref).count();
+
+        remote_id.set_system(RemoteId::SystemId{
+            .operator_location_type = MAV_ODID_OPERATOR_LOCATION_TYPE_FIXED,
+            .classification_type = MAV_ODID_CLASSIFICATION_TYPE_EU,
+            .operator_latitude = (int32_t)(latitude_op * 1e7),
+            .operator_longitude = (int32_t)(longitude_op * 1e7),
+            .area_count = 1,
+            .area_radius = 0,
+            .area_ceiling = -1000,
+            .area_floor = -1000,
+            .category_eu = MAV_ODID_CATEGORY_EU_OPEN,
+            .class_eu = MAV_ODID_CLASS_EU_CLASS_2,
+            .operator_altitude_geo = -1000,
+            .timestamp = (uint32_t)seconds});
+    }
 
     int steps = 0;
     // Search for aircraft transponders
