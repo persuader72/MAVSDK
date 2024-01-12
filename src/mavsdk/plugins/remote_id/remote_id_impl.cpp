@@ -31,30 +31,30 @@ void RemoteIdImpl::init()
     _operator_id.operator_id.assign(20, 0x00);
     // Init Location
     _location.status = MAV_ODID_STATUS_UNDECLARED;
-    _location.direction = 36100;
-    _location.speed_horizontal = 25500;
-    _location.speed_vertical = 6300;
-    _location.latitude = 0;
-    _location.longitude = 0;
-    _location.altitude_barometric = -1000;
-    _location.altitude_geodetic = -1000;
+    _location.direction_deg = 361;
+    _location.speed_horizontal_cm_s = 25500;
+    _location.speed_vertical_cm_s = 6300;
+    _location.latitude_deg = 0;
+    _location.longitude_deg = 0;
+    _location.altitude_barometric_m = -1000;
+    _location.altitude_geodetic_m = -1000;
     _location.height_reference = MAV_ODID_HEIGHT_REF_OVER_TAKEOFF;
-    _location.height = -1000;
-    _location.timestamp = 0xFFFF;
+    _location.height_m = -1000;
+    _location.timestamp_s = 0xFFFF;
     _location.timestamp_accuracy = MAV_ODID_TIME_ACC_UNKNOWN;
     // Init System
     _system.operator_location_type = MAV_ODID_OPERATOR_LOCATION_TYPE_TAKEOFF;
     _system.classification_type = MAV_ODID_CLASSIFICATION_TYPE_EU;
-    _system.operator_latitude = 0;
-    _system.operator_longitude = 0;
+    _system.operator_latitude_deg = 0;
+    _system.operator_longitude_deg = 0;
     _system.area_count = 1;
-    _system.area_radius = 0;
-    _system.area_ceiling = -1000;
-    _system.area_floor = -1000;
+    _system.area_radius_m = 0;
+    _system.area_ceiling_m = -1000;
+    _system.area_floor_m = -1000;
     _system.category_eu = MAV_ODID_CATEGORY_EU_UNDECLARED;
     _system.class_eu = MAV_ODID_CLASS_EU_UNDECLARED;
-    _system.operator_altitude_geo = -1000;
-    _system.timestamp = 0;
+    _system.operator_altitude_geo_m = -1000;
+    _system.timestamp_s = 0;
     // Init SelfId
     _self_id.description_type = MAV_ODID_DESC_TYPE_TEXT;
     _self_id.description = std::string("");
@@ -115,6 +115,8 @@ RemoteId::Result RemoteIdImpl::set_location(RemoteId::Location location)
 RemoteId::Result RemoteIdImpl::set_system(RemoteId::SystemId system)
 {
     _system = system;
+    if (!_system.timestamp_s)
+        _system.timestamp_s = get_seconds_after_2019();
     return RemoteId::Result::Success;
 }
 
@@ -130,22 +132,22 @@ void RemoteIdImpl::send_drone_location()
         (const uint8_t*)_id_or_mac.c_str(), // Only used for drone ID data received from other UAs.
         (uint8_t)_location
             .status, // Indicates whether the unmanned aircraft is on the ground or in the air.
-        (uint16_t)_location.direction, // Direction over ground
-        (uint16_t)_location.speed_horizontal, // Ground speed. Positive only.
-        (int16_t)_location.speed_vertical, // The vertical speed. Up is positive.
-        (int32_t)_location.latitude, // Current latitude of the unmanned aircraft.
-        (int32_t)_location.longitude, // Current longitude of the unmanned aircraft.
+        (uint16_t)(_location.direction_deg * 100.0), // Direction over ground
+        (uint16_t)_location.speed_horizontal_cm_s, // Ground speed. Positive only.
+        (int16_t)_location.speed_vertical_cm_s, // The vertical speed. Up is positive.
+        (int32_t)(_location.latitude_deg * 1e7), // Current latitude of the unmanned aircraft.
+        (int32_t)(_location.longitude_deg * 1e7), // Current longitude of the unmanned aircraft.
         (float)
-            _location.altitude_barometric, // The altitude calculated from the barometric pressue.
-        (float)_location.altitude_geodetic, // The geodetic altitude as defined by WGS84.
+            _location.altitude_barometric_m, // The altitude calculated from the barometric pressue.
+        (float)_location.altitude_geodetic_m, // The geodetic altitude as defined by WGS84.
         (uint8_t)_location.height_reference, // Indicates the reference point for the height field.
-        (float)_location.height, // The current height of the unmanned aircraft above the take-off
-                                 // location or the ground
+        (float)_location.height_m, // The current height of the unmanned aircraft above the take-off
+                                   // location or the ground
         MAV_ODID_HOR_ACC_UNKNOWN, // The accuracy of the horizontal position.
         MAV_ODID_VER_ACC_UNKNOWN, // The accuracy of the vertical position.
         MAV_ODID_VER_ACC_UNKNOWN, // The accuracy of the barometric altitude.
         MAV_ODID_SPEED_ACC_UNKNOWN, // The accuracy of the horizontal and vertical speed.
-        (float)_location.timestamp, // Seconds after the full hour with reference to UTC time.
+        (float)_location.timestamp_s, // Seconds after the full hour with reference to UTC time.
         (uint8_t)_location.timestamp_accuracy // The accuracy of the timestamps.
     );
 
@@ -193,41 +195,43 @@ void RemoteIdImpl::send_drone_id_system()
 {
     mavlink_message_t msg{};
 
-    if(_system.timestamp) {
+    if (_system.timestamp_s) {
         mavlink_msg_open_drone_id_system_pack(
             _system_impl->get_own_system_id(),
             _system_impl->get_own_component_id(),
             &msg,
             0, // System ID (0 for broadcast).
             0, // Component ID (0 for broadcast).
-            (const uint8_t*)_id_or_mac.c_str(), // Only used for drone ID data received from other UAs.
+            (const uint8_t*)
+                _id_or_mac.c_str(), // Only used for drone ID data received from other UAs.
             (uint8_t)_system.operator_location_type, // Specifies the operator location type.
             (uint8_t)_system.classification_type, // Specifies the classification type of the UA.
-            (int32_t)_system.operator_latitude, // Latitude of the operator.
-            (int32_t)_system.operator_longitude, // Longitude of the operator.
+            (int32_t)(_system.operator_latitude_deg * 1e7), // Latitude of the operator.
+            (int32_t)(_system.operator_longitude_deg * 1e7), // Longitude of the operator.
             (uint16_t)_system.area_count, // Number of aircraft in the area, group or formation
-            (uint16_t)_system.area_radius, // Radius of the cylindrical area of the group or formation
-            (float)_system.area_ceiling, // Area Operations Ceiling relative to WGS84
-            (float)_system.area_floor, // Area Operations Floor relative to WGS84.
+            (uint16_t)
+                _system.area_radius_m, // Radius of the cylindrical area of the group or formation
+            (float)_system.area_ceiling_m, // Area Operations Ceiling relative to WGS84
+            (float)_system.area_floor_m, // Area Operations Floor relative to WGS84.
             (uint8_t)_system.category_eu, // Specifies the category of the UA.
             (uint8_t)_system.class_eu, // Specifies the class of the UA.
-            (float)_system.operator_altitude_geo,
-            (uint32_t)_system.timestamp);
+            (float)_system.operator_altitude_geo_m,
+            (uint32_t)_system.timestamp_s);
     } else {
-        _system.timestamp = get_seconds_after_2019();
+        _system.timestamp_s = get_seconds_after_2019();
         mavlink_msg_open_drone_id_system_update_pack(
             _system_impl->get_own_system_id(),
             _system_impl->get_own_component_id(),
             &msg,
             0, // System ID (0 for broadcast).
             0, // Component ID (0 for broadcast).
-            (int32_t)_system.operator_latitude, // Latitude of the operator.
-            (int32_t)_system.operator_longitude, // Longitude of the operator.
-            (float)_system.operator_altitude_geo,
-            (uint32_t)_system.timestamp);
+            (int32_t)(_system.operator_latitude_deg * 1e7), // Latitude of the operator.
+            (int32_t)(_system.operator_longitude_deg * 1e7), // Longitude of the operator.
+            (float)_system.operator_altitude_geo_m,
+            (uint32_t)_system.timestamp_s);
     }
 
-    _system.timestamp = 0;
+    _system.timestamp_s = 0;
     _system_impl->send_message(msg);
     LogErr() << "send_drone_basic_id " << _system;
 }
@@ -252,7 +256,10 @@ void RemoteIdImpl::send_drone_self_id()
 
 uint32_t RemoteIdImpl::get_seconds_after_2019()
 {
-    auto secs = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count() - 1609459200;
+    auto secs = std::chrono::duration_cast<std::chrono::seconds>(
+                    std::chrono::system_clock::now().time_since_epoch())
+                    .count() -
+                1609459200;
     return (uint32_t)secs;
 }
 

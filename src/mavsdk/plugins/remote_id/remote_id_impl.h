@@ -34,7 +34,6 @@ private:
     void send_drone_self_id();
 
 private:
-
     uint32_t get_seconds_after_2019();
 
 private:
