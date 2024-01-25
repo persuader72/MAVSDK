@@ -26,18 +26,18 @@ namespace remote_id {
 
 inline constexpr SystemId::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : operator_location_type_{0u},
-        classification_type_{0u},
-        operator_latitude_{0},
-        operator_longitude_{0},
+      : operator_location_type_{static_cast< ::mavsdk::rpc::remote_id::SystemId_OperatorLocationType >(0)},
+        classification_type_{static_cast< ::mavsdk::rpc::remote_id::SystemId_ClassificationType >(0)},
+        operator_latitude_deg_{0},
+        operator_longitude_deg_{0},
         area_count_{0u},
-        area_radius_{0u},
-        area_ceiling_{0},
-        area_floor_{0},
-        category_eu_{0u},
-        class_eu_{0u},
-        operator_altitude_geo_{0},
-        timestamp_{0u},
+        area_radius_m_{0u},
+        area_ceiling_m_{0},
+        area_floor_m_{0},
+        category_eu_{static_cast< ::mavsdk::rpc::remote_id::SystemId_CategoryEu >(0)},
+        class_eu_{static_cast< ::mavsdk::rpc::remote_id::SystemId_ClassEu >(0)},
+        time_utc_us_{::uint64_t{0u}},
+        operator_altitude_geo_m_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -53,13 +53,25 @@ struct SystemIdDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SystemIdDefaultTypeInternal _SystemId_default_instance_;
+      template <typename>
+PROTOBUF_CONSTEXPR SubscribeArmStatusRequest::SubscribeArmStatusRequest(::_pbi::ConstantInitialized) {}
+struct SubscribeArmStatusRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SubscribeArmStatusRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SubscribeArmStatusRequestDefaultTypeInternal() {}
+  union {
+    SubscribeArmStatusRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubscribeArmStatusRequestDefaultTypeInternal _SubscribeArmStatusRequest_default_instance_;
 
 inline constexpr SelfId::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : description_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        description_type_{0u},
+        description_type_{static_cast< ::mavsdk::rpc::remote_id::SelfId_DescType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -103,7 +115,7 @@ inline constexpr OperatorId::Impl_::Impl_(
       : operator_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        operator_id_type_{0u},
+        operator_id_type_{static_cast< ::mavsdk::rpc::remote_id::OperatorId_OperatorIdType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -120,20 +132,42 @@ struct OperatorIdDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OperatorIdDefaultTypeInternal _OperatorId_default_instance_;
 
+inline constexpr LocationAccuracy::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : horizontal_accuracy_{static_cast< ::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc >(0)},
+        vertical_accuracy_{static_cast< ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc >(0)},
+        barometer_accuracy_{static_cast< ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc >(0)},
+        speed_accuracy_{static_cast< ::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc >(0)},
+        timestamp_accuracy_{static_cast< ::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LocationAccuracy::LocationAccuracy(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct LocationAccuracyDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocationAccuracyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LocationAccuracyDefaultTypeInternal() {}
+  union {
+    LocationAccuracy _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocationAccuracyDefaultTypeInternal _LocationAccuracy_default_instance_;
+
 inline constexpr Location::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : status_{0u},
-        direction_{0u},
-        speed_horizontal_{0u},
-        speed_vertical_{0},
-        latitude_{0},
-        longitude_{0},
-        altitude_barometric_{0},
-        altitude_geodetic_{0},
-        height_reference_{0u},
-        height_{0},
-        timestamp_{0},
-        timestamp_accuracy_{0u},
+      : status_{static_cast< ::mavsdk::rpc::remote_id::Location_Status >(0)},
+        direction_deg_{0u},
+        speed_horizontal_m_s_{0},
+        speed_vertical_m_s_{0},
+        latitude_deg_{0},
+        longitude_deg_{0},
+        altitude_barometric_m_{0},
+        altitude_geodetic_m_{0},
+        height_reference_{static_cast< ::mavsdk::rpc::remote_id::Location_HeightRef >(0)},
+        height_m_{0},
+        time_utc_us_{::uint64_t{0u}},
         _cached_size_{0} {}
 
 template <typename>
@@ -155,8 +189,8 @@ inline constexpr BasicId::Impl_::Impl_(
       : uas_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        id_type_{0u},
-        ua_type_{0u},
+        id_type_{static_cast< ::mavsdk::rpc::remote_id::BasicId_IdType >(0)},
+        ua_type_{static_cast< ::mavsdk::rpc::remote_id::BasicId_UasType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -172,6 +206,28 @@ struct BasicIdDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 BasicIdDefaultTypeInternal _BasicId_default_instance_;
+
+inline constexpr ArmStatus::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : error_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        status_{static_cast< ::mavsdk::rpc::remote_id::ArmStatus_Status >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ArmStatus::ArmStatus(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ArmStatusDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ArmStatusDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ArmStatusDefaultTypeInternal() {}
+  union {
+    ArmStatus _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ArmStatusDefaultTypeInternal _ArmStatus_default_instance_;
 
 inline constexpr SetSystemResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -325,6 +381,44 @@ struct SetLocationRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetLocationRequestDefaultTypeInternal _SetLocationRequest_default_instance_;
 
+inline constexpr SetLocationAccuracyResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        remote_id_result_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetLocationAccuracyResponse::SetLocationAccuracyResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetLocationAccuracyResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetLocationAccuracyResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetLocationAccuracyResponseDefaultTypeInternal() {}
+  union {
+    SetLocationAccuracyResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetLocationAccuracyResponseDefaultTypeInternal _SetLocationAccuracyResponse_default_instance_;
+
+inline constexpr SetLocationAccuracyRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        location_accuracy_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SetLocationAccuracyRequest::SetLocationAccuracyRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SetLocationAccuracyRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetLocationAccuracyRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SetLocationAccuracyRequestDefaultTypeInternal() {}
+  union {
+    SetLocationAccuracyRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetLocationAccuracyRequestDefaultTypeInternal _SetLocationAccuracyRequest_default_instance_;
+
 inline constexpr SetBasicIdResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -362,11 +456,30 @@ struct SetBasicIdRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetBasicIdRequestDefaultTypeInternal _SetBasicIdRequest_default_instance_;
+
+inline constexpr ArmStatusResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        arm_status_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ArmStatusResponse::ArmStatusResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ArmStatusResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ArmStatusResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ArmStatusResponseDefaultTypeInternal() {}
+  union {
+    ArmStatusResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ArmStatusResponseDefaultTypeInternal _ArmStatusResponse_default_instance_;
 }  // namespace remote_id
 }  // namespace rpc
 }  // namespace mavsdk
-static ::_pb::Metadata file_level_metadata_remote_5fid_2fremote_5fid_2eproto[16];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[1];
+static ::_pb::Metadata file_level_metadata_remote_5fid_2fremote_5fid_2eproto[22];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[16];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_remote_5fid_2fremote_5fid_2eproto = nullptr;
 const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -410,6 +523,26 @@ const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOB
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetLocationResponse, _impl_.remote_id_result_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetLocationAccuracyRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetLocationAccuracyRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetLocationAccuracyRequest, _impl_.location_accuracy_),
+    0,
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetLocationAccuracyResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetLocationAccuracyResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetLocationAccuracyResponse, _impl_.remote_id_result_),
     0,
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSystemRequest, _impl_._has_bits_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSystemRequest, _internal_metadata_),
@@ -472,6 +605,24 @@ const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOB
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SetSelfIdResponse, _impl_.remote_id_result_),
     0,
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SubscribeArmStatusRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::ArmStatusResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::ArmStatusResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::ArmStatusResponse, _impl_.arm_status_),
+    0,
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::BasicId, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -491,17 +642,29 @@ const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOB
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.status_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.direction_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.speed_horizontal_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.speed_vertical_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.latitude_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.longitude_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.altitude_barometric_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.altitude_geodetic_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.direction_deg_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.speed_horizontal_m_s_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.speed_vertical_m_s_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.latitude_deg_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.longitude_deg_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.altitude_barometric_m_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.altitude_geodetic_m_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.height_reference_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.height_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.timestamp_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.timestamp_accuracy_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.height_m_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::Location, _impl_.time_utc_us_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::LocationAccuracy, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::LocationAccuracy, _impl_.horizontal_accuracy_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::LocationAccuracy, _impl_.vertical_accuracy_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::LocationAccuracy, _impl_.barometer_accuracy_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::LocationAccuracy, _impl_.speed_accuracy_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::LocationAccuracy, _impl_.timestamp_accuracy_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -512,16 +675,16 @@ const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOB
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_location_type_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.classification_type_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_latitude_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_longitude_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_latitude_deg_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_longitude_deg_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_count_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_radius_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_ceiling_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_floor_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_radius_m_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_ceiling_m_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.area_floor_m_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.category_eu_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.class_eu_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_altitude_geo_),
-    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.timestamp_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.operator_altitude_geo_m_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SystemId, _impl_.time_utc_us_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::OperatorId, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -543,6 +706,16 @@ const ::uint32_t TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets[] PROTOB
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SelfId, _impl_.description_type_),
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::SelfId, _impl_.description_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::ArmStatus, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::ArmStatus, _impl_.status_),
+    PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::ArmStatus, _impl_.error_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::remote_id::RemoteIdResult, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -560,18 +733,24 @@ static const ::_pbi::MigrationSchema
         {10, 19, -1, sizeof(::mavsdk::rpc::remote_id::SetBasicIdResponse)},
         {20, 29, -1, sizeof(::mavsdk::rpc::remote_id::SetLocationRequest)},
         {30, 39, -1, sizeof(::mavsdk::rpc::remote_id::SetLocationResponse)},
-        {40, 49, -1, sizeof(::mavsdk::rpc::remote_id::SetSystemRequest)},
-        {50, 59, -1, sizeof(::mavsdk::rpc::remote_id::SetSystemResponse)},
-        {60, 69, -1, sizeof(::mavsdk::rpc::remote_id::SetOperatorIdRequest)},
-        {70, 79, -1, sizeof(::mavsdk::rpc::remote_id::SetOperatorIdResponse)},
-        {80, 89, -1, sizeof(::mavsdk::rpc::remote_id::SetSelfIdRequest)},
-        {90, 99, -1, sizeof(::mavsdk::rpc::remote_id::SetSelfIdResponse)},
-        {100, -1, -1, sizeof(::mavsdk::rpc::remote_id::BasicId)},
-        {111, -1, -1, sizeof(::mavsdk::rpc::remote_id::Location)},
-        {131, -1, -1, sizeof(::mavsdk::rpc::remote_id::SystemId)},
-        {151, -1, -1, sizeof(::mavsdk::rpc::remote_id::OperatorId)},
-        {161, -1, -1, sizeof(::mavsdk::rpc::remote_id::SelfId)},
-        {171, -1, -1, sizeof(::mavsdk::rpc::remote_id::RemoteIdResult)},
+        {40, 49, -1, sizeof(::mavsdk::rpc::remote_id::SetLocationAccuracyRequest)},
+        {50, 59, -1, sizeof(::mavsdk::rpc::remote_id::SetLocationAccuracyResponse)},
+        {60, 69, -1, sizeof(::mavsdk::rpc::remote_id::SetSystemRequest)},
+        {70, 79, -1, sizeof(::mavsdk::rpc::remote_id::SetSystemResponse)},
+        {80, 89, -1, sizeof(::mavsdk::rpc::remote_id::SetOperatorIdRequest)},
+        {90, 99, -1, sizeof(::mavsdk::rpc::remote_id::SetOperatorIdResponse)},
+        {100, 109, -1, sizeof(::mavsdk::rpc::remote_id::SetSelfIdRequest)},
+        {110, 119, -1, sizeof(::mavsdk::rpc::remote_id::SetSelfIdResponse)},
+        {120, -1, -1, sizeof(::mavsdk::rpc::remote_id::SubscribeArmStatusRequest)},
+        {128, 137, -1, sizeof(::mavsdk::rpc::remote_id::ArmStatusResponse)},
+        {138, -1, -1, sizeof(::mavsdk::rpc::remote_id::BasicId)},
+        {149, -1, -1, sizeof(::mavsdk::rpc::remote_id::Location)},
+        {168, -1, -1, sizeof(::mavsdk::rpc::remote_id::LocationAccuracy)},
+        {181, -1, -1, sizeof(::mavsdk::rpc::remote_id::SystemId)},
+        {201, -1, -1, sizeof(::mavsdk::rpc::remote_id::OperatorId)},
+        {211, -1, -1, sizeof(::mavsdk::rpc::remote_id::SelfId)},
+        {221, -1, -1, sizeof(::mavsdk::rpc::remote_id::ArmStatus)},
+        {231, -1, -1, sizeof(::mavsdk::rpc::remote_id::RemoteIdResult)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -579,17 +758,23 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::mavsdk::rpc::remote_id::_SetBasicIdResponse_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetLocationRequest_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetLocationResponse_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SetLocationAccuracyRequest_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SetLocationAccuracyResponse_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetSystemRequest_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetSystemResponse_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetOperatorIdRequest_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetOperatorIdResponse_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetSelfIdRequest_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SetSelfIdResponse_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_SubscribeArmStatusRequest_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_ArmStatusResponse_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_BasicId_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_Location_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_LocationAccuracy_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SystemId_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_OperatorId_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_SelfId_default_instance_._instance,
+    &::mavsdk::rpc::remote_id::_ArmStatus_default_instance_._instance,
     &::mavsdk::rpc::remote_id::_RemoteIdResult_default_instance_._instance,
 };
 const char descriptor_table_protodef_remote_5fid_2fremote_5fid_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -602,57 +787,157 @@ const char descriptor_table_protodef_remote_5fid_2fremote_5fid_2eproto[] PROTOBU
     "onRequest\0220\n\010location\030\001 \001(\0132\036.mavsdk.rpc"
     ".remote_id.Location\"U\n\023SetLocationRespon"
     "se\022>\n\020remote_id_result\030\001 \001(\0132$.mavsdk.rp"
-    "c.remote_id.RemoteIdResult\"B\n\020SetSystemR"
-    "equest\022.\n\006system\030\001 \001(\0132\036.mavsdk.rpc.remo"
-    "te_id.SystemId\"S\n\021SetSystemResponse\022>\n\020r"
-    "emote_id_result\030\001 \001(\0132$.mavsdk.rpc.remot"
-    "e_id.RemoteIdResult\"H\n\024SetOperatorIdRequ"
-    "est\0220\n\006system\030\001 \001(\0132 .mavsdk.rpc.remote_"
-    "id.OperatorId\"W\n\025SetOperatorIdResponse\022>"
-    "\n\020remote_id_result\030\001 \001(\0132$.mavsdk.rpc.re"
-    "mote_id.RemoteIdResult\"A\n\020SetSelfIdReque"
-    "st\022-\n\007self_id\030\001 \001(\0132\034.mavsdk.rpc.remote_"
-    "id.SelfId\"S\n\021SetSelfIdResponse\022>\n\020remote"
+    "c.remote_id.RemoteIdResult\"_\n\032SetLocatio"
+    "nAccuracyRequest\022A\n\021location_accuracy\030\001 "
+    "\001(\0132&.mavsdk.rpc.remote_id.LocationAccur"
+    "acy\"]\n\033SetLocationAccuracyResponse\022>\n\020re"
+    "mote_id_result\030\001 \001(\0132$.mavsdk.rpc.remote"
+    "_id.RemoteIdResult\"B\n\020SetSystemRequest\022."
+    "\n\006system\030\001 \001(\0132\036.mavsdk.rpc.remote_id.Sy"
+    "stemId\"S\n\021SetSystemResponse\022>\n\020remote_id"
+    "_result\030\001 \001(\0132$.mavsdk.rpc.remote_id.Rem"
+    "oteIdResult\"H\n\024SetOperatorIdRequest\0220\n\006s"
+    "ystem\030\001 \001(\0132 .mavsdk.rpc.remote_id.Opera"
+    "torId\"W\n\025SetOperatorIdResponse\022>\n\020remote"
     "_id_result\030\001 \001(\0132$.mavsdk.rpc.remote_id."
-    "RemoteIdResult\";\n\007BasicId\022\017\n\007id_type\030\001 \001"
-    "(\r\022\017\n\007ua_type\030\002 \001(\r\022\016\n\006uas_id\030\003 \001(\t\"\225\002\n\010"
-    "Location\022\016\n\006status\030\001 \001(\r\022\021\n\tdirection\030\002 "
-    "\001(\r\022\030\n\020speed_horizontal\030\003 \001(\r\022\026\n\016speed_v"
-    "ertical\030\004 \001(\005\022\020\n\010latitude\030\005 \001(\005\022\021\n\tlongi"
-    "tude\030\006 \001(\005\022\033\n\023altitude_barometric\030\007 \001(\002\022"
-    "\031\n\021altitude_geodetic\030\010 \001(\002\022\030\n\020height_ref"
-    "erence\030\t \001(\r\022\016\n\006height\030\n \001(\002\022\021\n\ttimestam"
-    "p\030\013 \001(\002\022\032\n\022timestamp_accuracy\030\014 \001(\r\"\252\002\n\010"
-    "SystemId\022\036\n\026operator_location_type\030\001 \001(\r"
-    "\022\033\n\023classification_type\030\002 \001(\r\022\031\n\021operato"
-    "r_latitude\030\003 \001(\005\022\032\n\022operator_longitude\030\004"
-    " \001(\005\022\022\n\narea_count\030\005 \001(\r\022\023\n\013area_radius\030"
-    "\006 \001(\r\022\024\n\014area_ceiling\030\007 \001(\002\022\022\n\narea_floo"
-    "r\030\010 \001(\002\022\023\n\013category_eu\030\t \001(\r\022\020\n\010class_eu"
-    "\030\n \001(\r\022\035\n\025operator_altitude_geo\030\013 \001(\002\022\021\n"
-    "\ttimestamp\030\014 \001(\r\";\n\nOperatorId\022\030\n\020operat"
-    "or_id_type\030\001 \001(\r\022\023\n\013operator_id\030\002 \001(\t\"7\n"
-    "\006SelfId\022\030\n\020description_type\030\001 \001(\r\022\023\n\013des"
-    "cription\030\002 \001(\t\"\245\001\n\016RemoteIdResult\022;\n\006res"
-    "ult\030\001 \001(\0162+.mavsdk.rpc.remote_id.RemoteI"
-    "dResult.Result\022\022\n\nresult_str\030\002 \001(\t\"B\n\006Re"
-    "sult\022\022\n\016RESULT_UNKNOWN\020\000\022\022\n\016RESULT_SUCCE"
-    "SS\020\001\022\020\n\014RESULT_ERROR\020\0022\232\004\n\017RemoteIdServi"
-    "ce\022e\n\nSetBasicId\022\'.mavsdk.rpc.remote_id."
-    "SetBasicIdRequest\032(.mavsdk.rpc.remote_id"
-    ".SetBasicIdResponse\"\004\200\265\030\001\022h\n\013SetLocation"
-    "\022(.mavsdk.rpc.remote_id.SetLocationReque"
-    "st\032).mavsdk.rpc.remote_id.SetLocationRes"
-    "ponse\"\004\200\265\030\001\022b\n\tSetSystem\022&.mavsdk.rpc.re"
-    "mote_id.SetSystemRequest\032\'.mavsdk.rpc.re"
-    "mote_id.SetSystemResponse\"\004\200\265\030\001\022n\n\rSetOp"
-    "eratorId\022*.mavsdk.rpc.remote_id.SetOpera"
-    "torIdRequest\032+.mavsdk.rpc.remote_id.SetO"
-    "peratorIdResponse\"\004\200\265\030\001\022b\n\tSetSelfId\022&.m"
-    "avsdk.rpc.remote_id.SetSelfIdRequest\032\'.m"
-    "avsdk.rpc.remote_id.SetSelfIdResponse\"\004\200"
-    "\265\030\001B$\n\023io.mavsdk.remote_idB\rRemoteIdProt"
-    "ob\006proto3"
+    "RemoteIdResult\"A\n\020SetSelfIdRequest\022-\n\007se"
+    "lf_id\030\001 \001(\0132\034.mavsdk.rpc.remote_id.SelfI"
+    "d\"S\n\021SetSelfIdResponse\022>\n\020remote_id_resu"
+    "lt\030\001 \001(\0132$.mavsdk.rpc.remote_id.RemoteId"
+    "Result\"\033\n\031SubscribeArmStatusRequest\"H\n\021A"
+    "rmStatusResponse\0223\n\narm_status\030\001 \001(\0132\037.m"
+    "avsdk.rpc.remote_id.ArmStatus\"\323\005\n\007BasicI"
+    "d\0225\n\007id_type\030\001 \001(\0162$.mavsdk.rpc.remote_i"
+    "d.BasicId.IdType\0226\n\007ua_type\030\002 \001(\0162%.mavs"
+    "dk.rpc.remote_id.BasicId.UasType\022\016\n\006uas_"
+    "id\030\003 \001(\t\"\226\001\n\006IdType\022\020\n\014ID_TYPE_NONE\020\000\022\031\n"
+    "\025ID_TYPE_SERIAL_NUMBER\020\001\022\037\n\033ID_TYPE_CAA_"
+    "REGISTRATION_ID\020\002\022\035\n\031ID_TYPE_UTM_ASSIGNE"
+    "D_UUID\020\003\022\037\n\033ID_TYPE_SPECIFIC_SESSION_ID\020"
+    "\004\"\257\003\n\007UasType\022\021\n\rUAS_TYPE_NONE\020\000\022\026\n\022UAS_"
+    "TYPE_AEROPLANE\020\001\022%\n!UAS_TYPE_HELICOPTER_"
+    "OR_MULTIROTOR\020\002\022\026\n\022UAS_TYPE_GYROPLANE\020\003\022"
+    "\030\n\024UAS_TYPE_HYBRID_LIFT\020\004\022\030\n\024UAS_TYPE_OR"
+    "NITHOPTER\020\005\022\023\n\017UAS_TYPE_GLIDER\020\006\022\021\n\rUAS_"
+    "TYPE_KITE\020\007\022\031\n\025UAS_TYPE_FREE_BALLOON\020\010\022\034"
+    "\n\030UAS_TYPE_CAPTIVE_BALLOON\020\t\022\024\n\020UAS_TYPE"
+    "_AIRSHIP\020\n\022 \n\034UAS_TYPE_FREE_FALL_PARACHU"
+    "TE\020\013\022\023\n\017UAS_TYPE_ROCKET\020\014\022&\n\"UAS_TYPE_TE"
+    "THERED_POWERED_AIRCRAFT\020\r\022\034\n\030UAS_TYPE_GR"
+    "OUND_OBSTACLE\020\016\022\022\n\016UAS_TYPE_OTHER\020\017\"\261\004\n\010"
+    "Location\0225\n\006status\030\001 \001(\0162%.mavsdk.rpc.re"
+    "mote_id.Location.Status\022\025\n\rdirection_deg"
+    "\030\002 \001(\r\022\034\n\024speed_horizontal_m_s\030\003 \001(\002\022\032\n\022"
+    "speed_vertical_m_s\030\004 \001(\002\022\024\n\014latitude_deg"
+    "\030\005 \001(\001\022\025\n\rlongitude_deg\030\006 \001(\001\022\035\n\025altitud"
+    "e_barometric_m\030\007 \001(\002\022\033\n\023altitude_geodeti"
+    "c_m\030\010 \001(\002\022B\n\020height_reference\030\t \001(\0162(.ma"
+    "vsdk.rpc.remote_id.Location.HeightRef\022\020\n"
+    "\010height_m\030\n \001(\002\022\023\n\013time_utc_us\030\013 \001(\004\"\202\001\n"
+    "\006Status\022\025\n\021STATUS_UNDECLARED\020\000\022\021\n\rSTATUS"
+    "_GROUND\020\001\022\023\n\017STATUS_AIRBORNE\020\002\022\024\n\020STATUS"
+    "_EMERGENCY\020\003\022#\n\037STATUS_REMOTE_ID_SYSTEM_"
+    "FAILURE\020\004\"D\n\tHeightRef\022\033\n\027HEIGHT_REF_OVE"
+    "R_TAKEOFF\020\000\022\032\n\026HEIGHT_REF_OVER_GROUND\020\001\""
+    "\206\013\n\020LocationAccuracy\022J\n\023horizontal_accur"
+    "acy\030\001 \001(\0162-.mavsdk.rpc.remote_id.Locatio"
+    "nAccuracy.HorAcc\022H\n\021vertical_accuracy\030\002 "
+    "\001(\0162-.mavsdk.rpc.remote_id.LocationAccur"
+    "acy.VerAcc\022I\n\022barometer_accuracy\030\003 \001(\0162-"
+    ".mavsdk.rpc.remote_id.LocationAccuracy.V"
+    "erAcc\022G\n\016speed_accuracy\030\004 \001(\0162/.mavsdk.r"
+    "pc.remote_id.LocationAccuracy.SpeedAcc\022J"
+    "\n\022timestamp_accuracy\030\005 \001(\0162..mavsdk.rpc."
+    "remote_id.LocationAccuracy.TimeAcc\"\215\002\n\006H"
+    "orAcc\022\023\n\017HOR_ACC_UNKNOWN\020\000\022\021\n\rHOR_ACC_NM"
+    "_10\020\001\022\020\n\014HOR_ACC_NM_4\020\002\022\020\n\014HOR_ACC_NM_2\020"
+    "\003\022\020\n\014HOR_ACC_NM_1\020\004\022\022\n\016HOR_ACC_NM_0_5\020\005\022"
+    "\022\n\016HOR_ACC_NM_0_3\020\006\022\022\n\016HOR_ACC_NM_0_1\020\007\022"
+    "\023\n\017HOR_ACC_NM_0_05\020\010\022\024\n\020HOR_ACC_METER_30"
+    "\020\t\022\024\n\020HOR_ACC_METER_10\020\n\022\023\n\017HOR_ACC_METE"
+    "R_3\020\013\022\023\n\017HOR_ACC_METER_1\020\014\"\240\001\n\006VerAcc\022\023\n"
+    "\017VER_ACC_UNKNOWN\020\000\022\025\n\021VER_ACC_METER_150\020"
+    "\001\022\024\n\020VER_ACC_METER_45\020\002\022\024\n\020VER_ACC_METER"
+    "_25\020\003\022\024\n\020VER_ACC_METER_10\020\004\022\023\n\017VER_ACC_M"
+    "ETER_3\020\005\022\023\n\017VER_ACC_METER_1\020\006\"\257\001\n\010SpeedA"
+    "cc\022\025\n\021SPEED_ACC_UNKNOWN\020\000\022\"\n\036SPEED_ACC_M"
+    "ETERS_PER_SECOND_10\020\001\022 \n\034SPEED_ACC_METER"
+    "S_PER_SECON_3\020\002\022!\n\035SPEED_ACC_METERS_PER_"
+    "SECOND_1\020\003\022#\n\037SPEED_ACC_METERS_PER_SECON"
+    "D_0_3\020\004\"\226\003\n\007TimeAcc\022\024\n\020TIME_ACC_UNKNOWN\020"
+    "\000\022\027\n\023TIME_ACC_SECOND_0_1\020\001\022\027\n\023TIME_ACC_S"
+    "ECOND_0_2\020\002\022\027\n\023TIME_ACC_SECOND_0_3\020\003\022\027\n\023"
+    "TIME_ACC_SECOND_0_4\020\004\022\027\n\023TIME_ACC_SECOND"
+    "_0_5\020\005\022\027\n\023TIME_ACC_SECOND_0_6\020\006\022\027\n\023TIME_"
+    "ACC_SECOND_0_7\020\007\022\027\n\023TIME_ACC_SECOND_0_8\020"
+    "\010\022\027\n\023TIME_ACC_SECOND_0_9\020\t\022\027\n\023TIME_ACC_S"
+    "ECOND_1_0\020\n\022\027\n\023TIME_ACC_SECOND_1_1\020\013\022\027\n\023"
+    "TIME_ACC_SECOND_1_2\020\014\022\027\n\023TIME_ACC_SECOND"
+    "_1_3\020\r\022\027\n\023TIME_ACC_SECOND_1_4\020\016\022\027\n\023TIME_"
+    "ACC_SECOND_1_5\020\017\"\206\010\n\010SystemId\022S\n\026operato"
+    "r_location_type\030\001 \001(\01623.mavsdk.rpc.remot"
+    "e_id.SystemId.OperatorLocationType\022N\n\023cl"
+    "assification_type\030\002 \001(\01621.mavsdk.rpc.rem"
+    "ote_id.SystemId.ClassificationType\022\035\n\025op"
+    "erator_latitude_deg\030\003 \001(\001\022\036\n\026operator_lo"
+    "ngitude_deg\030\004 \001(\001\022\022\n\narea_count\030\005 \001(\r\022\025\n"
+    "\rarea_radius_m\030\006 \001(\r\022\026\n\016area_ceiling_m\030\007"
+    " \001(\002\022\024\n\014area_floor_m\030\010 \001(\002\022>\n\013category_e"
+    "u\030\t \001(\0162).mavsdk.rpc.remote_id.SystemId."
+    "CategoryEu\0228\n\010class_eu\030\n \001(\0162&.mavsdk.rp"
+    "c.remote_id.SystemId.ClassEu\022\037\n\027operator"
+    "_altitude_geo_m\030\013 \001(\002\022\023\n\013time_utc_us\030\014 \001"
+    "(\004\"\202\001\n\024OperatorLocationType\022\"\n\036OPERATOR_"
+    "LOCATION_TYPE_TAKEOFF\020\000\022$\n OPERATOR_LOCA"
+    "TION_TYPE_LIVE_GNSS\020\001\022 \n\034OPERATOR_LOCATI"
+    "ON_TYPE_FIXED\020\002\"T\n\022ClassificationType\022\"\n"
+    "\036CLASSIFICATION_TYPE_UNDECLARED\020\000\022\032\n\026CLA"
+    "SSIFICATION_TYPE_EU\020\001\"s\n\nCategoryEu\022\032\n\026C"
+    "ATEGORY_EU_UNDECLARED\020\000\022\024\n\020CATEGORY_EU_O"
+    "PEN\020\001\022\030\n\024CATEGORY_EU_SPECIFIC\020\002\022\031\n\025CATEG"
+    "ORY_EU_CERTIFIED\020\003\"\274\001\n\007ClassEu\022\027\n\023CLASS_"
+    "EU_UNDECLARED\020\000\022\024\n\020CLASS_EU_CLASS_0\020\001\022\024\n"
+    "\020CLASS_EU_CLASS_1\020\002\022\024\n\020CLASS_EU_CLASS_2\020"
+    "\003\022\024\n\020CLASS_EU_CLASS_3\020\004\022\024\n\020CLASS_EU_CLAS"
+    "S_4\020\005\022\024\n\020CLASS_EU_CLASS_5\020\006\022\024\n\020CLASS_EU_"
+    "CLASS_6\020\007\"\230\001\n\nOperatorId\022I\n\020operator_id_"
+    "type\030\001 \001(\0162/.mavsdk.rpc.remote_id.Operat"
+    "orId.OperatorIdType\022\023\n\013operator_id\030\002 \001(\t"
+    "\"*\n\016OperatorIdType\022\030\n\024OPERATOR_ID_TYPE_C"
+    "AA\020\000\"\266\001\n\006SelfId\022\?\n\020description_type\030\001 \001("
+    "\0162%.mavsdk.rpc.remote_id.SelfId.DescType"
+    "\022\023\n\013description\030\002 \001(\t\"V\n\010DescType\022\022\n\016DES"
+    "C_TYPE_TEXT\020\000\022\027\n\023DESC_TYPE_EMERGENCY\020\001\022\035"
+    "\n\031DESC_TYPE_EXTENDED_STATUS\020\002\"\225\001\n\tArmSta"
+    "tus\0226\n\006status\030\001 \001(\0162&.mavsdk.rpc.remote_"
+    "id.ArmStatus.Status\022\r\n\005error\030\002 \001(\t\"A\n\006St"
+    "atus\022\026\n\022STATUS_GOOD_TO_ARM\020\000\022\037\n\033STATUS_P"
+    "RE_ARM_FAIL_GENERIC\020\001\"\245\001\n\016RemoteIdResult"
+    "\022;\n\006result\030\001 \001(\0162+.mavsdk.rpc.remote_id."
+    "RemoteIdResult.Result\022\022\n\nresult_str\030\002 \001("
+    "\t\"B\n\006Result\022\022\n\016RESULT_UNKNOWN\020\000\022\022\n\016RESUL"
+    "T_SUCCESS\020\001\022\020\n\014RESULT_ERROR\020\0022\221\006\n\017Remote"
+    "IdService\022e\n\nSetBasicId\022\'.mavsdk.rpc.rem"
+    "ote_id.SetBasicIdRequest\032(.mavsdk.rpc.re"
+    "mote_id.SetBasicIdResponse\"\004\200\265\030\001\022h\n\013SetL"
+    "ocation\022(.mavsdk.rpc.remote_id.SetLocati"
+    "onRequest\032).mavsdk.rpc.remote_id.SetLoca"
+    "tionResponse\"\004\200\265\030\001\022\200\001\n\023SetLocationAccura"
+    "cy\0220.mavsdk.rpc.remote_id.SetLocationAcc"
+    "uracyRequest\0321.mavsdk.rpc.remote_id.SetL"
+    "ocationAccuracyResponse\"\004\200\265\030\001\022b\n\tSetSyst"
+    "em\022&.mavsdk.rpc.remote_id.SetSystemReque"
+    "st\032\'.mavsdk.rpc.remote_id.SetSystemRespo"
+    "nse\"\004\200\265\030\001\022n\n\rSetOperatorId\022*.mavsdk.rpc."
+    "remote_id.SetOperatorIdRequest\032+.mavsdk."
+    "rpc.remote_id.SetOperatorIdResponse\"\004\200\265\030"
+    "\001\022b\n\tSetSelfId\022&.mavsdk.rpc.remote_id.Se"
+    "tSelfIdRequest\032\'.mavsdk.rpc.remote_id.Se"
+    "tSelfIdResponse\"\004\200\265\030\001\022r\n\022SubscribeArmSta"
+    "tus\022/.mavsdk.rpc.remote_id.SubscribeArmS"
+    "tatusRequest\032\'.mavsdk.rpc.remote_id.ArmS"
+    "tatusResponse\"\0000\001B$\n\023io.mavsdk.remote_id"
+    "B\rRemoteIdProtob\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_remote_5fid_2fremote_5fid_2eproto_deps[1] =
     {
@@ -662,13 +947,13 @@ static ::absl::once_flag descriptor_table_remote_5fid_2fremote_5fid_2eproto_once
 const ::_pbi::DescriptorTable descriptor_table_remote_5fid_2fremote_5fid_2eproto = {
     false,
     false,
-    2369,
+    6383,
     descriptor_table_protodef_remote_5fid_2fremote_5fid_2eproto,
     "remote_id/remote_id.proto",
     &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
     descriptor_table_remote_5fid_2fremote_5fid_2eproto_deps,
     1,
-    16,
+    22,
     schemas,
     file_default_instances,
     TableStruct_remote_5fid_2fremote_5fid_2eproto::offsets,
@@ -697,9 +982,371 @@ static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_remote_5fid_2fremote_5fid
 namespace mavsdk {
 namespace rpc {
 namespace remote_id {
-const ::google::protobuf::EnumDescriptor* RemoteIdResult_Result_descriptor() {
+const ::google::protobuf::EnumDescriptor* BasicId_IdType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
   return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t BasicId_IdType_internal_data_[] = {
+    327680u, 0u, };
+bool BasicId_IdType_IsValid(int value) {
+  return 0 <= value && value <= 4;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr BasicId_IdType BasicId::ID_TYPE_NONE;
+constexpr BasicId_IdType BasicId::ID_TYPE_SERIAL_NUMBER;
+constexpr BasicId_IdType BasicId::ID_TYPE_CAA_REGISTRATION_ID;
+constexpr BasicId_IdType BasicId::ID_TYPE_UTM_ASSIGNED_UUID;
+constexpr BasicId_IdType BasicId::ID_TYPE_SPECIFIC_SESSION_ID;
+constexpr BasicId_IdType BasicId::IdType_MIN;
+constexpr BasicId_IdType BasicId::IdType_MAX;
+constexpr int BasicId::IdType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* BasicId_UasType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[1];
+}
+PROTOBUF_CONSTINIT const uint32_t BasicId_UasType_internal_data_[] = {
+    1048576u, 0u, };
+bool BasicId_UasType_IsValid(int value) {
+  return 0 <= value && value <= 15;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr BasicId_UasType BasicId::UAS_TYPE_NONE;
+constexpr BasicId_UasType BasicId::UAS_TYPE_AEROPLANE;
+constexpr BasicId_UasType BasicId::UAS_TYPE_HELICOPTER_OR_MULTIROTOR;
+constexpr BasicId_UasType BasicId::UAS_TYPE_GYROPLANE;
+constexpr BasicId_UasType BasicId::UAS_TYPE_HYBRID_LIFT;
+constexpr BasicId_UasType BasicId::UAS_TYPE_ORNITHOPTER;
+constexpr BasicId_UasType BasicId::UAS_TYPE_GLIDER;
+constexpr BasicId_UasType BasicId::UAS_TYPE_KITE;
+constexpr BasicId_UasType BasicId::UAS_TYPE_FREE_BALLOON;
+constexpr BasicId_UasType BasicId::UAS_TYPE_CAPTIVE_BALLOON;
+constexpr BasicId_UasType BasicId::UAS_TYPE_AIRSHIP;
+constexpr BasicId_UasType BasicId::UAS_TYPE_FREE_FALL_PARACHUTE;
+constexpr BasicId_UasType BasicId::UAS_TYPE_ROCKET;
+constexpr BasicId_UasType BasicId::UAS_TYPE_TETHERED_POWERED_AIRCRAFT;
+constexpr BasicId_UasType BasicId::UAS_TYPE_GROUND_OBSTACLE;
+constexpr BasicId_UasType BasicId::UAS_TYPE_OTHER;
+constexpr BasicId_UasType BasicId::UasType_MIN;
+constexpr BasicId_UasType BasicId::UasType_MAX;
+constexpr int BasicId::UasType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* Location_Status_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[2];
+}
+PROTOBUF_CONSTINIT const uint32_t Location_Status_internal_data_[] = {
+    327680u, 0u, };
+bool Location_Status_IsValid(int value) {
+  return 0 <= value && value <= 4;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr Location_Status Location::STATUS_UNDECLARED;
+constexpr Location_Status Location::STATUS_GROUND;
+constexpr Location_Status Location::STATUS_AIRBORNE;
+constexpr Location_Status Location::STATUS_EMERGENCY;
+constexpr Location_Status Location::STATUS_REMOTE_ID_SYSTEM_FAILURE;
+constexpr Location_Status Location::Status_MIN;
+constexpr Location_Status Location::Status_MAX;
+constexpr int Location::Status_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* Location_HeightRef_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[3];
+}
+PROTOBUF_CONSTINIT const uint32_t Location_HeightRef_internal_data_[] = {
+    131072u, 0u, };
+bool Location_HeightRef_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr Location_HeightRef Location::HEIGHT_REF_OVER_TAKEOFF;
+constexpr Location_HeightRef Location::HEIGHT_REF_OVER_GROUND;
+constexpr Location_HeightRef Location::HeightRef_MIN;
+constexpr Location_HeightRef Location::HeightRef_MAX;
+constexpr int Location::HeightRef_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* LocationAccuracy_HorAcc_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[4];
+}
+PROTOBUF_CONSTINIT const uint32_t LocationAccuracy_HorAcc_internal_data_[] = {
+    851968u, 0u, };
+bool LocationAccuracy_HorAcc_IsValid(int value) {
+  return 0 <= value && value <= 12;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_UNKNOWN;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_NM_10;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_NM_4;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_NM_2;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_NM_1;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_NM_0_5;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_NM_0_3;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_NM_0_1;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_NM_0_05;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_METER_30;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_METER_10;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_METER_3;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HOR_ACC_METER_1;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HorAcc_MIN;
+constexpr LocationAccuracy_HorAcc LocationAccuracy::HorAcc_MAX;
+constexpr int LocationAccuracy::HorAcc_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* LocationAccuracy_VerAcc_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[5];
+}
+PROTOBUF_CONSTINIT const uint32_t LocationAccuracy_VerAcc_internal_data_[] = {
+    458752u, 0u, };
+bool LocationAccuracy_VerAcc_IsValid(int value) {
+  return 0 <= value && value <= 6;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VER_ACC_UNKNOWN;
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VER_ACC_METER_150;
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VER_ACC_METER_45;
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VER_ACC_METER_25;
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VER_ACC_METER_10;
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VER_ACC_METER_3;
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VER_ACC_METER_1;
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VerAcc_MIN;
+constexpr LocationAccuracy_VerAcc LocationAccuracy::VerAcc_MAX;
+constexpr int LocationAccuracy::VerAcc_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* LocationAccuracy_SpeedAcc_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[6];
+}
+PROTOBUF_CONSTINIT const uint32_t LocationAccuracy_SpeedAcc_internal_data_[] = {
+    327680u, 0u, };
+bool LocationAccuracy_SpeedAcc_IsValid(int value) {
+  return 0 <= value && value <= 4;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy::SPEED_ACC_UNKNOWN;
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy::SPEED_ACC_METERS_PER_SECOND_10;
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy::SPEED_ACC_METERS_PER_SECON_3;
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy::SPEED_ACC_METERS_PER_SECOND_1;
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy::SPEED_ACC_METERS_PER_SECOND_0_3;
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy::SpeedAcc_MIN;
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy::SpeedAcc_MAX;
+constexpr int LocationAccuracy::SpeedAcc_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* LocationAccuracy_TimeAcc_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[7];
+}
+PROTOBUF_CONSTINIT const uint32_t LocationAccuracy_TimeAcc_internal_data_[] = {
+    1048576u, 0u, };
+bool LocationAccuracy_TimeAcc_IsValid(int value) {
+  return 0 <= value && value <= 15;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_UNKNOWN;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_1;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_2;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_3;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_4;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_5;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_6;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_7;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_8;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_0_9;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_1_0;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_1_1;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_1_2;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_1_3;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_1_4;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TIME_ACC_SECOND_1_5;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TimeAcc_MIN;
+constexpr LocationAccuracy_TimeAcc LocationAccuracy::TimeAcc_MAX;
+constexpr int LocationAccuracy::TimeAcc_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* SystemId_OperatorLocationType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[8];
+}
+PROTOBUF_CONSTINIT const uint32_t SystemId_OperatorLocationType_internal_data_[] = {
+    196608u, 0u, };
+bool SystemId_OperatorLocationType_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr SystemId_OperatorLocationType SystemId::OPERATOR_LOCATION_TYPE_TAKEOFF;
+constexpr SystemId_OperatorLocationType SystemId::OPERATOR_LOCATION_TYPE_LIVE_GNSS;
+constexpr SystemId_OperatorLocationType SystemId::OPERATOR_LOCATION_TYPE_FIXED;
+constexpr SystemId_OperatorLocationType SystemId::OperatorLocationType_MIN;
+constexpr SystemId_OperatorLocationType SystemId::OperatorLocationType_MAX;
+constexpr int SystemId::OperatorLocationType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* SystemId_ClassificationType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[9];
+}
+PROTOBUF_CONSTINIT const uint32_t SystemId_ClassificationType_internal_data_[] = {
+    131072u, 0u, };
+bool SystemId_ClassificationType_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr SystemId_ClassificationType SystemId::CLASSIFICATION_TYPE_UNDECLARED;
+constexpr SystemId_ClassificationType SystemId::CLASSIFICATION_TYPE_EU;
+constexpr SystemId_ClassificationType SystemId::ClassificationType_MIN;
+constexpr SystemId_ClassificationType SystemId::ClassificationType_MAX;
+constexpr int SystemId::ClassificationType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* SystemId_CategoryEu_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[10];
+}
+PROTOBUF_CONSTINIT const uint32_t SystemId_CategoryEu_internal_data_[] = {
+    262144u, 0u, };
+bool SystemId_CategoryEu_IsValid(int value) {
+  return 0 <= value && value <= 3;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr SystemId_CategoryEu SystemId::CATEGORY_EU_UNDECLARED;
+constexpr SystemId_CategoryEu SystemId::CATEGORY_EU_OPEN;
+constexpr SystemId_CategoryEu SystemId::CATEGORY_EU_SPECIFIC;
+constexpr SystemId_CategoryEu SystemId::CATEGORY_EU_CERTIFIED;
+constexpr SystemId_CategoryEu SystemId::CategoryEu_MIN;
+constexpr SystemId_CategoryEu SystemId::CategoryEu_MAX;
+constexpr int SystemId::CategoryEu_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* SystemId_ClassEu_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[11];
+}
+PROTOBUF_CONSTINIT const uint32_t SystemId_ClassEu_internal_data_[] = {
+    524288u, 0u, };
+bool SystemId_ClassEu_IsValid(int value) {
+  return 0 <= value && value <= 7;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr SystemId_ClassEu SystemId::CLASS_EU_UNDECLARED;
+constexpr SystemId_ClassEu SystemId::CLASS_EU_CLASS_0;
+constexpr SystemId_ClassEu SystemId::CLASS_EU_CLASS_1;
+constexpr SystemId_ClassEu SystemId::CLASS_EU_CLASS_2;
+constexpr SystemId_ClassEu SystemId::CLASS_EU_CLASS_3;
+constexpr SystemId_ClassEu SystemId::CLASS_EU_CLASS_4;
+constexpr SystemId_ClassEu SystemId::CLASS_EU_CLASS_5;
+constexpr SystemId_ClassEu SystemId::CLASS_EU_CLASS_6;
+constexpr SystemId_ClassEu SystemId::ClassEu_MIN;
+constexpr SystemId_ClassEu SystemId::ClassEu_MAX;
+constexpr int SystemId::ClassEu_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* OperatorId_OperatorIdType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[12];
+}
+PROTOBUF_CONSTINIT const uint32_t OperatorId_OperatorIdType_internal_data_[] = {
+    65536u, 0u, };
+bool OperatorId_OperatorIdType_IsValid(int value) {
+  return 0 <= value && value <= 0;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr OperatorId_OperatorIdType OperatorId::OPERATOR_ID_TYPE_CAA;
+constexpr OperatorId_OperatorIdType OperatorId::OperatorIdType_MIN;
+constexpr OperatorId_OperatorIdType OperatorId::OperatorIdType_MAX;
+constexpr int OperatorId::OperatorIdType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* SelfId_DescType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[13];
+}
+PROTOBUF_CONSTINIT const uint32_t SelfId_DescType_internal_data_[] = {
+    196608u, 0u, };
+bool SelfId_DescType_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr SelfId_DescType SelfId::DESC_TYPE_TEXT;
+constexpr SelfId_DescType SelfId::DESC_TYPE_EMERGENCY;
+constexpr SelfId_DescType SelfId::DESC_TYPE_EXTENDED_STATUS;
+constexpr SelfId_DescType SelfId::DescType_MIN;
+constexpr SelfId_DescType SelfId::DescType_MAX;
+constexpr int SelfId::DescType_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* ArmStatus_Status_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[14];
+}
+PROTOBUF_CONSTINIT const uint32_t ArmStatus_Status_internal_data_[] = {
+    131072u, 0u, };
+bool ArmStatus_Status_IsValid(int value) {
+  return 0 <= value && value <= 1;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr ArmStatus_Status ArmStatus::STATUS_GOOD_TO_ARM;
+constexpr ArmStatus_Status ArmStatus::STATUS_PRE_ARM_FAIL_GENERIC;
+constexpr ArmStatus_Status ArmStatus::Status_MIN;
+constexpr ArmStatus_Status ArmStatus::Status_MAX;
+constexpr int ArmStatus::Status_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* RemoteIdResult_Result_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_remote_5fid_2fremote_5fid_2eproto);
+  return file_level_enum_descriptors_remote_5fid_2fremote_5fid_2eproto[15];
 }
 PROTOBUF_CONSTINIT const uint32_t RemoteIdResult_Result_internal_data_[] = {
     196608u, 0u, };
@@ -1548,6 +2195,420 @@ void SetLocationResponse::InternalSwap(SetLocationResponse* PROTOBUF_RESTRICT ot
 }
 // ===================================================================
 
+class SetLocationAccuracyRequest::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetLocationAccuracyRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SetLocationAccuracyRequest, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::LocationAccuracy& location_accuracy(const SetLocationAccuracyRequest* msg);
+  static void set_has_location_accuracy(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::LocationAccuracy& SetLocationAccuracyRequest::_Internal::location_accuracy(const SetLocationAccuracyRequest* msg) {
+  return *msg->_impl_.location_accuracy_;
+}
+SetLocationAccuracyRequest::SetLocationAccuracyRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetLocationAccuracyRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetLocationAccuracyRequest::SetLocationAccuracyRequest(
+    ::google::protobuf::Arena* arena,
+    const SetLocationAccuracyRequest& from)
+    : ::google::protobuf::Message(arena) {
+  SetLocationAccuracyRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.location_accuracy_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::LocationAccuracy>(arena, *from._impl_.location_accuracy_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE SetLocationAccuracyRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetLocationAccuracyRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.location_accuracy_ = {};
+}
+SetLocationAccuracyRequest::~SetLocationAccuracyRequest() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetLocationAccuracyRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.location_accuracy_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SetLocationAccuracyRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.location_accuracy_ != nullptr);
+    _impl_.location_accuracy_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SetLocationAccuracyRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetLocationAccuracyRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetLocationAccuracyRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetLocationAccuracyRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.LocationAccuracy location_accuracy = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetLocationAccuracyRequest, _impl_.location_accuracy_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.LocationAccuracy location_accuracy = 1;
+    {PROTOBUF_FIELD_OFFSET(SetLocationAccuracyRequest, _impl_.location_accuracy_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::LocationAccuracy>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SetLocationAccuracyRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.LocationAccuracy location_accuracy = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::location_accuracy(this),
+        _Internal::location_accuracy(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+  return target;
+}
+
+::size_t SetLocationAccuracyRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy location_accuracy = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.location_accuracy_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SetLocationAccuracyRequest::_class_data_ = {
+    SetLocationAccuracyRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SetLocationAccuracyRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void SetLocationAccuracyRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SetLocationAccuracyRequest*>(&to_msg);
+  auto& from = static_cast<const SetLocationAccuracyRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_location_accuracy()->::mavsdk::rpc::remote_id::LocationAccuracy::MergeFrom(
+        from._internal_location_accuracy());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetLocationAccuracyRequest::CopyFrom(const SetLocationAccuracyRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SetLocationAccuracyRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SetLocationAccuracyRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SetLocationAccuracyRequest::InternalSwap(SetLocationAccuracyRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.location_accuracy_, other->_impl_.location_accuracy_);
+}
+
+::google::protobuf::Metadata SetLocationAccuracyRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[4]);
+}
+// ===================================================================
+
+class SetLocationAccuracyResponse::_Internal {
+ public:
+  using HasBits = decltype(std::declval<SetLocationAccuracyResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(SetLocationAccuracyResponse, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::RemoteIdResult& remote_id_result(const SetLocationAccuracyResponse* msg);
+  static void set_has_remote_id_result(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::RemoteIdResult& SetLocationAccuracyResponse::_Internal::remote_id_result(const SetLocationAccuracyResponse* msg) {
+  return *msg->_impl_.remote_id_result_;
+}
+SetLocationAccuracyResponse::SetLocationAccuracyResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SetLocationAccuracyResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+SetLocationAccuracyResponse::SetLocationAccuracyResponse(
+    ::google::protobuf::Arena* arena,
+    const SetLocationAccuracyResponse& from)
+    : ::google::protobuf::Message(arena) {
+  SetLocationAccuracyResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.remote_id_result_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::RemoteIdResult>(arena, *from._impl_.remote_id_result_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE SetLocationAccuracyResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void SetLocationAccuracyResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.remote_id_result_ = {};
+}
+SetLocationAccuracyResponse::~SetLocationAccuracyResponse() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SetLocationAccuracyResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.remote_id_result_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SetLocationAccuracyResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.remote_id_result_ != nullptr);
+    _impl_.remote_id_result_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SetLocationAccuracyResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> SetLocationAccuracyResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(SetLocationAccuracyResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_SetLocationAccuracyResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(SetLocationAccuracyResponse, _impl_.remote_id_result_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+    {PROTOBUF_FIELD_OFFSET(SetLocationAccuracyResponse, _impl_.remote_id_result_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::RemoteIdResult>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* SetLocationAccuracyResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::remote_id_result(this),
+        _Internal::remote_id_result(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+  return target;
+}
+
+::size_t SetLocationAccuracyResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.remote_id_result_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SetLocationAccuracyResponse::_class_data_ = {
+    SetLocationAccuracyResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SetLocationAccuracyResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void SetLocationAccuracyResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SetLocationAccuracyResponse*>(&to_msg);
+  auto& from = static_cast<const SetLocationAccuracyResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_remote_id_result()->::mavsdk::rpc::remote_id::RemoteIdResult::MergeFrom(
+        from._internal_remote_id_result());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SetLocationAccuracyResponse::CopyFrom(const SetLocationAccuracyResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SetLocationAccuracyResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SetLocationAccuracyResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SetLocationAccuracyResponse::InternalSwap(SetLocationAccuracyResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.remote_id_result_, other->_impl_.remote_id_result_);
+}
+
+::google::protobuf::Metadata SetLocationAccuracyResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[5]);
+}
+// ===================================================================
+
 class SetSystemRequest::_Internal {
  public:
   using HasBits = decltype(std::declval<SetSystemRequest>()._impl_._has_bits_);
@@ -1751,7 +2812,7 @@ void SetSystemRequest::InternalSwap(SetSystemRequest* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata SetSystemRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[4]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[6]);
 }
 // ===================================================================
 
@@ -1958,7 +3019,7 @@ void SetSystemResponse::InternalSwap(SetSystemResponse* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata SetSystemResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[5]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[7]);
 }
 // ===================================================================
 
@@ -2165,7 +3226,7 @@ void SetOperatorIdRequest::InternalSwap(SetOperatorIdRequest* PROTOBUF_RESTRICT 
 ::google::protobuf::Metadata SetOperatorIdRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[6]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[8]);
 }
 // ===================================================================
 
@@ -2372,7 +3433,7 @@ void SetOperatorIdResponse::InternalSwap(SetOperatorIdResponse* PROTOBUF_RESTRIC
 ::google::protobuf::Metadata SetOperatorIdResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[7]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[9]);
 }
 // ===================================================================
 
@@ -2579,7 +3640,7 @@ void SetSelfIdRequest::InternalSwap(SetSelfIdRequest* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata SetSelfIdRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[8]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[10]);
 }
 // ===================================================================
 
@@ -2786,7 +3847,249 @@ void SetSelfIdResponse::InternalSwap(SetSelfIdResponse* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata SetSelfIdResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[9]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[11]);
+}
+// ===================================================================
+
+class SubscribeArmStatusRequest::_Internal {
+ public:
+};
+
+SubscribeArmStatusRequest::SubscribeArmStatusRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.SubscribeArmStatusRequest)
+}
+SubscribeArmStatusRequest::SubscribeArmStatusRequest(
+    ::google::protobuf::Arena* arena,
+    const SubscribeArmStatusRequest& from)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+  SubscribeArmStatusRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.SubscribeArmStatusRequest)
+}
+
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata SubscribeArmStatusRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[12]);
+}
+// ===================================================================
+
+class ArmStatusResponse::_Internal {
+ public:
+  using HasBits = decltype(std::declval<ArmStatusResponse>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+    8 * PROTOBUF_FIELD_OFFSET(ArmStatusResponse, _impl_._has_bits_);
+  static const ::mavsdk::rpc::remote_id::ArmStatus& arm_status(const ArmStatusResponse* msg);
+  static void set_has_arm_status(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+const ::mavsdk::rpc::remote_id::ArmStatus& ArmStatusResponse::_Internal::arm_status(const ArmStatusResponse* msg) {
+  return *msg->_impl_.arm_status_;
+}
+ArmStatusResponse::ArmStatusResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.ArmStatusResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE ArmStatusResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+ArmStatusResponse::ArmStatusResponse(
+    ::google::protobuf::Arena* arena,
+    const ArmStatusResponse& from)
+    : ::google::protobuf::Message(arena) {
+  ArmStatusResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.arm_status_ = (cached_has_bits & 0x00000001u)
+                ? CreateMaybeMessage<::mavsdk::rpc::remote_id::ArmStatus>(arena, *from._impl_.arm_status_)
+                : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.ArmStatusResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE ArmStatusResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void ArmStatusResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.arm_status_ = {};
+}
+ArmStatusResponse::~ArmStatusResponse() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.ArmStatusResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ArmStatusResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  delete _impl_.arm_status_;
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ArmStatusResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.ArmStatusResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.arm_status_ != nullptr);
+    _impl_.arm_status_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ArmStatusResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> ArmStatusResponse::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ArmStatusResponse, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ArmStatusResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // .mavsdk.rpc.remote_id.ArmStatus arm_status = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(ArmStatusResponse, _impl_.arm_status_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.ArmStatus arm_status = 1;
+    {PROTOBUF_FIELD_OFFSET(ArmStatusResponse, _impl_.arm_status_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::mavsdk::rpc::remote_id::ArmStatus>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* ArmStatusResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.ArmStatusResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  // .mavsdk.rpc.remote_id.ArmStatus arm_status = 1;
+  if (cached_has_bits & 0x00000001u) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, _Internal::arm_status(this),
+        _Internal::arm_status(this).GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.ArmStatusResponse)
+  return target;
+}
+
+::size_t ArmStatusResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.ArmStatusResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.ArmStatus arm_status = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size +=
+        1 + ::google::protobuf::internal::WireFormatLite::MessageSize(*_impl_.arm_status_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ArmStatusResponse::_class_data_ = {
+    ArmStatusResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ArmStatusResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void ArmStatusResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ArmStatusResponse*>(&to_msg);
+  auto& from = static_cast<const ArmStatusResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.ArmStatusResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((from._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    _this->_internal_mutable_arm_status()->::mavsdk::rpc::remote_id::ArmStatus::MergeFrom(
+        from._internal_arm_status());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ArmStatusResponse::CopyFrom(const ArmStatusResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.ArmStatusResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ArmStatusResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ArmStatusResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ArmStatusResponse::InternalSwap(ArmStatusResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.arm_status_, other->_impl_.arm_status_);
+}
+
+::google::protobuf::Metadata ArmStatusResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[13]);
 }
 // ===================================================================
 
@@ -2887,10 +4190,10 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> BasicId::_table_ = {
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // uint32 id_type = 1;
+    // .mavsdk.rpc.remote_id.BasicId.IdType id_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(BasicId, _impl_.id_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(BasicId, _impl_.id_type_)}},
-    // uint32 ua_type = 2;
+    // .mavsdk.rpc.remote_id.BasicId.UasType ua_type = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(BasicId, _impl_.ua_type_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(BasicId, _impl_.ua_type_)}},
     // string uas_id = 3;
@@ -2899,12 +4202,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> BasicId::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 id_type = 1;
+    // .mavsdk.rpc.remote_id.BasicId.IdType id_type = 1;
     {PROTOBUF_FIELD_OFFSET(BasicId, _impl_.id_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 ua_type = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .mavsdk.rpc.remote_id.BasicId.UasType ua_type = 2;
     {PROTOBUF_FIELD_OFFSET(BasicId, _impl_.ua_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // string uas_id = 3;
     {PROTOBUF_FIELD_OFFSET(BasicId, _impl_.uas_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -2924,17 +4227,17 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> BasicId::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint32 id_type = 1;
+  // .mavsdk.rpc.remote_id.BasicId.IdType id_type = 1;
   if (this->_internal_id_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         1, this->_internal_id_type(), target);
   }
 
-  // uint32 ua_type = 2;
+  // .mavsdk.rpc.remote_id.BasicId.UasType ua_type = 2;
   if (this->_internal_ua_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         2, this->_internal_ua_type(), target);
   }
 
@@ -2969,16 +4272,16 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> BasicId::_table_ = {
                                     this->_internal_uas_id());
   }
 
-  // uint32 id_type = 1;
+  // .mavsdk.rpc.remote_id.BasicId.IdType id_type = 1;
   if (this->_internal_id_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_id_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_id_type());
   }
 
-  // uint32 ua_type = 2;
+  // .mavsdk.rpc.remote_id.BasicId.UasType ua_type = 2;
   if (this->_internal_ua_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_ua_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_ua_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -3043,7 +4346,7 @@ void BasicId::InternalSwap(BasicId* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata BasicId::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[10]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[14]);
 }
 // ===================================================================
 
@@ -3071,9 +4374,9 @@ inline void Location::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, status_),
            0,
-           offsetof(Impl_, timestamp_accuracy_) -
+           offsetof(Impl_, time_utc_us_) -
                offsetof(Impl_, status_) +
-               sizeof(Impl_::timestamp_accuracy_));
+               sizeof(Impl_::time_utc_us_));
 }
 Location::~Location() {
   // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.Location)
@@ -3093,8 +4396,8 @@ PROTOBUF_NOINLINE void Location::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.status_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.timestamp_accuracy_) -
-      reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.timestamp_accuracy_));
+      reinterpret_cast<char*>(&_impl_.time_utc_us_) -
+      reinterpret_cast<char*>(&_impl_.status_)) + sizeof(_impl_.time_utc_us_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -3106,99 +4409,94 @@ const char* Location::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 12, 0, 0, 2> Location::_table_ = {
+const ::_pbi::TcParseTable<4, 11, 0, 0, 2> Location::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    12, 120,  // max_field_number, fast_idx_mask
+    11, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294963200,  // skipmap
+    4294965248,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    12,  // num_field_entries
+    11,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_Location_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // uint32 status = 1;
+    // .mavsdk.rpc.remote_id.Location.Status status = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.status_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.status_)}},
-    // uint32 direction = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.direction_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.direction_)}},
-    // uint32 speed_horizontal = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.speed_horizontal_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.speed_horizontal_)}},
-    // int32 speed_vertical = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.speed_vertical_), 63>(),
-     {32, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.speed_vertical_)}},
-    // int32 latitude = 5;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.latitude_), 63>(),
-     {40, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.latitude_)}},
-    // int32 longitude = 6;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.longitude_), 63>(),
-     {48, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.longitude_)}},
-    // float altitude_barometric = 7;
+    // uint32 direction_deg = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.direction_deg_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.direction_deg_)}},
+    // float speed_horizontal_m_s = 3;
     {::_pbi::TcParser::FastF32S1,
-     {61, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.altitude_barometric_)}},
-    // float altitude_geodetic = 8;
+     {29, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.speed_horizontal_m_s_)}},
+    // float speed_vertical_m_s = 4;
     {::_pbi::TcParser::FastF32S1,
-     {69, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.altitude_geodetic_)}},
-    // uint32 height_reference = 9;
+     {37, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.speed_vertical_m_s_)}},
+    // double latitude_deg = 5;
+    {::_pbi::TcParser::FastF64S1,
+     {41, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.latitude_deg_)}},
+    // double longitude_deg = 6;
+    {::_pbi::TcParser::FastF64S1,
+     {49, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.longitude_deg_)}},
+    // float altitude_barometric_m = 7;
+    {::_pbi::TcParser::FastF32S1,
+     {61, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.altitude_barometric_m_)}},
+    // float altitude_geodetic_m = 8;
+    {::_pbi::TcParser::FastF32S1,
+     {69, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.altitude_geodetic_m_)}},
+    // .mavsdk.rpc.remote_id.Location.HeightRef height_reference = 9;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.height_reference_), 63>(),
      {72, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.height_reference_)}},
-    // float height = 10;
+    // float height_m = 10;
     {::_pbi::TcParser::FastF32S1,
-     {85, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.height_)}},
-    // float timestamp = 11;
-    {::_pbi::TcParser::FastF32S1,
-     {93, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_)}},
-    // uint32 timestamp_accuracy = 12;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Location, _impl_.timestamp_accuracy_), 63>(),
-     {96, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_accuracy_)}},
+     {85, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.height_m_)}},
+    // uint64 time_utc_us = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Location, _impl_.time_utc_us_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(Location, _impl_.time_utc_us_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 status = 1;
+    // .mavsdk.rpc.remote_id.Location.Status status = 1;
     {PROTOBUF_FIELD_OFFSET(Location, _impl_.status_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // uint32 direction_deg = 2;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.direction_deg_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 direction = 2;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.direction_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 speed_horizontal = 3;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.speed_horizontal_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // int32 speed_vertical = 4;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.speed_vertical_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 latitude = 5;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.latitude_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 longitude = 6;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.longitude_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // float altitude_barometric = 7;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.altitude_barometric_), 0, 0,
+    // float speed_horizontal_m_s = 3;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.speed_horizontal_m_s_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float altitude_geodetic = 8;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.altitude_geodetic_), 0, 0,
+    // float speed_vertical_m_s = 4;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.speed_vertical_m_s_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // uint32 height_reference = 9;
+    // double latitude_deg = 5;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.latitude_deg_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // double longitude_deg = 6;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.longitude_deg_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // float altitude_barometric_m = 7;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.altitude_barometric_m_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // float altitude_geodetic_m = 8;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.altitude_geodetic_m_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
+    // .mavsdk.rpc.remote_id.Location.HeightRef height_reference = 9;
     {PROTOBUF_FIELD_OFFSET(Location, _impl_.height_reference_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // float height = 10;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.height_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // float height_m = 10;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.height_m_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float timestamp = 11;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // uint32 timestamp_accuracy = 12;
-    {PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_accuracy_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint64 time_utc_us = 11;
+    {PROTOBUF_FIELD_OFFSET(Location, _impl_.time_utc_us_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
   }},
   // no aux_entries
   {{
@@ -3212,108 +4510,116 @@ const ::_pbi::TcParseTable<4, 12, 0, 0, 2> Location::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint32 status = 1;
+  // .mavsdk.rpc.remote_id.Location.Status status = 1;
   if (this->_internal_status() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         1, this->_internal_status(), target);
   }
 
-  // uint32 direction = 2;
-  if (this->_internal_direction() != 0) {
+  // uint32 direction_deg = 2;
+  if (this->_internal_direction_deg() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        2, this->_internal_direction(), target);
+        2, this->_internal_direction_deg(), target);
   }
 
-  // uint32 speed_horizontal = 3;
-  if (this->_internal_speed_horizontal() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        3, this->_internal_speed_horizontal(), target);
-  }
-
-  // int32 speed_vertical = 4;
-  if (this->_internal_speed_vertical() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<4>(
-            stream, this->_internal_speed_vertical(), target);
-  }
-
-  // int32 latitude = 5;
-  if (this->_internal_latitude() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<5>(
-            stream, this->_internal_latitude(), target);
-  }
-
-  // int32 longitude = 6;
-  if (this->_internal_longitude() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<6>(
-            stream, this->_internal_longitude(), target);
-  }
-
-  // float altitude_barometric = 7;
+  // float speed_horizontal_m_s = 3;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_altitude_barometric = this->_internal_altitude_barometric();
-  ::uint32_t raw_altitude_barometric;
-  memcpy(&raw_altitude_barometric, &tmp_altitude_barometric, sizeof(tmp_altitude_barometric));
-  if (raw_altitude_barometric != 0) {
+  float tmp_speed_horizontal_m_s = this->_internal_speed_horizontal_m_s();
+  ::uint32_t raw_speed_horizontal_m_s;
+  memcpy(&raw_speed_horizontal_m_s, &tmp_speed_horizontal_m_s, sizeof(tmp_speed_horizontal_m_s));
+  if (raw_speed_horizontal_m_s != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        7, this->_internal_altitude_barometric(), target);
+        3, this->_internal_speed_horizontal_m_s(), target);
   }
 
-  // float altitude_geodetic = 8;
+  // float speed_vertical_m_s = 4;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_altitude_geodetic = this->_internal_altitude_geodetic();
-  ::uint32_t raw_altitude_geodetic;
-  memcpy(&raw_altitude_geodetic, &tmp_altitude_geodetic, sizeof(tmp_altitude_geodetic));
-  if (raw_altitude_geodetic != 0) {
+  float tmp_speed_vertical_m_s = this->_internal_speed_vertical_m_s();
+  ::uint32_t raw_speed_vertical_m_s;
+  memcpy(&raw_speed_vertical_m_s, &tmp_speed_vertical_m_s, sizeof(tmp_speed_vertical_m_s));
+  if (raw_speed_vertical_m_s != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        8, this->_internal_altitude_geodetic(), target);
+        4, this->_internal_speed_vertical_m_s(), target);
   }
 
-  // uint32 height_reference = 9;
+  // double latitude_deg = 5;
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_latitude_deg = this->_internal_latitude_deg();
+  ::uint64_t raw_latitude_deg;
+  memcpy(&raw_latitude_deg, &tmp_latitude_deg, sizeof(tmp_latitude_deg));
+  if (raw_latitude_deg != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        5, this->_internal_latitude_deg(), target);
+  }
+
+  // double longitude_deg = 6;
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_longitude_deg = this->_internal_longitude_deg();
+  ::uint64_t raw_longitude_deg;
+  memcpy(&raw_longitude_deg, &tmp_longitude_deg, sizeof(tmp_longitude_deg));
+  if (raw_longitude_deg != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        6, this->_internal_longitude_deg(), target);
+  }
+
+  // float altitude_barometric_m = 7;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_altitude_barometric_m = this->_internal_altitude_barometric_m();
+  ::uint32_t raw_altitude_barometric_m;
+  memcpy(&raw_altitude_barometric_m, &tmp_altitude_barometric_m, sizeof(tmp_altitude_barometric_m));
+  if (raw_altitude_barometric_m != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        7, this->_internal_altitude_barometric_m(), target);
+  }
+
+  // float altitude_geodetic_m = 8;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_altitude_geodetic_m = this->_internal_altitude_geodetic_m();
+  ::uint32_t raw_altitude_geodetic_m;
+  memcpy(&raw_altitude_geodetic_m, &tmp_altitude_geodetic_m, sizeof(tmp_altitude_geodetic_m));
+  if (raw_altitude_geodetic_m != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        8, this->_internal_altitude_geodetic_m(), target);
+  }
+
+  // .mavsdk.rpc.remote_id.Location.HeightRef height_reference = 9;
   if (this->_internal_height_reference() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         9, this->_internal_height_reference(), target);
   }
 
-  // float height = 10;
+  // float height_m = 10;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_height = this->_internal_height();
-  ::uint32_t raw_height;
-  memcpy(&raw_height, &tmp_height, sizeof(tmp_height));
-  if (raw_height != 0) {
+  float tmp_height_m = this->_internal_height_m();
+  ::uint32_t raw_height_m;
+  memcpy(&raw_height_m, &tmp_height_m, sizeof(tmp_height_m));
+  if (raw_height_m != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        10, this->_internal_height(), target);
+        10, this->_internal_height_m(), target);
   }
 
-  // float timestamp = 11;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_timestamp = this->_internal_timestamp();
-  ::uint32_t raw_timestamp;
-  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
-  if (raw_timestamp != 0) {
+  // uint64 time_utc_us = 11;
+  if (this->_internal_time_utc_us() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        11, this->_internal_timestamp(), target);
-  }
-
-  // uint32 timestamp_accuracy = 12;
-  if (this->_internal_timestamp_accuracy() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        12, this->_internal_timestamp_accuracy(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        11, this->_internal_time_utc_us(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3333,92 +4639,98 @@ const ::_pbi::TcParseTable<4, 12, 0, 0, 2> Location::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint32 status = 1;
+  // .mavsdk.rpc.remote_id.Location.Status status = 1;
   if (this->_internal_status() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_status());
+  }
+
+  // uint32 direction_deg = 2;
+  if (this->_internal_direction_deg() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_status());
+        this->_internal_direction_deg());
   }
 
-  // uint32 direction = 2;
-  if (this->_internal_direction() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_direction());
-  }
-
-  // uint32 speed_horizontal = 3;
-  if (this->_internal_speed_horizontal() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_speed_horizontal());
-  }
-
-  // int32 speed_vertical = 4;
-  if (this->_internal_speed_vertical() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_speed_vertical());
-  }
-
-  // int32 latitude = 5;
-  if (this->_internal_latitude() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_latitude());
-  }
-
-  // int32 longitude = 6;
-  if (this->_internal_longitude() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_longitude());
-  }
-
-  // float altitude_barometric = 7;
+  // float speed_horizontal_m_s = 3;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_altitude_barometric = this->_internal_altitude_barometric();
-  ::uint32_t raw_altitude_barometric;
-  memcpy(&raw_altitude_barometric, &tmp_altitude_barometric, sizeof(tmp_altitude_barometric));
-  if (raw_altitude_barometric != 0) {
+  float tmp_speed_horizontal_m_s = this->_internal_speed_horizontal_m_s();
+  ::uint32_t raw_speed_horizontal_m_s;
+  memcpy(&raw_speed_horizontal_m_s, &tmp_speed_horizontal_m_s, sizeof(tmp_speed_horizontal_m_s));
+  if (raw_speed_horizontal_m_s != 0) {
     total_size += 5;
   }
 
-  // float altitude_geodetic = 8;
+  // float speed_vertical_m_s = 4;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_altitude_geodetic = this->_internal_altitude_geodetic();
-  ::uint32_t raw_altitude_geodetic;
-  memcpy(&raw_altitude_geodetic, &tmp_altitude_geodetic, sizeof(tmp_altitude_geodetic));
-  if (raw_altitude_geodetic != 0) {
+  float tmp_speed_vertical_m_s = this->_internal_speed_vertical_m_s();
+  ::uint32_t raw_speed_vertical_m_s;
+  memcpy(&raw_speed_vertical_m_s, &tmp_speed_vertical_m_s, sizeof(tmp_speed_vertical_m_s));
+  if (raw_speed_vertical_m_s != 0) {
     total_size += 5;
   }
 
-  // uint32 height_reference = 9;
+  // double latitude_deg = 5;
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_latitude_deg = this->_internal_latitude_deg();
+  ::uint64_t raw_latitude_deg;
+  memcpy(&raw_latitude_deg, &tmp_latitude_deg, sizeof(tmp_latitude_deg));
+  if (raw_latitude_deg != 0) {
+    total_size += 9;
+  }
+
+  // double longitude_deg = 6;
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_longitude_deg = this->_internal_longitude_deg();
+  ::uint64_t raw_longitude_deg;
+  memcpy(&raw_longitude_deg, &tmp_longitude_deg, sizeof(tmp_longitude_deg));
+  if (raw_longitude_deg != 0) {
+    total_size += 9;
+  }
+
+  // float altitude_barometric_m = 7;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_altitude_barometric_m = this->_internal_altitude_barometric_m();
+  ::uint32_t raw_altitude_barometric_m;
+  memcpy(&raw_altitude_barometric_m, &tmp_altitude_barometric_m, sizeof(tmp_altitude_barometric_m));
+  if (raw_altitude_barometric_m != 0) {
+    total_size += 5;
+  }
+
+  // float altitude_geodetic_m = 8;
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_altitude_geodetic_m = this->_internal_altitude_geodetic_m();
+  ::uint32_t raw_altitude_geodetic_m;
+  memcpy(&raw_altitude_geodetic_m, &tmp_altitude_geodetic_m, sizeof(tmp_altitude_geodetic_m));
+  if (raw_altitude_geodetic_m != 0) {
+    total_size += 5;
+  }
+
+  // .mavsdk.rpc.remote_id.Location.HeightRef height_reference = 9;
   if (this->_internal_height_reference() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_height_reference());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_height_reference());
   }
 
-  // float height = 10;
+  // float height_m = 10;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_height = this->_internal_height();
-  ::uint32_t raw_height;
-  memcpy(&raw_height, &tmp_height, sizeof(tmp_height));
-  if (raw_height != 0) {
+  float tmp_height_m = this->_internal_height_m();
+  ::uint32_t raw_height_m;
+  memcpy(&raw_height_m, &tmp_height_m, sizeof(tmp_height_m));
+  if (raw_height_m != 0) {
     total_size += 5;
   }
 
-  // float timestamp = 11;
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_timestamp = this->_internal_timestamp();
-  ::uint32_t raw_timestamp;
-  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
-  if (raw_timestamp != 0) {
-    total_size += 5;
-  }
-
-  // uint32 timestamp_accuracy = 12;
-  if (this->_internal_timestamp_accuracy() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_timestamp_accuracy());
+  // uint64 time_utc_us = 11;
+  if (this->_internal_time_utc_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_time_utc_us());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -3443,58 +4755,70 @@ void Location::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   if (from._internal_status() != 0) {
     _this->_internal_set_status(from._internal_status());
   }
-  if (from._internal_direction() != 0) {
-    _this->_internal_set_direction(from._internal_direction());
-  }
-  if (from._internal_speed_horizontal() != 0) {
-    _this->_internal_set_speed_horizontal(from._internal_speed_horizontal());
-  }
-  if (from._internal_speed_vertical() != 0) {
-    _this->_internal_set_speed_vertical(from._internal_speed_vertical());
-  }
-  if (from._internal_latitude() != 0) {
-    _this->_internal_set_latitude(from._internal_latitude());
-  }
-  if (from._internal_longitude() != 0) {
-    _this->_internal_set_longitude(from._internal_longitude());
+  if (from._internal_direction_deg() != 0) {
+    _this->_internal_set_direction_deg(from._internal_direction_deg());
   }
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_altitude_barometric = from._internal_altitude_barometric();
-  ::uint32_t raw_altitude_barometric;
-  memcpy(&raw_altitude_barometric, &tmp_altitude_barometric, sizeof(tmp_altitude_barometric));
-  if (raw_altitude_barometric != 0) {
-    _this->_internal_set_altitude_barometric(from._internal_altitude_barometric());
+  float tmp_speed_horizontal_m_s = from._internal_speed_horizontal_m_s();
+  ::uint32_t raw_speed_horizontal_m_s;
+  memcpy(&raw_speed_horizontal_m_s, &tmp_speed_horizontal_m_s, sizeof(tmp_speed_horizontal_m_s));
+  if (raw_speed_horizontal_m_s != 0) {
+    _this->_internal_set_speed_horizontal_m_s(from._internal_speed_horizontal_m_s());
   }
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_altitude_geodetic = from._internal_altitude_geodetic();
-  ::uint32_t raw_altitude_geodetic;
-  memcpy(&raw_altitude_geodetic, &tmp_altitude_geodetic, sizeof(tmp_altitude_geodetic));
-  if (raw_altitude_geodetic != 0) {
-    _this->_internal_set_altitude_geodetic(from._internal_altitude_geodetic());
+  float tmp_speed_vertical_m_s = from._internal_speed_vertical_m_s();
+  ::uint32_t raw_speed_vertical_m_s;
+  memcpy(&raw_speed_vertical_m_s, &tmp_speed_vertical_m_s, sizeof(tmp_speed_vertical_m_s));
+  if (raw_speed_vertical_m_s != 0) {
+    _this->_internal_set_speed_vertical_m_s(from._internal_speed_vertical_m_s());
+  }
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_latitude_deg = from._internal_latitude_deg();
+  ::uint64_t raw_latitude_deg;
+  memcpy(&raw_latitude_deg, &tmp_latitude_deg, sizeof(tmp_latitude_deg));
+  if (raw_latitude_deg != 0) {
+    _this->_internal_set_latitude_deg(from._internal_latitude_deg());
+  }
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_longitude_deg = from._internal_longitude_deg();
+  ::uint64_t raw_longitude_deg;
+  memcpy(&raw_longitude_deg, &tmp_longitude_deg, sizeof(tmp_longitude_deg));
+  if (raw_longitude_deg != 0) {
+    _this->_internal_set_longitude_deg(from._internal_longitude_deg());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_altitude_barometric_m = from._internal_altitude_barometric_m();
+  ::uint32_t raw_altitude_barometric_m;
+  memcpy(&raw_altitude_barometric_m, &tmp_altitude_barometric_m, sizeof(tmp_altitude_barometric_m));
+  if (raw_altitude_barometric_m != 0) {
+    _this->_internal_set_altitude_barometric_m(from._internal_altitude_barometric_m());
+  }
+  static_assert(sizeof(::uint32_t) == sizeof(float),
+                "Code assumes ::uint32_t and float are the same size.");
+  float tmp_altitude_geodetic_m = from._internal_altitude_geodetic_m();
+  ::uint32_t raw_altitude_geodetic_m;
+  memcpy(&raw_altitude_geodetic_m, &tmp_altitude_geodetic_m, sizeof(tmp_altitude_geodetic_m));
+  if (raw_altitude_geodetic_m != 0) {
+    _this->_internal_set_altitude_geodetic_m(from._internal_altitude_geodetic_m());
   }
   if (from._internal_height_reference() != 0) {
     _this->_internal_set_height_reference(from._internal_height_reference());
   }
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_height = from._internal_height();
-  ::uint32_t raw_height;
-  memcpy(&raw_height, &tmp_height, sizeof(tmp_height));
-  if (raw_height != 0) {
-    _this->_internal_set_height(from._internal_height());
+  float tmp_height_m = from._internal_height_m();
+  ::uint32_t raw_height_m;
+  memcpy(&raw_height_m, &tmp_height_m, sizeof(tmp_height_m));
+  if (raw_height_m != 0) {
+    _this->_internal_set_height_m(from._internal_height_m());
   }
-  static_assert(sizeof(::uint32_t) == sizeof(float),
-                "Code assumes ::uint32_t and float are the same size.");
-  float tmp_timestamp = from._internal_timestamp();
-  ::uint32_t raw_timestamp;
-  memcpy(&raw_timestamp, &tmp_timestamp, sizeof(tmp_timestamp));
-  if (raw_timestamp != 0) {
-    _this->_internal_set_timestamp(from._internal_timestamp());
-  }
-  if (from._internal_timestamp_accuracy() != 0) {
-    _this->_internal_set_timestamp_accuracy(from._internal_timestamp_accuracy());
+  if (from._internal_time_utc_us() != 0) {
+    _this->_internal_set_time_utc_us(from._internal_time_utc_us());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -3517,8 +4841,8 @@ void Location::InternalSwap(Location* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Location, _impl_.timestamp_accuracy_)
-      + sizeof(Location::_impl_.timestamp_accuracy_)
+      PROTOBUF_FIELD_OFFSET(Location, _impl_.time_utc_us_)
+      + sizeof(Location::_impl_.time_utc_us_)
       - PROTOBUF_FIELD_OFFSET(Location, _impl_.status_)>(
           reinterpret_cast<char*>(&_impl_.status_),
           reinterpret_cast<char*>(&other->_impl_.status_));
@@ -3527,7 +4851,280 @@ void Location::InternalSwap(Location* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata Location::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[11]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[15]);
+}
+// ===================================================================
+
+class LocationAccuracy::_Internal {
+ public:
+};
+
+LocationAccuracy::LocationAccuracy(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.LocationAccuracy)
+}
+LocationAccuracy::LocationAccuracy(
+    ::google::protobuf::Arena* arena, const LocationAccuracy& from)
+    : LocationAccuracy(arena) {
+  MergeFrom(from);
+}
+inline PROTOBUF_NDEBUG_INLINE LocationAccuracy::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void LocationAccuracy::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, horizontal_accuracy_),
+           0,
+           offsetof(Impl_, timestamp_accuracy_) -
+               offsetof(Impl_, horizontal_accuracy_) +
+               sizeof(Impl_::timestamp_accuracy_));
+}
+LocationAccuracy::~LocationAccuracy() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.LocationAccuracy)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void LocationAccuracy::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void LocationAccuracy::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.LocationAccuracy)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.horizontal_accuracy_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.timestamp_accuracy_) -
+      reinterpret_cast<char*>(&_impl_.horizontal_accuracy_)) + sizeof(_impl_.timestamp_accuracy_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* LocationAccuracy::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 0, 0, 2> LocationAccuracy::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_LocationAccuracy_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.HorAcc horizontal_accuracy = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LocationAccuracy, _impl_.horizontal_accuracy_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.horizontal_accuracy_)}},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc vertical_accuracy = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LocationAccuracy, _impl_.vertical_accuracy_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.vertical_accuracy_)}},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc barometer_accuracy = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LocationAccuracy, _impl_.barometer_accuracy_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.barometer_accuracy_)}},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.SpeedAcc speed_accuracy = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LocationAccuracy, _impl_.speed_accuracy_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.speed_accuracy_)}},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.TimeAcc timestamp_accuracy = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(LocationAccuracy, _impl_.timestamp_accuracy_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.timestamp_accuracy_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.LocationAccuracy.HorAcc horizontal_accuracy = 1;
+    {PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.horizontal_accuracy_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc vertical_accuracy = 2;
+    {PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.vertical_accuracy_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc barometer_accuracy = 3;
+    {PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.barometer_accuracy_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.SpeedAcc speed_accuracy = 4;
+    {PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.speed_accuracy_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .mavsdk.rpc.remote_id.LocationAccuracy.TimeAcc timestamp_accuracy = 5;
+    {PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.timestamp_accuracy_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* LocationAccuracy::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.LocationAccuracy)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.HorAcc horizontal_accuracy = 1;
+  if (this->_internal_horizontal_accuracy() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_horizontal_accuracy(), target);
+  }
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc vertical_accuracy = 2;
+  if (this->_internal_vertical_accuracy() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        2, this->_internal_vertical_accuracy(), target);
+  }
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc barometer_accuracy = 3;
+  if (this->_internal_barometer_accuracy() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        3, this->_internal_barometer_accuracy(), target);
+  }
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.SpeedAcc speed_accuracy = 4;
+  if (this->_internal_speed_accuracy() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        4, this->_internal_speed_accuracy(), target);
+  }
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.TimeAcc timestamp_accuracy = 5;
+  if (this->_internal_timestamp_accuracy() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        5, this->_internal_timestamp_accuracy(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.LocationAccuracy)
+  return target;
+}
+
+::size_t LocationAccuracy::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.LocationAccuracy)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.HorAcc horizontal_accuracy = 1;
+  if (this->_internal_horizontal_accuracy() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_horizontal_accuracy());
+  }
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc vertical_accuracy = 2;
+  if (this->_internal_vertical_accuracy() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_vertical_accuracy());
+  }
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc barometer_accuracy = 3;
+  if (this->_internal_barometer_accuracy() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_barometer_accuracy());
+  }
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.SpeedAcc speed_accuracy = 4;
+  if (this->_internal_speed_accuracy() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_speed_accuracy());
+  }
+
+  // .mavsdk.rpc.remote_id.LocationAccuracy.TimeAcc timestamp_accuracy = 5;
+  if (this->_internal_timestamp_accuracy() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_timestamp_accuracy());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData LocationAccuracy::_class_data_ = {
+    LocationAccuracy::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* LocationAccuracy::GetClassData() const {
+  return &_class_data_;
+}
+
+void LocationAccuracy::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<LocationAccuracy*>(&to_msg);
+  auto& from = static_cast<const LocationAccuracy&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.LocationAccuracy)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_horizontal_accuracy() != 0) {
+    _this->_internal_set_horizontal_accuracy(from._internal_horizontal_accuracy());
+  }
+  if (from._internal_vertical_accuracy() != 0) {
+    _this->_internal_set_vertical_accuracy(from._internal_vertical_accuracy());
+  }
+  if (from._internal_barometer_accuracy() != 0) {
+    _this->_internal_set_barometer_accuracy(from._internal_barometer_accuracy());
+  }
+  if (from._internal_speed_accuracy() != 0) {
+    _this->_internal_set_speed_accuracy(from._internal_speed_accuracy());
+  }
+  if (from._internal_timestamp_accuracy() != 0) {
+    _this->_internal_set_timestamp_accuracy(from._internal_timestamp_accuracy());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void LocationAccuracy::CopyFrom(const LocationAccuracy& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.LocationAccuracy)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool LocationAccuracy::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* LocationAccuracy::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void LocationAccuracy::InternalSwap(LocationAccuracy* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.timestamp_accuracy_)
+      + sizeof(LocationAccuracy::_impl_.timestamp_accuracy_)
+      - PROTOBUF_FIELD_OFFSET(LocationAccuracy, _impl_.horizontal_accuracy_)>(
+          reinterpret_cast<char*>(&_impl_.horizontal_accuracy_),
+          reinterpret_cast<char*>(&other->_impl_.horizontal_accuracy_));
+}
+
+::google::protobuf::Metadata LocationAccuracy::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[16]);
 }
 // ===================================================================
 
@@ -3555,9 +5152,9 @@ inline void SystemId::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, operator_location_type_),
            0,
-           offsetof(Impl_, timestamp_) -
+           offsetof(Impl_, operator_altitude_geo_m_) -
                offsetof(Impl_, operator_location_type_) +
-               sizeof(Impl_::timestamp_));
+               sizeof(Impl_::operator_altitude_geo_m_));
 }
 SystemId::~SystemId() {
   // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.SystemId)
@@ -3577,8 +5174,8 @@ PROTOBUF_NOINLINE void SystemId::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.operator_location_type_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.timestamp_) -
-      reinterpret_cast<char*>(&_impl_.operator_location_type_)) + sizeof(_impl_.timestamp_));
+      reinterpret_cast<char*>(&_impl_.operator_altitude_geo_m_) -
+      reinterpret_cast<char*>(&_impl_.operator_location_type_)) + sizeof(_impl_.operator_altitude_geo_m_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -3605,84 +5202,84 @@ const ::_pbi::TcParseTable<4, 12, 0, 0, 2> SystemId::_table_ = {
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // uint32 operator_location_type = 1;
+    // .mavsdk.rpc.remote_id.SystemId.OperatorLocationType operator_location_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.operator_location_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_location_type_)}},
-    // uint32 classification_type = 2;
+    // .mavsdk.rpc.remote_id.SystemId.ClassificationType classification_type = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.classification_type_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.classification_type_)}},
-    // int32 operator_latitude = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.operator_latitude_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_latitude_)}},
-    // int32 operator_longitude = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.operator_longitude_), 63>(),
-     {32, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_longitude_)}},
+    // double operator_latitude_deg = 3;
+    {::_pbi::TcParser::FastF64S1,
+     {25, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_latitude_deg_)}},
+    // double operator_longitude_deg = 4;
+    {::_pbi::TcParser::FastF64S1,
+     {33, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_longitude_deg_)}},
     // uint32 area_count = 5;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.area_count_), 63>(),
      {40, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_count_)}},
-    // uint32 area_radius = 6;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.area_radius_), 63>(),
-     {48, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_radius_)}},
-    // float area_ceiling = 7;
+    // uint32 area_radius_m = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.area_radius_m_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_radius_m_)}},
+    // float area_ceiling_m = 7;
     {::_pbi::TcParser::FastF32S1,
-     {61, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_ceiling_)}},
-    // float area_floor = 8;
+     {61, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_ceiling_m_)}},
+    // float area_floor_m = 8;
     {::_pbi::TcParser::FastF32S1,
-     {69, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_floor_)}},
-    // uint32 category_eu = 9;
+     {69, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_floor_m_)}},
+    // .mavsdk.rpc.remote_id.SystemId.CategoryEu category_eu = 9;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.category_eu_), 63>(),
      {72, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.category_eu_)}},
-    // uint32 class_eu = 10;
+    // .mavsdk.rpc.remote_id.SystemId.ClassEu class_eu = 10;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.class_eu_), 63>(),
      {80, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.class_eu_)}},
-    // float operator_altitude_geo = 11;
+    // float operator_altitude_geo_m = 11;
     {::_pbi::TcParser::FastF32S1,
-     {93, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_altitude_geo_)}},
-    // uint32 timestamp = 12;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SystemId, _impl_.timestamp_), 63>(),
-     {96, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.timestamp_)}},
+     {93, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_altitude_geo_m_)}},
+    // uint64 time_utc_us = 12;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SystemId, _impl_.time_utc_us_), 63>(),
+     {96, 63, 0, PROTOBUF_FIELD_OFFSET(SystemId, _impl_.time_utc_us_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 operator_location_type = 1;
+    // .mavsdk.rpc.remote_id.SystemId.OperatorLocationType operator_location_type = 1;
     {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_location_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 classification_type = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .mavsdk.rpc.remote_id.SystemId.ClassificationType classification_type = 2;
     {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.classification_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // int32 operator_latitude = 3;
-    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_latitude_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // int32 operator_longitude = 4;
-    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_longitude_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // double operator_latitude_deg = 3;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_latitude_deg_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
+    // double operator_longitude_deg = 4;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_longitude_deg_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kDouble)},
     // uint32 area_count = 5;
     {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_count_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 area_radius = 6;
-    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_radius_), 0, 0,
+    // uint32 area_radius_m = 6;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_radius_m_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // float area_ceiling = 7;
-    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_ceiling_), 0, 0,
+    // float area_ceiling_m = 7;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_ceiling_m_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // float area_floor = 8;
-    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_floor_), 0, 0,
+    // float area_floor_m = 8;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.area_floor_m_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // uint32 category_eu = 9;
+    // .mavsdk.rpc.remote_id.SystemId.CategoryEu category_eu = 9;
     {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.category_eu_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // uint32 class_eu = 10;
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .mavsdk.rpc.remote_id.SystemId.ClassEu class_eu = 10;
     {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.class_eu_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
-    // float operator_altitude_geo = 11;
-    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_altitude_geo_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // float operator_altitude_geo_m = 11;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_altitude_geo_m_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kFloat)},
-    // uint32 timestamp = 12;
-    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.timestamp_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // uint64 time_utc_us = 12;
+    {PROTOBUF_FIELD_OFFSET(SystemId, _impl_.time_utc_us_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt64)},
   }},
   // no aux_entries
   {{
@@ -3696,32 +5293,42 @@ const ::_pbi::TcParseTable<4, 12, 0, 0, 2> SystemId::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint32 operator_location_type = 1;
+  // .mavsdk.rpc.remote_id.SystemId.OperatorLocationType operator_location_type = 1;
   if (this->_internal_operator_location_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         1, this->_internal_operator_location_type(), target);
   }
 
-  // uint32 classification_type = 2;
+  // .mavsdk.rpc.remote_id.SystemId.ClassificationType classification_type = 2;
   if (this->_internal_classification_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         2, this->_internal_classification_type(), target);
   }
 
-  // int32 operator_latitude = 3;
-  if (this->_internal_operator_latitude() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<3>(
-            stream, this->_internal_operator_latitude(), target);
+  // double operator_latitude_deg = 3;
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_operator_latitude_deg = this->_internal_operator_latitude_deg();
+  ::uint64_t raw_operator_latitude_deg;
+  memcpy(&raw_operator_latitude_deg, &tmp_operator_latitude_deg, sizeof(tmp_operator_latitude_deg));
+  if (raw_operator_latitude_deg != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        3, this->_internal_operator_latitude_deg(), target);
   }
 
-  // int32 operator_longitude = 4;
-  if (this->_internal_operator_longitude() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<4>(
-            stream, this->_internal_operator_longitude(), target);
+  // double operator_longitude_deg = 4;
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_operator_longitude_deg = this->_internal_operator_longitude_deg();
+  ::uint64_t raw_operator_longitude_deg;
+  memcpy(&raw_operator_longitude_deg, &tmp_operator_longitude_deg, sizeof(tmp_operator_longitude_deg));
+  if (raw_operator_longitude_deg != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        4, this->_internal_operator_longitude_deg(), target);
   }
 
   // uint32 area_count = 5;
@@ -3731,68 +5338,68 @@ const ::_pbi::TcParseTable<4, 12, 0, 0, 2> SystemId::_table_ = {
         5, this->_internal_area_count(), target);
   }
 
-  // uint32 area_radius = 6;
-  if (this->_internal_area_radius() != 0) {
+  // uint32 area_radius_m = 6;
+  if (this->_internal_area_radius_m() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        6, this->_internal_area_radius(), target);
+        6, this->_internal_area_radius_m(), target);
   }
 
-  // float area_ceiling = 7;
+  // float area_ceiling_m = 7;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_area_ceiling = this->_internal_area_ceiling();
-  ::uint32_t raw_area_ceiling;
-  memcpy(&raw_area_ceiling, &tmp_area_ceiling, sizeof(tmp_area_ceiling));
-  if (raw_area_ceiling != 0) {
+  float tmp_area_ceiling_m = this->_internal_area_ceiling_m();
+  ::uint32_t raw_area_ceiling_m;
+  memcpy(&raw_area_ceiling_m, &tmp_area_ceiling_m, sizeof(tmp_area_ceiling_m));
+  if (raw_area_ceiling_m != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        7, this->_internal_area_ceiling(), target);
+        7, this->_internal_area_ceiling_m(), target);
   }
 
-  // float area_floor = 8;
+  // float area_floor_m = 8;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_area_floor = this->_internal_area_floor();
-  ::uint32_t raw_area_floor;
-  memcpy(&raw_area_floor, &tmp_area_floor, sizeof(tmp_area_floor));
-  if (raw_area_floor != 0) {
+  float tmp_area_floor_m = this->_internal_area_floor_m();
+  ::uint32_t raw_area_floor_m;
+  memcpy(&raw_area_floor_m, &tmp_area_floor_m, sizeof(tmp_area_floor_m));
+  if (raw_area_floor_m != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        8, this->_internal_area_floor(), target);
+        8, this->_internal_area_floor_m(), target);
   }
 
-  // uint32 category_eu = 9;
+  // .mavsdk.rpc.remote_id.SystemId.CategoryEu category_eu = 9;
   if (this->_internal_category_eu() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         9, this->_internal_category_eu(), target);
   }
 
-  // uint32 class_eu = 10;
+  // .mavsdk.rpc.remote_id.SystemId.ClassEu class_eu = 10;
   if (this->_internal_class_eu() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         10, this->_internal_class_eu(), target);
   }
 
-  // float operator_altitude_geo = 11;
+  // float operator_altitude_geo_m = 11;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_operator_altitude_geo = this->_internal_operator_altitude_geo();
-  ::uint32_t raw_operator_altitude_geo;
-  memcpy(&raw_operator_altitude_geo, &tmp_operator_altitude_geo, sizeof(tmp_operator_altitude_geo));
-  if (raw_operator_altitude_geo != 0) {
+  float tmp_operator_altitude_geo_m = this->_internal_operator_altitude_geo_m();
+  ::uint32_t raw_operator_altitude_geo_m;
+  memcpy(&raw_operator_altitude_geo_m, &tmp_operator_altitude_geo_m, sizeof(tmp_operator_altitude_geo_m));
+  if (raw_operator_altitude_geo_m != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
-        11, this->_internal_operator_altitude_geo(), target);
+        11, this->_internal_operator_altitude_geo_m(), target);
   }
 
-  // uint32 timestamp = 12;
-  if (this->_internal_timestamp() != 0) {
+  // uint64 time_utc_us = 12;
+  if (this->_internal_time_utc_us() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-        12, this->_internal_timestamp(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
+        12, this->_internal_time_utc_us(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3812,28 +5419,36 @@ const ::_pbi::TcParseTable<4, 12, 0, 0, 2> SystemId::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint32 operator_location_type = 1;
+  // .mavsdk.rpc.remote_id.SystemId.OperatorLocationType operator_location_type = 1;
   if (this->_internal_operator_location_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_operator_location_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_operator_location_type());
   }
 
-  // uint32 classification_type = 2;
+  // .mavsdk.rpc.remote_id.SystemId.ClassificationType classification_type = 2;
   if (this->_internal_classification_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_classification_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_classification_type());
   }
 
-  // int32 operator_latitude = 3;
-  if (this->_internal_operator_latitude() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_operator_latitude());
+  // double operator_latitude_deg = 3;
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_operator_latitude_deg = this->_internal_operator_latitude_deg();
+  ::uint64_t raw_operator_latitude_deg;
+  memcpy(&raw_operator_latitude_deg, &tmp_operator_latitude_deg, sizeof(tmp_operator_latitude_deg));
+  if (raw_operator_latitude_deg != 0) {
+    total_size += 9;
   }
 
-  // int32 operator_longitude = 4;
-  if (this->_internal_operator_longitude() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_operator_longitude());
+  // double operator_longitude_deg = 4;
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_operator_longitude_deg = this->_internal_operator_longitude_deg();
+  ::uint64_t raw_operator_longitude_deg;
+  memcpy(&raw_operator_longitude_deg, &tmp_operator_longitude_deg, sizeof(tmp_operator_longitude_deg));
+  if (raw_operator_longitude_deg != 0) {
+    total_size += 9;
   }
 
   // uint32 area_count = 5;
@@ -3842,58 +5457,58 @@ const ::_pbi::TcParseTable<4, 12, 0, 0, 2> SystemId::_table_ = {
         this->_internal_area_count());
   }
 
-  // uint32 area_radius = 6;
-  if (this->_internal_area_radius() != 0) {
+  // uint32 area_radius_m = 6;
+  if (this->_internal_area_radius_m() != 0) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_area_radius());
+        this->_internal_area_radius_m());
   }
 
-  // float area_ceiling = 7;
+  // float area_ceiling_m = 7;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_area_ceiling = this->_internal_area_ceiling();
-  ::uint32_t raw_area_ceiling;
-  memcpy(&raw_area_ceiling, &tmp_area_ceiling, sizeof(tmp_area_ceiling));
-  if (raw_area_ceiling != 0) {
+  float tmp_area_ceiling_m = this->_internal_area_ceiling_m();
+  ::uint32_t raw_area_ceiling_m;
+  memcpy(&raw_area_ceiling_m, &tmp_area_ceiling_m, sizeof(tmp_area_ceiling_m));
+  if (raw_area_ceiling_m != 0) {
     total_size += 5;
   }
 
-  // float area_floor = 8;
+  // float area_floor_m = 8;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_area_floor = this->_internal_area_floor();
-  ::uint32_t raw_area_floor;
-  memcpy(&raw_area_floor, &tmp_area_floor, sizeof(tmp_area_floor));
-  if (raw_area_floor != 0) {
+  float tmp_area_floor_m = this->_internal_area_floor_m();
+  ::uint32_t raw_area_floor_m;
+  memcpy(&raw_area_floor_m, &tmp_area_floor_m, sizeof(tmp_area_floor_m));
+  if (raw_area_floor_m != 0) {
     total_size += 5;
   }
 
-  // uint32 category_eu = 9;
+  // .mavsdk.rpc.remote_id.SystemId.CategoryEu category_eu = 9;
   if (this->_internal_category_eu() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_category_eu());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_category_eu());
   }
 
-  // uint32 class_eu = 10;
+  // .mavsdk.rpc.remote_id.SystemId.ClassEu class_eu = 10;
   if (this->_internal_class_eu() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_class_eu());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_class_eu());
   }
 
-  // float operator_altitude_geo = 11;
+  // uint64 time_utc_us = 12;
+  if (this->_internal_time_utc_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
+        this->_internal_time_utc_us());
+  }
+
+  // float operator_altitude_geo_m = 11;
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_operator_altitude_geo = this->_internal_operator_altitude_geo();
-  ::uint32_t raw_operator_altitude_geo;
-  memcpy(&raw_operator_altitude_geo, &tmp_operator_altitude_geo, sizeof(tmp_operator_altitude_geo));
-  if (raw_operator_altitude_geo != 0) {
+  float tmp_operator_altitude_geo_m = this->_internal_operator_altitude_geo_m();
+  ::uint32_t raw_operator_altitude_geo_m;
+  memcpy(&raw_operator_altitude_geo_m, &tmp_operator_altitude_geo_m, sizeof(tmp_operator_altitude_geo_m));
+  if (raw_operator_altitude_geo_m != 0) {
     total_size += 5;
-  }
-
-  // uint32 timestamp = 12;
-  if (this->_internal_timestamp() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_timestamp());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -3921,33 +5536,43 @@ void SystemId::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   if (from._internal_classification_type() != 0) {
     _this->_internal_set_classification_type(from._internal_classification_type());
   }
-  if (from._internal_operator_latitude() != 0) {
-    _this->_internal_set_operator_latitude(from._internal_operator_latitude());
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_operator_latitude_deg = from._internal_operator_latitude_deg();
+  ::uint64_t raw_operator_latitude_deg;
+  memcpy(&raw_operator_latitude_deg, &tmp_operator_latitude_deg, sizeof(tmp_operator_latitude_deg));
+  if (raw_operator_latitude_deg != 0) {
+    _this->_internal_set_operator_latitude_deg(from._internal_operator_latitude_deg());
   }
-  if (from._internal_operator_longitude() != 0) {
-    _this->_internal_set_operator_longitude(from._internal_operator_longitude());
+  static_assert(sizeof(::uint64_t) == sizeof(double),
+                "Code assumes ::uint64_t and double are the same size.");
+  double tmp_operator_longitude_deg = from._internal_operator_longitude_deg();
+  ::uint64_t raw_operator_longitude_deg;
+  memcpy(&raw_operator_longitude_deg, &tmp_operator_longitude_deg, sizeof(tmp_operator_longitude_deg));
+  if (raw_operator_longitude_deg != 0) {
+    _this->_internal_set_operator_longitude_deg(from._internal_operator_longitude_deg());
   }
   if (from._internal_area_count() != 0) {
     _this->_internal_set_area_count(from._internal_area_count());
   }
-  if (from._internal_area_radius() != 0) {
-    _this->_internal_set_area_radius(from._internal_area_radius());
+  if (from._internal_area_radius_m() != 0) {
+    _this->_internal_set_area_radius_m(from._internal_area_radius_m());
   }
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_area_ceiling = from._internal_area_ceiling();
-  ::uint32_t raw_area_ceiling;
-  memcpy(&raw_area_ceiling, &tmp_area_ceiling, sizeof(tmp_area_ceiling));
-  if (raw_area_ceiling != 0) {
-    _this->_internal_set_area_ceiling(from._internal_area_ceiling());
+  float tmp_area_ceiling_m = from._internal_area_ceiling_m();
+  ::uint32_t raw_area_ceiling_m;
+  memcpy(&raw_area_ceiling_m, &tmp_area_ceiling_m, sizeof(tmp_area_ceiling_m));
+  if (raw_area_ceiling_m != 0) {
+    _this->_internal_set_area_ceiling_m(from._internal_area_ceiling_m());
   }
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_area_floor = from._internal_area_floor();
-  ::uint32_t raw_area_floor;
-  memcpy(&raw_area_floor, &tmp_area_floor, sizeof(tmp_area_floor));
-  if (raw_area_floor != 0) {
-    _this->_internal_set_area_floor(from._internal_area_floor());
+  float tmp_area_floor_m = from._internal_area_floor_m();
+  ::uint32_t raw_area_floor_m;
+  memcpy(&raw_area_floor_m, &tmp_area_floor_m, sizeof(tmp_area_floor_m));
+  if (raw_area_floor_m != 0) {
+    _this->_internal_set_area_floor_m(from._internal_area_floor_m());
   }
   if (from._internal_category_eu() != 0) {
     _this->_internal_set_category_eu(from._internal_category_eu());
@@ -3955,16 +5580,16 @@ void SystemId::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   if (from._internal_class_eu() != 0) {
     _this->_internal_set_class_eu(from._internal_class_eu());
   }
+  if (from._internal_time_utc_us() != 0) {
+    _this->_internal_set_time_utc_us(from._internal_time_utc_us());
+  }
   static_assert(sizeof(::uint32_t) == sizeof(float),
                 "Code assumes ::uint32_t and float are the same size.");
-  float tmp_operator_altitude_geo = from._internal_operator_altitude_geo();
-  ::uint32_t raw_operator_altitude_geo;
-  memcpy(&raw_operator_altitude_geo, &tmp_operator_altitude_geo, sizeof(tmp_operator_altitude_geo));
-  if (raw_operator_altitude_geo != 0) {
-    _this->_internal_set_operator_altitude_geo(from._internal_operator_altitude_geo());
-  }
-  if (from._internal_timestamp() != 0) {
-    _this->_internal_set_timestamp(from._internal_timestamp());
+  float tmp_operator_altitude_geo_m = from._internal_operator_altitude_geo_m();
+  ::uint32_t raw_operator_altitude_geo_m;
+  memcpy(&raw_operator_altitude_geo_m, &tmp_operator_altitude_geo_m, sizeof(tmp_operator_altitude_geo_m));
+  if (raw_operator_altitude_geo_m != 0) {
+    _this->_internal_set_operator_altitude_geo_m(from._internal_operator_altitude_geo_m());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -3987,8 +5612,8 @@ void SystemId::InternalSwap(SystemId* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SystemId, _impl_.timestamp_)
-      + sizeof(SystemId::_impl_.timestamp_)
+      PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_altitude_geo_m_)
+      + sizeof(SystemId::_impl_.operator_altitude_geo_m_)
       - PROTOBUF_FIELD_OFFSET(SystemId, _impl_.operator_location_type_)>(
           reinterpret_cast<char*>(&_impl_.operator_location_type_),
           reinterpret_cast<char*>(&other->_impl_.operator_location_type_));
@@ -3997,7 +5622,7 @@ void SystemId::InternalSwap(SystemId* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata SystemId::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[12]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[17]);
 }
 // ===================================================================
 
@@ -4058,7 +5683,7 @@ PROTOBUF_NOINLINE void OperatorId::Clear() {
   (void) cached_has_bits;
 
   _impl_.operator_id_.ClearToEmpty();
-  _impl_.operator_id_type_ = 0u;
+  _impl_.operator_id_type_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -4087,15 +5712,15 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> OperatorId::_table_ = {
     // string operator_id = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(OperatorId, _impl_.operator_id_)}},
-    // uint32 operator_id_type = 1;
+    // .mavsdk.rpc.remote_id.OperatorId.OperatorIdType operator_id_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(OperatorId, _impl_.operator_id_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(OperatorId, _impl_.operator_id_type_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 operator_id_type = 1;
+    // .mavsdk.rpc.remote_id.OperatorId.OperatorIdType operator_id_type = 1;
     {PROTOBUF_FIELD_OFFSET(OperatorId, _impl_.operator_id_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // string operator_id = 2;
     {PROTOBUF_FIELD_OFFSET(OperatorId, _impl_.operator_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -4115,10 +5740,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> OperatorId::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint32 operator_id_type = 1;
+  // .mavsdk.rpc.remote_id.OperatorId.OperatorIdType operator_id_type = 1;
   if (this->_internal_operator_id_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         1, this->_internal_operator_id_type(), target);
   }
 
@@ -4153,10 +5778,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> OperatorId::_table_ = {
                                     this->_internal_operator_id());
   }
 
-  // uint32 operator_id_type = 1;
+  // .mavsdk.rpc.remote_id.OperatorId.OperatorIdType operator_id_type = 1;
   if (this->_internal_operator_id_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_operator_id_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_operator_id_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -4207,13 +5832,13 @@ void OperatorId::InternalSwap(OperatorId* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.operator_id_, &other->_impl_.operator_id_, arena);
-        swap(_impl_.operator_id_type_, other->_impl_.operator_id_type_);
+  swap(_impl_.operator_id_type_, other->_impl_.operator_id_type_);
 }
 
 ::google::protobuf::Metadata OperatorId::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[13]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[18]);
 }
 // ===================================================================
 
@@ -4274,7 +5899,7 @@ PROTOBUF_NOINLINE void SelfId::Clear() {
   (void) cached_has_bits;
 
   _impl_.description_.ClearToEmpty();
-  _impl_.description_type_ = 0u;
+  _impl_.description_type_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -4303,15 +5928,15 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> SelfId::_table_ = {
     // string description = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(SelfId, _impl_.description_)}},
-    // uint32 description_type = 1;
+    // .mavsdk.rpc.remote_id.SelfId.DescType description_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SelfId, _impl_.description_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(SelfId, _impl_.description_type_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // uint32 description_type = 1;
+    // .mavsdk.rpc.remote_id.SelfId.DescType description_type = 1;
     {PROTOBUF_FIELD_OFFSET(SelfId, _impl_.description_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // string description = 2;
     {PROTOBUF_FIELD_OFFSET(SelfId, _impl_.description_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
@@ -4331,10 +5956,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> SelfId::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // uint32 description_type = 1;
+  // .mavsdk.rpc.remote_id.SelfId.DescType description_type = 1;
   if (this->_internal_description_type() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
         1, this->_internal_description_type(), target);
   }
 
@@ -4369,10 +5994,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> SelfId::_table_ = {
                                     this->_internal_description());
   }
 
-  // uint32 description_type = 1;
+  // .mavsdk.rpc.remote_id.SelfId.DescType description_type = 1;
   if (this->_internal_description_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-        this->_internal_description_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_description_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -4423,13 +6048,229 @@ void SelfId::InternalSwap(SelfId* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.description_, &other->_impl_.description_, arena);
-        swap(_impl_.description_type_, other->_impl_.description_type_);
+  swap(_impl_.description_type_, other->_impl_.description_type_);
 }
 
 ::google::protobuf::Metadata SelfId::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[14]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[19]);
+}
+// ===================================================================
+
+class ArmStatus::_Internal {
+ public:
+};
+
+ArmStatus::ArmStatus(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.remote_id.ArmStatus)
+}
+inline PROTOBUF_NDEBUG_INLINE ArmStatus::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : error_(arena, from.error_),
+        _cached_size_{0} {}
+
+ArmStatus::ArmStatus(
+    ::google::protobuf::Arena* arena,
+    const ArmStatus& from)
+    : ::google::protobuf::Message(arena) {
+  ArmStatus* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.status_ = from._impl_.status_;
+
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.remote_id.ArmStatus)
+}
+inline PROTOBUF_NDEBUG_INLINE ArmStatus::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : error_(arena),
+        _cached_size_{0} {}
+
+inline void ArmStatus::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.status_ = {};
+}
+ArmStatus::~ArmStatus() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.remote_id.ArmStatus)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ArmStatus::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.error_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ArmStatus::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.remote_id.ArmStatus)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.error_.ClearToEmpty();
+  _impl_.status_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ArmStatus::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 44, 2> ArmStatus::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ArmStatus_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string error = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ArmStatus, _impl_.error_)}},
+    // .mavsdk.rpc.remote_id.ArmStatus.Status status = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ArmStatus, _impl_.status_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ArmStatus, _impl_.status_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .mavsdk.rpc.remote_id.ArmStatus.Status status = 1;
+    {PROTOBUF_FIELD_OFFSET(ArmStatus, _impl_.status_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string error = 2;
+    {PROTOBUF_FIELD_OFFSET(ArmStatus, _impl_.error_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\36\0\5\0\0\0\0\0"
+    "mavsdk.rpc.remote_id.ArmStatus"
+    "error"
+  }},
+};
+
+::uint8_t* ArmStatus::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.remote_id.ArmStatus)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .mavsdk.rpc.remote_id.ArmStatus.Status status = 1;
+  if (this->_internal_status() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_status(), target);
+  }
+
+  // string error = 2;
+  if (!this->_internal_error().empty()) {
+    const std::string& _s = this->_internal_error();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "mavsdk.rpc.remote_id.ArmStatus.error");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.remote_id.ArmStatus)
+  return target;
+}
+
+::size_t ArmStatus::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.remote_id.ArmStatus)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string error = 2;
+  if (!this->_internal_error().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_error());
+  }
+
+  // .mavsdk.rpc.remote_id.ArmStatus.Status status = 1;
+  if (this->_internal_status() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_status());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ArmStatus::_class_data_ = {
+    ArmStatus::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ArmStatus::GetClassData() const {
+  return &_class_data_;
+}
+
+void ArmStatus::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ArmStatus*>(&to_msg);
+  auto& from = static_cast<const ArmStatus&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.remote_id.ArmStatus)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_error().empty()) {
+    _this->_internal_set_error(from._internal_error());
+  }
+  if (from._internal_status() != 0) {
+    _this->_internal_set_status(from._internal_status());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ArmStatus::CopyFrom(const ArmStatus& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.remote_id.ArmStatus)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ArmStatus::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ArmStatus::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ArmStatus::InternalSwap(ArmStatus* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.error_, &other->_impl_.error_, arena);
+  swap(_impl_.status_, other->_impl_.status_);
+}
+
+::google::protobuf::Metadata ArmStatus::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[20]);
 }
 // ===================================================================
 
@@ -4645,7 +6486,7 @@ void RemoteIdResult::InternalSwap(RemoteIdResult* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata RemoteIdResult::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_remote_5fid_2fremote_5fid_2eproto_getter, &descriptor_table_remote_5fid_2fremote_5fid_2eproto_once,
-      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[15]);
+      file_level_metadata_remote_5fid_2fremote_5fid_2eproto[21]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace remote_id

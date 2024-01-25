@@ -11,9 +11,11 @@ namespace mavsdk {
 
 using BasicId = RemoteId::BasicId;
 using Location = RemoteId::Location;
+using LocationAccuracy = RemoteId::LocationAccuracy;
 using SystemId = RemoteId::SystemId;
 using OperatorId = RemoteId::OperatorId;
 using SelfId = RemoteId::SelfId;
+using ArmStatus = RemoteId::ArmStatus;
 
 RemoteId::RemoteId(System& system) : PluginBase(), _impl{std::make_unique<RemoteIdImpl>(system)} {}
 
@@ -34,6 +36,11 @@ RemoteId::Result RemoteId::set_location(Location location) const
     return _impl->set_location(location);
 }
 
+RemoteId::Result RemoteId::set_location_accuracy(LocationAccuracy location_accuracy) const
+{
+    return _impl->set_location_accuracy(location_accuracy);
+}
+
 RemoteId::Result RemoteId::set_system(SystemId system) const
 {
     return _impl->set_system(system);
@@ -49,6 +56,78 @@ RemoteId::Result RemoteId::set_self_id(SelfId self_id) const
     return _impl->set_self_id(self_id);
 }
 
+RemoteId::ArmStatusHandle RemoteId::subscribe_arm_status(const ArmStatusCallback& callback)
+{
+    return _impl->subscribe_arm_status(callback);
+}
+
+void RemoteId::unsubscribe_arm_status(ArmStatusHandle handle)
+{
+    _impl->unsubscribe_arm_status(handle);
+}
+
+RemoteId::ArmStatus RemoteId::arm_status() const
+{
+    return _impl->arm_status();
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::BasicId::IdType const& id_type)
+{
+    switch (id_type) {
+        case RemoteId::BasicId::IdType::None:
+            return str << "None";
+        case RemoteId::BasicId::IdType::SerialNumber:
+            return str << "Serial Number";
+        case RemoteId::BasicId::IdType::CaaRegistrationId:
+            return str << "Caa Registration Id";
+        case RemoteId::BasicId::IdType::UtmAssignedUuid:
+            return str << "Utm Assigned Uuid";
+        case RemoteId::BasicId::IdType::SpecificSessionId:
+            return str << "Specific Session Id";
+        default:
+            return str << "Unknown";
+    }
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::BasicId::UasType const& uas_type)
+{
+    switch (uas_type) {
+        case RemoteId::BasicId::UasType::None:
+            return str << "None";
+        case RemoteId::BasicId::UasType::Aeroplane:
+            return str << "Aeroplane";
+        case RemoteId::BasicId::UasType::HelicopterOrMultirotor:
+            return str << "Helicopter Or Multirotor";
+        case RemoteId::BasicId::UasType::Gyroplane:
+            return str << "Gyroplane";
+        case RemoteId::BasicId::UasType::HybridLift:
+            return str << "Hybrid Lift";
+        case RemoteId::BasicId::UasType::Ornithopter:
+            return str << "Ornithopter";
+        case RemoteId::BasicId::UasType::Glider:
+            return str << "Glider";
+        case RemoteId::BasicId::UasType::Kite:
+            return str << "Kite";
+        case RemoteId::BasicId::UasType::FreeBalloon:
+            return str << "Free Balloon";
+        case RemoteId::BasicId::UasType::CaptiveBalloon:
+            return str << "Captive Balloon";
+        case RemoteId::BasicId::UasType::Airship:
+            return str << "Airship";
+        case RemoteId::BasicId::UasType::FreeFallParachute:
+            return str << "Free Fall Parachute";
+        case RemoteId::BasicId::UasType::Rocket:
+            return str << "Rocket";
+        case RemoteId::BasicId::UasType::TetheredPoweredAircraft:
+            return str << "Tethered Powered Aircraft";
+        case RemoteId::BasicId::UasType::GroundObstacle:
+            return str << "Ground Obstacle";
+        case RemoteId::BasicId::UasType::Other:
+            return str << "Other";
+        default:
+            return str << "Unknown";
+    }
+}
 bool operator==(const RemoteId::BasicId& lhs, const RemoteId::BasicId& rhs)
 {
     return (rhs.id_type == lhs.id_type) && (rhs.ua_type == lhs.ua_type) &&
@@ -66,21 +145,54 @@ std::ostream& operator<<(std::ostream& str, RemoteId::BasicId const& basic_id)
     return str;
 }
 
+std::ostream& operator<<(std::ostream& str, RemoteId::Location::Status const& status)
+{
+    switch (status) {
+        case RemoteId::Location::Status::Undeclared:
+            return str << "Undeclared";
+        case RemoteId::Location::Status::Ground:
+            return str << "Ground";
+        case RemoteId::Location::Status::Airborne:
+            return str << "Airborne";
+        case RemoteId::Location::Status::Emergency:
+            return str << "Emergency";
+        case RemoteId::Location::Status::RemoteIdSystemFailure:
+            return str << "Remote Id System Failure";
+        default:
+            return str << "Unknown";
+    }
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::Location::HeightRef const& height_ref)
+{
+    switch (height_ref) {
+        case RemoteId::Location::HeightRef::OverTakeoff:
+            return str << "Over Takeoff";
+        case RemoteId::Location::HeightRef::OverGround:
+            return str << "Over Ground";
+        default:
+            return str << "Unknown";
+    }
+}
 bool operator==(const RemoteId::Location& lhs, const RemoteId::Location& rhs)
 {
-    return (rhs.status == lhs.status) && (rhs.direction == lhs.direction) &&
-           (rhs.speed_horizontal == lhs.speed_horizontal) &&
-           (rhs.speed_vertical == lhs.speed_vertical) && (rhs.latitude == lhs.latitude) &&
-           (rhs.longitude == lhs.longitude) &&
-           ((std::isnan(rhs.altitude_barometric) && std::isnan(lhs.altitude_barometric)) ||
-            rhs.altitude_barometric == lhs.altitude_barometric) &&
-           ((std::isnan(rhs.altitude_geodetic) && std::isnan(lhs.altitude_geodetic)) ||
-            rhs.altitude_geodetic == lhs.altitude_geodetic) &&
+    return (rhs.status == lhs.status) && (rhs.direction_deg == lhs.direction_deg) &&
+           ((std::isnan(rhs.speed_horizontal_m_s) && std::isnan(lhs.speed_horizontal_m_s)) ||
+            rhs.speed_horizontal_m_s == lhs.speed_horizontal_m_s) &&
+           ((std::isnan(rhs.speed_vertical_m_s) && std::isnan(lhs.speed_vertical_m_s)) ||
+            rhs.speed_vertical_m_s == lhs.speed_vertical_m_s) &&
+           ((std::isnan(rhs.latitude_deg) && std::isnan(lhs.latitude_deg)) ||
+            rhs.latitude_deg == lhs.latitude_deg) &&
+           ((std::isnan(rhs.longitude_deg) && std::isnan(lhs.longitude_deg)) ||
+            rhs.longitude_deg == lhs.longitude_deg) &&
+           ((std::isnan(rhs.altitude_barometric_m) && std::isnan(lhs.altitude_barometric_m)) ||
+            rhs.altitude_barometric_m == lhs.altitude_barometric_m) &&
+           ((std::isnan(rhs.altitude_geodetic_m) && std::isnan(lhs.altitude_geodetic_m)) ||
+            rhs.altitude_geodetic_m == lhs.altitude_geodetic_m) &&
            (rhs.height_reference == lhs.height_reference) &&
-           ((std::isnan(rhs.height) && std::isnan(lhs.height)) || rhs.height == lhs.height) &&
-           ((std::isnan(rhs.timestamp) && std::isnan(lhs.timestamp)) ||
-            rhs.timestamp == lhs.timestamp) &&
-           (rhs.timestamp_accuracy == lhs.timestamp_accuracy);
+           ((std::isnan(rhs.height_m) && std::isnan(lhs.height_m)) ||
+            rhs.height_m == lhs.height_m) &&
+           (rhs.time_utc_us == lhs.time_utc_us);
 }
 
 std::ostream& operator<<(std::ostream& str, RemoteId::Location const& location)
@@ -88,36 +200,239 @@ std::ostream& operator<<(std::ostream& str, RemoteId::Location const& location)
     str << std::setprecision(15);
     str << "location:" << '\n' << "{\n";
     str << "    status: " << location.status << '\n';
-    str << "    direction: " << location.direction << '\n';
-    str << "    speed_horizontal: " << location.speed_horizontal << '\n';
-    str << "    speed_vertical: " << location.speed_vertical << '\n';
-    str << "    latitude: " << location.latitude << '\n';
-    str << "    longitude: " << location.longitude << '\n';
-    str << "    altitude_barometric: " << location.altitude_barometric << '\n';
-    str << "    altitude_geodetic: " << location.altitude_geodetic << '\n';
+    str << "    direction_deg: " << location.direction_deg << '\n';
+    str << "    speed_horizontal_m_s: " << location.speed_horizontal_m_s << '\n';
+    str << "    speed_vertical_m_s: " << location.speed_vertical_m_s << '\n';
+    str << "    latitude_deg: " << location.latitude_deg << '\n';
+    str << "    longitude_deg: " << location.longitude_deg << '\n';
+    str << "    altitude_barometric_m: " << location.altitude_barometric_m << '\n';
+    str << "    altitude_geodetic_m: " << location.altitude_geodetic_m << '\n';
     str << "    height_reference: " << location.height_reference << '\n';
-    str << "    height: " << location.height << '\n';
-    str << "    timestamp: " << location.timestamp << '\n';
-    str << "    timestamp_accuracy: " << location.timestamp_accuracy << '\n';
+    str << "    height_m: " << location.height_m << '\n';
+    str << "    time_utc_us: " << location.time_utc_us << '\n';
     str << '}';
     return str;
 }
 
+std::ostream& operator<<(std::ostream& str, RemoteId::LocationAccuracy::HorAcc const& hor_acc)
+{
+    switch (hor_acc) {
+        case RemoteId::LocationAccuracy::HorAcc::Unknown:
+            return str << "Unknown";
+        case RemoteId::LocationAccuracy::HorAcc::Nm10:
+            return str << "Nm 10";
+        case RemoteId::LocationAccuracy::HorAcc::Nm4:
+            return str << "Nm 4";
+        case RemoteId::LocationAccuracy::HorAcc::Nm2:
+            return str << "Nm 2";
+        case RemoteId::LocationAccuracy::HorAcc::Nm1:
+            return str << "Nm 1";
+        case RemoteId::LocationAccuracy::HorAcc::Nm05:
+            return str << "Nm 0 5";
+        case RemoteId::LocationAccuracy::HorAcc::Nm03:
+            return str << "Nm 0 3";
+        case RemoteId::LocationAccuracy::HorAcc::Nm01:
+            return str << "Nm 0 1";
+        case RemoteId::LocationAccuracy::HorAcc::Nm005:
+            return str << "Nm 0 05";
+        case RemoteId::LocationAccuracy::HorAcc::Meter30:
+            return str << "Meter 30";
+        case RemoteId::LocationAccuracy::HorAcc::Meter10:
+            return str << "Meter 10";
+        case RemoteId::LocationAccuracy::HorAcc::Meter3:
+            return str << "Meter 3";
+        case RemoteId::LocationAccuracy::HorAcc::Meter1:
+            return str << "Meter 1";
+        default:
+            return str << "Unknown";
+    }
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::LocationAccuracy::VerAcc const& ver_acc)
+{
+    switch (ver_acc) {
+        case RemoteId::LocationAccuracy::VerAcc::Unknown:
+            return str << "Unknown";
+        case RemoteId::LocationAccuracy::VerAcc::Meter150:
+            return str << "Meter 150";
+        case RemoteId::LocationAccuracy::VerAcc::Meter45:
+            return str << "Meter 45";
+        case RemoteId::LocationAccuracy::VerAcc::Meter25:
+            return str << "Meter 25";
+        case RemoteId::LocationAccuracy::VerAcc::Meter10:
+            return str << "Meter 10";
+        case RemoteId::LocationAccuracy::VerAcc::Meter3:
+            return str << "Meter 3";
+        case RemoteId::LocationAccuracy::VerAcc::Meter1:
+            return str << "Meter 1";
+        default:
+            return str << "Unknown";
+    }
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::LocationAccuracy::SpeedAcc const& speed_acc)
+{
+    switch (speed_acc) {
+        case RemoteId::LocationAccuracy::SpeedAcc::Unknown:
+            return str << "Unknown";
+        case RemoteId::LocationAccuracy::SpeedAcc::MetersPerSecond10:
+            return str << "Meters Per Second 10";
+        case RemoteId::LocationAccuracy::SpeedAcc::MetersPerSecon3:
+            return str << "Meters Per Secon 3";
+        case RemoteId::LocationAccuracy::SpeedAcc::MetersPerSecond1:
+            return str << "Meters Per Second 1";
+        case RemoteId::LocationAccuracy::SpeedAcc::MetersPerSecond03:
+            return str << "Meters Per Second 0 3";
+        default:
+            return str << "Unknown";
+    }
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::LocationAccuracy::TimeAcc const& time_acc)
+{
+    switch (time_acc) {
+        case RemoteId::LocationAccuracy::TimeAcc::Unknown:
+            return str << "Unknown";
+        case RemoteId::LocationAccuracy::TimeAcc::Second01:
+            return str << "Second 0 1";
+        case RemoteId::LocationAccuracy::TimeAcc::Second02:
+            return str << "Second 0 2";
+        case RemoteId::LocationAccuracy::TimeAcc::Second03:
+            return str << "Second 0 3";
+        case RemoteId::LocationAccuracy::TimeAcc::Second04:
+            return str << "Second 0 4";
+        case RemoteId::LocationAccuracy::TimeAcc::Second05:
+            return str << "Second 0 5";
+        case RemoteId::LocationAccuracy::TimeAcc::Second06:
+            return str << "Second 0 6";
+        case RemoteId::LocationAccuracy::TimeAcc::Second07:
+            return str << "Second 0 7";
+        case RemoteId::LocationAccuracy::TimeAcc::Second08:
+            return str << "Second 0 8";
+        case RemoteId::LocationAccuracy::TimeAcc::Second09:
+            return str << "Second 0 9";
+        case RemoteId::LocationAccuracy::TimeAcc::Second10:
+            return str << "Second 1 0";
+        case RemoteId::LocationAccuracy::TimeAcc::Second11:
+            return str << "Second 1 1";
+        case RemoteId::LocationAccuracy::TimeAcc::Second12:
+            return str << "Second 1 2";
+        case RemoteId::LocationAccuracy::TimeAcc::Second13:
+            return str << "Second 1 3";
+        case RemoteId::LocationAccuracy::TimeAcc::Second14:
+            return str << "Second 1 4";
+        case RemoteId::LocationAccuracy::TimeAcc::Second15:
+            return str << "Second 1 5";
+        default:
+            return str << "Unknown";
+    }
+}
+bool operator==(const RemoteId::LocationAccuracy& lhs, const RemoteId::LocationAccuracy& rhs)
+{
+    return (rhs.horizontal_accuracy == lhs.horizontal_accuracy) &&
+           (rhs.vertical_accuracy == lhs.vertical_accuracy) &&
+           (rhs.barometer_accuracy == lhs.barometer_accuracy) &&
+           (rhs.speed_accuracy == lhs.speed_accuracy) &&
+           (rhs.timestamp_accuracy == lhs.timestamp_accuracy);
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::LocationAccuracy const& location_accuracy)
+{
+    str << std::setprecision(15);
+    str << "location_accuracy:" << '\n' << "{\n";
+    str << "    horizontal_accuracy: " << location_accuracy.horizontal_accuracy << '\n';
+    str << "    vertical_accuracy: " << location_accuracy.vertical_accuracy << '\n';
+    str << "    barometer_accuracy: " << location_accuracy.barometer_accuracy << '\n';
+    str << "    speed_accuracy: " << location_accuracy.speed_accuracy << '\n';
+    str << "    timestamp_accuracy: " << location_accuracy.timestamp_accuracy << '\n';
+    str << '}';
+    return str;
+}
+
+std::ostream& operator<<(
+    std::ostream& str, RemoteId::SystemId::OperatorLocationType const& operator_location_type)
+{
+    switch (operator_location_type) {
+        case RemoteId::SystemId::OperatorLocationType::Takeoff:
+            return str << "Takeoff";
+        case RemoteId::SystemId::OperatorLocationType::LiveGnss:
+            return str << "Live Gnss";
+        case RemoteId::SystemId::OperatorLocationType::Fixed:
+            return str << "Fixed";
+        default:
+            return str << "Unknown";
+    }
+}
+
+std::ostream&
+operator<<(std::ostream& str, RemoteId::SystemId::ClassificationType const& classification_type)
+{
+    switch (classification_type) {
+        case RemoteId::SystemId::ClassificationType::Undeclared:
+            return str << "Undeclared";
+        case RemoteId::SystemId::ClassificationType::Eu:
+            return str << "Eu";
+        default:
+            return str << "Unknown";
+    }
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::SystemId::CategoryEu const& category_eu)
+{
+    switch (category_eu) {
+        case RemoteId::SystemId::CategoryEu::Undeclared:
+            return str << "Undeclared";
+        case RemoteId::SystemId::CategoryEu::Open:
+            return str << "Open";
+        case RemoteId::SystemId::CategoryEu::Specific:
+            return str << "Specific";
+        case RemoteId::SystemId::CategoryEu::Certified:
+            return str << "Certified";
+        default:
+            return str << "Unknown";
+    }
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::SystemId::ClassEu const& class_eu)
+{
+    switch (class_eu) {
+        case RemoteId::SystemId::ClassEu::Undeclared:
+            return str << "Undeclared";
+        case RemoteId::SystemId::ClassEu::Class0:
+            return str << "Class 0";
+        case RemoteId::SystemId::ClassEu::Class1:
+            return str << "Class 1";
+        case RemoteId::SystemId::ClassEu::Class2:
+            return str << "Class 2";
+        case RemoteId::SystemId::ClassEu::Class3:
+            return str << "Class 3";
+        case RemoteId::SystemId::ClassEu::Class4:
+            return str << "Class 4";
+        case RemoteId::SystemId::ClassEu::Class5:
+            return str << "Class 5";
+        case RemoteId::SystemId::ClassEu::Class6:
+            return str << "Class 6";
+        default:
+            return str << "Unknown";
+    }
+}
 bool operator==(const RemoteId::SystemId& lhs, const RemoteId::SystemId& rhs)
 {
     return (rhs.operator_location_type == lhs.operator_location_type) &&
            (rhs.classification_type == lhs.classification_type) &&
-           (rhs.operator_latitude == lhs.operator_latitude) &&
-           (rhs.operator_longitude == lhs.operator_longitude) &&
-           (rhs.area_count == lhs.area_count) && (rhs.area_radius == lhs.area_radius) &&
-           ((std::isnan(rhs.area_ceiling) && std::isnan(lhs.area_ceiling)) ||
-            rhs.area_ceiling == lhs.area_ceiling) &&
-           ((std::isnan(rhs.area_floor) && std::isnan(lhs.area_floor)) ||
-            rhs.area_floor == lhs.area_floor) &&
+           ((std::isnan(rhs.operator_latitude_deg) && std::isnan(lhs.operator_latitude_deg)) ||
+            rhs.operator_latitude_deg == lhs.operator_latitude_deg) &&
+           ((std::isnan(rhs.operator_longitude_deg) && std::isnan(lhs.operator_longitude_deg)) ||
+            rhs.operator_longitude_deg == lhs.operator_longitude_deg) &&
+           (rhs.area_count == lhs.area_count) && (rhs.area_radius_m == lhs.area_radius_m) &&
+           ((std::isnan(rhs.area_ceiling_m) && std::isnan(lhs.area_ceiling_m)) ||
+            rhs.area_ceiling_m == lhs.area_ceiling_m) &&
+           ((std::isnan(rhs.area_floor_m) && std::isnan(lhs.area_floor_m)) ||
+            rhs.area_floor_m == lhs.area_floor_m) &&
            (rhs.category_eu == lhs.category_eu) && (rhs.class_eu == lhs.class_eu) &&
-           ((std::isnan(rhs.operator_altitude_geo) && std::isnan(lhs.operator_altitude_geo)) ||
-            rhs.operator_altitude_geo == lhs.operator_altitude_geo) &&
-           (rhs.timestamp == lhs.timestamp);
+           ((std::isnan(rhs.operator_altitude_geo_m) && std::isnan(lhs.operator_altitude_geo_m)) ||
+            rhs.operator_altitude_geo_m == lhs.operator_altitude_geo_m) &&
+           (rhs.time_utc_us == lhs.time_utc_us);
 }
 
 std::ostream& operator<<(std::ostream& str, RemoteId::SystemId const& system_id)
@@ -126,20 +441,30 @@ std::ostream& operator<<(std::ostream& str, RemoteId::SystemId const& system_id)
     str << "system_id:" << '\n' << "{\n";
     str << "    operator_location_type: " << system_id.operator_location_type << '\n';
     str << "    classification_type: " << system_id.classification_type << '\n';
-    str << "    operator_latitude: " << system_id.operator_latitude << '\n';
-    str << "    operator_longitude: " << system_id.operator_longitude << '\n';
+    str << "    operator_latitude_deg: " << system_id.operator_latitude_deg << '\n';
+    str << "    operator_longitude_deg: " << system_id.operator_longitude_deg << '\n';
     str << "    area_count: " << system_id.area_count << '\n';
-    str << "    area_radius: " << system_id.area_radius << '\n';
-    str << "    area_ceiling: " << system_id.area_ceiling << '\n';
-    str << "    area_floor: " << system_id.area_floor << '\n';
+    str << "    area_radius_m: " << system_id.area_radius_m << '\n';
+    str << "    area_ceiling_m: " << system_id.area_ceiling_m << '\n';
+    str << "    area_floor_m: " << system_id.area_floor_m << '\n';
     str << "    category_eu: " << system_id.category_eu << '\n';
     str << "    class_eu: " << system_id.class_eu << '\n';
-    str << "    operator_altitude_geo: " << system_id.operator_altitude_geo << '\n';
-    str << "    timestamp: " << system_id.timestamp << '\n';
+    str << "    operator_altitude_geo_m: " << system_id.operator_altitude_geo_m << '\n';
+    str << "    time_utc_us: " << system_id.time_utc_us << '\n';
     str << '}';
     return str;
 }
 
+std::ostream&
+operator<<(std::ostream& str, RemoteId::OperatorId::OperatorIdType const& operator_id_type)
+{
+    switch (operator_id_type) {
+        case RemoteId::OperatorId::OperatorIdType::Caa:
+            return str << "Caa";
+        default:
+            return str << "Unknown";
+    }
+}
 bool operator==(const RemoteId::OperatorId& lhs, const RemoteId::OperatorId& rhs)
 {
     return (rhs.operator_id_type == lhs.operator_id_type) && (rhs.operator_id == lhs.operator_id);
@@ -155,6 +480,19 @@ std::ostream& operator<<(std::ostream& str, RemoteId::OperatorId const& operator
     return str;
 }
 
+std::ostream& operator<<(std::ostream& str, RemoteId::SelfId::DescType const& desc_type)
+{
+    switch (desc_type) {
+        case RemoteId::SelfId::DescType::Text:
+            return str << "Text";
+        case RemoteId::SelfId::DescType::Emergency:
+            return str << "Emergency";
+        case RemoteId::SelfId::DescType::ExtendedStatus:
+            return str << "Extended Status";
+        default:
+            return str << "Unknown";
+    }
+}
 bool operator==(const RemoteId::SelfId& lhs, const RemoteId::SelfId& rhs)
 {
     return (rhs.description_type == lhs.description_type) && (rhs.description == lhs.description);
@@ -166,6 +504,32 @@ std::ostream& operator<<(std::ostream& str, RemoteId::SelfId const& self_id)
     str << "self_id:" << '\n' << "{\n";
     str << "    description_type: " << self_id.description_type << '\n';
     str << "    description: " << self_id.description << '\n';
+    str << '}';
+    return str;
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::ArmStatus::Status const& status)
+{
+    switch (status) {
+        case RemoteId::ArmStatus::Status::GoodToArm:
+            return str << "Good To Arm";
+        case RemoteId::ArmStatus::Status::PreArmFailGeneric:
+            return str << "Pre Arm Fail Generic";
+        default:
+            return str << "Unknown";
+    }
+}
+bool operator==(const RemoteId::ArmStatus& lhs, const RemoteId::ArmStatus& rhs)
+{
+    return (rhs.status == lhs.status) && (rhs.error == lhs.error);
+}
+
+std::ostream& operator<<(std::ostream& str, RemoteId::ArmStatus const& arm_status)
+{
+    str << std::setprecision(15);
+    str << "arm_status:" << '\n' << "{\n";
+    str << "    status: " << arm_status.status << '\n';
+    str << "    error: " << arm_status.error << '\n';
     str << '}';
     return str;
 }

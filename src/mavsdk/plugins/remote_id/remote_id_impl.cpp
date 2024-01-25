@@ -22,42 +22,52 @@ void RemoteIdImpl::init()
     _id_or_mac.reserve(20);
     _id_or_mac.assign(20, 0x00);
     // Init BasicId
-    _basic_id.id_type = MAV_ODID_ID_TYPE_NONE;
-    _basic_id.ua_type = MAV_ODID_UA_TYPE_NONE;
+    _basic_id.id_type = RemoteId::BasicId::IdType::None;
+    _basic_id.ua_type = RemoteId::BasicId::UasType::None;
     _basic_id.uas_id.reserve(20);
     _basic_id.uas_id.assign(20, 0x00);
     // Init OperatorId
-    _operator_id.operator_id_type = MAV_ODID_OPERATOR_ID_TYPE_CAA;
+    _operator_id.operator_id_type = RemoteId::OperatorId::OperatorIdType::Caa;
     _operator_id.operator_id.assign(20, 0x00);
     // Init Location
-    _location.status = MAV_ODID_STATUS_UNDECLARED;
+    _location.status = RemoteId::Location::Status::Undeclared;
     _location.direction_deg = 361;
-    _location.speed_horizontal_cm_s = 25500;
-    _location.speed_vertical_cm_s = 6300;
+    _location.speed_horizontal_m_s = 255;
+    _location.speed_vertical_m_s = 63;
     _location.latitude_deg = 0;
     _location.longitude_deg = 0;
     _location.altitude_barometric_m = -1000;
     _location.altitude_geodetic_m = -1000;
-    _location.height_reference = MAV_ODID_HEIGHT_REF_OVER_TAKEOFF;
+    _location.height_reference = RemoteId::Location::HeightRef::OverTakeoff;
     _location.height_m = -1000;
-    _location.timestamp_s = 0xFFFF;
-    _location.timestamp_accuracy = MAV_ODID_TIME_ACC_UNKNOWN;
+    _location.time_utc_us = 0;
+    // LocationAccuracy
+    _location_accuracy.horizontal_accuracy = RemoteId::LocationAccuracy::HorAcc::Unknown;
+    _location_accuracy.vertical_accuracy = RemoteId::LocationAccuracy::VerAcc::Unknown;
+    _location_accuracy.barometer_accuracy = RemoteId::LocationAccuracy::VerAcc::Unknown;
+    _location_accuracy.speed_accuracy = RemoteId::LocationAccuracy::SpeedAcc::Unknown;
+    _location_accuracy.timestamp_accuracy = RemoteId::LocationAccuracy::TimeAcc::Unknown;
     // Init System
-    _system.operator_location_type = MAV_ODID_OPERATOR_LOCATION_TYPE_TAKEOFF;
-    _system.classification_type = MAV_ODID_CLASSIFICATION_TYPE_EU;
+    _system.operator_location_type = RemoteId::SystemId::OperatorLocationType::Takeoff;
+    _system.classification_type = RemoteId::SystemId::ClassificationType::Undeclared;
     _system.operator_latitude_deg = 0;
     _system.operator_longitude_deg = 0;
     _system.area_count = 1;
     _system.area_radius_m = 0;
     _system.area_ceiling_m = -1000;
     _system.area_floor_m = -1000;
-    _system.category_eu = MAV_ODID_CATEGORY_EU_UNDECLARED;
-    _system.class_eu = MAV_ODID_CLASS_EU_UNDECLARED;
+    _system.category_eu = RemoteId::SystemId::CategoryEu::Undeclared;
+    _system.class_eu = RemoteId::SystemId::ClassEu::Undeclared;
     _system.operator_altitude_geo_m = -1000;
-    _system.timestamp_s = 0;
+    _system.time_utc_us = 0;
     // Init SelfId
-    _self_id.description_type = MAV_ODID_DESC_TYPE_TEXT;
+    _self_id.description_type = RemoteId::SelfId::DescType::Text;
     _self_id.description = std::string("");
+
+     _system_impl->register_mavlink_message_handler(
+                 MAVLINK_MSG_ID_OPEN_DRONE_ID_ARM_STATUS,
+                 [this](const mavlink_message_t& message) { process_arm_status(message); },
+                 this);
 
     _system_impl->add_call_every(
         [this]() { send_drone_location(); }, 1.0, &_send_drone_location_call_every_cookie);
@@ -112,12 +122,37 @@ RemoteId::Result RemoteIdImpl::set_location(RemoteId::Location location)
     return RemoteId::Result::Success;
 }
 
+RemoteId::Result RemoteIdImpl::set_location_accuracy(RemoteId::LocationAccuracy location_accuracy)
+{
+    _location_accuracy = location_accuracy;
+    return RemoteId::Result::Success;
+}
+
 RemoteId::Result RemoteIdImpl::set_system(RemoteId::SystemId system)
 {
     _system = system;
-    if (!_system.timestamp_s)
-        _system.timestamp_s = get_seconds_after_2019();
+    if (!_system.time_utc_us)
+        _system.time_utc_us = get_seconds_after_2019();
     return RemoteId::Result::Success;
+}
+
+RemoteId::ArmStatusHandle
+RemoteIdImpl::subscribe_arm_status(const RemoteId::ArmStatusCallback& callback)
+{
+    std::lock_guard<std::mutex> lock(_armStatus.mutex);
+    auto handle = _armStatus.subscription_callbacks.subscribe(callback);
+    return handle;
+}
+
+void RemoteIdImpl::unsubscribe_arm_status(RemoteId::ArmStatusHandle handle)
+{
+    std::lock_guard<std::mutex> lock(_armStatus.mutex);
+    _armStatus.subscription_callbacks.unsubscribe(handle);
+}
+
+RemoteId::ArmStatus RemoteIdImpl::arm_status() const
+{
+    return _armStatus.data;
 }
 
 void RemoteIdImpl::send_drone_location()
@@ -133,8 +168,8 @@ void RemoteIdImpl::send_drone_location()
         (uint8_t)_location
             .status, // Indicates whether the unmanned aircraft is on the ground or in the air.
         (uint16_t)(_location.direction_deg * 100.0), // Direction over ground
-        (uint16_t)_location.speed_horizontal_cm_s, // Ground speed. Positive only.
-        (int16_t)_location.speed_vertical_cm_s, // The vertical speed. Up is positive.
+        (uint16_t)(_location.speed_horizontal_m_s * 100), // Ground speed. Positive only.
+        (int16_t)(_location.speed_vertical_m_s * 100), // The vertical speed. Up is positive.
         (int32_t)(_location.latitude_deg * 1e7), // Current latitude of the unmanned aircraft.
         (int32_t)(_location.longitude_deg * 1e7), // Current longitude of the unmanned aircraft.
         (float)
@@ -143,12 +178,17 @@ void RemoteIdImpl::send_drone_location()
         (uint8_t)_location.height_reference, // Indicates the reference point for the height field.
         (float)_location.height_m, // The current height of the unmanned aircraft above the take-off
                                    // location or the ground
-        MAV_ODID_HOR_ACC_UNKNOWN, // The accuracy of the horizontal position.
-        MAV_ODID_VER_ACC_UNKNOWN, // The accuracy of the vertical position.
-        MAV_ODID_VER_ACC_UNKNOWN, // The accuracy of the barometric altitude.
-        MAV_ODID_SPEED_ACC_UNKNOWN, // The accuracy of the horizontal and vertical speed.
-        (float)_location.timestamp_s, // Seconds after the full hour with reference to UTC time.
-        (uint8_t)_location.timestamp_accuracy // The accuracy of the timestamps.
+        (uint8_t)_location_accuracy.horizontal_accuracy, // The accuracy of the horizontal position.
+        (uint8_t)_location_accuracy.vertical_accuracy, // The accuracy of the vertical position.
+        (uint8_t)_location_accuracy.barometer_accuracy, // The accuracy of the barometric altitude.
+        (uint8_t)
+            _location_accuracy.speed_accuracy, // The accuracy of the horizontal and vertical speed.
+        (float)get_seconds_in_full_hour_for_utc_time(
+                    _location.time_utc_us == 0 ?
+                        get_utc_time_in_milliseconds()/1000.0 :
+                        _location.time_utc_us/1000000.0
+                    ), // Seconds after the full hour with reference to UTC time.
+        (uint8_t)_location_accuracy.timestamp_accuracy // The accuracy of the timestamps.
     );
 
     _system_impl->send_message(msg);
@@ -191,11 +231,11 @@ void RemoteIdImpl::send_operator_id()
     // LogErr() << "send_drone_basic_id " << _basic_id;
 }
 
-void RemoteIdImpl::send_drone_id_system()
+void RemoteIdImpl::send_drone_id_system()   // FIXME: Handle time auto increments
 {
     mavlink_message_t msg{};
 
-    if (_system.timestamp_s) {
+    if (_system.time_utc_us) {
         mavlink_msg_open_drone_id_system_pack(
             _system_impl->get_own_system_id(),
             _system_impl->get_own_component_id(),
@@ -216,9 +256,9 @@ void RemoteIdImpl::send_drone_id_system()
             (uint8_t)_system.category_eu, // Specifies the category of the UA.
             (uint8_t)_system.class_eu, // Specifies the class of the UA.
             (float)_system.operator_altitude_geo_m,
-            (uint32_t)_system.timestamp_s);
+            (uint32_t)_system.time_utc_us);
     } else {
-        _system.timestamp_s = get_seconds_after_2019();
+        _system.time_utc_us = get_seconds_after_2019();
         mavlink_msg_open_drone_id_system_update_pack(
             _system_impl->get_own_system_id(),
             _system_impl->get_own_component_id(),
@@ -228,10 +268,10 @@ void RemoteIdImpl::send_drone_id_system()
             (int32_t)(_system.operator_latitude_deg * 1e7), // Latitude of the operator.
             (int32_t)(_system.operator_longitude_deg * 1e7), // Longitude of the operator.
             (float)_system.operator_altitude_geo_m,
-            (uint32_t)_system.timestamp_s);
+            (uint32_t)_system.time_utc_us);
     }
 
-    _system.timestamp_s = 0;
+    _system.time_utc_us = 0;
     _system_impl->send_message(msg);
     LogErr() << "send_drone_basic_id " << _system;
 }
@@ -254,6 +294,17 @@ void RemoteIdImpl::send_drone_self_id()
     LogErr() << "send_drone_self_id " << _self_id;
 }
 
+void RemoteIdImpl::process_arm_status(const mavlink_message_t &message)
+{
+    mavlink_open_drone_id_arm_status_t arm_status;
+    mavlink_msg_open_drone_id_arm_status_decode(&message, &arm_status);
+    {
+        std::lock_guard<std::mutex> lock(_armStatus.mutex);
+        _armStatus.data.status = (RemoteId::ArmStatus::Status)arm_status.status;
+        _armStatus.data.error = (const char *)arm_status.error;
+    }
+}
+
 uint32_t RemoteIdImpl::get_seconds_after_2019()
 {
     auto secs = std::chrono::duration_cast<std::chrono::seconds>(
@@ -261,6 +312,18 @@ uint32_t RemoteIdImpl::get_seconds_after_2019()
                     .count() -
                 1609459200;
     return (uint32_t)secs;
+}
+
+uint64_t RemoteIdImpl::get_utc_time_in_milliseconds()
+{
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+                    std::chrono::system_clock::now().time_since_epoch())
+            .count();
+}
+
+uint16_t RemoteIdImpl::get_seconds_in_full_hour_for_utc_time(uint64_t utc_time)
+{
+    return (uint16_t)(utc_time % (60*60*1000));
 }
 
 } // namespace mavsdk

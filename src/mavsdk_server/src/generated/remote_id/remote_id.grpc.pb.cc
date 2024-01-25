@@ -26,9 +26,11 @@ namespace remote_id {
 static const char* RemoteIdService_method_names[] = {
   "/mavsdk.rpc.remote_id.RemoteIdService/SetBasicId",
   "/mavsdk.rpc.remote_id.RemoteIdService/SetLocation",
+  "/mavsdk.rpc.remote_id.RemoteIdService/SetLocationAccuracy",
   "/mavsdk.rpc.remote_id.RemoteIdService/SetSystem",
   "/mavsdk.rpc.remote_id.RemoteIdService/SetOperatorId",
   "/mavsdk.rpc.remote_id.RemoteIdService/SetSelfId",
+  "/mavsdk.rpc.remote_id.RemoteIdService/SubscribeArmStatus",
 };
 
 std::unique_ptr< RemoteIdService::Stub> RemoteIdService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -40,9 +42,11 @@ std::unique_ptr< RemoteIdService::Stub> RemoteIdService::NewStub(const std::shar
 RemoteIdService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_SetBasicId_(RemoteIdService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SetLocation_(RemoteIdService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSystem_(RemoteIdService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetOperatorId_(RemoteIdService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetSelfId_(RemoteIdService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetLocationAccuracy_(RemoteIdService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSystem_(RemoteIdService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetOperatorId_(RemoteIdService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetSelfId_(RemoteIdService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SubscribeArmStatus_(RemoteIdService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
 ::grpc::Status RemoteIdService::Stub::SetBasicId(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetBasicIdRequest& request, ::mavsdk::rpc::remote_id::SetBasicIdResponse* response) {
@@ -87,6 +91,29 @@ void RemoteIdService::Stub::async::SetLocation(::grpc::ClientContext* context, c
 ::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetLocationResponse>* RemoteIdService::Stub::AsyncSetLocationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncSetLocationRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status RemoteIdService::Stub::SetLocationAccuracy(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest& request, ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest, ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetLocationAccuracy_, context, request, response);
+}
+
+void RemoteIdService::Stub::async::SetLocationAccuracy(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest* request, ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest, ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetLocationAccuracy_, context, request, response, std::move(f));
+}
+
+void RemoteIdService::Stub::async::SetLocationAccuracy(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest* request, ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetLocationAccuracy_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse>* RemoteIdService::Stub::PrepareAsyncSetLocationAccuracyRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse, ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetLocationAccuracy_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse>* RemoteIdService::Stub::AsyncSetLocationAccuracyRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetLocationAccuracyRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -160,6 +187,22 @@ void RemoteIdService::Stub::async::SetSelfId(::grpc::ClientContext* context, con
   return result;
 }
 
+::grpc::ClientReader< ::mavsdk::rpc::remote_id::ArmStatusResponse>* RemoteIdService::Stub::SubscribeArmStatusRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SubscribeArmStatusRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::mavsdk::rpc::remote_id::ArmStatusResponse>::Create(channel_.get(), rpcmethod_SubscribeArmStatus_, context, request);
+}
+
+void RemoteIdService::Stub::async::SubscribeArmStatus(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SubscribeArmStatusRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::remote_id::ArmStatusResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::mavsdk::rpc::remote_id::ArmStatusResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_SubscribeArmStatus_, context, request, reactor);
+}
+
+::grpc::ClientAsyncReader< ::mavsdk::rpc::remote_id::ArmStatusResponse>* RemoteIdService::Stub::AsyncSubscribeArmStatusRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SubscribeArmStatusRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::remote_id::ArmStatusResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeArmStatus_, context, request, true, tag);
+}
+
+::grpc::ClientAsyncReader< ::mavsdk::rpc::remote_id::ArmStatusResponse>* RemoteIdService::Stub::PrepareAsyncSubscribeArmStatusRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::remote_id::SubscribeArmStatusRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::remote_id::ArmStatusResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeArmStatus_, context, request, false, nullptr);
+}
+
 RemoteIdService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RemoteIdService_method_names[0],
@@ -184,6 +227,16 @@ RemoteIdService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       RemoteIdService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< RemoteIdService::Service, ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest, ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](RemoteIdService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest* req,
+             ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse* resp) {
+               return service->SetLocationAccuracy(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RemoteIdService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RemoteIdService::Service, ::mavsdk::rpc::remote_id::SetSystemRequest, ::mavsdk::rpc::remote_id::SetSystemResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](RemoteIdService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -192,7 +245,7 @@ RemoteIdService::Service::Service() {
                return service->SetSystem(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RemoteIdService_method_names[3],
+      RemoteIdService_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RemoteIdService::Service, ::mavsdk::rpc::remote_id::SetOperatorIdRequest, ::mavsdk::rpc::remote_id::SetOperatorIdResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](RemoteIdService::Service* service,
@@ -202,7 +255,7 @@ RemoteIdService::Service::Service() {
                return service->SetOperatorId(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      RemoteIdService_method_names[4],
+      RemoteIdService_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< RemoteIdService::Service, ::mavsdk::rpc::remote_id::SetSelfIdRequest, ::mavsdk::rpc::remote_id::SetSelfIdResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](RemoteIdService::Service* service,
@@ -210,6 +263,16 @@ RemoteIdService::Service::Service() {
              const ::mavsdk::rpc::remote_id::SetSelfIdRequest* req,
              ::mavsdk::rpc::remote_id::SetSelfIdResponse* resp) {
                return service->SetSelfId(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      RemoteIdService_method_names[6],
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< RemoteIdService::Service, ::mavsdk::rpc::remote_id::SubscribeArmStatusRequest, ::mavsdk::rpc::remote_id::ArmStatusResponse>(
+          [](RemoteIdService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::mavsdk::rpc::remote_id::SubscribeArmStatusRequest* req,
+             ::grpc::ServerWriter<::mavsdk::rpc::remote_id::ArmStatusResponse>* writer) {
+               return service->SubscribeArmStatus(ctx, req, writer);
              }, this)));
 }
 
@@ -224,6 +287,13 @@ RemoteIdService::Service::~Service() {
 }
 
 ::grpc::Status RemoteIdService::Service::SetLocation(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetLocationRequest* request, ::mavsdk::rpc::remote_id::SetLocationResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RemoteIdService::Service::SetLocationAccuracy(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SetLocationAccuracyRequest* request, ::mavsdk::rpc::remote_id::SetLocationAccuracyResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -248,6 +318,13 @@ RemoteIdService::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status RemoteIdService::Service::SubscribeArmStatus(::grpc::ServerContext* context, const ::mavsdk::rpc::remote_id::SubscribeArmStatusRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::remote_id::ArmStatusResponse>* writer) {
+  (void) context;
+  (void) request;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

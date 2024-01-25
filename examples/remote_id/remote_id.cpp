@@ -58,20 +58,23 @@ int main(int argc, char** argv)
     auto remote_id = RemoteId{system};
 
     remote_id.set_basic_id(RemoteId::BasicId{
-        .id_type = MAV_ODID_ID_TYPE_SERIAL_NUMBER,
-        .ua_type = MAV_ODID_UA_TYPE_HYBRID_LIFT,
+        .id_type = RemoteId::BasicId::IdType::SerialNumber,
+        .ua_type = RemoteId::BasicId::UasType::HybridLift,
         .uas_id = std::string({'S',  'R',  'R',  'B',  'T',  '#',  '0',  '1',  0x00, 0x00,
                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
 
     remote_id.set_self_id(RemoteId::SelfId{
-        .description_type = MAV_ODID_DESC_TYPE_TEXT,
+        .description_type = RemoteId::SelfId::DescType::Text,
         .description = std::string({'T',  'E',  'S',  'T',  '_',  'S',  'E',  'L',  'F',  0x00,
                                     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
 
     remote_id.set_operator_id(RemoteId::OperatorId{
-        .operator_id_type = MAV_ODID_OPERATOR_ID_TYPE_CAA,
+        .operator_id_type = RemoteId::OperatorId::OperatorIdType::Caa,
         .operator_id = std::string({'T',  'E',  'S',  'T',  '_',  'O',  'P',  'E',  'R',  0x00,
                                     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00})});
+
+    remote_id.set_location_accuracy(RemoteId::LocationAccuracy{
+        .horizontal_accuracy = RemoteId::LocationAccuracy::HorAcc::Meter1});
 
     float latitude_op = 43.1213;
     float longitude_op = 12.3134;
@@ -84,16 +87,16 @@ int main(int argc, char** argv)
         const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(now - ref).count();
 
         remote_id.set_system(RemoteId::SystemId{
-            .operator_location_type = MAV_ODID_OPERATOR_LOCATION_TYPE_FIXED,
-            .classification_type = MAV_ODID_CLASSIFICATION_TYPE_EU,
+            .operator_location_type = RemoteId::SystemId::OperatorLocationType::Fixed,
+            .classification_type = RemoteId::SystemId::ClassificationType::Eu,
             .operator_latitude_deg = latitude_op,
             .operator_longitude_deg = longitude_op,
             .area_count = 1,
             .area_radius_m = 0,
             .area_ceiling_m = -1000,
             .area_floor_m = -1000,
-            .category_eu = MAV_ODID_CATEGORY_EU_OPEN,
-            .class_eu = MAV_ODID_CLASS_EU_CLASS_2,
+            .category_eu = RemoteId::SystemId::CategoryEu::Open,
+            .class_eu = RemoteId::SystemId::ClassEu::Class2,
             .operator_altitude_geo_m = -1000,
             .timestamp_s = (uint32_t)seconds});
     }
@@ -110,13 +113,12 @@ int main(int argc, char** argv)
         const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(timeodhour).count();
 
         remote_id.set_location(RemoteId::Location{
-            .status = MAV_ODID_STATUS_AIRBORNE,
+            .status = RemoteId::Location::Status::Airborne,
             .latitude_deg = latitude,
             .longitude_deg = longitude,
-            .height_reference = MAV_ODID_HEIGHT_REF_OVER_TAKEOFF,
+            .height_reference = RemoteId::Location::HeightRef::OverTakeoff,
             .height_m = height,
-            .timestamp_s = (float)seconds,
-            .timestamp_accuracy = MAV_ODID_TIME_ACC_1_0_SECOND});
+            .timestamp_s = (float)seconds});
 
         std::this_thread::sleep_for(std::chrono::seconds(1));
         steps++;

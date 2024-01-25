@@ -26,6 +26,7 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
+#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -60,12 +61,21 @@ extern const ::google::protobuf::internal::DescriptorTable
 namespace mavsdk {
 namespace rpc {
 namespace remote_id {
+class ArmStatus;
+struct ArmStatusDefaultTypeInternal;
+extern ArmStatusDefaultTypeInternal _ArmStatus_default_instance_;
+class ArmStatusResponse;
+struct ArmStatusResponseDefaultTypeInternal;
+extern ArmStatusResponseDefaultTypeInternal _ArmStatusResponse_default_instance_;
 class BasicId;
 struct BasicIdDefaultTypeInternal;
 extern BasicIdDefaultTypeInternal _BasicId_default_instance_;
 class Location;
 struct LocationDefaultTypeInternal;
 extern LocationDefaultTypeInternal _Location_default_instance_;
+class LocationAccuracy;
+struct LocationAccuracyDefaultTypeInternal;
+extern LocationAccuracyDefaultTypeInternal _LocationAccuracy_default_instance_;
 class OperatorId;
 struct OperatorIdDefaultTypeInternal;
 extern OperatorIdDefaultTypeInternal _OperatorId_default_instance_;
@@ -81,6 +91,12 @@ extern SetBasicIdRequestDefaultTypeInternal _SetBasicIdRequest_default_instance_
 class SetBasicIdResponse;
 struct SetBasicIdResponseDefaultTypeInternal;
 extern SetBasicIdResponseDefaultTypeInternal _SetBasicIdResponse_default_instance_;
+class SetLocationAccuracyRequest;
+struct SetLocationAccuracyRequestDefaultTypeInternal;
+extern SetLocationAccuracyRequestDefaultTypeInternal _SetLocationAccuracyRequest_default_instance_;
+class SetLocationAccuracyResponse;
+struct SetLocationAccuracyResponseDefaultTypeInternal;
+extern SetLocationAccuracyResponseDefaultTypeInternal _SetLocationAccuracyResponse_default_instance_;
 class SetLocationRequest;
 struct SetLocationRequestDefaultTypeInternal;
 extern SetLocationRequestDefaultTypeInternal _SetLocationRequest_default_instance_;
@@ -105,6 +121,9 @@ extern SetSystemRequestDefaultTypeInternal _SetSystemRequest_default_instance_;
 class SetSystemResponse;
 struct SetSystemResponseDefaultTypeInternal;
 extern SetSystemResponseDefaultTypeInternal _SetSystemResponse_default_instance_;
+class SubscribeArmStatusRequest;
+struct SubscribeArmStatusRequestDefaultTypeInternal;
+extern SubscribeArmStatusRequestDefaultTypeInternal _SubscribeArmStatusRequest_default_instance_;
 class SystemId;
 struct SystemIdDefaultTypeInternal;
 extern SystemIdDefaultTypeInternal _SystemId_default_instance_;
@@ -119,6 +138,563 @@ namespace protobuf {
 namespace mavsdk {
 namespace rpc {
 namespace remote_id {
+enum BasicId_IdType : int {
+  BasicId_IdType_ID_TYPE_NONE = 0,
+  BasicId_IdType_ID_TYPE_SERIAL_NUMBER = 1,
+  BasicId_IdType_ID_TYPE_CAA_REGISTRATION_ID = 2,
+  BasicId_IdType_ID_TYPE_UTM_ASSIGNED_UUID = 3,
+  BasicId_IdType_ID_TYPE_SPECIFIC_SESSION_ID = 4,
+  BasicId_IdType_BasicId_IdType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  BasicId_IdType_BasicId_IdType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool BasicId_IdType_IsValid(int value);
+extern const uint32_t BasicId_IdType_internal_data_[];
+constexpr BasicId_IdType BasicId_IdType_IdType_MIN = static_cast<BasicId_IdType>(0);
+constexpr BasicId_IdType BasicId_IdType_IdType_MAX = static_cast<BasicId_IdType>(4);
+constexpr int BasicId_IdType_IdType_ARRAYSIZE = 4 + 1;
+const ::google::protobuf::EnumDescriptor*
+BasicId_IdType_descriptor();
+template <typename T>
+const std::string& BasicId_IdType_Name(T value) {
+  static_assert(std::is_same<T, BasicId_IdType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to IdType_Name().");
+  return BasicId_IdType_Name(static_cast<BasicId_IdType>(value));
+}
+template <>
+inline const std::string& BasicId_IdType_Name(BasicId_IdType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<BasicId_IdType_descriptor,
+                                                 0, 4>(
+      static_cast<int>(value));
+}
+inline bool BasicId_IdType_Parse(absl::string_view name, BasicId_IdType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<BasicId_IdType>(
+      BasicId_IdType_descriptor(), name, value);
+}
+enum BasicId_UasType : int {
+  BasicId_UasType_UAS_TYPE_NONE = 0,
+  BasicId_UasType_UAS_TYPE_AEROPLANE = 1,
+  BasicId_UasType_UAS_TYPE_HELICOPTER_OR_MULTIROTOR = 2,
+  BasicId_UasType_UAS_TYPE_GYROPLANE = 3,
+  BasicId_UasType_UAS_TYPE_HYBRID_LIFT = 4,
+  BasicId_UasType_UAS_TYPE_ORNITHOPTER = 5,
+  BasicId_UasType_UAS_TYPE_GLIDER = 6,
+  BasicId_UasType_UAS_TYPE_KITE = 7,
+  BasicId_UasType_UAS_TYPE_FREE_BALLOON = 8,
+  BasicId_UasType_UAS_TYPE_CAPTIVE_BALLOON = 9,
+  BasicId_UasType_UAS_TYPE_AIRSHIP = 10,
+  BasicId_UasType_UAS_TYPE_FREE_FALL_PARACHUTE = 11,
+  BasicId_UasType_UAS_TYPE_ROCKET = 12,
+  BasicId_UasType_UAS_TYPE_TETHERED_POWERED_AIRCRAFT = 13,
+  BasicId_UasType_UAS_TYPE_GROUND_OBSTACLE = 14,
+  BasicId_UasType_UAS_TYPE_OTHER = 15,
+  BasicId_UasType_BasicId_UasType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  BasicId_UasType_BasicId_UasType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool BasicId_UasType_IsValid(int value);
+extern const uint32_t BasicId_UasType_internal_data_[];
+constexpr BasicId_UasType BasicId_UasType_UasType_MIN = static_cast<BasicId_UasType>(0);
+constexpr BasicId_UasType BasicId_UasType_UasType_MAX = static_cast<BasicId_UasType>(15);
+constexpr int BasicId_UasType_UasType_ARRAYSIZE = 15 + 1;
+const ::google::protobuf::EnumDescriptor*
+BasicId_UasType_descriptor();
+template <typename T>
+const std::string& BasicId_UasType_Name(T value) {
+  static_assert(std::is_same<T, BasicId_UasType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to UasType_Name().");
+  return BasicId_UasType_Name(static_cast<BasicId_UasType>(value));
+}
+template <>
+inline const std::string& BasicId_UasType_Name(BasicId_UasType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<BasicId_UasType_descriptor,
+                                                 0, 15>(
+      static_cast<int>(value));
+}
+inline bool BasicId_UasType_Parse(absl::string_view name, BasicId_UasType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<BasicId_UasType>(
+      BasicId_UasType_descriptor(), name, value);
+}
+enum Location_Status : int {
+  Location_Status_STATUS_UNDECLARED = 0,
+  Location_Status_STATUS_GROUND = 1,
+  Location_Status_STATUS_AIRBORNE = 2,
+  Location_Status_STATUS_EMERGENCY = 3,
+  Location_Status_STATUS_REMOTE_ID_SYSTEM_FAILURE = 4,
+  Location_Status_Location_Status_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  Location_Status_Location_Status_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool Location_Status_IsValid(int value);
+extern const uint32_t Location_Status_internal_data_[];
+constexpr Location_Status Location_Status_Status_MIN = static_cast<Location_Status>(0);
+constexpr Location_Status Location_Status_Status_MAX = static_cast<Location_Status>(4);
+constexpr int Location_Status_Status_ARRAYSIZE = 4 + 1;
+const ::google::protobuf::EnumDescriptor*
+Location_Status_descriptor();
+template <typename T>
+const std::string& Location_Status_Name(T value) {
+  static_assert(std::is_same<T, Location_Status>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Status_Name().");
+  return Location_Status_Name(static_cast<Location_Status>(value));
+}
+template <>
+inline const std::string& Location_Status_Name(Location_Status value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<Location_Status_descriptor,
+                                                 0, 4>(
+      static_cast<int>(value));
+}
+inline bool Location_Status_Parse(absl::string_view name, Location_Status* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Location_Status>(
+      Location_Status_descriptor(), name, value);
+}
+enum Location_HeightRef : int {
+  Location_HeightRef_HEIGHT_REF_OVER_TAKEOFF = 0,
+  Location_HeightRef_HEIGHT_REF_OVER_GROUND = 1,
+  Location_HeightRef_Location_HeightRef_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  Location_HeightRef_Location_HeightRef_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool Location_HeightRef_IsValid(int value);
+extern const uint32_t Location_HeightRef_internal_data_[];
+constexpr Location_HeightRef Location_HeightRef_HeightRef_MIN = static_cast<Location_HeightRef>(0);
+constexpr Location_HeightRef Location_HeightRef_HeightRef_MAX = static_cast<Location_HeightRef>(1);
+constexpr int Location_HeightRef_HeightRef_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor*
+Location_HeightRef_descriptor();
+template <typename T>
+const std::string& Location_HeightRef_Name(T value) {
+  static_assert(std::is_same<T, Location_HeightRef>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to HeightRef_Name().");
+  return Location_HeightRef_Name(static_cast<Location_HeightRef>(value));
+}
+template <>
+inline const std::string& Location_HeightRef_Name(Location_HeightRef value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<Location_HeightRef_descriptor,
+                                                 0, 1>(
+      static_cast<int>(value));
+}
+inline bool Location_HeightRef_Parse(absl::string_view name, Location_HeightRef* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Location_HeightRef>(
+      Location_HeightRef_descriptor(), name, value);
+}
+enum LocationAccuracy_HorAcc : int {
+  LocationAccuracy_HorAcc_HOR_ACC_UNKNOWN = 0,
+  LocationAccuracy_HorAcc_HOR_ACC_NM_10 = 1,
+  LocationAccuracy_HorAcc_HOR_ACC_NM_4 = 2,
+  LocationAccuracy_HorAcc_HOR_ACC_NM_2 = 3,
+  LocationAccuracy_HorAcc_HOR_ACC_NM_1 = 4,
+  LocationAccuracy_HorAcc_HOR_ACC_NM_0_5 = 5,
+  LocationAccuracy_HorAcc_HOR_ACC_NM_0_3 = 6,
+  LocationAccuracy_HorAcc_HOR_ACC_NM_0_1 = 7,
+  LocationAccuracy_HorAcc_HOR_ACC_NM_0_05 = 8,
+  LocationAccuracy_HorAcc_HOR_ACC_METER_30 = 9,
+  LocationAccuracy_HorAcc_HOR_ACC_METER_10 = 10,
+  LocationAccuracy_HorAcc_HOR_ACC_METER_3 = 11,
+  LocationAccuracy_HorAcc_HOR_ACC_METER_1 = 12,
+  LocationAccuracy_HorAcc_LocationAccuracy_HorAcc_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  LocationAccuracy_HorAcc_LocationAccuracy_HorAcc_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool LocationAccuracy_HorAcc_IsValid(int value);
+extern const uint32_t LocationAccuracy_HorAcc_internal_data_[];
+constexpr LocationAccuracy_HorAcc LocationAccuracy_HorAcc_HorAcc_MIN = static_cast<LocationAccuracy_HorAcc>(0);
+constexpr LocationAccuracy_HorAcc LocationAccuracy_HorAcc_HorAcc_MAX = static_cast<LocationAccuracy_HorAcc>(12);
+constexpr int LocationAccuracy_HorAcc_HorAcc_ARRAYSIZE = 12 + 1;
+const ::google::protobuf::EnumDescriptor*
+LocationAccuracy_HorAcc_descriptor();
+template <typename T>
+const std::string& LocationAccuracy_HorAcc_Name(T value) {
+  static_assert(std::is_same<T, LocationAccuracy_HorAcc>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to HorAcc_Name().");
+  return LocationAccuracy_HorAcc_Name(static_cast<LocationAccuracy_HorAcc>(value));
+}
+template <>
+inline const std::string& LocationAccuracy_HorAcc_Name(LocationAccuracy_HorAcc value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<LocationAccuracy_HorAcc_descriptor,
+                                                 0, 12>(
+      static_cast<int>(value));
+}
+inline bool LocationAccuracy_HorAcc_Parse(absl::string_view name, LocationAccuracy_HorAcc* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<LocationAccuracy_HorAcc>(
+      LocationAccuracy_HorAcc_descriptor(), name, value);
+}
+enum LocationAccuracy_VerAcc : int {
+  LocationAccuracy_VerAcc_VER_ACC_UNKNOWN = 0,
+  LocationAccuracy_VerAcc_VER_ACC_METER_150 = 1,
+  LocationAccuracy_VerAcc_VER_ACC_METER_45 = 2,
+  LocationAccuracy_VerAcc_VER_ACC_METER_25 = 3,
+  LocationAccuracy_VerAcc_VER_ACC_METER_10 = 4,
+  LocationAccuracy_VerAcc_VER_ACC_METER_3 = 5,
+  LocationAccuracy_VerAcc_VER_ACC_METER_1 = 6,
+  LocationAccuracy_VerAcc_LocationAccuracy_VerAcc_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  LocationAccuracy_VerAcc_LocationAccuracy_VerAcc_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool LocationAccuracy_VerAcc_IsValid(int value);
+extern const uint32_t LocationAccuracy_VerAcc_internal_data_[];
+constexpr LocationAccuracy_VerAcc LocationAccuracy_VerAcc_VerAcc_MIN = static_cast<LocationAccuracy_VerAcc>(0);
+constexpr LocationAccuracy_VerAcc LocationAccuracy_VerAcc_VerAcc_MAX = static_cast<LocationAccuracy_VerAcc>(6);
+constexpr int LocationAccuracy_VerAcc_VerAcc_ARRAYSIZE = 6 + 1;
+const ::google::protobuf::EnumDescriptor*
+LocationAccuracy_VerAcc_descriptor();
+template <typename T>
+const std::string& LocationAccuracy_VerAcc_Name(T value) {
+  static_assert(std::is_same<T, LocationAccuracy_VerAcc>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to VerAcc_Name().");
+  return LocationAccuracy_VerAcc_Name(static_cast<LocationAccuracy_VerAcc>(value));
+}
+template <>
+inline const std::string& LocationAccuracy_VerAcc_Name(LocationAccuracy_VerAcc value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<LocationAccuracy_VerAcc_descriptor,
+                                                 0, 6>(
+      static_cast<int>(value));
+}
+inline bool LocationAccuracy_VerAcc_Parse(absl::string_view name, LocationAccuracy_VerAcc* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<LocationAccuracy_VerAcc>(
+      LocationAccuracy_VerAcc_descriptor(), name, value);
+}
+enum LocationAccuracy_SpeedAcc : int {
+  LocationAccuracy_SpeedAcc_SPEED_ACC_UNKNOWN = 0,
+  LocationAccuracy_SpeedAcc_SPEED_ACC_METERS_PER_SECOND_10 = 1,
+  LocationAccuracy_SpeedAcc_SPEED_ACC_METERS_PER_SECON_3 = 2,
+  LocationAccuracy_SpeedAcc_SPEED_ACC_METERS_PER_SECOND_1 = 3,
+  LocationAccuracy_SpeedAcc_SPEED_ACC_METERS_PER_SECOND_0_3 = 4,
+  LocationAccuracy_SpeedAcc_LocationAccuracy_SpeedAcc_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  LocationAccuracy_SpeedAcc_LocationAccuracy_SpeedAcc_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool LocationAccuracy_SpeedAcc_IsValid(int value);
+extern const uint32_t LocationAccuracy_SpeedAcc_internal_data_[];
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy_SpeedAcc_SpeedAcc_MIN = static_cast<LocationAccuracy_SpeedAcc>(0);
+constexpr LocationAccuracy_SpeedAcc LocationAccuracy_SpeedAcc_SpeedAcc_MAX = static_cast<LocationAccuracy_SpeedAcc>(4);
+constexpr int LocationAccuracy_SpeedAcc_SpeedAcc_ARRAYSIZE = 4 + 1;
+const ::google::protobuf::EnumDescriptor*
+LocationAccuracy_SpeedAcc_descriptor();
+template <typename T>
+const std::string& LocationAccuracy_SpeedAcc_Name(T value) {
+  static_assert(std::is_same<T, LocationAccuracy_SpeedAcc>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to SpeedAcc_Name().");
+  return LocationAccuracy_SpeedAcc_Name(static_cast<LocationAccuracy_SpeedAcc>(value));
+}
+template <>
+inline const std::string& LocationAccuracy_SpeedAcc_Name(LocationAccuracy_SpeedAcc value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<LocationAccuracy_SpeedAcc_descriptor,
+                                                 0, 4>(
+      static_cast<int>(value));
+}
+inline bool LocationAccuracy_SpeedAcc_Parse(absl::string_view name, LocationAccuracy_SpeedAcc* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<LocationAccuracy_SpeedAcc>(
+      LocationAccuracy_SpeedAcc_descriptor(), name, value);
+}
+enum LocationAccuracy_TimeAcc : int {
+  LocationAccuracy_TimeAcc_TIME_ACC_UNKNOWN = 0,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_1 = 1,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_2 = 2,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_3 = 3,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_4 = 4,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_5 = 5,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_6 = 6,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_7 = 7,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_8 = 8,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_9 = 9,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_0 = 10,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_1 = 11,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_2 = 12,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_3 = 13,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_4 = 14,
+  LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_5 = 15,
+  LocationAccuracy_TimeAcc_LocationAccuracy_TimeAcc_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  LocationAccuracy_TimeAcc_LocationAccuracy_TimeAcc_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool LocationAccuracy_TimeAcc_IsValid(int value);
+extern const uint32_t LocationAccuracy_TimeAcc_internal_data_[];
+constexpr LocationAccuracy_TimeAcc LocationAccuracy_TimeAcc_TimeAcc_MIN = static_cast<LocationAccuracy_TimeAcc>(0);
+constexpr LocationAccuracy_TimeAcc LocationAccuracy_TimeAcc_TimeAcc_MAX = static_cast<LocationAccuracy_TimeAcc>(15);
+constexpr int LocationAccuracy_TimeAcc_TimeAcc_ARRAYSIZE = 15 + 1;
+const ::google::protobuf::EnumDescriptor*
+LocationAccuracy_TimeAcc_descriptor();
+template <typename T>
+const std::string& LocationAccuracy_TimeAcc_Name(T value) {
+  static_assert(std::is_same<T, LocationAccuracy_TimeAcc>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to TimeAcc_Name().");
+  return LocationAccuracy_TimeAcc_Name(static_cast<LocationAccuracy_TimeAcc>(value));
+}
+template <>
+inline const std::string& LocationAccuracy_TimeAcc_Name(LocationAccuracy_TimeAcc value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<LocationAccuracy_TimeAcc_descriptor,
+                                                 0, 15>(
+      static_cast<int>(value));
+}
+inline bool LocationAccuracy_TimeAcc_Parse(absl::string_view name, LocationAccuracy_TimeAcc* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<LocationAccuracy_TimeAcc>(
+      LocationAccuracy_TimeAcc_descriptor(), name, value);
+}
+enum SystemId_OperatorLocationType : int {
+  SystemId_OperatorLocationType_OPERATOR_LOCATION_TYPE_TAKEOFF = 0,
+  SystemId_OperatorLocationType_OPERATOR_LOCATION_TYPE_LIVE_GNSS = 1,
+  SystemId_OperatorLocationType_OPERATOR_LOCATION_TYPE_FIXED = 2,
+  SystemId_OperatorLocationType_SystemId_OperatorLocationType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SystemId_OperatorLocationType_SystemId_OperatorLocationType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SystemId_OperatorLocationType_IsValid(int value);
+extern const uint32_t SystemId_OperatorLocationType_internal_data_[];
+constexpr SystemId_OperatorLocationType SystemId_OperatorLocationType_OperatorLocationType_MIN = static_cast<SystemId_OperatorLocationType>(0);
+constexpr SystemId_OperatorLocationType SystemId_OperatorLocationType_OperatorLocationType_MAX = static_cast<SystemId_OperatorLocationType>(2);
+constexpr int SystemId_OperatorLocationType_OperatorLocationType_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+SystemId_OperatorLocationType_descriptor();
+template <typename T>
+const std::string& SystemId_OperatorLocationType_Name(T value) {
+  static_assert(std::is_same<T, SystemId_OperatorLocationType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to OperatorLocationType_Name().");
+  return SystemId_OperatorLocationType_Name(static_cast<SystemId_OperatorLocationType>(value));
+}
+template <>
+inline const std::string& SystemId_OperatorLocationType_Name(SystemId_OperatorLocationType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SystemId_OperatorLocationType_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool SystemId_OperatorLocationType_Parse(absl::string_view name, SystemId_OperatorLocationType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SystemId_OperatorLocationType>(
+      SystemId_OperatorLocationType_descriptor(), name, value);
+}
+enum SystemId_ClassificationType : int {
+  SystemId_ClassificationType_CLASSIFICATION_TYPE_UNDECLARED = 0,
+  SystemId_ClassificationType_CLASSIFICATION_TYPE_EU = 1,
+  SystemId_ClassificationType_SystemId_ClassificationType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SystemId_ClassificationType_SystemId_ClassificationType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SystemId_ClassificationType_IsValid(int value);
+extern const uint32_t SystemId_ClassificationType_internal_data_[];
+constexpr SystemId_ClassificationType SystemId_ClassificationType_ClassificationType_MIN = static_cast<SystemId_ClassificationType>(0);
+constexpr SystemId_ClassificationType SystemId_ClassificationType_ClassificationType_MAX = static_cast<SystemId_ClassificationType>(1);
+constexpr int SystemId_ClassificationType_ClassificationType_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor*
+SystemId_ClassificationType_descriptor();
+template <typename T>
+const std::string& SystemId_ClassificationType_Name(T value) {
+  static_assert(std::is_same<T, SystemId_ClassificationType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to ClassificationType_Name().");
+  return SystemId_ClassificationType_Name(static_cast<SystemId_ClassificationType>(value));
+}
+template <>
+inline const std::string& SystemId_ClassificationType_Name(SystemId_ClassificationType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SystemId_ClassificationType_descriptor,
+                                                 0, 1>(
+      static_cast<int>(value));
+}
+inline bool SystemId_ClassificationType_Parse(absl::string_view name, SystemId_ClassificationType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SystemId_ClassificationType>(
+      SystemId_ClassificationType_descriptor(), name, value);
+}
+enum SystemId_CategoryEu : int {
+  SystemId_CategoryEu_CATEGORY_EU_UNDECLARED = 0,
+  SystemId_CategoryEu_CATEGORY_EU_OPEN = 1,
+  SystemId_CategoryEu_CATEGORY_EU_SPECIFIC = 2,
+  SystemId_CategoryEu_CATEGORY_EU_CERTIFIED = 3,
+  SystemId_CategoryEu_SystemId_CategoryEu_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SystemId_CategoryEu_SystemId_CategoryEu_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SystemId_CategoryEu_IsValid(int value);
+extern const uint32_t SystemId_CategoryEu_internal_data_[];
+constexpr SystemId_CategoryEu SystemId_CategoryEu_CategoryEu_MIN = static_cast<SystemId_CategoryEu>(0);
+constexpr SystemId_CategoryEu SystemId_CategoryEu_CategoryEu_MAX = static_cast<SystemId_CategoryEu>(3);
+constexpr int SystemId_CategoryEu_CategoryEu_ARRAYSIZE = 3 + 1;
+const ::google::protobuf::EnumDescriptor*
+SystemId_CategoryEu_descriptor();
+template <typename T>
+const std::string& SystemId_CategoryEu_Name(T value) {
+  static_assert(std::is_same<T, SystemId_CategoryEu>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to CategoryEu_Name().");
+  return SystemId_CategoryEu_Name(static_cast<SystemId_CategoryEu>(value));
+}
+template <>
+inline const std::string& SystemId_CategoryEu_Name(SystemId_CategoryEu value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SystemId_CategoryEu_descriptor,
+                                                 0, 3>(
+      static_cast<int>(value));
+}
+inline bool SystemId_CategoryEu_Parse(absl::string_view name, SystemId_CategoryEu* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SystemId_CategoryEu>(
+      SystemId_CategoryEu_descriptor(), name, value);
+}
+enum SystemId_ClassEu : int {
+  SystemId_ClassEu_CLASS_EU_UNDECLARED = 0,
+  SystemId_ClassEu_CLASS_EU_CLASS_0 = 1,
+  SystemId_ClassEu_CLASS_EU_CLASS_1 = 2,
+  SystemId_ClassEu_CLASS_EU_CLASS_2 = 3,
+  SystemId_ClassEu_CLASS_EU_CLASS_3 = 4,
+  SystemId_ClassEu_CLASS_EU_CLASS_4 = 5,
+  SystemId_ClassEu_CLASS_EU_CLASS_5 = 6,
+  SystemId_ClassEu_CLASS_EU_CLASS_6 = 7,
+  SystemId_ClassEu_SystemId_ClassEu_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SystemId_ClassEu_SystemId_ClassEu_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SystemId_ClassEu_IsValid(int value);
+extern const uint32_t SystemId_ClassEu_internal_data_[];
+constexpr SystemId_ClassEu SystemId_ClassEu_ClassEu_MIN = static_cast<SystemId_ClassEu>(0);
+constexpr SystemId_ClassEu SystemId_ClassEu_ClassEu_MAX = static_cast<SystemId_ClassEu>(7);
+constexpr int SystemId_ClassEu_ClassEu_ARRAYSIZE = 7 + 1;
+const ::google::protobuf::EnumDescriptor*
+SystemId_ClassEu_descriptor();
+template <typename T>
+const std::string& SystemId_ClassEu_Name(T value) {
+  static_assert(std::is_same<T, SystemId_ClassEu>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to ClassEu_Name().");
+  return SystemId_ClassEu_Name(static_cast<SystemId_ClassEu>(value));
+}
+template <>
+inline const std::string& SystemId_ClassEu_Name(SystemId_ClassEu value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SystemId_ClassEu_descriptor,
+                                                 0, 7>(
+      static_cast<int>(value));
+}
+inline bool SystemId_ClassEu_Parse(absl::string_view name, SystemId_ClassEu* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SystemId_ClassEu>(
+      SystemId_ClassEu_descriptor(), name, value);
+}
+enum OperatorId_OperatorIdType : int {
+  OperatorId_OperatorIdType_OPERATOR_ID_TYPE_CAA = 0,
+  OperatorId_OperatorIdType_OperatorId_OperatorIdType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  OperatorId_OperatorIdType_OperatorId_OperatorIdType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool OperatorId_OperatorIdType_IsValid(int value);
+extern const uint32_t OperatorId_OperatorIdType_internal_data_[];
+constexpr OperatorId_OperatorIdType OperatorId_OperatorIdType_OperatorIdType_MIN = static_cast<OperatorId_OperatorIdType>(0);
+constexpr OperatorId_OperatorIdType OperatorId_OperatorIdType_OperatorIdType_MAX = static_cast<OperatorId_OperatorIdType>(0);
+constexpr int OperatorId_OperatorIdType_OperatorIdType_ARRAYSIZE = 0 + 1;
+const ::google::protobuf::EnumDescriptor*
+OperatorId_OperatorIdType_descriptor();
+template <typename T>
+const std::string& OperatorId_OperatorIdType_Name(T value) {
+  static_assert(std::is_same<T, OperatorId_OperatorIdType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to OperatorIdType_Name().");
+  return OperatorId_OperatorIdType_Name(static_cast<OperatorId_OperatorIdType>(value));
+}
+template <>
+inline const std::string& OperatorId_OperatorIdType_Name(OperatorId_OperatorIdType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<OperatorId_OperatorIdType_descriptor,
+                                                 0, 0>(
+      static_cast<int>(value));
+}
+inline bool OperatorId_OperatorIdType_Parse(absl::string_view name, OperatorId_OperatorIdType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<OperatorId_OperatorIdType>(
+      OperatorId_OperatorIdType_descriptor(), name, value);
+}
+enum SelfId_DescType : int {
+  SelfId_DescType_DESC_TYPE_TEXT = 0,
+  SelfId_DescType_DESC_TYPE_EMERGENCY = 1,
+  SelfId_DescType_DESC_TYPE_EXTENDED_STATUS = 2,
+  SelfId_DescType_SelfId_DescType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  SelfId_DescType_SelfId_DescType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool SelfId_DescType_IsValid(int value);
+extern const uint32_t SelfId_DescType_internal_data_[];
+constexpr SelfId_DescType SelfId_DescType_DescType_MIN = static_cast<SelfId_DescType>(0);
+constexpr SelfId_DescType SelfId_DescType_DescType_MAX = static_cast<SelfId_DescType>(2);
+constexpr int SelfId_DescType_DescType_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+SelfId_DescType_descriptor();
+template <typename T>
+const std::string& SelfId_DescType_Name(T value) {
+  static_assert(std::is_same<T, SelfId_DescType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to DescType_Name().");
+  return SelfId_DescType_Name(static_cast<SelfId_DescType>(value));
+}
+template <>
+inline const std::string& SelfId_DescType_Name(SelfId_DescType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<SelfId_DescType_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool SelfId_DescType_Parse(absl::string_view name, SelfId_DescType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<SelfId_DescType>(
+      SelfId_DescType_descriptor(), name, value);
+}
+enum ArmStatus_Status : int {
+  ArmStatus_Status_STATUS_GOOD_TO_ARM = 0,
+  ArmStatus_Status_STATUS_PRE_ARM_FAIL_GENERIC = 1,
+  ArmStatus_Status_ArmStatus_Status_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  ArmStatus_Status_ArmStatus_Status_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool ArmStatus_Status_IsValid(int value);
+extern const uint32_t ArmStatus_Status_internal_data_[];
+constexpr ArmStatus_Status ArmStatus_Status_Status_MIN = static_cast<ArmStatus_Status>(0);
+constexpr ArmStatus_Status ArmStatus_Status_Status_MAX = static_cast<ArmStatus_Status>(1);
+constexpr int ArmStatus_Status_Status_ARRAYSIZE = 1 + 1;
+const ::google::protobuf::EnumDescriptor*
+ArmStatus_Status_descriptor();
+template <typename T>
+const std::string& ArmStatus_Status_Name(T value) {
+  static_assert(std::is_same<T, ArmStatus_Status>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Status_Name().");
+  return ArmStatus_Status_Name(static_cast<ArmStatus_Status>(value));
+}
+template <>
+inline const std::string& ArmStatus_Status_Name(ArmStatus_Status value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<ArmStatus_Status_descriptor,
+                                                 0, 1>(
+      static_cast<int>(value));
+}
+inline bool ArmStatus_Status_Parse(absl::string_view name, ArmStatus_Status* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<ArmStatus_Status>(
+      ArmStatus_Status_descriptor(), name, value);
+}
 enum RemoteIdResult_Result : int {
   RemoteIdResult_Result_RESULT_UNKNOWN = 0,
   RemoteIdResult_Result_RESULT_SUCCESS = 1,
@@ -218,7 +794,7 @@ class SystemId final :
                &_SystemId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    17;
 
   friend void swap(SystemId& a, SystemId& b) {
     a.Swap(&b);
@@ -288,60 +864,149 @@ class SystemId final :
 
   // nested types ----------------------------------------------------
 
+  using OperatorLocationType = SystemId_OperatorLocationType;
+  static constexpr OperatorLocationType OPERATOR_LOCATION_TYPE_TAKEOFF = SystemId_OperatorLocationType_OPERATOR_LOCATION_TYPE_TAKEOFF;
+  static constexpr OperatorLocationType OPERATOR_LOCATION_TYPE_LIVE_GNSS = SystemId_OperatorLocationType_OPERATOR_LOCATION_TYPE_LIVE_GNSS;
+  static constexpr OperatorLocationType OPERATOR_LOCATION_TYPE_FIXED = SystemId_OperatorLocationType_OPERATOR_LOCATION_TYPE_FIXED;
+  static inline bool OperatorLocationType_IsValid(int value) {
+    return SystemId_OperatorLocationType_IsValid(value);
+  }
+  static constexpr OperatorLocationType OperatorLocationType_MIN = SystemId_OperatorLocationType_OperatorLocationType_MIN;
+  static constexpr OperatorLocationType OperatorLocationType_MAX = SystemId_OperatorLocationType_OperatorLocationType_MAX;
+  static constexpr int OperatorLocationType_ARRAYSIZE = SystemId_OperatorLocationType_OperatorLocationType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* OperatorLocationType_descriptor() {
+    return SystemId_OperatorLocationType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& OperatorLocationType_Name(T value) {
+    return SystemId_OperatorLocationType_Name(value);
+  }
+  static inline bool OperatorLocationType_Parse(absl::string_view name, OperatorLocationType* value) {
+    return SystemId_OperatorLocationType_Parse(name, value);
+  }
+
+  using ClassificationType = SystemId_ClassificationType;
+  static constexpr ClassificationType CLASSIFICATION_TYPE_UNDECLARED = SystemId_ClassificationType_CLASSIFICATION_TYPE_UNDECLARED;
+  static constexpr ClassificationType CLASSIFICATION_TYPE_EU = SystemId_ClassificationType_CLASSIFICATION_TYPE_EU;
+  static inline bool ClassificationType_IsValid(int value) {
+    return SystemId_ClassificationType_IsValid(value);
+  }
+  static constexpr ClassificationType ClassificationType_MIN = SystemId_ClassificationType_ClassificationType_MIN;
+  static constexpr ClassificationType ClassificationType_MAX = SystemId_ClassificationType_ClassificationType_MAX;
+  static constexpr int ClassificationType_ARRAYSIZE = SystemId_ClassificationType_ClassificationType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* ClassificationType_descriptor() {
+    return SystemId_ClassificationType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& ClassificationType_Name(T value) {
+    return SystemId_ClassificationType_Name(value);
+  }
+  static inline bool ClassificationType_Parse(absl::string_view name, ClassificationType* value) {
+    return SystemId_ClassificationType_Parse(name, value);
+  }
+
+  using CategoryEu = SystemId_CategoryEu;
+  static constexpr CategoryEu CATEGORY_EU_UNDECLARED = SystemId_CategoryEu_CATEGORY_EU_UNDECLARED;
+  static constexpr CategoryEu CATEGORY_EU_OPEN = SystemId_CategoryEu_CATEGORY_EU_OPEN;
+  static constexpr CategoryEu CATEGORY_EU_SPECIFIC = SystemId_CategoryEu_CATEGORY_EU_SPECIFIC;
+  static constexpr CategoryEu CATEGORY_EU_CERTIFIED = SystemId_CategoryEu_CATEGORY_EU_CERTIFIED;
+  static inline bool CategoryEu_IsValid(int value) {
+    return SystemId_CategoryEu_IsValid(value);
+  }
+  static constexpr CategoryEu CategoryEu_MIN = SystemId_CategoryEu_CategoryEu_MIN;
+  static constexpr CategoryEu CategoryEu_MAX = SystemId_CategoryEu_CategoryEu_MAX;
+  static constexpr int CategoryEu_ARRAYSIZE = SystemId_CategoryEu_CategoryEu_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* CategoryEu_descriptor() {
+    return SystemId_CategoryEu_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& CategoryEu_Name(T value) {
+    return SystemId_CategoryEu_Name(value);
+  }
+  static inline bool CategoryEu_Parse(absl::string_view name, CategoryEu* value) {
+    return SystemId_CategoryEu_Parse(name, value);
+  }
+
+  using ClassEu = SystemId_ClassEu;
+  static constexpr ClassEu CLASS_EU_UNDECLARED = SystemId_ClassEu_CLASS_EU_UNDECLARED;
+  static constexpr ClassEu CLASS_EU_CLASS_0 = SystemId_ClassEu_CLASS_EU_CLASS_0;
+  static constexpr ClassEu CLASS_EU_CLASS_1 = SystemId_ClassEu_CLASS_EU_CLASS_1;
+  static constexpr ClassEu CLASS_EU_CLASS_2 = SystemId_ClassEu_CLASS_EU_CLASS_2;
+  static constexpr ClassEu CLASS_EU_CLASS_3 = SystemId_ClassEu_CLASS_EU_CLASS_3;
+  static constexpr ClassEu CLASS_EU_CLASS_4 = SystemId_ClassEu_CLASS_EU_CLASS_4;
+  static constexpr ClassEu CLASS_EU_CLASS_5 = SystemId_ClassEu_CLASS_EU_CLASS_5;
+  static constexpr ClassEu CLASS_EU_CLASS_6 = SystemId_ClassEu_CLASS_EU_CLASS_6;
+  static inline bool ClassEu_IsValid(int value) {
+    return SystemId_ClassEu_IsValid(value);
+  }
+  static constexpr ClassEu ClassEu_MIN = SystemId_ClassEu_ClassEu_MIN;
+  static constexpr ClassEu ClassEu_MAX = SystemId_ClassEu_ClassEu_MAX;
+  static constexpr int ClassEu_ARRAYSIZE = SystemId_ClassEu_ClassEu_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* ClassEu_descriptor() {
+    return SystemId_ClassEu_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& ClassEu_Name(T value) {
+    return SystemId_ClassEu_Name(value);
+  }
+  static inline bool ClassEu_Parse(absl::string_view name, ClassEu* value) {
+    return SystemId_ClassEu_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
     kOperatorLocationTypeFieldNumber = 1,
     kClassificationTypeFieldNumber = 2,
-    kOperatorLatitudeFieldNumber = 3,
-    kOperatorLongitudeFieldNumber = 4,
+    kOperatorLatitudeDegFieldNumber = 3,
+    kOperatorLongitudeDegFieldNumber = 4,
     kAreaCountFieldNumber = 5,
-    kAreaRadiusFieldNumber = 6,
-    kAreaCeilingFieldNumber = 7,
-    kAreaFloorFieldNumber = 8,
+    kAreaRadiusMFieldNumber = 6,
+    kAreaCeilingMFieldNumber = 7,
+    kAreaFloorMFieldNumber = 8,
     kCategoryEuFieldNumber = 9,
     kClassEuFieldNumber = 10,
-    kOperatorAltitudeGeoFieldNumber = 11,
-    kTimestampFieldNumber = 12,
+    kTimeUtcUsFieldNumber = 12,
+    kOperatorAltitudeGeoMFieldNumber = 11,
   };
-  // uint32 operator_location_type = 1;
+  // .mavsdk.rpc.remote_id.SystemId.OperatorLocationType operator_location_type = 1;
   void clear_operator_location_type() ;
-  ::uint32_t operator_location_type() const;
-  void set_operator_location_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SystemId_OperatorLocationType operator_location_type() const;
+  void set_operator_location_type(::mavsdk::rpc::remote_id::SystemId_OperatorLocationType value);
 
   private:
-  ::uint32_t _internal_operator_location_type() const;
-  void _internal_set_operator_location_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SystemId_OperatorLocationType _internal_operator_location_type() const;
+  void _internal_set_operator_location_type(::mavsdk::rpc::remote_id::SystemId_OperatorLocationType value);
 
   public:
-  // uint32 classification_type = 2;
+  // .mavsdk.rpc.remote_id.SystemId.ClassificationType classification_type = 2;
   void clear_classification_type() ;
-  ::uint32_t classification_type() const;
-  void set_classification_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SystemId_ClassificationType classification_type() const;
+  void set_classification_type(::mavsdk::rpc::remote_id::SystemId_ClassificationType value);
 
   private:
-  ::uint32_t _internal_classification_type() const;
-  void _internal_set_classification_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SystemId_ClassificationType _internal_classification_type() const;
+  void _internal_set_classification_type(::mavsdk::rpc::remote_id::SystemId_ClassificationType value);
 
   public:
-  // int32 operator_latitude = 3;
-  void clear_operator_latitude() ;
-  ::int32_t operator_latitude() const;
-  void set_operator_latitude(::int32_t value);
+  // double operator_latitude_deg = 3;
+  void clear_operator_latitude_deg() ;
+  double operator_latitude_deg() const;
+  void set_operator_latitude_deg(double value);
 
   private:
-  ::int32_t _internal_operator_latitude() const;
-  void _internal_set_operator_latitude(::int32_t value);
+  double _internal_operator_latitude_deg() const;
+  void _internal_set_operator_latitude_deg(double value);
 
   public:
-  // int32 operator_longitude = 4;
-  void clear_operator_longitude() ;
-  ::int32_t operator_longitude() const;
-  void set_operator_longitude(::int32_t value);
+  // double operator_longitude_deg = 4;
+  void clear_operator_longitude_deg() ;
+  double operator_longitude_deg() const;
+  void set_operator_longitude_deg(double value);
 
   private:
-  ::int32_t _internal_operator_longitude() const;
-  void _internal_set_operator_longitude(::int32_t value);
+  double _internal_operator_longitude_deg() const;
+  void _internal_set_operator_longitude_deg(double value);
 
   public:
   // uint32 area_count = 5;
@@ -354,74 +1019,74 @@ class SystemId final :
   void _internal_set_area_count(::uint32_t value);
 
   public:
-  // uint32 area_radius = 6;
-  void clear_area_radius() ;
-  ::uint32_t area_radius() const;
-  void set_area_radius(::uint32_t value);
+  // uint32 area_radius_m = 6;
+  void clear_area_radius_m() ;
+  ::uint32_t area_radius_m() const;
+  void set_area_radius_m(::uint32_t value);
 
   private:
-  ::uint32_t _internal_area_radius() const;
-  void _internal_set_area_radius(::uint32_t value);
+  ::uint32_t _internal_area_radius_m() const;
+  void _internal_set_area_radius_m(::uint32_t value);
 
   public:
-  // float area_ceiling = 7;
-  void clear_area_ceiling() ;
-  float area_ceiling() const;
-  void set_area_ceiling(float value);
+  // float area_ceiling_m = 7;
+  void clear_area_ceiling_m() ;
+  float area_ceiling_m() const;
+  void set_area_ceiling_m(float value);
 
   private:
-  float _internal_area_ceiling() const;
-  void _internal_set_area_ceiling(float value);
+  float _internal_area_ceiling_m() const;
+  void _internal_set_area_ceiling_m(float value);
 
   public:
-  // float area_floor = 8;
-  void clear_area_floor() ;
-  float area_floor() const;
-  void set_area_floor(float value);
+  // float area_floor_m = 8;
+  void clear_area_floor_m() ;
+  float area_floor_m() const;
+  void set_area_floor_m(float value);
 
   private:
-  float _internal_area_floor() const;
-  void _internal_set_area_floor(float value);
+  float _internal_area_floor_m() const;
+  void _internal_set_area_floor_m(float value);
 
   public:
-  // uint32 category_eu = 9;
+  // .mavsdk.rpc.remote_id.SystemId.CategoryEu category_eu = 9;
   void clear_category_eu() ;
-  ::uint32_t category_eu() const;
-  void set_category_eu(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SystemId_CategoryEu category_eu() const;
+  void set_category_eu(::mavsdk::rpc::remote_id::SystemId_CategoryEu value);
 
   private:
-  ::uint32_t _internal_category_eu() const;
-  void _internal_set_category_eu(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SystemId_CategoryEu _internal_category_eu() const;
+  void _internal_set_category_eu(::mavsdk::rpc::remote_id::SystemId_CategoryEu value);
 
   public:
-  // uint32 class_eu = 10;
+  // .mavsdk.rpc.remote_id.SystemId.ClassEu class_eu = 10;
   void clear_class_eu() ;
-  ::uint32_t class_eu() const;
-  void set_class_eu(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SystemId_ClassEu class_eu() const;
+  void set_class_eu(::mavsdk::rpc::remote_id::SystemId_ClassEu value);
 
   private:
-  ::uint32_t _internal_class_eu() const;
-  void _internal_set_class_eu(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SystemId_ClassEu _internal_class_eu() const;
+  void _internal_set_class_eu(::mavsdk::rpc::remote_id::SystemId_ClassEu value);
 
   public:
-  // float operator_altitude_geo = 11;
-  void clear_operator_altitude_geo() ;
-  float operator_altitude_geo() const;
-  void set_operator_altitude_geo(float value);
+  // uint64 time_utc_us = 12;
+  void clear_time_utc_us() ;
+  ::uint64_t time_utc_us() const;
+  void set_time_utc_us(::uint64_t value);
 
   private:
-  float _internal_operator_altitude_geo() const;
-  void _internal_set_operator_altitude_geo(float value);
+  ::uint64_t _internal_time_utc_us() const;
+  void _internal_set_time_utc_us(::uint64_t value);
 
   public:
-  // uint32 timestamp = 12;
-  void clear_timestamp() ;
-  ::uint32_t timestamp() const;
-  void set_timestamp(::uint32_t value);
+  // float operator_altitude_geo_m = 11;
+  void clear_operator_altitude_geo_m() ;
+  float operator_altitude_geo_m() const;
+  void set_operator_altitude_geo_m(float value);
 
   private:
-  ::uint32_t _internal_timestamp() const;
-  void _internal_set_timestamp(::uint32_t value);
+  float _internal_operator_altitude_geo_m() const;
+  void _internal_set_operator_altitude_geo_m(float value);
 
   public:
   // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SystemId)
@@ -447,22 +1112,158 @@ class SystemId final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::uint32_t operator_location_type_;
-    ::uint32_t classification_type_;
-    ::int32_t operator_latitude_;
-    ::int32_t operator_longitude_;
+    int operator_location_type_;
+    int classification_type_;
+    double operator_latitude_deg_;
+    double operator_longitude_deg_;
     ::uint32_t area_count_;
-    ::uint32_t area_radius_;
-    float area_ceiling_;
-    float area_floor_;
-    ::uint32_t category_eu_;
-    ::uint32_t class_eu_;
-    float operator_altitude_geo_;
-    ::uint32_t timestamp_;
+    ::uint32_t area_radius_m_;
+    float area_ceiling_m_;
+    float area_floor_m_;
+    int category_eu_;
+    int class_eu_;
+    ::uint64_t time_utc_us_;
+    float operator_altitude_geo_m_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SubscribeArmStatusRequest final :
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SubscribeArmStatusRequest) */ {
+ public:
+  inline SubscribeArmStatusRequest() : SubscribeArmStatusRequest(nullptr) {}
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SubscribeArmStatusRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline SubscribeArmStatusRequest(const SubscribeArmStatusRequest& from)
+      : SubscribeArmStatusRequest(nullptr, from) {}
+  SubscribeArmStatusRequest(SubscribeArmStatusRequest&& from) noexcept
+    : SubscribeArmStatusRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SubscribeArmStatusRequest& operator=(const SubscribeArmStatusRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SubscribeArmStatusRequest& operator=(SubscribeArmStatusRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SubscribeArmStatusRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SubscribeArmStatusRequest* internal_default_instance() {
+    return reinterpret_cast<const SubscribeArmStatusRequest*>(
+               &_SubscribeArmStatusRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(SubscribeArmStatusRequest& a, SubscribeArmStatusRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SubscribeArmStatusRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SubscribeArmStatusRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SubscribeArmStatusRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SubscribeArmStatusRequest>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const SubscribeArmStatusRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const SubscribeArmStatusRequest& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SubscribeArmStatusRequest";
+  }
+  protected:
+  explicit SubscribeArmStatusRequest(::google::protobuf::Arena* arena);
+  SubscribeArmStatusRequest(::google::protobuf::Arena* arena, const SubscribeArmStatusRequest& from);
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SubscribeArmStatusRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
   friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
 };// -------------------------------------------------------------------
 
@@ -525,7 +1326,7 @@ class SelfId final :
                &_SelfId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    19;
 
   friend void swap(SelfId& a, SelfId& b) {
     a.Swap(&b);
@@ -595,6 +1396,27 @@ class SelfId final :
 
   // nested types ----------------------------------------------------
 
+  using DescType = SelfId_DescType;
+  static constexpr DescType DESC_TYPE_TEXT = SelfId_DescType_DESC_TYPE_TEXT;
+  static constexpr DescType DESC_TYPE_EMERGENCY = SelfId_DescType_DESC_TYPE_EMERGENCY;
+  static constexpr DescType DESC_TYPE_EXTENDED_STATUS = SelfId_DescType_DESC_TYPE_EXTENDED_STATUS;
+  static inline bool DescType_IsValid(int value) {
+    return SelfId_DescType_IsValid(value);
+  }
+  static constexpr DescType DescType_MIN = SelfId_DescType_DescType_MIN;
+  static constexpr DescType DescType_MAX = SelfId_DescType_DescType_MAX;
+  static constexpr int DescType_ARRAYSIZE = SelfId_DescType_DescType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* DescType_descriptor() {
+    return SelfId_DescType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& DescType_Name(T value) {
+    return SelfId_DescType_Name(value);
+  }
+  static inline bool DescType_Parse(absl::string_view name, DescType* value) {
+    return SelfId_DescType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
@@ -617,14 +1439,14 @@ class SelfId final :
   std::string* _internal_mutable_description();
 
   public:
-  // uint32 description_type = 1;
+  // .mavsdk.rpc.remote_id.SelfId.DescType description_type = 1;
   void clear_description_type() ;
-  ::uint32_t description_type() const;
-  void set_description_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SelfId_DescType description_type() const;
+  void set_description_type(::mavsdk::rpc::remote_id::SelfId_DescType value);
 
   private:
-  ::uint32_t _internal_description_type() const;
-  void _internal_set_description_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::SelfId_DescType _internal_description_type() const;
+  void _internal_set_description_type(::mavsdk::rpc::remote_id::SelfId_DescType value);
 
   public:
   // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SelfId)
@@ -651,7 +1473,7 @@ class SelfId final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr description_;
-    ::uint32_t description_type_;
+    int description_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -718,7 +1540,7 @@ class RemoteIdResult final :
                &_RemoteIdResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    21;
 
   friend void swap(RemoteIdResult& a, RemoteIdResult& b) {
     a.Swap(&b);
@@ -932,7 +1754,7 @@ class OperatorId final :
                &_OperatorId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    18;
 
   friend void swap(OperatorId& a, OperatorId& b) {
     a.Swap(&b);
@@ -1002,6 +1824,25 @@ class OperatorId final :
 
   // nested types ----------------------------------------------------
 
+  using OperatorIdType = OperatorId_OperatorIdType;
+  static constexpr OperatorIdType OPERATOR_ID_TYPE_CAA = OperatorId_OperatorIdType_OPERATOR_ID_TYPE_CAA;
+  static inline bool OperatorIdType_IsValid(int value) {
+    return OperatorId_OperatorIdType_IsValid(value);
+  }
+  static constexpr OperatorIdType OperatorIdType_MIN = OperatorId_OperatorIdType_OperatorIdType_MIN;
+  static constexpr OperatorIdType OperatorIdType_MAX = OperatorId_OperatorIdType_OperatorIdType_MAX;
+  static constexpr int OperatorIdType_ARRAYSIZE = OperatorId_OperatorIdType_OperatorIdType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* OperatorIdType_descriptor() {
+    return OperatorId_OperatorIdType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& OperatorIdType_Name(T value) {
+    return OperatorId_OperatorIdType_Name(value);
+  }
+  static inline bool OperatorIdType_Parse(absl::string_view name, OperatorIdType* value) {
+    return OperatorId_OperatorIdType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
@@ -1024,14 +1865,14 @@ class OperatorId final :
   std::string* _internal_mutable_operator_id();
 
   public:
-  // uint32 operator_id_type = 1;
+  // .mavsdk.rpc.remote_id.OperatorId.OperatorIdType operator_id_type = 1;
   void clear_operator_id_type() ;
-  ::uint32_t operator_id_type() const;
-  void set_operator_id_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::OperatorId_OperatorIdType operator_id_type() const;
+  void set_operator_id_type(::mavsdk::rpc::remote_id::OperatorId_OperatorIdType value);
 
   private:
-  ::uint32_t _internal_operator_id_type() const;
-  void _internal_set_operator_id_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::OperatorId_OperatorIdType _internal_operator_id_type() const;
+  void _internal_set_operator_id_type(::mavsdk::rpc::remote_id::OperatorId_OperatorIdType value);
 
   public:
   // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.OperatorId)
@@ -1058,7 +1899,343 @@ class OperatorId final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr operator_id_;
-    ::uint32_t operator_id_type_;
+    int operator_id_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class LocationAccuracy final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.LocationAccuracy) */ {
+ public:
+  inline LocationAccuracy() : LocationAccuracy(nullptr) {}
+  ~LocationAccuracy() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR LocationAccuracy(::google::protobuf::internal::ConstantInitialized);
+
+  inline LocationAccuracy(const LocationAccuracy& from)
+      : LocationAccuracy(nullptr, from) {}
+  LocationAccuracy(LocationAccuracy&& from) noexcept
+    : LocationAccuracy() {
+    *this = ::std::move(from);
+  }
+
+  inline LocationAccuracy& operator=(const LocationAccuracy& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LocationAccuracy& operator=(LocationAccuracy&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LocationAccuracy& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LocationAccuracy* internal_default_instance() {
+    return reinterpret_cast<const LocationAccuracy*>(
+               &_LocationAccuracy_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(LocationAccuracy& a, LocationAccuracy& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LocationAccuracy* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LocationAccuracy* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LocationAccuracy* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LocationAccuracy>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LocationAccuracy& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const LocationAccuracy& from) {
+    LocationAccuracy::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(LocationAccuracy* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.LocationAccuracy";
+  }
+  protected:
+  explicit LocationAccuracy(::google::protobuf::Arena* arena);
+  LocationAccuracy(::google::protobuf::Arena* arena, const LocationAccuracy& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  using HorAcc = LocationAccuracy_HorAcc;
+  static constexpr HorAcc HOR_ACC_UNKNOWN = LocationAccuracy_HorAcc_HOR_ACC_UNKNOWN;
+  static constexpr HorAcc HOR_ACC_NM_10 = LocationAccuracy_HorAcc_HOR_ACC_NM_10;
+  static constexpr HorAcc HOR_ACC_NM_4 = LocationAccuracy_HorAcc_HOR_ACC_NM_4;
+  static constexpr HorAcc HOR_ACC_NM_2 = LocationAccuracy_HorAcc_HOR_ACC_NM_2;
+  static constexpr HorAcc HOR_ACC_NM_1 = LocationAccuracy_HorAcc_HOR_ACC_NM_1;
+  static constexpr HorAcc HOR_ACC_NM_0_5 = LocationAccuracy_HorAcc_HOR_ACC_NM_0_5;
+  static constexpr HorAcc HOR_ACC_NM_0_3 = LocationAccuracy_HorAcc_HOR_ACC_NM_0_3;
+  static constexpr HorAcc HOR_ACC_NM_0_1 = LocationAccuracy_HorAcc_HOR_ACC_NM_0_1;
+  static constexpr HorAcc HOR_ACC_NM_0_05 = LocationAccuracy_HorAcc_HOR_ACC_NM_0_05;
+  static constexpr HorAcc HOR_ACC_METER_30 = LocationAccuracy_HorAcc_HOR_ACC_METER_30;
+  static constexpr HorAcc HOR_ACC_METER_10 = LocationAccuracy_HorAcc_HOR_ACC_METER_10;
+  static constexpr HorAcc HOR_ACC_METER_3 = LocationAccuracy_HorAcc_HOR_ACC_METER_3;
+  static constexpr HorAcc HOR_ACC_METER_1 = LocationAccuracy_HorAcc_HOR_ACC_METER_1;
+  static inline bool HorAcc_IsValid(int value) {
+    return LocationAccuracy_HorAcc_IsValid(value);
+  }
+  static constexpr HorAcc HorAcc_MIN = LocationAccuracy_HorAcc_HorAcc_MIN;
+  static constexpr HorAcc HorAcc_MAX = LocationAccuracy_HorAcc_HorAcc_MAX;
+  static constexpr int HorAcc_ARRAYSIZE = LocationAccuracy_HorAcc_HorAcc_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* HorAcc_descriptor() {
+    return LocationAccuracy_HorAcc_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& HorAcc_Name(T value) {
+    return LocationAccuracy_HorAcc_Name(value);
+  }
+  static inline bool HorAcc_Parse(absl::string_view name, HorAcc* value) {
+    return LocationAccuracy_HorAcc_Parse(name, value);
+  }
+
+  using VerAcc = LocationAccuracy_VerAcc;
+  static constexpr VerAcc VER_ACC_UNKNOWN = LocationAccuracy_VerAcc_VER_ACC_UNKNOWN;
+  static constexpr VerAcc VER_ACC_METER_150 = LocationAccuracy_VerAcc_VER_ACC_METER_150;
+  static constexpr VerAcc VER_ACC_METER_45 = LocationAccuracy_VerAcc_VER_ACC_METER_45;
+  static constexpr VerAcc VER_ACC_METER_25 = LocationAccuracy_VerAcc_VER_ACC_METER_25;
+  static constexpr VerAcc VER_ACC_METER_10 = LocationAccuracy_VerAcc_VER_ACC_METER_10;
+  static constexpr VerAcc VER_ACC_METER_3 = LocationAccuracy_VerAcc_VER_ACC_METER_3;
+  static constexpr VerAcc VER_ACC_METER_1 = LocationAccuracy_VerAcc_VER_ACC_METER_1;
+  static inline bool VerAcc_IsValid(int value) {
+    return LocationAccuracy_VerAcc_IsValid(value);
+  }
+  static constexpr VerAcc VerAcc_MIN = LocationAccuracy_VerAcc_VerAcc_MIN;
+  static constexpr VerAcc VerAcc_MAX = LocationAccuracy_VerAcc_VerAcc_MAX;
+  static constexpr int VerAcc_ARRAYSIZE = LocationAccuracy_VerAcc_VerAcc_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* VerAcc_descriptor() {
+    return LocationAccuracy_VerAcc_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& VerAcc_Name(T value) {
+    return LocationAccuracy_VerAcc_Name(value);
+  }
+  static inline bool VerAcc_Parse(absl::string_view name, VerAcc* value) {
+    return LocationAccuracy_VerAcc_Parse(name, value);
+  }
+
+  using SpeedAcc = LocationAccuracy_SpeedAcc;
+  static constexpr SpeedAcc SPEED_ACC_UNKNOWN = LocationAccuracy_SpeedAcc_SPEED_ACC_UNKNOWN;
+  static constexpr SpeedAcc SPEED_ACC_METERS_PER_SECOND_10 = LocationAccuracy_SpeedAcc_SPEED_ACC_METERS_PER_SECOND_10;
+  static constexpr SpeedAcc SPEED_ACC_METERS_PER_SECON_3 = LocationAccuracy_SpeedAcc_SPEED_ACC_METERS_PER_SECON_3;
+  static constexpr SpeedAcc SPEED_ACC_METERS_PER_SECOND_1 = LocationAccuracy_SpeedAcc_SPEED_ACC_METERS_PER_SECOND_1;
+  static constexpr SpeedAcc SPEED_ACC_METERS_PER_SECOND_0_3 = LocationAccuracy_SpeedAcc_SPEED_ACC_METERS_PER_SECOND_0_3;
+  static inline bool SpeedAcc_IsValid(int value) {
+    return LocationAccuracy_SpeedAcc_IsValid(value);
+  }
+  static constexpr SpeedAcc SpeedAcc_MIN = LocationAccuracy_SpeedAcc_SpeedAcc_MIN;
+  static constexpr SpeedAcc SpeedAcc_MAX = LocationAccuracy_SpeedAcc_SpeedAcc_MAX;
+  static constexpr int SpeedAcc_ARRAYSIZE = LocationAccuracy_SpeedAcc_SpeedAcc_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* SpeedAcc_descriptor() {
+    return LocationAccuracy_SpeedAcc_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& SpeedAcc_Name(T value) {
+    return LocationAccuracy_SpeedAcc_Name(value);
+  }
+  static inline bool SpeedAcc_Parse(absl::string_view name, SpeedAcc* value) {
+    return LocationAccuracy_SpeedAcc_Parse(name, value);
+  }
+
+  using TimeAcc = LocationAccuracy_TimeAcc;
+  static constexpr TimeAcc TIME_ACC_UNKNOWN = LocationAccuracy_TimeAcc_TIME_ACC_UNKNOWN;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_1 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_1;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_2 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_2;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_3 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_3;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_4 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_4;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_5 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_5;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_6 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_6;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_7 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_7;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_8 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_8;
+  static constexpr TimeAcc TIME_ACC_SECOND_0_9 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_0_9;
+  static constexpr TimeAcc TIME_ACC_SECOND_1_0 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_0;
+  static constexpr TimeAcc TIME_ACC_SECOND_1_1 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_1;
+  static constexpr TimeAcc TIME_ACC_SECOND_1_2 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_2;
+  static constexpr TimeAcc TIME_ACC_SECOND_1_3 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_3;
+  static constexpr TimeAcc TIME_ACC_SECOND_1_4 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_4;
+  static constexpr TimeAcc TIME_ACC_SECOND_1_5 = LocationAccuracy_TimeAcc_TIME_ACC_SECOND_1_5;
+  static inline bool TimeAcc_IsValid(int value) {
+    return LocationAccuracy_TimeAcc_IsValid(value);
+  }
+  static constexpr TimeAcc TimeAcc_MIN = LocationAccuracy_TimeAcc_TimeAcc_MIN;
+  static constexpr TimeAcc TimeAcc_MAX = LocationAccuracy_TimeAcc_TimeAcc_MAX;
+  static constexpr int TimeAcc_ARRAYSIZE = LocationAccuracy_TimeAcc_TimeAcc_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* TimeAcc_descriptor() {
+    return LocationAccuracy_TimeAcc_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& TimeAcc_Name(T value) {
+    return LocationAccuracy_TimeAcc_Name(value);
+  }
+  static inline bool TimeAcc_Parse(absl::string_view name, TimeAcc* value) {
+    return LocationAccuracy_TimeAcc_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHorizontalAccuracyFieldNumber = 1,
+    kVerticalAccuracyFieldNumber = 2,
+    kBarometerAccuracyFieldNumber = 3,
+    kSpeedAccuracyFieldNumber = 4,
+    kTimestampAccuracyFieldNumber = 5,
+  };
+  // .mavsdk.rpc.remote_id.LocationAccuracy.HorAcc horizontal_accuracy = 1;
+  void clear_horizontal_accuracy() ;
+  ::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc horizontal_accuracy() const;
+  void set_horizontal_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc value);
+
+  private:
+  ::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc _internal_horizontal_accuracy() const;
+  void _internal_set_horizontal_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc value);
+
+  public:
+  // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc vertical_accuracy = 2;
+  void clear_vertical_accuracy() ;
+  ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc vertical_accuracy() const;
+  void set_vertical_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc value);
+
+  private:
+  ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc _internal_vertical_accuracy() const;
+  void _internal_set_vertical_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc value);
+
+  public:
+  // .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc barometer_accuracy = 3;
+  void clear_barometer_accuracy() ;
+  ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc barometer_accuracy() const;
+  void set_barometer_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc value);
+
+  private:
+  ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc _internal_barometer_accuracy() const;
+  void _internal_set_barometer_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc value);
+
+  public:
+  // .mavsdk.rpc.remote_id.LocationAccuracy.SpeedAcc speed_accuracy = 4;
+  void clear_speed_accuracy() ;
+  ::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc speed_accuracy() const;
+  void set_speed_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc value);
+
+  private:
+  ::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc _internal_speed_accuracy() const;
+  void _internal_set_speed_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc value);
+
+  public:
+  // .mavsdk.rpc.remote_id.LocationAccuracy.TimeAcc timestamp_accuracy = 5;
+  void clear_timestamp_accuracy() ;
+  ::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc timestamp_accuracy() const;
+  void set_timestamp_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc value);
+
+  private:
+  ::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc _internal_timestamp_accuracy() const;
+  void _internal_set_timestamp_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.LocationAccuracy)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 5, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    int horizontal_accuracy_;
+    int vertical_accuracy_;
+    int barometer_accuracy_;
+    int speed_accuracy_;
+    int timestamp_accuracy_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1125,7 +2302,7 @@ class Location final :
                &_Location_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    15;
 
   friend void swap(Location& a, Location& b) {
     a.Swap(&b);
@@ -1195,140 +2372,172 @@ class Location final :
 
   // nested types ----------------------------------------------------
 
+  using Status = Location_Status;
+  static constexpr Status STATUS_UNDECLARED = Location_Status_STATUS_UNDECLARED;
+  static constexpr Status STATUS_GROUND = Location_Status_STATUS_GROUND;
+  static constexpr Status STATUS_AIRBORNE = Location_Status_STATUS_AIRBORNE;
+  static constexpr Status STATUS_EMERGENCY = Location_Status_STATUS_EMERGENCY;
+  static constexpr Status STATUS_REMOTE_ID_SYSTEM_FAILURE = Location_Status_STATUS_REMOTE_ID_SYSTEM_FAILURE;
+  static inline bool Status_IsValid(int value) {
+    return Location_Status_IsValid(value);
+  }
+  static constexpr Status Status_MIN = Location_Status_Status_MIN;
+  static constexpr Status Status_MAX = Location_Status_Status_MAX;
+  static constexpr int Status_ARRAYSIZE = Location_Status_Status_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Status_descriptor() {
+    return Location_Status_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Status_Name(T value) {
+    return Location_Status_Name(value);
+  }
+  static inline bool Status_Parse(absl::string_view name, Status* value) {
+    return Location_Status_Parse(name, value);
+  }
+
+  using HeightRef = Location_HeightRef;
+  static constexpr HeightRef HEIGHT_REF_OVER_TAKEOFF = Location_HeightRef_HEIGHT_REF_OVER_TAKEOFF;
+  static constexpr HeightRef HEIGHT_REF_OVER_GROUND = Location_HeightRef_HEIGHT_REF_OVER_GROUND;
+  static inline bool HeightRef_IsValid(int value) {
+    return Location_HeightRef_IsValid(value);
+  }
+  static constexpr HeightRef HeightRef_MIN = Location_HeightRef_HeightRef_MIN;
+  static constexpr HeightRef HeightRef_MAX = Location_HeightRef_HeightRef_MAX;
+  static constexpr int HeightRef_ARRAYSIZE = Location_HeightRef_HeightRef_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* HeightRef_descriptor() {
+    return Location_HeightRef_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& HeightRef_Name(T value) {
+    return Location_HeightRef_Name(value);
+  }
+  static inline bool HeightRef_Parse(absl::string_view name, HeightRef* value) {
+    return Location_HeightRef_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
     kStatusFieldNumber = 1,
-    kDirectionFieldNumber = 2,
-    kSpeedHorizontalFieldNumber = 3,
-    kSpeedVerticalFieldNumber = 4,
-    kLatitudeFieldNumber = 5,
-    kLongitudeFieldNumber = 6,
-    kAltitudeBarometricFieldNumber = 7,
-    kAltitudeGeodeticFieldNumber = 8,
+    kDirectionDegFieldNumber = 2,
+    kSpeedHorizontalMSFieldNumber = 3,
+    kSpeedVerticalMSFieldNumber = 4,
+    kLatitudeDegFieldNumber = 5,
+    kLongitudeDegFieldNumber = 6,
+    kAltitudeBarometricMFieldNumber = 7,
+    kAltitudeGeodeticMFieldNumber = 8,
     kHeightReferenceFieldNumber = 9,
-    kHeightFieldNumber = 10,
-    kTimestampFieldNumber = 11,
-    kTimestampAccuracyFieldNumber = 12,
+    kHeightMFieldNumber = 10,
+    kTimeUtcUsFieldNumber = 11,
   };
-  // uint32 status = 1;
+  // .mavsdk.rpc.remote_id.Location.Status status = 1;
   void clear_status() ;
-  ::uint32_t status() const;
-  void set_status(::uint32_t value);
+  ::mavsdk::rpc::remote_id::Location_Status status() const;
+  void set_status(::mavsdk::rpc::remote_id::Location_Status value);
 
   private:
-  ::uint32_t _internal_status() const;
-  void _internal_set_status(::uint32_t value);
+  ::mavsdk::rpc::remote_id::Location_Status _internal_status() const;
+  void _internal_set_status(::mavsdk::rpc::remote_id::Location_Status value);
 
   public:
-  // uint32 direction = 2;
-  void clear_direction() ;
-  ::uint32_t direction() const;
-  void set_direction(::uint32_t value);
+  // uint32 direction_deg = 2;
+  void clear_direction_deg() ;
+  ::uint32_t direction_deg() const;
+  void set_direction_deg(::uint32_t value);
 
   private:
-  ::uint32_t _internal_direction() const;
-  void _internal_set_direction(::uint32_t value);
+  ::uint32_t _internal_direction_deg() const;
+  void _internal_set_direction_deg(::uint32_t value);
 
   public:
-  // uint32 speed_horizontal = 3;
-  void clear_speed_horizontal() ;
-  ::uint32_t speed_horizontal() const;
-  void set_speed_horizontal(::uint32_t value);
+  // float speed_horizontal_m_s = 3;
+  void clear_speed_horizontal_m_s() ;
+  float speed_horizontal_m_s() const;
+  void set_speed_horizontal_m_s(float value);
 
   private:
-  ::uint32_t _internal_speed_horizontal() const;
-  void _internal_set_speed_horizontal(::uint32_t value);
+  float _internal_speed_horizontal_m_s() const;
+  void _internal_set_speed_horizontal_m_s(float value);
 
   public:
-  // int32 speed_vertical = 4;
-  void clear_speed_vertical() ;
-  ::int32_t speed_vertical() const;
-  void set_speed_vertical(::int32_t value);
+  // float speed_vertical_m_s = 4;
+  void clear_speed_vertical_m_s() ;
+  float speed_vertical_m_s() const;
+  void set_speed_vertical_m_s(float value);
 
   private:
-  ::int32_t _internal_speed_vertical() const;
-  void _internal_set_speed_vertical(::int32_t value);
+  float _internal_speed_vertical_m_s() const;
+  void _internal_set_speed_vertical_m_s(float value);
 
   public:
-  // int32 latitude = 5;
-  void clear_latitude() ;
-  ::int32_t latitude() const;
-  void set_latitude(::int32_t value);
+  // double latitude_deg = 5;
+  void clear_latitude_deg() ;
+  double latitude_deg() const;
+  void set_latitude_deg(double value);
 
   private:
-  ::int32_t _internal_latitude() const;
-  void _internal_set_latitude(::int32_t value);
+  double _internal_latitude_deg() const;
+  void _internal_set_latitude_deg(double value);
 
   public:
-  // int32 longitude = 6;
-  void clear_longitude() ;
-  ::int32_t longitude() const;
-  void set_longitude(::int32_t value);
+  // double longitude_deg = 6;
+  void clear_longitude_deg() ;
+  double longitude_deg() const;
+  void set_longitude_deg(double value);
 
   private:
-  ::int32_t _internal_longitude() const;
-  void _internal_set_longitude(::int32_t value);
+  double _internal_longitude_deg() const;
+  void _internal_set_longitude_deg(double value);
 
   public:
-  // float altitude_barometric = 7;
-  void clear_altitude_barometric() ;
-  float altitude_barometric() const;
-  void set_altitude_barometric(float value);
+  // float altitude_barometric_m = 7;
+  void clear_altitude_barometric_m() ;
+  float altitude_barometric_m() const;
+  void set_altitude_barometric_m(float value);
 
   private:
-  float _internal_altitude_barometric() const;
-  void _internal_set_altitude_barometric(float value);
+  float _internal_altitude_barometric_m() const;
+  void _internal_set_altitude_barometric_m(float value);
 
   public:
-  // float altitude_geodetic = 8;
-  void clear_altitude_geodetic() ;
-  float altitude_geodetic() const;
-  void set_altitude_geodetic(float value);
+  // float altitude_geodetic_m = 8;
+  void clear_altitude_geodetic_m() ;
+  float altitude_geodetic_m() const;
+  void set_altitude_geodetic_m(float value);
 
   private:
-  float _internal_altitude_geodetic() const;
-  void _internal_set_altitude_geodetic(float value);
+  float _internal_altitude_geodetic_m() const;
+  void _internal_set_altitude_geodetic_m(float value);
 
   public:
-  // uint32 height_reference = 9;
+  // .mavsdk.rpc.remote_id.Location.HeightRef height_reference = 9;
   void clear_height_reference() ;
-  ::uint32_t height_reference() const;
-  void set_height_reference(::uint32_t value);
+  ::mavsdk::rpc::remote_id::Location_HeightRef height_reference() const;
+  void set_height_reference(::mavsdk::rpc::remote_id::Location_HeightRef value);
 
   private:
-  ::uint32_t _internal_height_reference() const;
-  void _internal_set_height_reference(::uint32_t value);
+  ::mavsdk::rpc::remote_id::Location_HeightRef _internal_height_reference() const;
+  void _internal_set_height_reference(::mavsdk::rpc::remote_id::Location_HeightRef value);
 
   public:
-  // float height = 10;
-  void clear_height() ;
-  float height() const;
-  void set_height(float value);
+  // float height_m = 10;
+  void clear_height_m() ;
+  float height_m() const;
+  void set_height_m(float value);
 
   private:
-  float _internal_height() const;
-  void _internal_set_height(float value);
+  float _internal_height_m() const;
+  void _internal_set_height_m(float value);
 
   public:
-  // float timestamp = 11;
-  void clear_timestamp() ;
-  float timestamp() const;
-  void set_timestamp(float value);
+  // uint64 time_utc_us = 11;
+  void clear_time_utc_us() ;
+  ::uint64_t time_utc_us() const;
+  void set_time_utc_us(::uint64_t value);
 
   private:
-  float _internal_timestamp() const;
-  void _internal_set_timestamp(float value);
-
-  public:
-  // uint32 timestamp_accuracy = 12;
-  void clear_timestamp_accuracy() ;
-  ::uint32_t timestamp_accuracy() const;
-  void set_timestamp_accuracy(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_timestamp_accuracy() const;
-  void _internal_set_timestamp_accuracy(::uint32_t value);
+  ::uint64_t _internal_time_utc_us() const;
+  void _internal_set_time_utc_us(::uint64_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.Location)
@@ -1337,7 +2546,7 @@ class Location final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      4, 12, 0,
+      4, 11, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -1354,18 +2563,17 @@ class Location final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::uint32_t status_;
-    ::uint32_t direction_;
-    ::uint32_t speed_horizontal_;
-    ::int32_t speed_vertical_;
-    ::int32_t latitude_;
-    ::int32_t longitude_;
-    float altitude_barometric_;
-    float altitude_geodetic_;
-    ::uint32_t height_reference_;
-    float height_;
-    float timestamp_;
-    ::uint32_t timestamp_accuracy_;
+    int status_;
+    ::uint32_t direction_deg_;
+    float speed_horizontal_m_s_;
+    float speed_vertical_m_s_;
+    double latitude_deg_;
+    double longitude_deg_;
+    float altitude_barometric_m_;
+    float altitude_geodetic_m_;
+    int height_reference_;
+    float height_m_;
+    ::uint64_t time_utc_us_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1432,7 +2640,7 @@ class BasicId final :
                &_BasicId_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    14;
 
   friend void swap(BasicId& a, BasicId& b) {
     a.Swap(&b);
@@ -1502,6 +2710,63 @@ class BasicId final :
 
   // nested types ----------------------------------------------------
 
+  using IdType = BasicId_IdType;
+  static constexpr IdType ID_TYPE_NONE = BasicId_IdType_ID_TYPE_NONE;
+  static constexpr IdType ID_TYPE_SERIAL_NUMBER = BasicId_IdType_ID_TYPE_SERIAL_NUMBER;
+  static constexpr IdType ID_TYPE_CAA_REGISTRATION_ID = BasicId_IdType_ID_TYPE_CAA_REGISTRATION_ID;
+  static constexpr IdType ID_TYPE_UTM_ASSIGNED_UUID = BasicId_IdType_ID_TYPE_UTM_ASSIGNED_UUID;
+  static constexpr IdType ID_TYPE_SPECIFIC_SESSION_ID = BasicId_IdType_ID_TYPE_SPECIFIC_SESSION_ID;
+  static inline bool IdType_IsValid(int value) {
+    return BasicId_IdType_IsValid(value);
+  }
+  static constexpr IdType IdType_MIN = BasicId_IdType_IdType_MIN;
+  static constexpr IdType IdType_MAX = BasicId_IdType_IdType_MAX;
+  static constexpr int IdType_ARRAYSIZE = BasicId_IdType_IdType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* IdType_descriptor() {
+    return BasicId_IdType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& IdType_Name(T value) {
+    return BasicId_IdType_Name(value);
+  }
+  static inline bool IdType_Parse(absl::string_view name, IdType* value) {
+    return BasicId_IdType_Parse(name, value);
+  }
+
+  using UasType = BasicId_UasType;
+  static constexpr UasType UAS_TYPE_NONE = BasicId_UasType_UAS_TYPE_NONE;
+  static constexpr UasType UAS_TYPE_AEROPLANE = BasicId_UasType_UAS_TYPE_AEROPLANE;
+  static constexpr UasType UAS_TYPE_HELICOPTER_OR_MULTIROTOR = BasicId_UasType_UAS_TYPE_HELICOPTER_OR_MULTIROTOR;
+  static constexpr UasType UAS_TYPE_GYROPLANE = BasicId_UasType_UAS_TYPE_GYROPLANE;
+  static constexpr UasType UAS_TYPE_HYBRID_LIFT = BasicId_UasType_UAS_TYPE_HYBRID_LIFT;
+  static constexpr UasType UAS_TYPE_ORNITHOPTER = BasicId_UasType_UAS_TYPE_ORNITHOPTER;
+  static constexpr UasType UAS_TYPE_GLIDER = BasicId_UasType_UAS_TYPE_GLIDER;
+  static constexpr UasType UAS_TYPE_KITE = BasicId_UasType_UAS_TYPE_KITE;
+  static constexpr UasType UAS_TYPE_FREE_BALLOON = BasicId_UasType_UAS_TYPE_FREE_BALLOON;
+  static constexpr UasType UAS_TYPE_CAPTIVE_BALLOON = BasicId_UasType_UAS_TYPE_CAPTIVE_BALLOON;
+  static constexpr UasType UAS_TYPE_AIRSHIP = BasicId_UasType_UAS_TYPE_AIRSHIP;
+  static constexpr UasType UAS_TYPE_FREE_FALL_PARACHUTE = BasicId_UasType_UAS_TYPE_FREE_FALL_PARACHUTE;
+  static constexpr UasType UAS_TYPE_ROCKET = BasicId_UasType_UAS_TYPE_ROCKET;
+  static constexpr UasType UAS_TYPE_TETHERED_POWERED_AIRCRAFT = BasicId_UasType_UAS_TYPE_TETHERED_POWERED_AIRCRAFT;
+  static constexpr UasType UAS_TYPE_GROUND_OBSTACLE = BasicId_UasType_UAS_TYPE_GROUND_OBSTACLE;
+  static constexpr UasType UAS_TYPE_OTHER = BasicId_UasType_UAS_TYPE_OTHER;
+  static inline bool UasType_IsValid(int value) {
+    return BasicId_UasType_IsValid(value);
+  }
+  static constexpr UasType UasType_MIN = BasicId_UasType_UasType_MIN;
+  static constexpr UasType UasType_MAX = BasicId_UasType_UasType_MAX;
+  static constexpr int UasType_ARRAYSIZE = BasicId_UasType_UasType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* UasType_descriptor() {
+    return BasicId_UasType_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& UasType_Name(T value) {
+    return BasicId_UasType_Name(value);
+  }
+  static inline bool UasType_Parse(absl::string_view name, UasType* value) {
+    return BasicId_UasType_Parse(name, value);
+  }
+
   // accessors -------------------------------------------------------
 
   enum : int {
@@ -1525,24 +2790,24 @@ class BasicId final :
   std::string* _internal_mutable_uas_id();
 
   public:
-  // uint32 id_type = 1;
+  // .mavsdk.rpc.remote_id.BasicId.IdType id_type = 1;
   void clear_id_type() ;
-  ::uint32_t id_type() const;
-  void set_id_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::BasicId_IdType id_type() const;
+  void set_id_type(::mavsdk::rpc::remote_id::BasicId_IdType value);
 
   private:
-  ::uint32_t _internal_id_type() const;
-  void _internal_set_id_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::BasicId_IdType _internal_id_type() const;
+  void _internal_set_id_type(::mavsdk::rpc::remote_id::BasicId_IdType value);
 
   public:
-  // uint32 ua_type = 2;
+  // .mavsdk.rpc.remote_id.BasicId.UasType ua_type = 2;
   void clear_ua_type() ;
-  ::uint32_t ua_type() const;
-  void set_ua_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::BasicId_UasType ua_type() const;
+  void set_ua_type(::mavsdk::rpc::remote_id::BasicId_UasType value);
 
   private:
-  ::uint32_t _internal_ua_type() const;
-  void _internal_set_ua_type(::uint32_t value);
+  ::mavsdk::rpc::remote_id::BasicId_UasType _internal_ua_type() const;
+  void _internal_set_ua_type(::mavsdk::rpc::remote_id::BasicId_UasType value);
 
   public:
   // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.BasicId)
@@ -1569,8 +2834,221 @@ class BasicId final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr uas_id_;
-    ::uint32_t id_type_;
-    ::uint32_t ua_type_;
+    int id_type_;
+    int ua_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class ArmStatus final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.ArmStatus) */ {
+ public:
+  inline ArmStatus() : ArmStatus(nullptr) {}
+  ~ArmStatus() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ArmStatus(::google::protobuf::internal::ConstantInitialized);
+
+  inline ArmStatus(const ArmStatus& from)
+      : ArmStatus(nullptr, from) {}
+  ArmStatus(ArmStatus&& from) noexcept
+    : ArmStatus() {
+    *this = ::std::move(from);
+  }
+
+  inline ArmStatus& operator=(const ArmStatus& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ArmStatus& operator=(ArmStatus&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ArmStatus& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ArmStatus* internal_default_instance() {
+    return reinterpret_cast<const ArmStatus*>(
+               &_ArmStatus_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(ArmStatus& a, ArmStatus& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ArmStatus* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ArmStatus* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ArmStatus* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ArmStatus>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ArmStatus& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ArmStatus& from) {
+    ArmStatus::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ArmStatus* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.ArmStatus";
+  }
+  protected:
+  explicit ArmStatus(::google::protobuf::Arena* arena);
+  ArmStatus(::google::protobuf::Arena* arena, const ArmStatus& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  using Status = ArmStatus_Status;
+  static constexpr Status STATUS_GOOD_TO_ARM = ArmStatus_Status_STATUS_GOOD_TO_ARM;
+  static constexpr Status STATUS_PRE_ARM_FAIL_GENERIC = ArmStatus_Status_STATUS_PRE_ARM_FAIL_GENERIC;
+  static inline bool Status_IsValid(int value) {
+    return ArmStatus_Status_IsValid(value);
+  }
+  static constexpr Status Status_MIN = ArmStatus_Status_Status_MIN;
+  static constexpr Status Status_MAX = ArmStatus_Status_Status_MAX;
+  static constexpr int Status_ARRAYSIZE = ArmStatus_Status_Status_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Status_descriptor() {
+    return ArmStatus_Status_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Status_Name(T value) {
+    return ArmStatus_Status_Name(value);
+  }
+  static inline bool Status_Parse(absl::string_view name, Status* value) {
+    return ArmStatus_Status_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kErrorFieldNumber = 2,
+    kStatusFieldNumber = 1,
+  };
+  // string error = 2;
+  void clear_error() ;
+  const std::string& error() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_error(Arg_&& arg, Args_... args);
+  std::string* mutable_error();
+  PROTOBUF_NODISCARD std::string* release_error();
+  void set_allocated_error(std::string* value);
+
+  private:
+  const std::string& _internal_error() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(
+      const std::string& value);
+  std::string* _internal_mutable_error();
+
+  public:
+  // .mavsdk.rpc.remote_id.ArmStatus.Status status = 1;
+  void clear_status() ;
+  ::mavsdk::rpc::remote_id::ArmStatus_Status status() const;
+  void set_status(::mavsdk::rpc::remote_id::ArmStatus_Status value);
+
+  private:
+  ::mavsdk::rpc::remote_id::ArmStatus_Status _internal_status() const;
+  void _internal_set_status(::mavsdk::rpc::remote_id::ArmStatus_Status value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.ArmStatus)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      44, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr error_;
+    int status_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1637,7 +3115,7 @@ class SetSystemResponse final :
                &_SetSystemResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(SetSystemResponse& a, SetSystemResponse& b) {
     a.Swap(&b);
@@ -1818,7 +3296,7 @@ class SetSystemRequest final :
                &_SetSystemRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(SetSystemRequest& a, SetSystemRequest& b) {
     a.Swap(&b);
@@ -1999,7 +3477,7 @@ class SetSelfIdResponse final :
                &_SetSelfIdResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(SetSelfIdResponse& a, SetSelfIdResponse& b) {
     a.Swap(&b);
@@ -2180,7 +3658,7 @@ class SetSelfIdRequest final :
                &_SetSelfIdRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(SetSelfIdRequest& a, SetSelfIdRequest& b) {
     a.Swap(&b);
@@ -2361,7 +3839,7 @@ class SetOperatorIdResponse final :
                &_SetOperatorIdResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(SetOperatorIdResponse& a, SetOperatorIdResponse& b) {
     a.Swap(&b);
@@ -2542,7 +4020,7 @@ class SetOperatorIdRequest final :
                &_SetOperatorIdRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(SetOperatorIdRequest& a, SetOperatorIdRequest& b) {
     a.Swap(&b);
@@ -3026,6 +4504,368 @@ class SetLocationRequest final :
   friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
 };// -------------------------------------------------------------------
 
+class SetLocationAccuracyResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetLocationAccuracyResponse) */ {
+ public:
+  inline SetLocationAccuracyResponse() : SetLocationAccuracyResponse(nullptr) {}
+  ~SetLocationAccuracyResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SetLocationAccuracyResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline SetLocationAccuracyResponse(const SetLocationAccuracyResponse& from)
+      : SetLocationAccuracyResponse(nullptr, from) {}
+  SetLocationAccuracyResponse(SetLocationAccuracyResponse&& from) noexcept
+    : SetLocationAccuracyResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline SetLocationAccuracyResponse& operator=(const SetLocationAccuracyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetLocationAccuracyResponse& operator=(SetLocationAccuracyResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetLocationAccuracyResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetLocationAccuracyResponse* internal_default_instance() {
+    return reinterpret_cast<const SetLocationAccuracyResponse*>(
+               &_SetLocationAccuracyResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(SetLocationAccuracyResponse& a, SetLocationAccuracyResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetLocationAccuracyResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetLocationAccuracyResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetLocationAccuracyResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetLocationAccuracyResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetLocationAccuracyResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SetLocationAccuracyResponse& from) {
+    SetLocationAccuracyResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetLocationAccuracyResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SetLocationAccuracyResponse";
+  }
+  protected:
+  explicit SetLocationAccuracyResponse(::google::protobuf::Arena* arena);
+  SetLocationAccuracyResponse(::google::protobuf::Arena* arena, const SetLocationAccuracyResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRemoteIdResultFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+  bool has_remote_id_result() const;
+  void clear_remote_id_result() ;
+  const ::mavsdk::rpc::remote_id::RemoteIdResult& remote_id_result() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::RemoteIdResult* release_remote_id_result();
+  ::mavsdk::rpc::remote_id::RemoteIdResult* mutable_remote_id_result();
+  void set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value);
+  void unsafe_arena_set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value);
+  ::mavsdk::rpc::remote_id::RemoteIdResult* unsafe_arena_release_remote_id_result();
+
+  private:
+  const ::mavsdk::rpc::remote_id::RemoteIdResult& _internal_remote_id_result() const;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* _internal_mutable_remote_id_result();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SetLocationAccuracyResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::RemoteIdResult* remote_id_result_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class SetLocationAccuracyRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetLocationAccuracyRequest) */ {
+ public:
+  inline SetLocationAccuracyRequest() : SetLocationAccuracyRequest(nullptr) {}
+  ~SetLocationAccuracyRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR SetLocationAccuracyRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline SetLocationAccuracyRequest(const SetLocationAccuracyRequest& from)
+      : SetLocationAccuracyRequest(nullptr, from) {}
+  SetLocationAccuracyRequest(SetLocationAccuracyRequest&& from) noexcept
+    : SetLocationAccuracyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline SetLocationAccuracyRequest& operator=(const SetLocationAccuracyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SetLocationAccuracyRequest& operator=(SetLocationAccuracyRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SetLocationAccuracyRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SetLocationAccuracyRequest* internal_default_instance() {
+    return reinterpret_cast<const SetLocationAccuracyRequest*>(
+               &_SetLocationAccuracyRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(SetLocationAccuracyRequest& a, SetLocationAccuracyRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SetLocationAccuracyRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SetLocationAccuracyRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SetLocationAccuracyRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetLocationAccuracyRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const SetLocationAccuracyRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const SetLocationAccuracyRequest& from) {
+    SetLocationAccuracyRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(SetLocationAccuracyRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.SetLocationAccuracyRequest";
+  }
+  protected:
+  explicit SetLocationAccuracyRequest(::google::protobuf::Arena* arena);
+  SetLocationAccuracyRequest(::google::protobuf::Arena* arena, const SetLocationAccuracyRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kLocationAccuracyFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.LocationAccuracy location_accuracy = 1;
+  bool has_location_accuracy() const;
+  void clear_location_accuracy() ;
+  const ::mavsdk::rpc::remote_id::LocationAccuracy& location_accuracy() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::LocationAccuracy* release_location_accuracy();
+  ::mavsdk::rpc::remote_id::LocationAccuracy* mutable_location_accuracy();
+  void set_allocated_location_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy* value);
+  void unsafe_arena_set_allocated_location_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy* value);
+  ::mavsdk::rpc::remote_id::LocationAccuracy* unsafe_arena_release_location_accuracy();
+
+  private:
+  const ::mavsdk::rpc::remote_id::LocationAccuracy& _internal_location_accuracy() const;
+  ::mavsdk::rpc::remote_id::LocationAccuracy* _internal_mutable_location_accuracy();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.SetLocationAccuracyRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::LocationAccuracy* location_accuracy_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
 class SetBasicIdResponse final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.SetBasicIdResponse) */ {
  public:
@@ -3382,6 +5222,187 @@ class SetBasicIdRequest final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::mavsdk::rpc::remote_id::BasicId* basic_id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_remote_5fid_2fremote_5fid_2eproto;
+};// -------------------------------------------------------------------
+
+class ArmStatusResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.remote_id.ArmStatusResponse) */ {
+ public:
+  inline ArmStatusResponse() : ArmStatusResponse(nullptr) {}
+  ~ArmStatusResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ArmStatusResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline ArmStatusResponse(const ArmStatusResponse& from)
+      : ArmStatusResponse(nullptr, from) {}
+  ArmStatusResponse(ArmStatusResponse&& from) noexcept
+    : ArmStatusResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ArmStatusResponse& operator=(const ArmStatusResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ArmStatusResponse& operator=(ArmStatusResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ArmStatusResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ArmStatusResponse* internal_default_instance() {
+    return reinterpret_cast<const ArmStatusResponse*>(
+               &_ArmStatusResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(ArmStatusResponse& a, ArmStatusResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ArmStatusResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ArmStatusResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ArmStatusResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ArmStatusResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ArmStatusResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ArmStatusResponse& from) {
+    ArmStatusResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ArmStatusResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "mavsdk.rpc.remote_id.ArmStatusResponse";
+  }
+  protected:
+  explicit ArmStatusResponse(::google::protobuf::Arena* arena);
+  ArmStatusResponse(::google::protobuf::Arena* arena, const ArmStatusResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kArmStatusFieldNumber = 1,
+  };
+  // .mavsdk.rpc.remote_id.ArmStatus arm_status = 1;
+  bool has_arm_status() const;
+  void clear_arm_status() ;
+  const ::mavsdk::rpc::remote_id::ArmStatus& arm_status() const;
+  PROTOBUF_NODISCARD ::mavsdk::rpc::remote_id::ArmStatus* release_arm_status();
+  ::mavsdk::rpc::remote_id::ArmStatus* mutable_arm_status();
+  void set_allocated_arm_status(::mavsdk::rpc::remote_id::ArmStatus* value);
+  void unsafe_arena_set_allocated_arm_status(::mavsdk::rpc::remote_id::ArmStatus* value);
+  ::mavsdk::rpc::remote_id::ArmStatus* unsafe_arena_release_arm_status();
+
+  private:
+  const ::mavsdk::rpc::remote_id::ArmStatus& _internal_arm_status() const;
+  ::mavsdk::rpc::remote_id::ArmStatus* _internal_mutable_arm_status();
+
+  public:
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.remote_id.ArmStatusResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    ::mavsdk::rpc::remote_id::ArmStatus* arm_status_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3798,6 +5819,206 @@ inline void SetLocationResponse::set_allocated_remote_id_result(::mavsdk::rpc::r
 
   _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
   // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetLocationResponse.remote_id_result)
+}
+
+// -------------------------------------------------------------------
+
+// SetLocationAccuracyRequest
+
+// .mavsdk.rpc.remote_id.LocationAccuracy location_accuracy = 1;
+inline bool SetLocationAccuracyRequest::has_location_accuracy() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.location_accuracy_ != nullptr);
+  return value;
+}
+inline void SetLocationAccuracyRequest::clear_location_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.location_accuracy_ != nullptr) _impl_.location_accuracy_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::LocationAccuracy& SetLocationAccuracyRequest::_internal_location_accuracy() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::LocationAccuracy* p = _impl_.location_accuracy_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::LocationAccuracy&>(::mavsdk::rpc::remote_id::_LocationAccuracy_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::LocationAccuracy& SetLocationAccuracyRequest::location_accuracy() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SetLocationAccuracyRequest.location_accuracy)
+  return _internal_location_accuracy();
+}
+inline void SetLocationAccuracyRequest::unsafe_arena_set_allocated_location_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.location_accuracy_);
+  }
+  _impl_.location_accuracy_ = reinterpret_cast<::mavsdk::rpc::remote_id::LocationAccuracy*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.SetLocationAccuracyRequest.location_accuracy)
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy* SetLocationAccuracyRequest::release_location_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::LocationAccuracy* released = _impl_.location_accuracy_;
+  _impl_.location_accuracy_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy* SetLocationAccuracyRequest::unsafe_arena_release_location_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SetLocationAccuracyRequest.location_accuracy)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::LocationAccuracy* temp = _impl_.location_accuracy_;
+  _impl_.location_accuracy_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy* SetLocationAccuracyRequest::_internal_mutable_location_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.location_accuracy_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::LocationAccuracy>(GetArena());
+    _impl_.location_accuracy_ = reinterpret_cast<::mavsdk::rpc::remote_id::LocationAccuracy*>(p);
+  }
+  return _impl_.location_accuracy_;
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy* SetLocationAccuracyRequest::mutable_location_accuracy() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::LocationAccuracy* _msg = _internal_mutable_location_accuracy();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SetLocationAccuracyRequest.location_accuracy)
+  return _msg;
+}
+inline void SetLocationAccuracyRequest::set_allocated_location_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::LocationAccuracy*>(_impl_.location_accuracy_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::LocationAccuracy*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.location_accuracy_ = reinterpret_cast<::mavsdk::rpc::remote_id::LocationAccuracy*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetLocationAccuracyRequest.location_accuracy)
+}
+
+// -------------------------------------------------------------------
+
+// SetLocationAccuracyResponse
+
+// .mavsdk.rpc.remote_id.RemoteIdResult remote_id_result = 1;
+inline bool SetLocationAccuracyResponse::has_remote_id_result() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.remote_id_result_ != nullptr);
+  return value;
+}
+inline void SetLocationAccuracyResponse::clear_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.remote_id_result_ != nullptr) _impl_.remote_id_result_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::RemoteIdResult& SetLocationAccuracyResponse::_internal_remote_id_result() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::RemoteIdResult* p = _impl_.remote_id_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::RemoteIdResult&>(::mavsdk::rpc::remote_id::_RemoteIdResult_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::RemoteIdResult& SetLocationAccuracyResponse::remote_id_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SetLocationAccuracyResponse.remote_id_result)
+  return _internal_remote_id_result();
+}
+inline void SetLocationAccuracyResponse::unsafe_arena_set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.remote_id_result_);
+  }
+  _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.SetLocationAccuracyResponse.remote_id_result)
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetLocationAccuracyResponse::release_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* released = _impl_.remote_id_result_;
+  _impl_.remote_id_result_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetLocationAccuracyResponse::unsafe_arena_release_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.SetLocationAccuracyResponse.remote_id_result)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::RemoteIdResult* temp = _impl_.remote_id_result_;
+  _impl_.remote_id_result_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetLocationAccuracyResponse::_internal_mutable_remote_id_result() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.remote_id_result_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::RemoteIdResult>(GetArena());
+    _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(p);
+  }
+  return _impl_.remote_id_result_;
+}
+inline ::mavsdk::rpc::remote_id::RemoteIdResult* SetLocationAccuracyResponse::mutable_remote_id_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::RemoteIdResult* _msg = _internal_mutable_remote_id_result();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.SetLocationAccuracyResponse.remote_id_result)
+  return _msg;
+}
+inline void SetLocationAccuracyResponse::set_allocated_remote_id_result(::mavsdk::rpc::remote_id::RemoteIdResult* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(_impl_.remote_id_result_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.remote_id_result_ = reinterpret_cast<::mavsdk::rpc::remote_id::RemoteIdResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SetLocationAccuracyResponse.remote_id_result)
 }
 
 // -------------------------------------------------------------------
@@ -4402,49 +6623,153 @@ inline void SetSelfIdResponse::set_allocated_remote_id_result(::mavsdk::rpc::rem
 
 // -------------------------------------------------------------------
 
+// SubscribeArmStatusRequest
+
+// -------------------------------------------------------------------
+
+// ArmStatusResponse
+
+// .mavsdk.rpc.remote_id.ArmStatus arm_status = 1;
+inline bool ArmStatusResponse::has_arm_status() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.arm_status_ != nullptr);
+  return value;
+}
+inline void ArmStatusResponse::clear_arm_status() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (_impl_.arm_status_ != nullptr) _impl_.arm_status_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::mavsdk::rpc::remote_id::ArmStatus& ArmStatusResponse::_internal_arm_status() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  const ::mavsdk::rpc::remote_id::ArmStatus* p = _impl_.arm_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::remote_id::ArmStatus&>(::mavsdk::rpc::remote_id::_ArmStatus_default_instance_);
+}
+inline const ::mavsdk::rpc::remote_id::ArmStatus& ArmStatusResponse::arm_status() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.ArmStatusResponse.arm_status)
+  return _internal_arm_status();
+}
+inline void ArmStatusResponse::unsafe_arena_set_allocated_arm_status(::mavsdk::rpc::remote_id::ArmStatus* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.arm_status_);
+  }
+  _impl_.arm_status_ = reinterpret_cast<::mavsdk::rpc::remote_id::ArmStatus*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.remote_id.ArmStatusResponse.arm_status)
+}
+inline ::mavsdk::rpc::remote_id::ArmStatus* ArmStatusResponse::release_arm_status() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::ArmStatus* released = _impl_.arm_status_;
+  _impl_.arm_status_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+  released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  if (GetArena() == nullptr) {
+    delete old;
+  }
+#else   // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArena() != nullptr) {
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return released;
+}
+inline ::mavsdk::rpc::remote_id::ArmStatus* ArmStatusResponse::unsafe_arena_release_arm_status() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.ArmStatusResponse.arm_status)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::mavsdk::rpc::remote_id::ArmStatus* temp = _impl_.arm_status_;
+  _impl_.arm_status_ = nullptr;
+  return temp;
+}
+inline ::mavsdk::rpc::remote_id::ArmStatus* ArmStatusResponse::_internal_mutable_arm_status() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.arm_status_ == nullptr) {
+    auto* p = CreateMaybeMessage<::mavsdk::rpc::remote_id::ArmStatus>(GetArena());
+    _impl_.arm_status_ = reinterpret_cast<::mavsdk::rpc::remote_id::ArmStatus*>(p);
+  }
+  return _impl_.arm_status_;
+}
+inline ::mavsdk::rpc::remote_id::ArmStatus* ArmStatusResponse::mutable_arm_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavsdk::rpc::remote_id::ArmStatus* _msg = _internal_mutable_arm_status();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.ArmStatusResponse.arm_status)
+  return _msg;
+}
+inline void ArmStatusResponse::set_allocated_arm_status(::mavsdk::rpc::remote_id::ArmStatus* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::mavsdk::rpc::remote_id::ArmStatus*>(_impl_.arm_status_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::remote_id::ArmStatus*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.arm_status_ = reinterpret_cast<::mavsdk::rpc::remote_id::ArmStatus*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.ArmStatusResponse.arm_status)
+}
+
+// -------------------------------------------------------------------
+
 // BasicId
 
-// uint32 id_type = 1;
+// .mavsdk.rpc.remote_id.BasicId.IdType id_type = 1;
 inline void BasicId::clear_id_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.id_type_ = 0u;
+  _impl_.id_type_ = 0;
 }
-inline ::uint32_t BasicId::id_type() const {
+inline ::mavsdk::rpc::remote_id::BasicId_IdType BasicId::id_type() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.BasicId.id_type)
   return _internal_id_type();
 }
-inline void BasicId::set_id_type(::uint32_t value) {
+inline void BasicId::set_id_type(::mavsdk::rpc::remote_id::BasicId_IdType value) {
   _internal_set_id_type(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.BasicId.id_type)
 }
-inline ::uint32_t BasicId::_internal_id_type() const {
+inline ::mavsdk::rpc::remote_id::BasicId_IdType BasicId::_internal_id_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.id_type_;
+  return static_cast<::mavsdk::rpc::remote_id::BasicId_IdType>(_impl_.id_type_);
 }
-inline void BasicId::_internal_set_id_type(::uint32_t value) {
+inline void BasicId::_internal_set_id_type(::mavsdk::rpc::remote_id::BasicId_IdType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.id_type_ = value;
 }
 
-// uint32 ua_type = 2;
+// .mavsdk.rpc.remote_id.BasicId.UasType ua_type = 2;
 inline void BasicId::clear_ua_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.ua_type_ = 0u;
+  _impl_.ua_type_ = 0;
 }
-inline ::uint32_t BasicId::ua_type() const {
+inline ::mavsdk::rpc::remote_id::BasicId_UasType BasicId::ua_type() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.BasicId.ua_type)
   return _internal_ua_type();
 }
-inline void BasicId::set_ua_type(::uint32_t value) {
+inline void BasicId::set_ua_type(::mavsdk::rpc::remote_id::BasicId_UasType value) {
   _internal_set_ua_type(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.BasicId.ua_type)
 }
-inline ::uint32_t BasicId::_internal_ua_type() const {
+inline ::mavsdk::rpc::remote_id::BasicId_UasType BasicId::_internal_ua_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.ua_type_;
+  return static_cast<::mavsdk::rpc::remote_id::BasicId_UasType>(_impl_.ua_type_);
 }
-inline void BasicId::_internal_set_ua_type(::uint32_t value) {
+inline void BasicId::_internal_set_ua_type(::mavsdk::rpc::remote_id::BasicId_UasType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.ua_type_ = value;
@@ -4507,277 +6832,373 @@ inline void BasicId::set_allocated_uas_id(std::string* value) {
 
 // Location
 
-// uint32 status = 1;
+// .mavsdk.rpc.remote_id.Location.Status status = 1;
 inline void Location::clear_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.status_ = 0u;
+  _impl_.status_ = 0;
 }
-inline ::uint32_t Location::status() const {
+inline ::mavsdk::rpc::remote_id::Location_Status Location::status() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.status)
   return _internal_status();
 }
-inline void Location::set_status(::uint32_t value) {
+inline void Location::set_status(::mavsdk::rpc::remote_id::Location_Status value) {
   _internal_set_status(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.status)
 }
-inline ::uint32_t Location::_internal_status() const {
+inline ::mavsdk::rpc::remote_id::Location_Status Location::_internal_status() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.status_;
+  return static_cast<::mavsdk::rpc::remote_id::Location_Status>(_impl_.status_);
 }
-inline void Location::_internal_set_status(::uint32_t value) {
+inline void Location::_internal_set_status(::mavsdk::rpc::remote_id::Location_Status value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.status_ = value;
 }
 
-// uint32 direction = 2;
-inline void Location::clear_direction() {
+// uint32 direction_deg = 2;
+inline void Location::clear_direction_deg() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.direction_ = 0u;
+  _impl_.direction_deg_ = 0u;
 }
-inline ::uint32_t Location::direction() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.direction)
-  return _internal_direction();
+inline ::uint32_t Location::direction_deg() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.direction_deg)
+  return _internal_direction_deg();
 }
-inline void Location::set_direction(::uint32_t value) {
-  _internal_set_direction(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.direction)
+inline void Location::set_direction_deg(::uint32_t value) {
+  _internal_set_direction_deg(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.direction_deg)
 }
-inline ::uint32_t Location::_internal_direction() const {
+inline ::uint32_t Location::_internal_direction_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.direction_;
+  return _impl_.direction_deg_;
 }
-inline void Location::_internal_set_direction(::uint32_t value) {
+inline void Location::_internal_set_direction_deg(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.direction_ = value;
+  _impl_.direction_deg_ = value;
 }
 
-// uint32 speed_horizontal = 3;
-inline void Location::clear_speed_horizontal() {
+// float speed_horizontal_m_s = 3;
+inline void Location::clear_speed_horizontal_m_s() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.speed_horizontal_ = 0u;
+  _impl_.speed_horizontal_m_s_ = 0;
 }
-inline ::uint32_t Location::speed_horizontal() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.speed_horizontal)
-  return _internal_speed_horizontal();
+inline float Location::speed_horizontal_m_s() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.speed_horizontal_m_s)
+  return _internal_speed_horizontal_m_s();
 }
-inline void Location::set_speed_horizontal(::uint32_t value) {
-  _internal_set_speed_horizontal(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.speed_horizontal)
+inline void Location::set_speed_horizontal_m_s(float value) {
+  _internal_set_speed_horizontal_m_s(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.speed_horizontal_m_s)
 }
-inline ::uint32_t Location::_internal_speed_horizontal() const {
+inline float Location::_internal_speed_horizontal_m_s() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.speed_horizontal_;
+  return _impl_.speed_horizontal_m_s_;
 }
-inline void Location::_internal_set_speed_horizontal(::uint32_t value) {
+inline void Location::_internal_set_speed_horizontal_m_s(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.speed_horizontal_ = value;
+  _impl_.speed_horizontal_m_s_ = value;
 }
 
-// int32 speed_vertical = 4;
-inline void Location::clear_speed_vertical() {
+// float speed_vertical_m_s = 4;
+inline void Location::clear_speed_vertical_m_s() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.speed_vertical_ = 0;
+  _impl_.speed_vertical_m_s_ = 0;
 }
-inline ::int32_t Location::speed_vertical() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.speed_vertical)
-  return _internal_speed_vertical();
+inline float Location::speed_vertical_m_s() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.speed_vertical_m_s)
+  return _internal_speed_vertical_m_s();
 }
-inline void Location::set_speed_vertical(::int32_t value) {
-  _internal_set_speed_vertical(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.speed_vertical)
+inline void Location::set_speed_vertical_m_s(float value) {
+  _internal_set_speed_vertical_m_s(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.speed_vertical_m_s)
 }
-inline ::int32_t Location::_internal_speed_vertical() const {
+inline float Location::_internal_speed_vertical_m_s() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.speed_vertical_;
+  return _impl_.speed_vertical_m_s_;
 }
-inline void Location::_internal_set_speed_vertical(::int32_t value) {
+inline void Location::_internal_set_speed_vertical_m_s(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.speed_vertical_ = value;
+  _impl_.speed_vertical_m_s_ = value;
 }
 
-// int32 latitude = 5;
-inline void Location::clear_latitude() {
+// double latitude_deg = 5;
+inline void Location::clear_latitude_deg() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.latitude_ = 0;
+  _impl_.latitude_deg_ = 0;
 }
-inline ::int32_t Location::latitude() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.latitude)
-  return _internal_latitude();
+inline double Location::latitude_deg() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.latitude_deg)
+  return _internal_latitude_deg();
 }
-inline void Location::set_latitude(::int32_t value) {
-  _internal_set_latitude(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.latitude)
+inline void Location::set_latitude_deg(double value) {
+  _internal_set_latitude_deg(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.latitude_deg)
 }
-inline ::int32_t Location::_internal_latitude() const {
+inline double Location::_internal_latitude_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.latitude_;
+  return _impl_.latitude_deg_;
 }
-inline void Location::_internal_set_latitude(::int32_t value) {
+inline void Location::_internal_set_latitude_deg(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.latitude_ = value;
+  _impl_.latitude_deg_ = value;
 }
 
-// int32 longitude = 6;
-inline void Location::clear_longitude() {
+// double longitude_deg = 6;
+inline void Location::clear_longitude_deg() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.longitude_ = 0;
+  _impl_.longitude_deg_ = 0;
 }
-inline ::int32_t Location::longitude() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.longitude)
-  return _internal_longitude();
+inline double Location::longitude_deg() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.longitude_deg)
+  return _internal_longitude_deg();
 }
-inline void Location::set_longitude(::int32_t value) {
-  _internal_set_longitude(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.longitude)
+inline void Location::set_longitude_deg(double value) {
+  _internal_set_longitude_deg(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.longitude_deg)
 }
-inline ::int32_t Location::_internal_longitude() const {
+inline double Location::_internal_longitude_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.longitude_;
+  return _impl_.longitude_deg_;
 }
-inline void Location::_internal_set_longitude(::int32_t value) {
+inline void Location::_internal_set_longitude_deg(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.longitude_ = value;
+  _impl_.longitude_deg_ = value;
 }
 
-// float altitude_barometric = 7;
-inline void Location::clear_altitude_barometric() {
+// float altitude_barometric_m = 7;
+inline void Location::clear_altitude_barometric_m() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.altitude_barometric_ = 0;
+  _impl_.altitude_barometric_m_ = 0;
 }
-inline float Location::altitude_barometric() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.altitude_barometric)
-  return _internal_altitude_barometric();
+inline float Location::altitude_barometric_m() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.altitude_barometric_m)
+  return _internal_altitude_barometric_m();
 }
-inline void Location::set_altitude_barometric(float value) {
-  _internal_set_altitude_barometric(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.altitude_barometric)
+inline void Location::set_altitude_barometric_m(float value) {
+  _internal_set_altitude_barometric_m(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.altitude_barometric_m)
 }
-inline float Location::_internal_altitude_barometric() const {
+inline float Location::_internal_altitude_barometric_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.altitude_barometric_;
+  return _impl_.altitude_barometric_m_;
 }
-inline void Location::_internal_set_altitude_barometric(float value) {
+inline void Location::_internal_set_altitude_barometric_m(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.altitude_barometric_ = value;
+  _impl_.altitude_barometric_m_ = value;
 }
 
-// float altitude_geodetic = 8;
-inline void Location::clear_altitude_geodetic() {
+// float altitude_geodetic_m = 8;
+inline void Location::clear_altitude_geodetic_m() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.altitude_geodetic_ = 0;
+  _impl_.altitude_geodetic_m_ = 0;
 }
-inline float Location::altitude_geodetic() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.altitude_geodetic)
-  return _internal_altitude_geodetic();
+inline float Location::altitude_geodetic_m() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.altitude_geodetic_m)
+  return _internal_altitude_geodetic_m();
 }
-inline void Location::set_altitude_geodetic(float value) {
-  _internal_set_altitude_geodetic(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.altitude_geodetic)
+inline void Location::set_altitude_geodetic_m(float value) {
+  _internal_set_altitude_geodetic_m(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.altitude_geodetic_m)
 }
-inline float Location::_internal_altitude_geodetic() const {
+inline float Location::_internal_altitude_geodetic_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.altitude_geodetic_;
+  return _impl_.altitude_geodetic_m_;
 }
-inline void Location::_internal_set_altitude_geodetic(float value) {
+inline void Location::_internal_set_altitude_geodetic_m(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.altitude_geodetic_ = value;
+  _impl_.altitude_geodetic_m_ = value;
 }
 
-// uint32 height_reference = 9;
+// .mavsdk.rpc.remote_id.Location.HeightRef height_reference = 9;
 inline void Location::clear_height_reference() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.height_reference_ = 0u;
+  _impl_.height_reference_ = 0;
 }
-inline ::uint32_t Location::height_reference() const {
+inline ::mavsdk::rpc::remote_id::Location_HeightRef Location::height_reference() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.height_reference)
   return _internal_height_reference();
 }
-inline void Location::set_height_reference(::uint32_t value) {
+inline void Location::set_height_reference(::mavsdk::rpc::remote_id::Location_HeightRef value) {
   _internal_set_height_reference(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.height_reference)
 }
-inline ::uint32_t Location::_internal_height_reference() const {
+inline ::mavsdk::rpc::remote_id::Location_HeightRef Location::_internal_height_reference() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.height_reference_;
+  return static_cast<::mavsdk::rpc::remote_id::Location_HeightRef>(_impl_.height_reference_);
 }
-inline void Location::_internal_set_height_reference(::uint32_t value) {
+inline void Location::_internal_set_height_reference(::mavsdk::rpc::remote_id::Location_HeightRef value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.height_reference_ = value;
 }
 
-// float height = 10;
-inline void Location::clear_height() {
+// float height_m = 10;
+inline void Location::clear_height_m() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.height_ = 0;
+  _impl_.height_m_ = 0;
 }
-inline float Location::height() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.height)
-  return _internal_height();
+inline float Location::height_m() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.height_m)
+  return _internal_height_m();
 }
-inline void Location::set_height(float value) {
-  _internal_set_height(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.height)
+inline void Location::set_height_m(float value) {
+  _internal_set_height_m(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.height_m)
 }
-inline float Location::_internal_height() const {
+inline float Location::_internal_height_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.height_;
+  return _impl_.height_m_;
 }
-inline void Location::_internal_set_height(float value) {
+inline void Location::_internal_set_height_m(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.height_ = value;
+  _impl_.height_m_ = value;
 }
 
-// float timestamp = 11;
-inline void Location::clear_timestamp() {
+// uint64 time_utc_us = 11;
+inline void Location::clear_time_utc_us() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.timestamp_ = 0;
+  _impl_.time_utc_us_ = ::uint64_t{0u};
 }
-inline float Location::timestamp() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.timestamp)
-  return _internal_timestamp();
+inline ::uint64_t Location::time_utc_us() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.time_utc_us)
+  return _internal_time_utc_us();
 }
-inline void Location::set_timestamp(float value) {
-  _internal_set_timestamp(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.timestamp)
+inline void Location::set_time_utc_us(::uint64_t value) {
+  _internal_set_time_utc_us(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.time_utc_us)
 }
-inline float Location::_internal_timestamp() const {
+inline ::uint64_t Location::_internal_time_utc_us() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.timestamp_;
+  return _impl_.time_utc_us_;
 }
-inline void Location::_internal_set_timestamp(float value) {
+inline void Location::_internal_set_time_utc_us(::uint64_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.timestamp_ = value;
+  _impl_.time_utc_us_ = value;
 }
 
-// uint32 timestamp_accuracy = 12;
-inline void Location::clear_timestamp_accuracy() {
+// -------------------------------------------------------------------
+
+// LocationAccuracy
+
+// .mavsdk.rpc.remote_id.LocationAccuracy.HorAcc horizontal_accuracy = 1;
+inline void LocationAccuracy::clear_horizontal_accuracy() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.timestamp_accuracy_ = 0u;
+  _impl_.horizontal_accuracy_ = 0;
 }
-inline ::uint32_t Location::timestamp_accuracy() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.Location.timestamp_accuracy)
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc LocationAccuracy::horizontal_accuracy() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.LocationAccuracy.horizontal_accuracy)
+  return _internal_horizontal_accuracy();
+}
+inline void LocationAccuracy::set_horizontal_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc value) {
+  _internal_set_horizontal_accuracy(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.LocationAccuracy.horizontal_accuracy)
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc LocationAccuracy::_internal_horizontal_accuracy() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc>(_impl_.horizontal_accuracy_);
+}
+inline void LocationAccuracy::_internal_set_horizontal_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.horizontal_accuracy_ = value;
+}
+
+// .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc vertical_accuracy = 2;
+inline void LocationAccuracy::clear_vertical_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.vertical_accuracy_ = 0;
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc LocationAccuracy::vertical_accuracy() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.LocationAccuracy.vertical_accuracy)
+  return _internal_vertical_accuracy();
+}
+inline void LocationAccuracy::set_vertical_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc value) {
+  _internal_set_vertical_accuracy(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.LocationAccuracy.vertical_accuracy)
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc LocationAccuracy::_internal_vertical_accuracy() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc>(_impl_.vertical_accuracy_);
+}
+inline void LocationAccuracy::_internal_set_vertical_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.vertical_accuracy_ = value;
+}
+
+// .mavsdk.rpc.remote_id.LocationAccuracy.VerAcc barometer_accuracy = 3;
+inline void LocationAccuracy::clear_barometer_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.barometer_accuracy_ = 0;
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc LocationAccuracy::barometer_accuracy() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.LocationAccuracy.barometer_accuracy)
+  return _internal_barometer_accuracy();
+}
+inline void LocationAccuracy::set_barometer_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc value) {
+  _internal_set_barometer_accuracy(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.LocationAccuracy.barometer_accuracy)
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc LocationAccuracy::_internal_barometer_accuracy() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc>(_impl_.barometer_accuracy_);
+}
+inline void LocationAccuracy::_internal_set_barometer_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.barometer_accuracy_ = value;
+}
+
+// .mavsdk.rpc.remote_id.LocationAccuracy.SpeedAcc speed_accuracy = 4;
+inline void LocationAccuracy::clear_speed_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.speed_accuracy_ = 0;
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc LocationAccuracy::speed_accuracy() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.LocationAccuracy.speed_accuracy)
+  return _internal_speed_accuracy();
+}
+inline void LocationAccuracy::set_speed_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc value) {
+  _internal_set_speed_accuracy(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.LocationAccuracy.speed_accuracy)
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc LocationAccuracy::_internal_speed_accuracy() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc>(_impl_.speed_accuracy_);
+}
+inline void LocationAccuracy::_internal_set_speed_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.speed_accuracy_ = value;
+}
+
+// .mavsdk.rpc.remote_id.LocationAccuracy.TimeAcc timestamp_accuracy = 5;
+inline void LocationAccuracy::clear_timestamp_accuracy() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.timestamp_accuracy_ = 0;
+}
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc LocationAccuracy::timestamp_accuracy() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.LocationAccuracy.timestamp_accuracy)
   return _internal_timestamp_accuracy();
 }
-inline void Location::set_timestamp_accuracy(::uint32_t value) {
+inline void LocationAccuracy::set_timestamp_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc value) {
   _internal_set_timestamp_accuracy(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.Location.timestamp_accuracy)
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.LocationAccuracy.timestamp_accuracy)
 }
-inline ::uint32_t Location::_internal_timestamp_accuracy() const {
+inline ::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc LocationAccuracy::_internal_timestamp_accuracy() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.timestamp_accuracy_;
+  return static_cast<::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc>(_impl_.timestamp_accuracy_);
 }
-inline void Location::_internal_set_timestamp_accuracy(::uint32_t value) {
+inline void LocationAccuracy::_internal_set_timestamp_accuracy(::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.timestamp_accuracy_ = value;
@@ -4787,96 +7208,96 @@ inline void Location::_internal_set_timestamp_accuracy(::uint32_t value) {
 
 // SystemId
 
-// uint32 operator_location_type = 1;
+// .mavsdk.rpc.remote_id.SystemId.OperatorLocationType operator_location_type = 1;
 inline void SystemId::clear_operator_location_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.operator_location_type_ = 0u;
+  _impl_.operator_location_type_ = 0;
 }
-inline ::uint32_t SystemId::operator_location_type() const {
+inline ::mavsdk::rpc::remote_id::SystemId_OperatorLocationType SystemId::operator_location_type() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_location_type)
   return _internal_operator_location_type();
 }
-inline void SystemId::set_operator_location_type(::uint32_t value) {
+inline void SystemId::set_operator_location_type(::mavsdk::rpc::remote_id::SystemId_OperatorLocationType value) {
   _internal_set_operator_location_type(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_location_type)
 }
-inline ::uint32_t SystemId::_internal_operator_location_type() const {
+inline ::mavsdk::rpc::remote_id::SystemId_OperatorLocationType SystemId::_internal_operator_location_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.operator_location_type_;
+  return static_cast<::mavsdk::rpc::remote_id::SystemId_OperatorLocationType>(_impl_.operator_location_type_);
 }
-inline void SystemId::_internal_set_operator_location_type(::uint32_t value) {
+inline void SystemId::_internal_set_operator_location_type(::mavsdk::rpc::remote_id::SystemId_OperatorLocationType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.operator_location_type_ = value;
 }
 
-// uint32 classification_type = 2;
+// .mavsdk.rpc.remote_id.SystemId.ClassificationType classification_type = 2;
 inline void SystemId::clear_classification_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.classification_type_ = 0u;
+  _impl_.classification_type_ = 0;
 }
-inline ::uint32_t SystemId::classification_type() const {
+inline ::mavsdk::rpc::remote_id::SystemId_ClassificationType SystemId::classification_type() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.classification_type)
   return _internal_classification_type();
 }
-inline void SystemId::set_classification_type(::uint32_t value) {
+inline void SystemId::set_classification_type(::mavsdk::rpc::remote_id::SystemId_ClassificationType value) {
   _internal_set_classification_type(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.classification_type)
 }
-inline ::uint32_t SystemId::_internal_classification_type() const {
+inline ::mavsdk::rpc::remote_id::SystemId_ClassificationType SystemId::_internal_classification_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.classification_type_;
+  return static_cast<::mavsdk::rpc::remote_id::SystemId_ClassificationType>(_impl_.classification_type_);
 }
-inline void SystemId::_internal_set_classification_type(::uint32_t value) {
+inline void SystemId::_internal_set_classification_type(::mavsdk::rpc::remote_id::SystemId_ClassificationType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.classification_type_ = value;
 }
 
-// int32 operator_latitude = 3;
-inline void SystemId::clear_operator_latitude() {
+// double operator_latitude_deg = 3;
+inline void SystemId::clear_operator_latitude_deg() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.operator_latitude_ = 0;
+  _impl_.operator_latitude_deg_ = 0;
 }
-inline ::int32_t SystemId::operator_latitude() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_latitude)
-  return _internal_operator_latitude();
+inline double SystemId::operator_latitude_deg() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_latitude_deg)
+  return _internal_operator_latitude_deg();
 }
-inline void SystemId::set_operator_latitude(::int32_t value) {
-  _internal_set_operator_latitude(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_latitude)
+inline void SystemId::set_operator_latitude_deg(double value) {
+  _internal_set_operator_latitude_deg(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_latitude_deg)
 }
-inline ::int32_t SystemId::_internal_operator_latitude() const {
+inline double SystemId::_internal_operator_latitude_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.operator_latitude_;
+  return _impl_.operator_latitude_deg_;
 }
-inline void SystemId::_internal_set_operator_latitude(::int32_t value) {
+inline void SystemId::_internal_set_operator_latitude_deg(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.operator_latitude_ = value;
+  _impl_.operator_latitude_deg_ = value;
 }
 
-// int32 operator_longitude = 4;
-inline void SystemId::clear_operator_longitude() {
+// double operator_longitude_deg = 4;
+inline void SystemId::clear_operator_longitude_deg() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.operator_longitude_ = 0;
+  _impl_.operator_longitude_deg_ = 0;
 }
-inline ::int32_t SystemId::operator_longitude() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_longitude)
-  return _internal_operator_longitude();
+inline double SystemId::operator_longitude_deg() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_longitude_deg)
+  return _internal_operator_longitude_deg();
 }
-inline void SystemId::set_operator_longitude(::int32_t value) {
-  _internal_set_operator_longitude(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_longitude)
+inline void SystemId::set_operator_longitude_deg(double value) {
+  _internal_set_operator_longitude_deg(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_longitude_deg)
 }
-inline ::int32_t SystemId::_internal_operator_longitude() const {
+inline double SystemId::_internal_operator_longitude_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.operator_longitude_;
+  return _impl_.operator_longitude_deg_;
 }
-inline void SystemId::_internal_set_operator_longitude(::int32_t value) {
+inline void SystemId::_internal_set_operator_longitude_deg(double value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.operator_longitude_ = value;
+  _impl_.operator_longitude_deg_ = value;
 }
 
 // uint32 area_count = 5;
@@ -4902,189 +7323,189 @@ inline void SystemId::_internal_set_area_count(::uint32_t value) {
   _impl_.area_count_ = value;
 }
 
-// uint32 area_radius = 6;
-inline void SystemId::clear_area_radius() {
+// uint32 area_radius_m = 6;
+inline void SystemId::clear_area_radius_m() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.area_radius_ = 0u;
+  _impl_.area_radius_m_ = 0u;
 }
-inline ::uint32_t SystemId::area_radius() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_radius)
-  return _internal_area_radius();
+inline ::uint32_t SystemId::area_radius_m() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_radius_m)
+  return _internal_area_radius_m();
 }
-inline void SystemId::set_area_radius(::uint32_t value) {
-  _internal_set_area_radius(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_radius)
+inline void SystemId::set_area_radius_m(::uint32_t value) {
+  _internal_set_area_radius_m(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_radius_m)
 }
-inline ::uint32_t SystemId::_internal_area_radius() const {
+inline ::uint32_t SystemId::_internal_area_radius_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.area_radius_;
+  return _impl_.area_radius_m_;
 }
-inline void SystemId::_internal_set_area_radius(::uint32_t value) {
+inline void SystemId::_internal_set_area_radius_m(::uint32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.area_radius_ = value;
+  _impl_.area_radius_m_ = value;
 }
 
-// float area_ceiling = 7;
-inline void SystemId::clear_area_ceiling() {
+// float area_ceiling_m = 7;
+inline void SystemId::clear_area_ceiling_m() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.area_ceiling_ = 0;
+  _impl_.area_ceiling_m_ = 0;
 }
-inline float SystemId::area_ceiling() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_ceiling)
-  return _internal_area_ceiling();
+inline float SystemId::area_ceiling_m() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_ceiling_m)
+  return _internal_area_ceiling_m();
 }
-inline void SystemId::set_area_ceiling(float value) {
-  _internal_set_area_ceiling(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_ceiling)
+inline void SystemId::set_area_ceiling_m(float value) {
+  _internal_set_area_ceiling_m(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_ceiling_m)
 }
-inline float SystemId::_internal_area_ceiling() const {
+inline float SystemId::_internal_area_ceiling_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.area_ceiling_;
+  return _impl_.area_ceiling_m_;
 }
-inline void SystemId::_internal_set_area_ceiling(float value) {
+inline void SystemId::_internal_set_area_ceiling_m(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.area_ceiling_ = value;
+  _impl_.area_ceiling_m_ = value;
 }
 
-// float area_floor = 8;
-inline void SystemId::clear_area_floor() {
+// float area_floor_m = 8;
+inline void SystemId::clear_area_floor_m() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.area_floor_ = 0;
+  _impl_.area_floor_m_ = 0;
 }
-inline float SystemId::area_floor() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_floor)
-  return _internal_area_floor();
+inline float SystemId::area_floor_m() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.area_floor_m)
+  return _internal_area_floor_m();
 }
-inline void SystemId::set_area_floor(float value) {
-  _internal_set_area_floor(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_floor)
+inline void SystemId::set_area_floor_m(float value) {
+  _internal_set_area_floor_m(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.area_floor_m)
 }
-inline float SystemId::_internal_area_floor() const {
+inline float SystemId::_internal_area_floor_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.area_floor_;
+  return _impl_.area_floor_m_;
 }
-inline void SystemId::_internal_set_area_floor(float value) {
+inline void SystemId::_internal_set_area_floor_m(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.area_floor_ = value;
+  _impl_.area_floor_m_ = value;
 }
 
-// uint32 category_eu = 9;
+// .mavsdk.rpc.remote_id.SystemId.CategoryEu category_eu = 9;
 inline void SystemId::clear_category_eu() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.category_eu_ = 0u;
+  _impl_.category_eu_ = 0;
 }
-inline ::uint32_t SystemId::category_eu() const {
+inline ::mavsdk::rpc::remote_id::SystemId_CategoryEu SystemId::category_eu() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.category_eu)
   return _internal_category_eu();
 }
-inline void SystemId::set_category_eu(::uint32_t value) {
+inline void SystemId::set_category_eu(::mavsdk::rpc::remote_id::SystemId_CategoryEu value) {
   _internal_set_category_eu(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.category_eu)
 }
-inline ::uint32_t SystemId::_internal_category_eu() const {
+inline ::mavsdk::rpc::remote_id::SystemId_CategoryEu SystemId::_internal_category_eu() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.category_eu_;
+  return static_cast<::mavsdk::rpc::remote_id::SystemId_CategoryEu>(_impl_.category_eu_);
 }
-inline void SystemId::_internal_set_category_eu(::uint32_t value) {
+inline void SystemId::_internal_set_category_eu(::mavsdk::rpc::remote_id::SystemId_CategoryEu value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.category_eu_ = value;
 }
 
-// uint32 class_eu = 10;
+// .mavsdk.rpc.remote_id.SystemId.ClassEu class_eu = 10;
 inline void SystemId::clear_class_eu() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.class_eu_ = 0u;
+  _impl_.class_eu_ = 0;
 }
-inline ::uint32_t SystemId::class_eu() const {
+inline ::mavsdk::rpc::remote_id::SystemId_ClassEu SystemId::class_eu() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.class_eu)
   return _internal_class_eu();
 }
-inline void SystemId::set_class_eu(::uint32_t value) {
+inline void SystemId::set_class_eu(::mavsdk::rpc::remote_id::SystemId_ClassEu value) {
   _internal_set_class_eu(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.class_eu)
 }
-inline ::uint32_t SystemId::_internal_class_eu() const {
+inline ::mavsdk::rpc::remote_id::SystemId_ClassEu SystemId::_internal_class_eu() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.class_eu_;
+  return static_cast<::mavsdk::rpc::remote_id::SystemId_ClassEu>(_impl_.class_eu_);
 }
-inline void SystemId::_internal_set_class_eu(::uint32_t value) {
+inline void SystemId::_internal_set_class_eu(::mavsdk::rpc::remote_id::SystemId_ClassEu value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.class_eu_ = value;
 }
 
-// float operator_altitude_geo = 11;
-inline void SystemId::clear_operator_altitude_geo() {
+// float operator_altitude_geo_m = 11;
+inline void SystemId::clear_operator_altitude_geo_m() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.operator_altitude_geo_ = 0;
+  _impl_.operator_altitude_geo_m_ = 0;
 }
-inline float SystemId::operator_altitude_geo() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_altitude_geo)
-  return _internal_operator_altitude_geo();
+inline float SystemId::operator_altitude_geo_m() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.operator_altitude_geo_m)
+  return _internal_operator_altitude_geo_m();
 }
-inline void SystemId::set_operator_altitude_geo(float value) {
-  _internal_set_operator_altitude_geo(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_altitude_geo)
+inline void SystemId::set_operator_altitude_geo_m(float value) {
+  _internal_set_operator_altitude_geo_m(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.operator_altitude_geo_m)
 }
-inline float SystemId::_internal_operator_altitude_geo() const {
+inline float SystemId::_internal_operator_altitude_geo_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.operator_altitude_geo_;
+  return _impl_.operator_altitude_geo_m_;
 }
-inline void SystemId::_internal_set_operator_altitude_geo(float value) {
+inline void SystemId::_internal_set_operator_altitude_geo_m(float value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.operator_altitude_geo_ = value;
+  _impl_.operator_altitude_geo_m_ = value;
 }
 
-// uint32 timestamp = 12;
-inline void SystemId::clear_timestamp() {
+// uint64 time_utc_us = 12;
+inline void SystemId::clear_time_utc_us() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.timestamp_ = 0u;
+  _impl_.time_utc_us_ = ::uint64_t{0u};
 }
-inline ::uint32_t SystemId::timestamp() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.timestamp)
-  return _internal_timestamp();
+inline ::uint64_t SystemId::time_utc_us() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SystemId.time_utc_us)
+  return _internal_time_utc_us();
 }
-inline void SystemId::set_timestamp(::uint32_t value) {
-  _internal_set_timestamp(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.timestamp)
+inline void SystemId::set_time_utc_us(::uint64_t value) {
+  _internal_set_time_utc_us(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SystemId.time_utc_us)
 }
-inline ::uint32_t SystemId::_internal_timestamp() const {
+inline ::uint64_t SystemId::_internal_time_utc_us() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.timestamp_;
+  return _impl_.time_utc_us_;
 }
-inline void SystemId::_internal_set_timestamp(::uint32_t value) {
+inline void SystemId::_internal_set_time_utc_us(::uint64_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.timestamp_ = value;
+  _impl_.time_utc_us_ = value;
 }
 
 // -------------------------------------------------------------------
 
 // OperatorId
 
-// uint32 operator_id_type = 1;
+// .mavsdk.rpc.remote_id.OperatorId.OperatorIdType operator_id_type = 1;
 inline void OperatorId::clear_operator_id_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.operator_id_type_ = 0u;
+  _impl_.operator_id_type_ = 0;
 }
-inline ::uint32_t OperatorId::operator_id_type() const {
+inline ::mavsdk::rpc::remote_id::OperatorId_OperatorIdType OperatorId::operator_id_type() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.OperatorId.operator_id_type)
   return _internal_operator_id_type();
 }
-inline void OperatorId::set_operator_id_type(::uint32_t value) {
+inline void OperatorId::set_operator_id_type(::mavsdk::rpc::remote_id::OperatorId_OperatorIdType value) {
   _internal_set_operator_id_type(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.OperatorId.operator_id_type)
 }
-inline ::uint32_t OperatorId::_internal_operator_id_type() const {
+inline ::mavsdk::rpc::remote_id::OperatorId_OperatorIdType OperatorId::_internal_operator_id_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.operator_id_type_;
+  return static_cast<::mavsdk::rpc::remote_id::OperatorId_OperatorIdType>(_impl_.operator_id_type_);
 }
-inline void OperatorId::_internal_set_operator_id_type(::uint32_t value) {
+inline void OperatorId::_internal_set_operator_id_type(::mavsdk::rpc::remote_id::OperatorId_OperatorIdType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.operator_id_type_ = value;
@@ -5147,24 +7568,24 @@ inline void OperatorId::set_allocated_operator_id(std::string* value) {
 
 // SelfId
 
-// uint32 description_type = 1;
+// .mavsdk.rpc.remote_id.SelfId.DescType description_type = 1;
 inline void SelfId::clear_description_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.description_type_ = 0u;
+  _impl_.description_type_ = 0;
 }
-inline ::uint32_t SelfId::description_type() const {
+inline ::mavsdk::rpc::remote_id::SelfId_DescType SelfId::description_type() const {
   // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.SelfId.description_type)
   return _internal_description_type();
 }
-inline void SelfId::set_description_type(::uint32_t value) {
+inline void SelfId::set_description_type(::mavsdk::rpc::remote_id::SelfId_DescType value) {
   _internal_set_description_type(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.SelfId.description_type)
 }
-inline ::uint32_t SelfId::_internal_description_type() const {
+inline ::mavsdk::rpc::remote_id::SelfId_DescType SelfId::_internal_description_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.description_type_;
+  return static_cast<::mavsdk::rpc::remote_id::SelfId_DescType>(_impl_.description_type_);
 }
-inline void SelfId::_internal_set_description_type(::uint32_t value) {
+inline void SelfId::_internal_set_description_type(::mavsdk::rpc::remote_id::SelfId_DescType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.description_type_ = value;
@@ -5221,6 +7642,86 @@ inline void SelfId::set_allocated_description(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.SelfId.description)
+}
+
+// -------------------------------------------------------------------
+
+// ArmStatus
+
+// .mavsdk.rpc.remote_id.ArmStatus.Status status = 1;
+inline void ArmStatus::clear_status() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.status_ = 0;
+}
+inline ::mavsdk::rpc::remote_id::ArmStatus_Status ArmStatus::status() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.ArmStatus.status)
+  return _internal_status();
+}
+inline void ArmStatus::set_status(::mavsdk::rpc::remote_id::ArmStatus_Status value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.ArmStatus.status)
+}
+inline ::mavsdk::rpc::remote_id::ArmStatus_Status ArmStatus::_internal_status() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::mavsdk::rpc::remote_id::ArmStatus_Status>(_impl_.status_);
+}
+inline void ArmStatus::_internal_set_status(::mavsdk::rpc::remote_id::ArmStatus_Status value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.status_ = value;
+}
+
+// string error = 2;
+inline void ArmStatus::clear_error() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.error_.ClearToEmpty();
+}
+inline const std::string& ArmStatus::error() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.remote_id.ArmStatus.error)
+  return _internal_error();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ArmStatus::set_error(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.error_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.remote_id.ArmStatus.error)
+}
+inline std::string* ArmStatus::mutable_error() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_error();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.remote_id.ArmStatus.error)
+  return _s;
+}
+inline const std::string& ArmStatus::_internal_error() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.error_.Get();
+}
+inline void ArmStatus::_internal_set_error(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.error_.Set(value, GetArena());
+}
+inline std::string* ArmStatus::_internal_mutable_error() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.error_.Mutable( GetArena());
+}
+inline std::string* ArmStatus::release_error() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.remote_id.ArmStatus.error)
+  return _impl_.error_.Release();
+}
+inline void ArmStatus::set_allocated_error(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.error_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.error_.IsDefault()) {
+          _impl_.error_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.remote_id.ArmStatus.error)
 }
 
 // -------------------------------------------------------------------
@@ -5316,6 +7817,96 @@ inline void RemoteIdResult::set_allocated_result_str(std::string* value) {
 namespace google {
 namespace protobuf {
 
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::BasicId_IdType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::BasicId_IdType>() {
+  return ::mavsdk::rpc::remote_id::BasicId_IdType_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::BasicId_UasType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::BasicId_UasType>() {
+  return ::mavsdk::rpc::remote_id::BasicId_UasType_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::Location_Status> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::Location_Status>() {
+  return ::mavsdk::rpc::remote_id::Location_Status_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::Location_HeightRef> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::Location_HeightRef>() {
+  return ::mavsdk::rpc::remote_id::Location_HeightRef_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc>() {
+  return ::mavsdk::rpc::remote_id::LocationAccuracy_HorAcc_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc>() {
+  return ::mavsdk::rpc::remote_id::LocationAccuracy_VerAcc_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc>() {
+  return ::mavsdk::rpc::remote_id::LocationAccuracy_SpeedAcc_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc>() {
+  return ::mavsdk::rpc::remote_id::LocationAccuracy_TimeAcc_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::SystemId_OperatorLocationType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::SystemId_OperatorLocationType>() {
+  return ::mavsdk::rpc::remote_id::SystemId_OperatorLocationType_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::SystemId_ClassificationType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::SystemId_ClassificationType>() {
+  return ::mavsdk::rpc::remote_id::SystemId_ClassificationType_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::SystemId_CategoryEu> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::SystemId_CategoryEu>() {
+  return ::mavsdk::rpc::remote_id::SystemId_CategoryEu_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::SystemId_ClassEu> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::SystemId_ClassEu>() {
+  return ::mavsdk::rpc::remote_id::SystemId_ClassEu_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::OperatorId_OperatorIdType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::OperatorId_OperatorIdType>() {
+  return ::mavsdk::rpc::remote_id::OperatorId_OperatorIdType_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::SelfId_DescType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::SelfId_DescType>() {
+  return ::mavsdk::rpc::remote_id::SelfId_DescType_descriptor();
+}
+template <>
+struct is_proto_enum<::mavsdk::rpc::remote_id::ArmStatus_Status> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::remote_id::ArmStatus_Status>() {
+  return ::mavsdk::rpc::remote_id::ArmStatus_Status_descriptor();
+}
 template <>
 struct is_proto_enum<::mavsdk::rpc::remote_id::RemoteIdResult_Result> : std::true_type {};
 template <>
