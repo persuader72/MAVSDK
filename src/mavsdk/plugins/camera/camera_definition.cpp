@@ -801,7 +801,7 @@ bool CameraDefinition::get_option_str(
     for (const auto& option : _parameter_map[setting_name]->options) {
         std::stringstream value_ss{};
         value_ss << option->value;
-        if (option->value == option_name) {
+        if (option->name == option_name) {
             description = option->name;
             return true;
         }
